@@ -464,7 +464,7 @@ export function Home() {
                 </div>
             </section>
 
-            <section className='feedback-section bg-[#F2F2F2] relative overflow-hidden px-10'>
+            <section className='feedback-section bg-[#F2F2F2] relative overflow-hidden px-10 pb-8'>
                 <div className="container">
                     <div className="flex gap-20  pt-10">
                         <div className="fed-1">
@@ -496,14 +496,123 @@ export function Home() {
                         </div>
 
                         <div>
-                            <img src="/feedback-truck.webp" alt="" className='absolute  max-w-none w-1/2 top-0 '/>
+                            <img src="/feedback-truck.webp" alt="" className='absolute  max-w-none w-1/2 top-0 ' />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <footer>
-                
+            <footer className='bg-black'>
+                <div className="container">
+                    <div className="grid grid-cols-2 items-center">
+                        <div className="flex flex-col">
+                            <p className='text-amber-50 font-fira-sans font-medium text-base pt-15'>Тел/факс:
+                                <a href="tel:88312250055">
+                                    8 (831) 225-00-55
+                                </a>
+                            </p>
+
+                            <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                Email: <a href="#">info@rtrf.ru</a>
+                            </p>
+
+                            <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+
+                                г. Нижний Новгород ул. Торфяная, 35
+
+                            </p>
+
+                            <div>
+                                <button className='bg-[#FEC80B] mt-2 px-8 py-3 rounded-xl cursor-pointer hover:bg-[#ffd43a] transition duration-300'>
+                                    <p className='font-normal font-fira-sans text-base'>Заказать звонок</p>
+                                </button>
+                            </div>
+                            <img src="/footer-uchun.svg" alt="" className='w-45 mt-10' />
+                        </div>
+
+                        <div className='flex gap-5 items-center'>
+                            <div className="double-wrap-1">
+                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                    О нас
+                                </p>
+
+                                <ul>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">О компании ООО «Рустрак»</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Новости</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Наши партнёры</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Производство</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Поставщикам и партнёрам</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Отзывы</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Сертификаты</a>
+                                    </li>
+
+                                   
+
+
+                                </ul>
+
+
+                            </div>
+
+                            <div>
+                                <ul>
+                                     <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Вакансии</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Кредит и лизинг</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Сервис</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Ремонт</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Контакты</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Полезные статьи</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                    Медиа
+
+                                </p>
+                                <ul>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Фотогалерея</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Видео</a>
+                                    </li>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                        <a href="#">Рекламные материалы</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
             </footer>
 
         </>
