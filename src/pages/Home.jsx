@@ -530,9 +530,9 @@ export function Home() {
                             <img src="/footer-uchun.svg" alt="" className='w-45 mt-10' />
                         </div>
 
-                        <div className='flex gap-5 items-center'>
+                        <div className='flex gap-20 items-center'>
                             <div className="double-wrap-1">
-                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-6'>
                                     О нас
                                 </p>
 
@@ -559,7 +559,7 @@ export function Home() {
                                         <a href="#">Сертификаты</a>
                                     </li>
 
-                                   
+
 
 
                                 </ul>
@@ -569,7 +569,7 @@ export function Home() {
 
                             <div>
                                 <ul>
-                                     <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
                                         <a href="#">Вакансии</a>
                                     </li>
                                     <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
@@ -591,7 +591,7 @@ export function Home() {
                             </div>
 
                             <div>
-                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
+                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5'>
                                     Медиа
 
                                 </p>
@@ -610,6 +610,54 @@ export function Home() {
 
 
 
+                        </div>
+                    </div>
+
+
+                    <div className="grid grid-cols-2 mt-10   items-center">
+                        <div>
+                            <p className='font-fira-sans text-[#ffffff]'>
+                                2009 - 2026 © Rus - Trucks
+                            </p>
+                            <p className='font-fira-sans text-[#ffffff] mt-5'>
+
+                                Информация на сайте не является публичной офертой, определяемой согласно статье 435 Гражданского кодекса РФ и носит исключительно информационный характер.
+
+                            </p>
+                        </div>
+                        <div>
+                            <ul className='flex gap-3 items-center'>
+                                <li>
+                                    <a href="#">
+                                        <img src="/max.svg" alt="max" className='w-7' />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/telegram.svg" alt="telegram" className='w-7' />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/vk.svg" alt="vk" className='w-7' />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/rutube.png" alt="rutube" className='w-7' />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/youtube.png" alt="youtube" className='w-7' />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/yandex.png" alt="yandex" className='w-7' />
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
