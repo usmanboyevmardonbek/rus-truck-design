@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { catData } from './objects';
 import { recomendData } from './objects';
 import { novostData } from './objects';
+import  footer from '../components/footer';
 
 
 
@@ -14,10 +15,15 @@ import 'swiper/css/navigation';
 
 
 import { Navigation, Pagination } from 'swiper/modules';
+import Footer from '../components/footer';
 
 
 
 export function Home() {
+    
+
+   
+
     return (
         <>
             <Header />
@@ -73,7 +79,7 @@ export function Home() {
                                             </p>
 
                                             <div className='border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 flex justify-center rounded-xl group-hover:bg-[#ffd43a] group-hover:text-black transition duration-300'>
-                                                <button className='font-fira-sans text-white font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300'>
+                                                <button className='font-fira-sans text-white  font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300'>
                                                     Заказать звонок
                                                 </button>
                                             </div>
@@ -210,14 +216,14 @@ export function Home() {
             <section className='category'>
                 <div className="container">
                     <div className="flex mt-15 justify-between">
-                        <h2 className='font-fira-sans font-medium text-[42px]'>
+                        <h2 className='font-fira-sans font-medium text-[42px] sm:text-xl pl-5'>
                             Категории
                         </h2>
                         <div className='flex items-center gap-2'>
-                            <button className='category-swiper-button-prev border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
+                            <button className='category-swiper-button-prev sm:hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
-                            <button className='category-swiper-button-next border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
+                            <button className='category-swiper-button-next sm:hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronRight />
                             </button>
                         </div>
@@ -232,6 +238,15 @@ export function Home() {
                         loop={true}
                         modules={[Navigation]}
                         className="mySwiper category-swiper px-4!"
+
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 15
+                            }
+                        }}
+
+                        
                     >
 
 
@@ -239,7 +254,7 @@ export function Home() {
                         {catData.map((cats) =>
 
                             <SwiperSlide key={cats.id}>
-                                <div className='mt-10 border border-[#EBEBEB] rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d'>
+                                <div className='mt-10 border border-[#EBEBEB]  rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d'>
                                     <a href="#" className='flex flex-col'>
                                         <div className='px-3 py-3'>
                                             <p className='font-fira-sans font-normal text-xl'>{cats.catTitle}</p>
@@ -261,21 +276,21 @@ export function Home() {
 
             <section>
                 <div className="container">
-                    <div className='flex items-center justify-center mt-30 gap-8'>
+                    <div className='flex items-center justify-center mt-30 gap-8 sm:flex-col'>
                         <div className='max-w-160'>
-                            <h2 className='font-fira-sans font-medium text-[42px]'>
+                            <h2 className='font-fira-sans font-medium text-[42px] sm:text-3xl sm:mb-2'>
                                 О компании <span className='text-[#fec80b]'>Рустрак</span>
                             </h2>
 
-                            <p className='mb-10 font-fira-sans font-normal text-lg'>
+                            <p className='mb-10 font-fira-sans font-normal text-lg  sm:text-base'>
                                 Наша компания занимает лидирующие позиции на рынке спецтехники: каждый день мы вносим свой вклад в развитие отечественного автопрома и укрепление российской экономики.
                             </p>
 
-                            <p className='font-fira-sans font-normal text-lg'>
+                            <p className='font-fira-sans font-normal text-lg sm:text-base'>
                                 «РусТрак» является ведущим производителем коммерческого транспорта и специализированной техники. Наша работа признана и высоко оценена крупнейшими отечественными корпорациями и государственными структурами: мы поставляем спецтехнику для таких корпораций, как Газпром, Росатом, Россети, РСК «МИГ» и других.
                             </p>
 
-                            <div className='border-2 border-[#fec80b] mt-10 py-2 px-2 max-w-50 flex justify-center rounded-sm  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300'>
+                            <div className='border-2 border-[#fec80b] mt-10 py-2 px-2 max-w-50 flex justify-center rounded-sm  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300 sm:hidden'>
                                 <button className='font-fira-sans text-black font-normal text-base cursor-pointer hover:bg-[#FEC80B] transition duration-300 flex gap-2 items-center'>
                                     Подробнее
                                     <span>
@@ -295,12 +310,12 @@ export function Home() {
 
             <section className='bg-[#FEC80B] mt-20 pb-20'>
                 <div className="container">
-                    <div className="grid grid-cols-3">
+                    <div className="grid grid-cols-3 sm:grid-cols-1">
                         <div className='pt-20'>
                             <p className='font-fira-sans font-medium text-8xl'>17</p>
                             <p className='font-fira-sans font-medium text-3xl'>субъектов</p>
                             <p className='font-normal text-lg font-fira-sans pt-7'>
-                                За 17 лет деятельности ООО <br /> «РусТрак» превратилось в крупное предприятие по производству и <br /> продаже специальной техники
+                                За 17 лет деятельности ООО<br />«РусТрак» превратилось в крупное предприятие по производству и <br /> продаже специальной техники
                             </p>
                         </div>
 
@@ -331,11 +346,11 @@ export function Home() {
 
             <section className='recommend-section bg-gray-300'>
                 <div className="container">
-                    <div className="flex mt-15 justify-between">
-                        <h2 className='font-fira-sans font-medium text-[42px]'>
+                    <div className="flex mt-15 justify-between mb-5 pt-12">
+                        <h2 className='font-fira-sans font-medium text-[42px] sm:text-3xl'>
                             Рекомендуемая продукция
                         </h2>
-                        <div className='flex items-center gap-2'>
+                        <div className='flex items-center gap-2 sm:hidden'>
                             <button className='recomend-swiper-button-prev border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
@@ -355,6 +370,12 @@ export function Home() {
                         }}
                         modules={[Navigation]}
                         className="mySwiper recomend-swiper"
+
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2
+                            }
+                        }}
                     >
                         {recomendData.map((recomendProduct) =>
 
@@ -363,7 +384,7 @@ export function Home() {
                                 <div className="wrapper-slider bg-white">
                                     <div className="relative">
                                         <a href="#">
-                                            <img src={recomendProduct.recImage} alt="" className='object-cover w-full! h-full! max-w-full' />
+                                            <img src={recomendProduct.recImage} alt="" className='object-cover w-full! h-full! sm:h-52 max-w-full' />
                                         </a>
 
                                         <Heart className='absolute top-1 right-2' />
@@ -371,19 +392,19 @@ export function Home() {
 
                                     <div>
                                         <a href="#">
-                                            <p className='font-fira-sans font-normal text-lg px-3 py-3'>{recomendProduct.recText}</p>
+                                            <p className='font-fira-sans font-normal text-lg px-3 py-3 sm:text-center'>{recomendProduct.recText}</p>
                                         </a>
                                     </div>
-                                    <p className='font-fira-sans text-2xl font-medium mt-2 px-3'>
+                                    <p className='font-fira-sans text-2xl font-medium mt-2 px-3 sm:text-xl sm:text-center'>
                                         {recomendProduct.product}
                                     </p>
 
-                                    <div className="flex gap-5 items-center px-3 py-3">
-                                        <button className='font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center w-30 h-10 rounded-sm'>
+                                    <div className="flex gap-5 items-center px-3 py-3 sm:text-center">
+                                        <button className='font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center w-30 h-10 rounded-sm sm:w-full    '>
                                             Подробнее
                                         </button>
 
-                                        <button className='flex cursor-pointer text-[#A1A1A1]'>
+                                        <button className='flex cursor-pointer text-[#A1A1A1] sm:hidden'>
                                             <p className='font-fira-sans text-base font-normalt'>Получить КП</p>
 
                                             <span>
@@ -410,11 +431,11 @@ export function Home() {
             <section className="novosti-section">
                 <div className="container">
                     <div className="flex justify-between items-center mt-10">
-                        <h2 className='font-fira-sans font-medium text-4xl'>
+                        <h2 className='font-fira-sans font-medium text-4xl sm:text-2xl'>
                             Новости
                         </h2>
 
-                        <div className="btn-wrap flex gap-2">
+                        <div className="btn-wrap flex gap-2 sm:hidden">
                             <button className='novosti-swiper-button-prev border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
@@ -433,6 +454,12 @@ export function Home() {
                             prevEl: ".novosti-swiper-button-prev",
                             nextEl: ".novosti-swiper-button-next"
                         }}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 2
+                            }
+
+                        }}
 
                     >
                         {novostData.map((novostItem) =>
@@ -447,7 +474,7 @@ export function Home() {
                                 <h5 className='font-fira-sans font-medium text-lg'>{novostItem.novostDesc}</h5>
 
                                 <button className='flex items-center gap-3'>
-                                    <p className='text-[#A1A1A1] font-fira-sans font-normal text-lg'>
+                                    <p className='text-[#A1A1A1] font-fira-sans font-normal text-lg '>
                                         Подробнее
                                     </p>
 
@@ -468,201 +495,40 @@ export function Home() {
                 <div className="container">
                     <div className="flex gap-20  pt-10">
                         <div className="fed-1">
-                            <h2 className="font-fira-sans font-medium text-[42px]">ОСТАЛИСЬ ВОПРОСЫ?</h2>
-                            <p className='font-fira-sans font-normal text-lg'>Оставьте свои контактные данные, и мы перезвоним Вам в ближайшее время</p>
+                            <h2 className="font-fira-sans font-medium text-[42px] sm:text-2xl sm:text-center sm:mb-2">ОСТАЛИСЬ ВОПРОСЫ?</h2>
+                            <p className='font-fira-sans font-normal text-lg sm:text-base sm:text-center'>Оставьте свои контактные данные, и мы перезвоним Вам в <br /> ближайшее время</p>
 
                             <div className="form-wrap mt-5">
                                 <form action="">
-                                    <div className="flex">
+                                    <div className="flex sm:flex-col sm:gap-2">
                                         <div>
                                             <label htmlFor="feedback-name" className='font-fira-sans font-medium text-sm'>Ваше имя *</label>
-                                            <input type="text" placeholder='Иван' id='feedback-name' className='border border-black w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent' />
+                                            <input type="text" placeholder='Иван' id='feedback-name' className='border border-black w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent sm:w-full' />
                                         </div>
                                         <div>
                                             <label htmlFor="feedback-name" className='font-fira-sans font-medium text-sm'>Телефон *</label>
-                                            <input type="text" placeholder='+7' id='feedback-name' className='border border-black w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent' />
+                                            <input type="text" placeholder='+7' id='feedback-name' className='border border-black w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent sm:w-full' />
                                         </div>
                                         <div className='flex items-center mt-3'>
-                                            <button className='bg-[#FEC80B] mt-2 px-8 py-3 rounded-xl cursor-pointer hover:bg-[#ffd43a] transition duration-300'>
+                                            <button className='bg-[#FEC80B] mt-2 px-8 py-3 rounded-xl cursor-pointer hover:bg-[#ffd43a] transition duration-300 sm:w-full'>
                                                 <p className='font-normal font-fira-sans text-base'>Отправить</p>
                                             </button>
                                         </div>
                                     </div>
                                 </form>
-                                <p className='mt-5 font-fira-sans font-normal text-sm text-gray-400'>
+                                <p className='mt-5 font-fira-sans font-normal text-sm text-gray-400 sm:text-center'>
                                     Нажимая на кнопку отправить <a href="#">Вы соглашаетесь на обработку персональных данных </a>
                                 </p>
                             </div>
                         </div>
 
-                        <div>
+                        <div className='sm:hidden'>
                             <img src="/feedback-truck.webp" alt="" className='absolute  max-w-none w-1/2 top-0 ' />
                         </div>
                     </div>
                 </div>
             </section>
-
-            <footer className='bg-black'>
-                <div className="container">
-                    <div className="grid grid-cols-2 items-center">
-                        <div className="flex flex-col">
-                            <p className='text-amber-50 font-fira-sans font-medium text-base pt-15'>Тел/факс:
-                                <a href="tel:88312250055">
-                                    8 (831) 225-00-55
-                                </a>
-                            </p>
-
-                            <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                Email: <a href="#">info@rtrf.ru</a>
-                            </p>
-
-                            <p className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-
-                                г. Нижний Новгород ул. Торфяная, 35
-
-                            </p>
-
-                            <div>
-                                <button className='bg-[#FEC80B] mt-2 px-8 py-3 rounded-xl cursor-pointer hover:bg-[#ffd43a] transition duration-300'>
-                                    <p className='font-normal font-fira-sans text-base'>Заказать звонок</p>
-                                </button>
-                            </div>
-                            <img src="/footer-uchun.svg" alt="" className='w-45 mt-10' />
-                        </div>
-
-                        <div className='flex gap-20 items-center'>
-                            <div className="double-wrap-1">
-                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-6'>
-                                    О нас
-                                </p>
-
-                                <ul>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">О компании ООО «Рустрак»</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Новости</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Наши партнёры</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Производство</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Поставщикам и партнёрам</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Отзывы</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Сертификаты</a>
-                                    </li>
-
-
-
-
-                                </ul>
-
-
-                            </div>
-
-                            <div>
-                                <ul>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Вакансии</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Кредит и лизинг</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Сервис</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Ремонт</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Контакты</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Полезные статьи</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5'>
-                                    Медиа
-
-                                </p>
-                                <ul>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Фотогалерея</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Видео</a>
-                                    </li>
-                                    <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                                        <a href="#">Рекламные материалы</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-
-
-                    <div className="grid grid-cols-2 mt-10   items-center">
-                        <div>
-                            <p className='font-fira-sans text-[#ffffff]'>
-                                2009 - 2026 © Rus - Trucks
-                            </p>
-                            <p className='font-fira-sans text-[#ffffff] mt-5'>
-
-                                Информация на сайте не является публичной офертой, определяемой согласно статье 435 Гражданского кодекса РФ и носит исключительно информационный характер.
-
-                            </p>
-                        </div>
-                        <div>
-                            <ul className='flex gap-3 items-center'>
-                                <li>
-                                    <a href="#">
-                                        <img src="/max.svg" alt="max" className='w-7' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="/telegram.svg" alt="telegram" className='w-7' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="/vk.svg" alt="vk" className='w-7' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="/rutube.png" alt="rutube" className='w-7' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="/youtube.png" alt="youtube" className='w-7' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="/yandex.png" alt="yandex" className='w-7' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-
+            <Footer/>
         </>
     )
 }
