@@ -2,19 +2,24 @@ import { ChevronDown } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 const Footer = () => {
   const [footerTime, setFooterTime] = useState(false)
+  const [mediaTime, setMediaTime] = useState(false)
+
+  function openMediaDropdown() {
+    setMediaTime(!mediaTime)
+  }
 
 
 
-  function openFooterDropdown(){
+  function openFooterDropdown() {
     setFooterTime(!footerTime)
   }
 
-  
+
   return (
     <>
       <footer className='bg-black'>
         <div className="container">
-          <div className="grid grid-cols-2 items-center sm:grid-cols-1">
+          <div className="grid lg:grid-cols-2 items-center grid-cols-1">
             <div className="flex flex-col">
               <p className='text-amber-50 font-fira-sans font-medium text-base pt-15'>Тел/факс:
                 <a href="tel:88312250055">
@@ -40,75 +45,81 @@ const Footer = () => {
               <img src="/footer-uchun.svg" alt="" className='w-45 mt-10' />
             </div>
 
-            <div className='flex gap-5 items-center sm:flex-col sm:items-start mt-5'>
-              <div className="double-wrap-1">
+            <div className='flex gap-5 items-center sm:flex-row sm:items-start mt-5'>
+              <div className="double-wrap-1 relative">
                 <button onClick={openFooterDropdown} className='flex items-center gap-2 cursor-pointer'>
-                  <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-2'>
-                  О нас
-                </p>
-                  <ChevronDown className={'text-[#ffffff] mb-2'}/>
+                  <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-2 lg:hidden'>
+                    О нас
+                  </p>
+                  <ChevronDown className={`text-[#ffffff] mb-2  ${footerTime ? "rotate-180" : ""} lg:hidden`} />
                 </button>
 
-                <ul>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">О компании ООО «Рустрак»</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Новости</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Наши партнёры</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Производство</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Поставщикам и партнёрам</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Отзывы</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Сертификаты</a>
-                  </li>
+                <ul className={!footerTime ? "flex gap-20  lg:static overflow-hidden  transition-all duration-500 ease-in h-0 flex-col lg:flex-row" : "flex gap-2  lg:static h-133 flex-col lg:flex-row transition-all ease-in duration-500 lg:overflow-visible"}>
+                  <div className="flex flex-col gap-3 mr-20 text-light-gray">
 
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">О компании ООО «Рустрак»</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Новости</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Наши партнёры</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Производство</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Поставщикам и партнёрам</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Отзывы</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Сертификаты</a>
+                    </li>
+                  </div>
 
-
-
+                  <div className="flex flex-col gap-3 mr-20 ">
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Вакансии</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Кредит и лизинг</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Сервис</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Ремонт</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Контакты</a>
+                    </li>
+                    <li className='text-white font-fira-sans'>
+                      <a href="#">Полезные статьи</a>
+                    </li>
+                  </div>
                 </ul>
+
+
+
 
 
               </div>
 
-              <div>
-                <ul>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Вакансии</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Кредит и лизинг</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Сервис</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Ремонт</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Контакты</a>
-                  </li>
-                  <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
-                    <a href="#">Полезные статьи</a>
-                  </li>
-                </ul>
-              </div>
+              
 
               <div>
-                <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5'>
-                  Медиа
+                <button onClick={openMediaDropdown} className='flex gap-2 cursor-pointer'>
+                  <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5 lg:hidden'>
+                    Медиа
 
-                </p>
-                <ul>
+                  </p>
+                  <ChevronDown className={`text-white ${mediaTime ? "rotate-180" : ""} lg:hidden`} />
+                </button>
+
+                <ul className={!mediaTime ? "overflow-hidden transition-all duration-700 ease-in h-0" : "overflow-hidden transition-all duration-500 ease-in-out h-133 lg:h-0 "}>
                   <li className='text-amber-50 font-fira-sans font-medium text-base mt-1'>
                     <a href="#">Фотогалерея</a>
                   </li>
@@ -121,7 +132,57 @@ const Footer = () => {
                 </ul>
               </div>
 
+            <div className="flex">
+              <div>
+              <button>
+                <p>
 
+                  О нас
+                </p>
+              </button>
+              <ul className='flex flex-col text-white font-fira-sans text-xl font-normal'>
+                <li>
+                  <a href="#">О компании ООО «Рустрак»</a>
+                </li>
+                <li>
+                  <a href="#">Новости</a>
+                </li>
+                <li>
+                  <a href="#">Наши партнёры</a>
+                </li>
+                <li>
+                  <a href="#">Производство</a>
+                </li>
+                <li>
+                  <a href="#">Поставщикам и партнёрам</a>
+                </li>
+                <li>
+                  <a href="#">Отзывы</a>
+                </li>
+                <li>
+                  <a href="#">Сертификаты</a>
+                </li>
+                <li>
+                  <a href="#">Вакансии</a>
+                </li>
+                <li>
+                  <a href="#">Кредит и лизинг</a>
+                </li>
+                <li>
+                  <a href="#">Сервис</a>
+                </li>
+                <li>
+                  <a href="#">Ремонт</a>
+                </li>
+                <li>
+                  <a href="#">Контакты</a>
+                </li>
+                <li>
+                  <a href="#">Полезные статьи</a>
+                </li>
+              </ul>
+            </div>
+            </div>
 
             </div>
           </div>
@@ -176,6 +237,9 @@ const Footer = () => {
             </div>
 
           </div>
+
+
+          
         </div>
       </footer>
     </>
