@@ -288,7 +288,7 @@ export function Home() {
 
             <section>
                 <div className="container">
-                    <div className='flex items-center justify-center mt-30 gap-8 md:flex-wrap lg:flex-row flex-col '>
+                    <div className='flex items-center justify-center mt-30 gap-8 lg:flex-row flex-col '>
                         <div className='max-w-160'>
                             <h2 className='font-fira-sans font-medium text-[42px] sm:text-3xl sm:mb-2'>
                                 О компании <span className='text-[#fec80b]'>Рустрак</span>

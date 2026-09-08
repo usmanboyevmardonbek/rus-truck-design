@@ -13,6 +13,25 @@
   padding: 0 40px;
 }
 
+/* Footer menus are accordions only below 768px. */
+.footer-mobile-menu {
+  display: block;
+}
+
+.footer-desktop-menu {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .footer-mobile-menu {
+    display: none !important;
+  }
+
+  .footer-desktop-menu {
+    display: grid !important;
+  }
+}
+
 .swiper-button-prev, .swiper-button-next {
   color: #FFFFFF !important;
   top: 50% !important;
