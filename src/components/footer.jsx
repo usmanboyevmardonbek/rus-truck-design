@@ -108,15 +108,15 @@ const Footer = () => {
 
               </div>
 
-              
+
 
               <div>
                 <button onClick={openMediaDropdown} className='flex gap-2 cursor-pointer'>
-                  <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5 lg:hidden'>
+                  <p className='text-amber-50 font-fira-sans font-medium text-base mt-1 mb-5 lg:hidden hidden'>
                     Медиа
 
                   </p>
-                  <ChevronDown className={`text-white ${mediaTime ? "rotate-180" : ""} lg:hidden`} />
+                  <ChevronDown className={`text-white ${mediaTime ? "rotate-180" : ""} lg:hidden hidden`} />
                 </button>
 
                 <ul className={!mediaTime ? "overflow-hidden transition-all duration-700 ease-in h-0" : "overflow-hidden transition-all duration-500 ease-in-out h-133 lg:h-0 "}>
@@ -132,66 +132,83 @@ const Footer = () => {
                 </ul>
               </div>
 
-            <div className="flex">
-              <div>
-              <button>
-                <p>
+              <div className="flex">
+                <div>
+                  <button>
+                    <p>
 
-                  О нас
-                </p>
-              </button>
-              <ul className='flex flex-col text-white font-fira-sans text-xl font-normal'>
-                <li>
-                  <a href="#">О компании ООО «Рустрак»</a>
-                </li>
-                <li>
-                  <a href="#">Новости</a>
-                </li>
-                <li>
-                  <a href="#">Наши партнёры</a>
-                </li>
-                <li>
-                  <a href="#">Производство</a>
-                </li>
-                <li>
-                  <a href="#">Поставщикам и партнёрам</a>
-                </li>
-                <li>
-                  <a href="#">Отзывы</a>
-                </li>
-                <li>
-                  <a href="#">Сертификаты</a>
-                </li>
-                <li>
-                  <a href="#">Вакансии</a>
-                </li>
-                <li>
-                  <a href="#">Кредит и лизинг</a>
-                </li>
-                <li>
-                  <a href="#">Сервис</a>
-                </li>
-                <li>
-                  <a href="#">Ремонт</a>
-                </li>
-                <li>
-                  <a href="#">Контакты</a>
-                </li>
-                <li>
-                  <a href="#">Полезные статьи</a>
-                </li>
-              </ul>
-            </div>
-            </div>
+                      О нас
+                    </p>
+                  </button>
+                  <div className='flex'>
+                    <ul className=' text-white font-fira-sans text-xl font-normal'>
+                      <li>
+                        <a href="#">О компании ООО «Рустрак»</a>
+                      </li>
+                      <li>
+                        <a href="#">Новости</a>
+                      </li>
+                      <li>
+                        <a href="#">Наши партнёры</a>
+                      </li>
+                      <li>
+                        <a href="#">Производство</a>
+                      </li>
+                      <li>
+                        <a href="#">Поставщикам и партнёрам</a>
+                      </li>
+                      <li>
+                        <a href="#">Отзывы</a>
+                      </li>
+                      <li>
+                        <a href="#">Сертификаты</a>
+                      </li>
+
+                    </ul>
+                    <ul>
+                      <li>
+                        <a href="#">Вакансии</a>
+                      </li>
+                      <li>
+                        <a href="#">Кредит и лизинг</a>
+                      </li>
+                      <li>
+                        <a href="#">Сервис</a>
+                      </li>
+                      <li>
+                        <a href="#">Ремонт</a>
+                      </li>
+                      <li>
+                        <a href="#">Контакты</a>
+                      </li>
+                      <li>
+                        <a href="#">Полезные статьи</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
 
 
-          <div className="grid grid-cols-2 mt-10 sm:grid-cols-1 gap-5  items-center">
+          <div className="grid lg:grid-cols-2 mt-10 grid-cols-1 gap-5  items-center">
 
 
+           
             <div>
+              <p className='font-fira-sans text-[#ffffff]'>
+                2009 - 2026 © Rus - Trucks
+              </p>
+              <p className='font-fira-sans text-[#ffffff] mt-2'>
+
+                Информация на сайте не является публичной офертой, определяемой согласно статье 435 Гражданского кодекса РФ и носит исключительно информационный характер.
+
+              </p>
+            </div>
+
+             <div>
               <ul className='flex gap-3 items-center'>
                 <li>
                   <a href="#">
@@ -225,21 +242,11 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div>
-              <p className='font-fira-sans text-[#ffffff]'>
-                2009 - 2026 © Rus - Trucks
-              </p>
-              <p className='font-fira-sans text-[#ffffff] mt-2'>
-
-                Информация на сайте не является публичной офертой, определяемой согласно статье 435 Гражданского кодекса РФ и носит исключительно информационный характер.
-
-              </p>
-            </div>
 
           </div>
 
 
-          
+
         </div>
       </footer>
     </>

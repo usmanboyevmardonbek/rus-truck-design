@@ -216,14 +216,14 @@ export function Home() {
             <section className='category'>
                 <div className="container">
                     <div className="flex mt-15 justify-between">
-                        <h2 className='font-fira-sans font-medium text-[42px] sm:text-xl pl-5'>
+                        <h2 className='font-fira-sans font-medium md:text-[42px] sm:text-xl pl-5'>
                             Категории
                         </h2>
                         <div className='flex items-center gap-2'>
-                            <button className='category-swiper-button-prev sm:hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
+                            <button className='category-swiper-button-prev md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
-                            <button className='category-swiper-button-next sm:hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
+                            <button className='category-swiper-button-next md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronRight />
                             </button>
                         </div>
@@ -243,7 +243,19 @@ export function Home() {
                             640: {
                                 slidesPerView: 2,
                                 spaceBetween: 15
-                            }
+                            },
+
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 24
+                            },
+
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 20
+                            },
+
+                           
                         }}
 
                         
@@ -257,7 +269,7 @@ export function Home() {
                                 <div className='mt-10 border border-[#EBEBEB]  rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d'>
                                     <a href="#" className='flex flex-col'>
                                         <div className='px-3 py-3'>
-                                            <p className='font-fira-sans font-normal text-xl'>{cats.catTitle}</p>
+                                            <p className='font-fira-sans font-normal text-base md:text-xl truncate'>{cats.catTitle}</p>
                                             <p className='font-fira-sans text-[#A1A1A1] font-normal text-base'>{cats.catDesc}</p>
                                         </div>
                                         <div className='ml-10  mt-10 w-36 flex self'>
@@ -276,7 +288,7 @@ export function Home() {
 
             <section>
                 <div className="container">
-                    <div className='flex items-center justify-center mt-30 gap-8 sm:flex-col'>
+                    <div className='flex items-center justify-center mt-30 gap-8 md:flex-wrap lg:flex-row flex-col '>
                         <div className='max-w-160'>
                             <h2 className='font-fira-sans font-medium text-[42px] sm:text-3xl sm:mb-2'>
                                 О компании <span className='text-[#fec80b]'>Рустрак</span>
@@ -310,11 +322,11 @@ export function Home() {
 
             <section className='bg-[#FEC80B] mt-20 pb-20'>
                 <div className="container">
-                    <div className="grid grid-cols-3 sm:grid-cols-1">
+                    <div className="grid grid-cols-1 md:grid-cols-3 md:gap-1">
                         <div className='pt-20'>
                             <p className='font-fira-sans font-medium text-8xl'>17</p>
                             <p className='font-fira-sans font-medium text-3xl'>субъектов</p>
-                            <p className='font-normal text-lg font-fira-sans pt-7'>
+                            <p className='font-normal text-lg font-fira-sans pt-7 md:text-base'>
                                 За 17 лет деятельности ООО<br />«РусТрак» превратилось в крупное предприятие по производству и <br /> продаже специальной техники
                             </p>
                         </div>
@@ -350,7 +362,7 @@ export function Home() {
                         <h2 className='font-fira-sans font-medium text-[42px] sm:text-3xl'>
                             Рекомендуемая продукция
                         </h2>
-                        <div className='flex items-center gap-2 sm:hidden'>
+                        <div className='lg:flex items-center gap-2 hidden md:block'>
                             <button className='recomend-swiper-button-prev border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
@@ -374,6 +386,11 @@ export function Home() {
                         breakpoints={{
                             640: {
                                 slidesPerView: 2
+                            },
+
+                            768: {
+                                slidesPerView: 4,
+                                spaceBetween: 20
                             }
                         }}
                     >
@@ -395,7 +412,7 @@ export function Home() {
                                             <p className='font-fira-sans font-normal text-lg px-3 py-3 sm:text-center'>{recomendProduct.recText}</p>
                                         </a>
                                     </div>
-                                    <p className='font-fira-sans text-2xl font-medium mt-2 px-3 sm:text-xl sm:text-center'>
+                                    <p className='font-fira-sans text-2xl font-medium mt-2 px-3 sm:text-xl sm:text-center line-clamp-2!'>
                                         {recomendProduct.product}
                                     </p>
 
@@ -435,7 +452,7 @@ export function Home() {
                             Новости
                         </h2>
 
-                        <div className="btn-wrap flex gap-2 sm:hidden">
+                        <div className="btn-wrap lg:flex gap-2 hidden md:block">
                             <button className='novosti-swiper-button-prev border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer'>
                                 <ChevronLeft />
                             </button>
@@ -457,6 +474,11 @@ export function Home() {
                         breakpoints={{
                             640: {
                                 slidesPerView: 2
+                            },
+
+                            768:{
+                                slidesPerView: 4,
+                                spaceBetween: 22
                             }
 
                         }}
