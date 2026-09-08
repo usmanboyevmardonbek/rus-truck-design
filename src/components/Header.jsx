@@ -40,7 +40,7 @@ export function Header() {
                         </a>
                         <div className="flex gap-5">
                             <div className="flex flex-col">
-                                <div className="flex cursor-pointer w-max relative z-0">
+                                <div className="lg:flex cursor-pointer w-max relative z-0 hidden">
                                     <button onClick={openWorkingTimeDropdown} className="flex cursor-pointer">
                                         <p className="text-black font-normal font-fira-sans text-base">Время работы</p>
                                         <ChevronDown className={`text-yellow-300 cursor-pointer transition-all duration-500 ${workingTime ? "rotate-180" : ""}`} />
@@ -52,7 +52,7 @@ export function Header() {
                                         </div>
                                     )}
                                 </div>
-                                <p className="text-[#A1A1A1] font-fira-sans text-base font-normal">
+                                <p className="text-[#A1A1A1] font-fira-sans text-base font-normal hidden lg:block">
                                     г. Нижний Новгород ул. Торфяная, 35
                                 </p>
 
@@ -60,7 +60,7 @@ export function Header() {
 
                             </div>
                             <div className="flex items-center gap-2.5">
-                                <div>
+                                <div className="hidden lg:block">
                                     <p className="text-[#A1A1A1] font-fira-sans text-base font-normal">
                                         Для регионов: <a href="tel:88005110525">8 (800)-511-05-25</a>
                                     </p>
@@ -220,7 +220,7 @@ export function Header() {
                             </div>
                             <div>
                                 <nav>
-                                    <ul className="flex gap-8 ">
+                                    <ul className="lg:flex gap-8 hidden">
                                         <li>
                                             <div>
                                                 <button onClick={openParse} className="flex cursor-pointer">
@@ -518,15 +518,18 @@ export function Header() {
 
                         <div>
                             <div className="flex gap-5">
-                                <form action="#">
+                                <form action="#" className="hidden lg:block">
                                     <div className="flex relative">
                                         <label htmlFor="name"></label>
                                         <input type="text" id="name" className="border border-[#FEC80B] outline-0 rounded-full font-fira-sans w-78 h-9 pt-3 pr-10 pb-3 pl-4 text-base shadow-[0_0_10px_#FEC80B]" />
                                         <button className="cursor-pointer absolute top-1 right-[15px] z-1">
-                                            <Search />
+                                            <Search/>
                                         </button>
+                                        
                                     </div>
+                                
                                 </form>
+                                <Search className="cursor-pointer"/>
 
                                 <button>
                                     <ShoppingCart />

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { catData } from './objects';
 import { recomendData } from './objects';
 import { novostData } from './objects';
-import  footer from '../components/footer';
+
 
 
 
@@ -15,7 +15,7 @@ import 'swiper/css/navigation';
 
 
 import { Navigation, Pagination } from 'swiper/modules';
-import Footer from '../components/footer';
+
 
 
 
@@ -550,7 +550,7 @@ export function Home() {
                     </div>
                 </div>
             </section>
-            <Footer/>
+            
         </>
     )
 }
