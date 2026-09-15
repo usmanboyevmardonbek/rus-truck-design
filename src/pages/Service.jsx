@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../components/Header";
-import Feedback from "../components/feedback";
+import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 const Service = () => {
@@ -46,7 +46,7 @@ const Service = () => {
 
             <ul className="inline-block mr-5">
               <li className="flex gap-5 mt-10">
-                <span className="text-lg font-bold bg-amber-300 w-8 h-8 rounded-2xl text-center">
+                <span className="text-lg font-bold bg-amber-300 w-8 h-8 rounded-2xl  text-center">
                   1
                 </span>
                 <p className="font-fira-sans text-lg max-w-170">

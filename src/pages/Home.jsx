@@ -15,12 +15,15 @@ import { catData } from "./objects";
 import { recomendData } from "./objects";
 import { novostData } from "./objects";
 
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
 import Footer from "../components/footer";
+import Feedback from "../components/Feedback";
+
 
 export function Home() {
   return (
