@@ -20,6 +20,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
+import Footer from "../components/footer";
 
 export function Home() {
   return (
@@ -29,6 +30,7 @@ export function Home() {
         <div className="container">
           <div className="z-50">
             <Swiper
+            
               spaceBetween={30}
               pagination={{
                 clickable: true,
@@ -250,8 +252,8 @@ export function Home() {
             </div>
           </div>
           <Swiper
-            slidesPerView={4}
-            spaceBetween={20}
+            slidesPerView={1}
+            spaceBetween={10}
             navigation={{
               prevEl: ".category-swiper-button-prev",
               nextEl: ".category-swiper-button-next",
@@ -381,7 +383,7 @@ export function Home() {
       <section className="recommend-section bg-gray-300">
         <div className="container">
           <div className="flex mt-15 justify-between mb-5 pt-12">
-            <h2 className="font-fira-sans font-medium text-[42px] sm:text-3xl">
+            <h2 className="font-fira-sans font-medium lg:text-[42px] text-3xl">
               Рекомендуемая продукция
             </h2>
             <div className="lg:flex items-center gap-2 hidden md:block">
@@ -395,8 +397,8 @@ export function Home() {
           </div>
 
           <Swiper
-            slidesPerView={4}
-            spaceBetween={20}
+            slidesPerView={2}
+            spaceBetween={12}
             navigation={{
               prevEl: ".recomend-swiper-button-prev",
               nextEl: ".recomend-swiper-button-next",
@@ -427,7 +429,7 @@ export function Home() {
                       <img
                         src={recomendProduct.recImage}
                         alt=""
-                        className="object-cover w-full! h-full! sm:h-52 max-w-full"
+                        className="object-cover lg:w-full! lg:h-full! h-44 w-52! max-w-full"
                       />
                     </a>
 
@@ -436,21 +438,21 @@ export function Home() {
 
                   <div>
                     <a href="#">
-                      <p className="font-fira-sans font-normal text-lg px-3 py-3 sm:text-center">
+                      <p className="font-fira-sans text-sm font-normal lg:text-lg px-3 py-3 text-center lg:text-left">
                         {recomendProduct.recText}
                       </p>
                     </a>
                   </div>
-                  <p className="font-fira-sans text-2xl font-medium mt-2 px-3 sm:text-xl sm:text-center line-clamp-2!">
+                  <p className="font-fira-sans lg:text-2xl font-medium mt-2 px-3 text-xl text-center line-clamp-2!">
                     {recomendProduct.product}
                   </p>
 
-                  <div className="flex gap-5 items-center px-3 py-3 sm:text-center">
-                    <button className="font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center w-30 h-10 rounded-sm sm:w-full    ">
+                  <div className="flex gap-5 items-center px-3 py-3 text-center">
+                    <button className="font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center lg:w-30 h-10 rounded-sm w-full    ">
                       Подробнее
                     </button>
 
-                    <button className="flex cursor-pointer text-[#A1A1A1] sm:hidden">
+                    <button className="lg:flex cursor-pointer text-[#A1A1A1] hidden">
                       <p className="font-fira-sans text-base font-normalt">
                         Получить КП
                       </p>
@@ -487,8 +489,8 @@ export function Home() {
           <Swiper
             modules={[Navigation]}
             className="mySwiper novosti-swiper"
-            slidesPerView={4}
-            spaceBetween={20}
+            slidesPerView={2}
+            spaceBetween={15}
             loop={true}
             navigation={{
               prevEl: ".novosti-swiper-button-prev",
@@ -538,77 +540,8 @@ export function Home() {
         </div>
       </section>
 
-      <section className="feedback-section bg-[#F2F2F2] relative overflow-hidden px-10 pb-8">
-        <div className="container">
-          <div className="flex gap-20  pt-10">
-            <div className="fed-1">
-              <h2 className="font-fira-sans font-medium lg:text-[42px] text-2xl lg:text-left text-center">
-                ОСТАЛИСЬ ВОПРОСЫ?
-              </h2>
-              <p className="font-fira-sans font-normal lg:text-lg text-base lg:text-left text-center">
-                Оставьте свои контактные данные, и мы перезвоним Вам в <br />{" "}
-                ближайшее время
-              </p>
-
-              <div className="form-wrap mt-5">
-                <form action="">
-                  <div className="flex lg:flex-row flex-col gap-2">
-                    <div>
-                      <label
-                        htmlFor="feedback-name"
-                        className="font-fira-sans font-medium text-sm"
-                      >
-                        Ваше имя *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Иван"
-                        id="feedback-name"
-                        className="border border-black lg:w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent w-full"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="feedback-name"
-                        className="font-fira-sans font-medium text-sm"
-                      >
-                        Телефон *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="+7"
-                        id="feedback-name"
-                        className="border border-black lg:w-11/12 px-3 py-3 rounded-xs font-fira-sans text-lg bg-transparent w-full "
-                      />
-                    </div>
-                    <div className="flex items-center mt-3">
-                      <button className="bg-[#FEC80B] mt-2 px-8 py-3 rounded-xl cursor-pointer hover:bg-[#ffd43a] transition duration-300 sm:w-full">
-                        <p className="font-normal font-fira-sans text-base">
-                          Отправить
-                        </p>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-                <p className="mt-5 font-fira-sans font-normal text-sm text-gray-400 sm:text-center">
-                  Нажимая на кнопку отправить{" "}
-                  <a href="#">
-                    Вы соглашаетесь на обработку персональных данных{" "}
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div className="sm:hidden">
-              <img
-                src="/feedback-truck.webp"
-                alt=""
-                className="absolute  max-w-none w-1/2 top-0 "
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Feedback/>
+      <Footer/>
     </>
   );
 }

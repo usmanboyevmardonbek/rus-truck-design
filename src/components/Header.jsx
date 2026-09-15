@@ -58,7 +58,7 @@ export function Header() {
               </span>
             </a>
             <div className="flex gap-5">
-              <div className="flex flex-col">
+              <div className="hidden lg:flex lg:flex-col md:hidden">
                 <div className="lg:flex cursor-pointer w-max relative z-0 hidden">
                   <button
                     onClick={openWorkingTimeDropdown}
@@ -419,10 +419,8 @@ export function Header() {
                         <ul>
                           <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
                             <NavLink
-                              to={"/"}
-                              className={
-                                "hover:text-[#FEC80B] transition duration-300"
-                              }
+                              to={"/service"}
+                              className
                             >
                               Сервис
                             </NavLink>
@@ -769,7 +767,7 @@ export function Header() {
                                 <ul>
                                   <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
                                     <NavLink
-                                      to={"/"}
+                                      to={"/service"}
                                       className={
                                         "hover:text-[#FEC80B] transition duration-300"
                                       }
