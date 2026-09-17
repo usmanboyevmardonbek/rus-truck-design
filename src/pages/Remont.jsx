@@ -1,5 +1,9 @@
 import React from "react";
 import { Header } from "../components/Header";
+import {
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
 
 const Remont = () => {
   return (
@@ -48,7 +52,7 @@ const Remont = () => {
                 className="w-120 mt-5 rounded-sm"
               />
               <img
-                src="/remont-2.jpg"
+                src="/remont-2-siniq.jpg"
                 alt="remont-2"
                 className="w-120 mt-5 rounded-sm"
               />
@@ -75,9 +79,50 @@ const Remont = () => {
                 гарантирует долговечность восстановленных элементов.
               </p>
               <p className="font-fira-sans text-lg mt-1">
-                <span className="font-fira-sans font-bold text-xl">Важно:</span> ремонт ходовой, двигателя, замена масел и
-                плановое техническое обслуживание не производятся.
+                <span className="font-fira-sans font-bold text-xl">Важно:</span>{" "}
+                ремонт ходовой, двигателя, замена масел и плановое техническое
+                обслуживание не производятся.
               </p>
+            </div>
+
+            <div className="flex mt-8 gap-5  items-center">
+              <ReactCompareSlider
+                itemOne={
+                  <ReactCompareSliderImage
+                    src="/remont-2-siniq.jpg"
+                    srcSet="/remont-2-siniq.jpg"
+                    alt="Image one"
+                    className="rounded-2xl w-full max-w-150"
+                  />
+                }
+                itemTwo={
+                  <ReactCompareSliderImage
+                    src="/remont-1.jpg"
+                    srcSet="/remont-1.jpg"
+                    alt="Image two"
+                    className="rounded-2xl w-full max-w-150 "
+                  />
+                }
+              />
+
+              <ReactCompareSlider
+                itemOne={
+                  <ReactCompareSliderImage
+                    src="/remont-3-siniq.jpg"
+                    srcSet="/remont-3-siniq.jpg"
+                    alt="Image one"
+                    className="rounded-2xl w-full max-w-150"
+                  />
+                }
+                itemTwo={
+                  <ReactCompareSliderImage
+                    src="/remont-4.jpg"
+                    srcSet="/remont-4.jpg"
+                    alt="Image two"
+                    className="rounded-2xl w-full max-w-150"
+                  />
+                }
+              />
             </div>
           </div>
         </div>
