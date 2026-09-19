@@ -63,4 +63,24 @@
   display: none;
 }
 
+.__rcs-handle-line {
+  width: 5px !important;
+  outline: 2px solid #fec80b !important;
+  background-color: #fec80b !important;
+}
 
+.__rcs-handle-arrow {
+  background-color: #fec80b !important;
+
+}
+
+.__rcs-handle-button {
+  border: 1px solid #fec80b !important;
+}
+
+.sliders-items {
+  width: 10px;
+  height: 10px;
+  background-color: #fec80b;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}

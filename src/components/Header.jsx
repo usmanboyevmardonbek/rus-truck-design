@@ -7,7 +7,7 @@ import {
   ShoppingCart,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react"; // useEffect qo'shildi
+import { useState, useEffect } from "react"; 
 import { NavLink } from "react-router-dom";
 
 export function Header() {
@@ -15,7 +15,7 @@ export function Header() {
   const [catalog, setCatalog] = useState(false);
   const [parse, setParse] = useState(false);
   const [specSourse, setSpecSource] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // scroll holati
+  const [isScrolled, setIsScrolled] = useState(false); 
 
   useEffect(() => {
     function handleScroll() {
@@ -98,7 +98,7 @@ export function Header() {
                   </p>
                 </div>
 
-                <button>
+                <button className={`${isScrolled ? "block" : "block"}`}>
                   <Phone className="bg-[#FEC80B] rounded-full w-10 h-10 cursor-pointer p-2!" />
                 </button>
               </div>

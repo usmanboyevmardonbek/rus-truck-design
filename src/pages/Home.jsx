@@ -15,14 +15,13 @@ import { catData } from "./objects";
 import { recomendData } from "./objects";
 import { novostData } from "./objects";
 
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
 import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
+import Feedback from "../components/feedback";
 
 
 export function Home() {
@@ -33,7 +32,6 @@ export function Home() {
         <div className="container">
           <div className="z-50">
             <Swiper
-            
               spaceBetween={30}
               pagination={{
                 clickable: true,
@@ -420,8 +418,8 @@ export function Home() {
 
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 20
-              }
+                spaceBetween: 20,
+              },
             }}
           >
             {recomendData.map((recomendProduct) => (
@@ -511,8 +509,8 @@ export function Home() {
 
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 20
-              }
+                spaceBetween: 20,
+              },
             }}
           >
             {novostData.map((novostItem) => (
@@ -543,8 +541,8 @@ export function Home() {
         </div>
       </section>
 
-      <Feedback/>
-      <Footer/>
+      <Feedback />
+      <Footer />
     </>
   );
 }

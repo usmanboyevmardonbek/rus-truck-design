@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../components/Header";
-import Feedback from "../components/Feedback";
+import Feedback from "../components/feedback";
 import Footer from "../components/footer";
 
 const Service = () => {

@@ -4,6 +4,8 @@ import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
+import Feedback from "../components/feedback";
+import Footer from "../components/footer";
 
 const Remont = () => {
   return (
@@ -45,7 +47,7 @@ const Remont = () => {
               </p>
             </div>
 
-            <div className="gallery-items flex justify-center gap-5">
+            <div className="gallery-items flex justify-center flex-col lg:flex-row gap-5">
               <img
                 src="/remont-1.jpg"
                 alt="remont-1"
@@ -85,14 +87,14 @@ const Remont = () => {
               </p>
             </div>
 
-            <div className="flex mt-8 gap-5  items-center">
+            <div className="flex flex-col lg:flex-row mt-8 gap-5  items-center justify-center">
               <ReactCompareSlider
                 itemOne={
                   <ReactCompareSliderImage
                     src="/remont-2-siniq.jpg"
                     srcSet="/remont-2-siniq.jpg"
                     alt="Image one"
-                    className="rounded-2xl w-full max-w-150"
+                    className="rounded-sm w-full! h-100! max-w-150!"
                   />
                 }
                 itemTwo={
@@ -100,7 +102,7 @@ const Remont = () => {
                     src="/remont-1.jpg"
                     srcSet="/remont-1.jpg"
                     alt="Image two"
-                    className="rounded-2xl w-full max-w-150 "
+                    className="rounded-sm w-full! h-100! max-w-150!"
                   />
                 }
               />
@@ -111,7 +113,7 @@ const Remont = () => {
                     src="/remont-3-siniq.jpg"
                     srcSet="/remont-3-siniq.jpg"
                     alt="Image one"
-                    className="rounded-2xl w-full max-w-150"
+                    className="rounded-sm w-full! h-100! max-w-150!"
                   />
                 }
                 itemTwo={
@@ -119,12 +121,91 @@ const Remont = () => {
                     src="/remont-4.jpg"
                     srcSet="/remont-4.jpg"
                     alt="Image two"
-                    className="rounded-2xl w-full max-w-150"
+                    className="rounded-sm w-full! h-100! max-w-150!"
                   />
                 }
               />
             </div>
+            <div className="slider-row">
+              <h2 className="font-bold font-fira-sans text-2xl mt-10">
+                Преимущества компании «Рустрак»
+              </h2>
+              <ul>
+                <li className="flex items-center gap-2 mt-2">
+                  <span className="sliders-items"></span>
+                  <p className="font-fira-sans text-lg">
+                    Вместительные цеха – обеспечивают удобство работы с
+                    крупногабаритными полуприцепами и комфорт для сотрудников.
+                  </p>
+                </li>
+                <li className="flex items-center gap-2 mt-2">
+                  <span className="sliders-items"></span>
+                  <p className="font-fira-sans text-lg">
+                    Профессиональные мастера – специалисты с опытом и знаниями
+                    гарантируют качественный и точный ремонт.
+                  </p>
+                </li>
+
+                <li className="flex items-center gap-2 mt-2">
+                  <span className="sliders-items"></span>
+                  <p className="font-fira-sans text-lg">
+                    Полный цикл производства – все работы выполняются на месте,
+                    от диагностики до финальной сборки, без привлечения
+                    сторонних подрядчиков.
+                  </p>
+                </li>
+
+                <li className="flex items-center gap-2 mt-2">
+                  <span className="sliders-items"></span>
+                  <p className="font-fira-sans text-lg">
+                    Опыт 17 лет – долгий срок работы на рынке подтверждает
+                    надёжность и компетентность компании.
+                  </p>
+                </li>
+                <li className="flex items-center gap-2 mt-2">
+                  <span className="sliders-items"></span>
+                  <p className="font-fira-sans text-lg">
+                    Гарантия на ремонт – обеспечивает уверенность в
+                    долговечности и качестве выполненных работ.
+                  </p>
+                </li>
+              </ul>
+              <img src="/proiz-1.jpg" alt="proiz-1" className="w-full mb-5" />
+
+              <div className="flex">
+                <img src="/proiz-2.png" alt="proiz-2" className="w-1/3" />
+                <img src="/proiz-3.jpg" alt="proiz-3" className="w-1/3" />
+                <img src="/proiz-4.png" alt="proiz-4" className="w-1/3" />
+              </div>
+              <div className="flex justify-center mt-10 mb-">
+                <button className="bg-[#fec80b] rounded-sm cursor-pointer py-3 px-6">
+                  <p className="font-fira-sans font-medium uppercase">
+                    Рассчитать стоимость ремонта
+                  </p>
+                </button>
+              </div>
+
+              <div className="mt-5">
+                <h2 className="text-xl font-bold font-fira-sans">Качественный сервис для полуприцепов</h2>
+                <p className="font-fira-sans text-lg mt-3 mb-10">
+                  Ремонт шторных полуприцепов помогает продлить срок службы
+                  техники и сохранить её функциональность. Обратитесь к нашей
+                  команде, чтобы получить надежное и аккуратное обслуживание.
+                  Компания «Рустрак» в Нижнем Новгороде выполняет работы с
+                  вниманием к деталям и строгими стандартами качества. Доверьте
+                  нам технические задачи и получите результат, который оправдает
+                  ожидания. Запланируйте обслуживание заранее и убедитесь в
+                  удобстве нашего сервиса. Для начала сотрудничества свяжитесь с
+                  нами любым удобным способом, и мы поможем организовать все
+                  быстро и профессионально.
+                </p>
+              </div>
+            </div>
+
+            
           </div>
+          <Feedback/>
+          <Footer/>
         </div>
       </>
     </div>
