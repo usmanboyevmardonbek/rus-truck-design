@@ -21,7 +21,7 @@ import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
 import Footer from "../components/footer";
-import Feedback from "../components/feedback";
+import Feedback from "../components/Feedback";
 
 
 export function Home() {

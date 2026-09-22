@@ -4,7 +4,7 @@ import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
-import Feedback from "../components/feedback";
+import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 const Remont = () => {

@@ -394,3 +394,76 @@ export const novostData = [
 
 ]
 
+export const newsData = [
+    {
+        id: 1,
+        newsImage: "/novosti-1.webp",
+        newsDate: "07.07.2026",
+        newsDesc: "Первый в России контейнеровоз на шасси КАМАЗ‑65658 выпустил «Рустрак»",
+
+    },
+
+    {
+        id: 2,
+        newsImage: "/novosti-2.webp",
+        newsDate: "08.06.2026",
+        newsDesc: "«Рустрак» подвёл итоги участия в выставке COMVEX 2026.",
+
+        
+    },
+
+    {
+        id: 3,
+        newsImage: "/novosti-3.webp",
+        newsDate: "26.03.2026",
+        newsDesc: "Садко 9 Фермер обзавелся КМУ с бурильной установкой ",
+        
+        
+    },
+
+    {
+        id: 4,
+        newsImage: "/novosti-4.webp",
+        newsDate: "06.03.2026",
+        newsDesc: "Рустрак поздравляет с Международным женским днём!",
+        
+        
+    },
+
+    {
+        id: 5,
+        newsImage: "/novosti-5.webp",
+        newsDate: "26.02.2026",
+        newsDesc: "РУСТРАК продлил статус официального дилера ИНМАН и ВЕЛМАШ-С!",
+        
+        
+        
+    },
+
+    {
+        id: 6,
+        newsImage: "/novosti-6.webp",
+        newsDate: "20.02.2026",
+        newsDesc: "Рустрак поздравляет с Днем защитника Отечества.",
+        
+        
+    },
+
+    {
+        id: 7,
+        newsImage: "/novosti-7.webp",
+        newsDate: "11.02.2026",
+        newsDesc: "Автотопливозаправщики Рустрак включены в реестр Минпромторга",
+        
+        
+    },
+
+    {
+        id: 8,
+        newsImage: "/novosti-8.webp",
+        newsDate: "30.12.2025",
+        newsDesc: "Рустрак поздравляет партнеров с Новым годом и Рождеством! ",
+        
+        
+    },
+]
