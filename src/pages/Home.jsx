@@ -21,10 +21,12 @@ import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
 import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
+import Feedback from "../components/feedback";
 
 
 export function Home() {
+
+  const [brendDropdown, setBrendDropdown] = useState(false)
   return (
     <>
       <Header />
@@ -439,7 +441,7 @@ export function Home() {
 
                   <div>
                     <a href="#">
-                      <p className="font-fira-sans text-sm font-normal lg:text-lg px-3 py-3 text-center lg:text-left">
+                      <p className="font-fira-sans text-sm font-normal lg:text-lg px-3 py-3 text-center lg:text-left line-clamp-1">
                         {recomendProduct.recText}
                       </p>
                     </a>

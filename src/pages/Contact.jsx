@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../components/Header";
 import { contactData } from "./objects";
-import Feedback from "../components/Feedback";
+import Feedback from "../components/feedback";
 import Footer from "../components/footer";
 
 function Contact() {
