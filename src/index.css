@@ -89,4 +89,6 @@
   
 } */
 
-
+.about-swiper .swiper-button-prev {
+  display: none;
+}
