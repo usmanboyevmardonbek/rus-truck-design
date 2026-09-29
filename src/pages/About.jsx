@@ -34,7 +34,7 @@ const About = () => {
         <section className="about-section bg-[url(/about-company.jpg)] h-100 mt-5 relative">
           <div className="container">
             <div className="pt-18">
-              <h2 className="max-w-177 font-fira-sans font-medium text-2xl text-[#ffffff]">
+              <h2 className="max-w-177 font-fira-sans font-medium lg:text-2xl text-[#ffffff]">
                 Автомобильный завод «РусТрак» - ведущий производитель
                 коммерческого транспорта и специализированной техники в Нижнем
                 Новгороде.
@@ -57,7 +57,7 @@ const About = () => {
           <div className="container">
             <div className="flex mt-15 justify-between">
               <div>
-                <h4 className="font-fira-sans text-2xl max-w-170">
+                <h4 className="font-fira-sans lg:text-2xl max-w-170">
                   Автомобильный завод «РусТрак» является предприятием полного
                   цикла: от конструкторско-технологических разработок до
                   готового изделия.
@@ -111,7 +111,7 @@ const About = () => {
                         className="mb-10 mt-10 ml-5"
                       />
 
-                      <h3 className="font-fira-sans text-2xl mb-3 font-medium mt-1">
+                      <h3 className="font-fira-sans lg:text-2xl mb-3 font-medium mt-1">
                         {aboutData.sliderTitle}
                       </h3>
 
@@ -125,10 +125,10 @@ const About = () => {
             </Swiper>
 
             <div className="mt-30">
-              <h2 className="font-fira-sans font-medium text-3xl">
+              <h2 className="font-fira-sans font-medium lg:text-3xl md:text-2xl">
                 Сегодня ООО «Рустрак» - это:
               </h2>
-              <div className="flex justify-between">
+              <div className="flex justify-between lg:flex-row flex-col md:flex-row md:gap-5 md:items-center">
                 <div>
                   <ul>
                     <li className="flex items-center gap-4 mb-5 text-lg mt-15">
@@ -182,7 +182,7 @@ const About = () => {
 
           <section>
             <div className="container">
-              <div className="grid grid-cols-3 gap-6 mb-40">
+              <div className="lg:grid lg:grid-cols-3 flex  flex-col    gap-6 mb-40 ">
                 <div className="bg-[#fec80b] rounded-xl">
                   <h2 className="font-fira-sans text-2xl font-bold mt-15 ml-5">
                     Отрасли применения выпускаемой техники:
@@ -203,14 +203,13 @@ const About = () => {
                   </p>
                 </div>
 
-                <div>
+                <div className="flex gap-2 flex-col md:flex-row">
                   <img
                     src="/trucks-images-1.webp"
                     alt="trucks"
                     className="rounded-xl h-full"
                   />
-                </div>
-                <div>
+
                   <img
                     src="/trucks-images-2.webp"
                     alt="trucks"
@@ -220,32 +219,30 @@ const About = () => {
               </div>
 
               <div>
-                <p className="font-fira-sans text-lg mb-10 max-w-220">
+                <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
                   ООО «РусТрак» является официальным дилером на территории РФ
                   следующих марок: Palfinger, ИНМАН, HKTC, UNIC, DongYang,
                   FASSI, Hangil, XCMG, HIAB.
                 </p>
-                <p className="font-fira-sans text-lg mb-10 max-w-220">
+                <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
                   За 16 лет деятельности компания заслужила высокий уровень
                   доверия дистрибьютеров и автопроизводителей: ИСУЗУ РУС, КАМАЗ,
                   ГАЗ, DAEWOO, FAW, JAC, ТРАКС ВОСТОК РУС (КОМПАС), МАЗ РУС,
                   ДАЙМЛЕР КАМАЗ РУС (FUSO), ХИНО МОТОРС, FOTON, DONG FENG,
                   SHACHMAN, НЕФАЗ, ЗАВОД СТАРТ
                 </p>
-                <p className="font-fira-sans text-lg mb-10 max-w-220">
+                <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
                   Наши клиенты: Газпром, Росатом, Россети, РСК «МИГ», Роснефть и
                   др.
                 </p>
               </div>
             </div>
           </section>
-
         </div>
       </div>
 
-      <Feedback/>
-      <Footer/>
-
+      <Feedback />
+      <Footer />
     </>
   );
 };
