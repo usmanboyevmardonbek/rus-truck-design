@@ -7,7 +7,7 @@ import {
   ShoppingCart,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export function Header() {
@@ -15,7 +15,7 @@ export function Header() {
   const [catalog, setCatalog] = useState(false);
   const [parse, setParse] = useState(false);
   const [specSourse, setSpecSource] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); 
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -27,18 +27,30 @@ export function Header() {
 
   function openWorkingTimeDropdown() {
     setWorkingTime(!workingTime);
+    setCatalog(false);
+    setParse(false);
+    setSpecSource(false);
   }
 
   function openCatalog() {
     setCatalog(!catalog);
+    setWorkingTime(false);
+    setParse(false);
+    setSpecSource(false);
   }
 
   function openParse() {
     setParse(!parse);
+    setWorkingTime(false);
+    setCatalog(false);
+    setSpecSource(false);
   }
 
   function Openspec() {
     setSpecSource(!specSourse);
+    setWorkingTime(false);
+    setCatalog(false);
+    setParse(false);
   }
 
   return (
@@ -48,6 +60,11 @@ export function Header() {
       <div
         className={`justify-around items-center border-b border-b-yellow-400 ${isScrolled ? "hidden" : "flex"}`}
       >
+        <div className="form-wrapper">
+          <div>
+            
+          </div>
+        </div>
         <div className="container">
           <div className="flex justify-between mt-3!">
             <a href="/" className="flex items-center gap-2.5">
@@ -97,10 +114,6 @@ export function Header() {
                     <a href="tel:88312250055">8 (831) 225-00-55</a>
                   </p>
                 </div>
-
-                <button className={`${isScrolled ? "block" : "block"}`}>
-                  <Phone className="bg-[#FEC80B] rounded-full w-10 h-10 cursor-pointer p-2!" />
-                </button>
               </div>
             </div>
           </div>
@@ -113,21 +126,29 @@ export function Header() {
             <div className="flex items-center gap-8">
               <div>
                 <div className="flex gap-3">
-                    <button
-                  onClick={Openspec}
-                  className="cursor-pointer flex items-center bg-amber-400 gap-2 p-2 rounded-md"
-                >
-                  {specSourse ? (
-                    <X />
-                  ) : (
-                    <Menu className={`w-[18px] h-[18px] [stroke-width:1.75]`} />
-                  )}
-                  <p className={`font-fira-sans font-normal text-lg ${isScrolled ? "hidden" : "block"}`}>Каталог</p>
+                  <button
+                    onClick={Openspec}
+                    className="cursor-pointer flex items-center bg-amber-400 gap-2 p-2 rounded-md"
+                  >
+                    {specSourse ? (
+                      <X />
+                    ) : (
+                      <Menu
+                        className={`w-[18px] h-[18px] [stroke-width:1.75]`}
+                      />
+                    )}
+                    <p
+                      className={`font-fira-sans font-normal text-lg ${isScrolled ? "hidden" : "block"}`}
+                    >
+                      Каталог
+                    </p>
+                  </button>
 
-                  
-                </button>
-
-                <img src="/header-logo.svg" alt="header-logo" className={`${isScrolled ? "w-40" : "w-0"}`}/>
+                  <img
+                    src="/header-logo.svg"
+                    alt="header-logo"
+                    className={`${isScrolled ? "w-40" : "w-0"}`}
+                  />
                 </div>
 
                 {specSourse && (
@@ -418,10 +439,7 @@ export function Header() {
                       <div>
                         <ul>
                           <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                            <NavLink
-                              to={"/service"}
-                              className
-                            >
+                            <NavLink to={"/service"} className>
                               Сервис
                             </NavLink>
                           </li>
@@ -1201,6 +1219,10 @@ export function Header() {
 
                 <button>
                   <Heart />
+                </button>
+
+                <button>
+                  <Phone className="bg-[#FEC80B] rounded-full w-10 h-10 cursor-pointer p-2!" />
                 </button>
               </div>
             </div>

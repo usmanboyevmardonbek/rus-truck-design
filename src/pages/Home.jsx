@@ -22,6 +22,7 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import Footer from "../components/footer";
 import Feedback from "../components/Feedback";
+import ArcNavigation from "../components/ArcNavigation";
 
 
 export function Home() {
@@ -379,9 +380,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="scroll-section bg-gray-400 mt-10 mb-20">
-        <div className="container"></div>
-      </section>
+      <ArcNavigation />
 
       <section className="recommend-section bg-gray-300">
         <div className="container">
