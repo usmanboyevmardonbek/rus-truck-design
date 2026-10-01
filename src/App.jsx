@@ -7,6 +7,7 @@ import News from "./pages/News";
 import Contact from "./pages/Contact";
 import Vacancies from "./pages/Vacancies";
 import Partners from "./pages/Partners";
+import Production from "./pages/Production";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
       <Route path="/remont" element={<Remont/>}/>
       <Route path="/news" element={<News/>}/>
       <Route path="/contact" element={<Contact/>}/>
+      <Route path="/production" element={<Production/>}/>
+
 
 
 
