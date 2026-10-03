@@ -436,7 +436,7 @@ export const contactData = [
     userEmail: "sale3@rtrf.ru",
   },
 
-   {
+  {
     id: 6,
     userImage: "/user-man.jpeg",
     userName: "Киселёв Иван Александрович",
@@ -463,7 +463,7 @@ export const contactData = [
     userEmail: "kb1@rtrf.ru",
   },
 
-   {
+  {
     id: 9,
     userImage: "/user-man.jpeg",
     userName: "Муреев Александр Евгеньевич",
@@ -482,49 +482,257 @@ export const contactData = [
   },
 ];
 
-
 export const aboutSlider = [
   {
     id: 1,
     sliderImage: "/about-slider-1.svg",
     sliderTitle: "Собственная производственная база",
-    sliderDesc: "позволяет максимально снизить себестоимость продукции, повышая её конкурентоспособность"
+    sliderDesc:
+      "позволяет максимально снизить себестоимость продукции, повышая её конкурентоспособность",
   },
 
   {
     id: 2,
     sliderImage: "/about-slider-2.svg",
     sliderTitle: "Отдел контроля качества",
-    sliderDesc: "проверяет каждую единицу спецтехники, что гарантирует длительный срок эксплуатации и безотказную работу техники."
+    sliderDesc:
+      "проверяет каждую единицу спецтехники, что гарантирует длительный срок эксплуатации и безотказную работу техники.",
   },
 
   {
     id: 3,
     sliderImage: "/about-slider-3.svg",
     sliderTitle: "Наличие конструкторского бюро",
-    sliderDesc: "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы."
+    sliderDesc:
+      "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы.",
   },
 
   {
     id: 4,
     sliderImage: "/about-slider-4.svg",
     sliderTitle: "Наличие конструкторского бюро",
-    sliderDesc: "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы."
+    sliderDesc:
+      "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы.",
   },
 
   {
     id: 3,
     sliderImage: "/about-slider-3.svg",
     sliderTitle: "Наличие конструкторского бюро",
-    sliderDesc: "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы."
+    sliderDesc:
+      "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы.",
   },
 
   {
     id: 4,
     sliderImage: "/about-slider-4.svg",
     sliderTitle: "Наличие конструкторского бюро",
-    sliderDesc: "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы."
+    sliderDesc:
+      "производится на шасси мировых производителей и позволяет предлагать уникальную технику — надёжную в эксплуатации и максимально адаптированную под конкретные условия работы.",
+  },
+];
+
+export const photoData = [
+  {
+    id: 1,
+    fancyImg: "/gallery-1.jpg",
+    categoryId: 1,
   },
 
+  {
+    id: 2,
+    fancyImg: "/gallery-2.jpg",
+    categoryId: 1,
+  },
 
-]
+  {
+    id: 3,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 4,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 5,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 6,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 7,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 8,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 9,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 10,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 11,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 12,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 13,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 14,
+    fancyImg: "/gallery-2.jpg",
+
+    
+  },
+
+  {
+    id: 15,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 16,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 17,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 18,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 19,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 20,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 21,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 22,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 23,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 24,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 25,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 26,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 27,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 28,
+    fancyImg: "/gallery-4.jpg",
+  },
+  {
+    id: 29,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 30,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 31,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 32,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 33,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 34,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 35,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 36,
+    fancyImg: "/gallery-4.jpg",
+  },
+
+  {
+    id: 37,
+    fancyImg: "/gallery-1.jpg",
+  },
+
+  {
+    id: 38,
+    fancyImg: "/gallery-2.jpg",
+  },
+
+  {
+    id: 39,
+    fancyImg: "/gallery-3.jpg",
+  },
+
+  {
+    id: 40,
+    fancyImg: "/gallery-4.jpg",
+  },
+];

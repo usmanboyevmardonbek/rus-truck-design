@@ -10,6 +10,7 @@ import Partners from "./pages/Partners";
 import Production from "./pages/Production";
 import Leasing from "./pages/Leasing";
 import Photogallery from "./pages/Photogallery";
+import Promo from "./pages/Promo";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
       <Route path="/production" element={<Production/>}/>
       <Route path="/leasing" element={<Leasing/>}/>
       <Route path="/photogallery" element={<Photogallery/>}/>
+      <Route path="/promo" element={<Promo/>}/>
+
 
 
 

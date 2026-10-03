@@ -1,7 +1,23 @@
 import React from "react";
 import { Header } from "../components/Header";
+import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import { photoData } from "./objects";
 
 const Photogallery = () => {
+  function useFancybox(options = {}) {
+    const [root, setRoot] = useState(null);
+
+    useEffect(() => {
+      if (root) {
+        Fancybox.bind(root, "[data-fancybox]", options);
+        return () => Fancybox.unbind(root, "[data-fancybox]");
+      }
+    }, [root, options]);
+
+    return [setRoot];
+  }
+
+  //  const [fancyboxRef] = useFancybox({
   return (
     <>
       <Header />
@@ -45,6 +61,19 @@ const Photogallery = () => {
             <button className="border border-[#ebebeb] inline-block px-5 py-2 cursor-pointer hover:bg-[#FEC80B] transition duration-300 rounded-sm">
               <p className="font-fira-sans text-base">Выставки</p>
             </button>
+          </div>
+          <div ref={Fancybox} className="grid grid-cols-4 mt-10 gap-10">
+            {photoData.map((photos) => (
+              <a
+                data-fancybox="gallery"
+                href={photos.fancyImg}
+              >
+                <img
+                  src={photos.fancyImg}
+                  alt="Sample image #2"
+                />
+              </a>
+            ))}
           </div>
         </div>
       </div>

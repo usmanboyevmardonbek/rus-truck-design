@@ -4,8 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
+import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+
 
 const Production = () => {
+  
   return (
     <>
       <Header />
@@ -77,10 +80,10 @@ const Production = () => {
             spaceBetween={22}
             slidesPerView={4}
             breakpoints={{
-                640:{
-                    slidesPerView: 3,
-                    spaceBetween: 22,
-                }
+              640: {
+                slidesPerView: 3,
+                spaceBetween: 22,
+              },
             }}
           >
             <SwiperSlide>
@@ -140,8 +143,8 @@ const Production = () => {
         </div>
       </div>
 
-      <Feedback/>
-      <Footer/>
+      <Feedback />
+      <Footer />
     </>
   );
 };
