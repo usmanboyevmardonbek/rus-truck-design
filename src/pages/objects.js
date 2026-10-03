@@ -603,8 +603,6 @@ export const photoData = [
   {
     id: 14,
     fancyImg: "/gallery-2.jpg",
-
-    
   },
 
   {
@@ -734,5 +732,34 @@ export const photoData = [
   {
     id: 40,
     fancyImg: "/gallery-4.jpg",
+  },
+];
+
+export const reviewData = [
+  {
+    id: 1,
+    revImg: "/rev-1.jpg",
+    
+  },
+
+  {
+    id: 2,
+    revImg: "/rev-2.jpg",
+    
+  },
+
+  {
+    id: 3,
+    revImg: "/rev-3.jpg",
+  },
+
+  {
+    id: 4,
+    revImg: "/rev-4.jpg",
+  },
+
+  {
+    id: 5,
+    revImg: "/rev-5.jpg",
   },
 ];

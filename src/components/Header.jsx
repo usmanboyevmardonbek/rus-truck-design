@@ -122,7 +122,7 @@ export function Header() {
 
       <section className="py-4 relative z-0">
         <div className="container">
-          <div className="flex items-center gap-0.5 justify-between">
+          <div className="flex items-center gap-2 justify-between ">
             <div className="flex items-center gap-8">
               <div>
                 <div className="flex gap-3">
@@ -481,14 +481,14 @@ export function Header() {
               </div>
               <div>
                 <nav>
-                  <ul className="lg:flex gap-8 hidden">
+                  <ul className={`lg:flex gap-8 hidden md:hidden ${isScrolled ? "hidden" : "block"}`}>
                     <li>
                       <div>
                         <button
                           onClick={openParse}
                           className="flex cursor-pointer"
                         >
-                          <p className="text-black font-normal font-fira-sans text-base">
+                          <p className="text-black font-fira-sans">
                             О нас
                           </p>
                           <ChevronDown
