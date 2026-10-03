@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Header } from "../components/Header";
-import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import { Fancybox } from "@fancyapps/ui";
 import { reviewData } from "./objects";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 const Review = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    Fancybox.bind(container, "[data-fancybox]", {});
+
+    return () => {
+      Fancybox.unbind(container);
+      Fancybox.close();
+    };
+  }, []);
+
   return (
     <>
       <Header />
@@ -30,7 +42,7 @@ const Review = () => {
             <h1 className="font-fira-sans text-3xl font-medium mt-3">Отзывы</h1>
           </div>
 
-          <div ref={Fancybox} className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:grid-cols-3">
+          <div ref={containerRef} className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:grid-cols-3">
             {reviewData.map((revItem) => (
                 <a
               data-fancybox="gallery"

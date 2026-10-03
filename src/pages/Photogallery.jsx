@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Header } from "../components/Header";
-import { Fancybox } from "@fancyapps/ui/dist/fancybox/";
+import { Fancybox } from "@fancyapps/ui";
 import { photoData } from "./objects";
 
 const Photogallery = () => {
-  function useFancybox(options = {}) {
-    const [root, setRoot] = useState(null);
+  const containerRef = useRef(null);
 
-    useEffect(() => {
-      if (root) {
-        Fancybox.bind(root, "[data-fancybox]", options);
-        return () => Fancybox.unbind(root, "[data-fancybox]");
-      }
-    }, [root, options]);
+  useEffect(() => {
+    const container = containerRef.current;
+    Fancybox.bind(container, "[data-fancybox]", {});
 
-    return [setRoot];
-  }
-
-  //  const [fancyboxRef] = useFancybox({
+    return () => {
+      Fancybox.unbind(container);
+      Fancybox.close();
+    };
+  }, []);
   return (
     <>
       <Header />
@@ -62,9 +59,10 @@ const Photogallery = () => {
               <p className="font-fira-sans text-base">Выставки</p>
             </button>
           </div>
-          <div ref={Fancybox} className="grid grid-cols-4 mt-10 gap-10">
+          <div ref={containerRef} className="grid grid-cols-4 mt-10 gap-10">
             {photoData.map((photos) => (
               <a
+                key={photos.id}
                 data-fancybox="gallery"
                 href={photos.fancyImg}
               >

@@ -12,6 +12,7 @@ import Leasing from "./pages/Leasing";
 import Photogallery from "./pages/Photogallery";
 import Promo from "./pages/Promo";
 import Review from "./pages/Review";
+import Suppliers from "./pages/Suppliers";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
       <Route path="/photogallery" element={<Photogallery/>}/>
       <Route path="/promo" element={<Promo/>}/>
       <Route path="/review" element={<Review/>}/>
+      <Route path="/suppliers" element={<Suppliers/>}/>
+
 
 
 

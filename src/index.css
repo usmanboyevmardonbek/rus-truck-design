@@ -92,3 +92,29 @@
 .about-swiper .swiper-button-prev {
   display: none;
 }
+
+/* Production Swiper Styling */
+.production-swiper {
+  padding-bottom: 48px !important;
+}
+
+.production-swiper .swiper-pagination {
+  bottom: 8px !important;
+}
+
+.production-swiper .swiper-pagination-bullet {
+  background: #cbd5e1 !important;
+  border: none !important;
+  width: 10px !important;
+  height: 10px !important;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  margin: 0 4px !important;
+}
+
+.production-swiper .swiper-pagination-bullet-active {
+  background: #FEC80B !important;
+  width: 28px !important;
+  border-radius: 9999px !important;
+  opacity: 1;
+}
