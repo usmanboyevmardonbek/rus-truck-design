@@ -74,6 +74,12 @@ export const catData = [
     catDesc: "4 модели",
     catImage: "/cat-11.webp",
   },
+  {
+    id: 12,
+    catTitle: "Автомобили ДОПОГ категория EXII",
+    catDesc: "4 модели",
+    catImage: "/cat-11.webp",
+  },
 ];
 
 export const recomendData = [
