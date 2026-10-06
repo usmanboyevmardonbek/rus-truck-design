@@ -9,9 +9,12 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { PhoneModal } from "./PhoneModal";
+import { motion, AnimatePresence } from "motion/react";
 
 export function Header() {
   const [workingTime, setWorkingTime] = useState(false);
+  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [catalog, setCatalog] = useState(false);
   const [parse, setParse] = useState(false);
   const [specSourse, setSpecSource] = useState(false);
@@ -88,16 +91,19 @@ export function Header() {
                       className={`text-yellow-300 cursor-pointer transition-all duration-500 ${workingTime ? "rotate-180" : ""}`}
                     />
                   </button>
+                  <AnimatePresence>
                   {workingTime && (
-                    <div className="absolute left-1/2 -translate-x-1/3 top-[calc(100%+6px)] shadow-[0_4px_12px_0_rgba(0,0,0,0.1)] w-max bg-white p-4">
+                    <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} transition={{ duration: 0.2 }} className="absolute left-1/2 -translate-x-1/3 top-[calc(100%+6px)] shadow-[0_4px_12px_0_rgba(0,0,0,0.1)] w-max bg-white p-4">
                       <p className="text-black font-normal font-fira-sans text-base">
                         Пн-пт: с 8:00 до 18:00
                       </p>
                       <p className="text-black font-normal font-fira-sans text-base">
                         Сб-вс: Выходной
                       </p>
-                    </div>
-                  )}
+                    </motion.div>
+                    )}
+                    </AnimatePresence>
+
                 </div>
                 <p className="text-[#A1A1A1] font-fira-sans text-base font-normal hidden lg:block">
                   г. Нижний Новгород ул. Торфяная, 35
@@ -151,8 +157,9 @@ export function Header() {
                   />
                 </div>
 
+                <AnimatePresence>
                 {specSourse && (
-                  <div className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6 z-60">
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} transition={{ duration: 0.2 }} className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6 z-60">
                     <div className="grid grid-cols-4">
                       <div>
                         <p className="font-fira-sans font-extrabold text-lg mb-4">
@@ -476,8 +483,10 @@ export function Header() {
                         </ul>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </motion.div>
+                    )}
+                    </AnimatePresence>
+
               </div>
               <div>
                 <nav>
@@ -496,8 +505,9 @@ export function Header() {
                           />
                         </button>
 
+                        <AnimatePresence>
                         {parse && (
-                          <div className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6">
+                          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} transition={{ duration: 0.2 }} className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6">
                             <div className="grid grid-cols-4">
                               <div>
                                 <p className="font-fira-sans font-extrabold text-lg mb-4">
@@ -826,8 +836,10 @@ export function Header() {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                        )}
+                          </motion.div>
+                    )}
+                    </AnimatePresence>
+
                       </div>
                     </li>
 
@@ -845,8 +857,9 @@ export function Header() {
                           />
                         </button>
 
+                        <AnimatePresence>
                         {catalog && (
-                          <div className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6">
+                          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} transition={{ duration: 0.2 }} className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6">
                             <div className="grid grid-cols-4">
                               <div>
                                 <p className="font-fira-sans font-extrabold text-lg mb-4">
@@ -1175,8 +1188,10 @@ export function Header() {
                                 </ul>
                               </div>
                             </div>
-                          </div>
-                        )}
+                          </motion.div>
+                    )}
+                    </AnimatePresence>
+
                       </div>
                     </li>
 
@@ -1221,7 +1236,7 @@ export function Header() {
                   <Heart />
                 </button>
 
-                <button>
+                <button onClick={() => setIsPhoneModalOpen(true)}>
                   <Phone className="bg-[#FEC80B] rounded-full w-10 h-10 cursor-pointer p-2!" />
                 </button>
               </div>
@@ -1229,6 +1244,8 @@ export function Header() {
           </div>
         </div>
       </section>
+
+      <PhoneModal isOpen={isPhoneModalOpen} onClose={() => setIsPhoneModalOpen(false)} />
     </header>
   );
 }

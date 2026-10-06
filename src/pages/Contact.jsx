@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import React from "react";
 import { Header } from "../components/Header";
 import { contactData } from "./objects";
@@ -9,7 +11,7 @@ function Contact() {
     <>
       <Header />
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -100,7 +102,7 @@ function Contact() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
           <Feedback/>
           <Footer/>
 

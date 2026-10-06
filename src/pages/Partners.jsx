@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import Feedback from "../components/Feedback";
@@ -14,7 +16,7 @@ const Partners = () => {
     <>
       <Header />
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <div>
             <ul className="flex items-center gap-2">
               <li className="font-fira-sans text-gray-500 text-sm">
@@ -247,7 +249,7 @@ const Partners = () => {
               https://shacman.ru
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Feedback/>
       <Footer/>

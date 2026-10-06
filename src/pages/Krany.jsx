@@ -5,73 +5,99 @@ import { Header } from "../components/Header";
 import Footer from "../components/footer";
 import { useState, useEffect } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
-
 
 const dummyProducts = [
   { 
     id: 1, 
-    title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
+    title: "Кран-манипулятор МАЗ 437121 с КМУ FASSI F110",
     specs: [
       { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "4300" }
+      { label: "Габариты ТС", value: "7300 x 2550 x 3000 мм" },
+      { label: "Грузоподъемность, кг", value: "4000" }
     ]
   },
   { 
     id: 2, 
-    title: "Шторный грузовик МАЗ 631228-524-010 (модель 4389M2)",
+    title: "Кран-манипулятор КАМАЗ 43118 с КМУ ИНМАН ИМ 150N",
     specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "6500 x 2200 x 2400 мм" },
-      { label: "Грузоподъемность, кг", value: "6800" }
+      { label: "Марка", value: "КАМАЗ" },
+      { label: "Габариты ТС", value: "8500 x 2550 x 3600 мм" },
+      { label: "Грузоподъемность, кг", value: "7000" }
     ]
   },
   { 
     id: 3, 
-    title: "Шторный грузовик КАМАЗ 4308",
+    title: "Кран-манипулятор JAC N120 с КМУ UNIC URV-374",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "6000 x 2100 x 2300 мм" },
-      { label: "Грузоподъемность, кг", value: "5500" }
+      { label: "Марка", value: "JAC" },
+      { label: "Габариты ТС", value: "8100 x 2400 x 3200 мм" },
+      { label: "Грузоподъемность, кг", value: "6500" }
     ]
   },
   { 
     id: 4, 
-    title: "Шторный грузовик КАМАЗ 65657",
+    title: "Кран-манипулятор ГАЗон NEXT с КМУ SOOSAN SCS334",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "7200 x 2400 x 2500 мм" },
-      { label: "Грузоподъемность, кг", value: "10500" }
+      { label: "Марка", value: "ГАЗ" },
+      { label: "Габариты ТС", value: "7500 x 2300 x 2900 мм" },
+      { label: "Грузоподъемность, кг", value: "3500" }
     ]
   },
   { 
     id: 5, 
-    title: "Шторный грузовик КОМПАС 5",
+    title: "Кран-манипулятор HINO 300 с КМУ HYUNDAI",
     specs: [
-      { label: "Марка", value: "КОМПАС" },
-      { label: "Габариты ТС", value: "4800 x 1900 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "3200" }
+      { label: "Марка", value: "HINO" },
+      { label: "Габариты ТС", value: "6500 x 2200 x 2800 мм" },
+      { label: "Грузоподъемность, кг", value: "3000" }
     ]
   },
   { 
     id: 6, 
-    title: "Шторный грузовик КАМАЗ 65117 (модель 4388F3)",
+    title: "Кран-манипулятор УРАЛ 4320 с КМУ АНТ 12-2",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "8100 x 2500 x 2600 мм" },
-      { label: "Грузоподъемность, кг", value: "14000" }
+      { label: "Марка", value: "УРАЛ" },
+      { label: "Габариты ТС", value: "9000 x 2500 x 3800 мм" },
+      { label: "Грузоподъемность, кг", value: "8000" }
+    ]
+  },
+  { 
+    id: 7, 
+    title: "Кран-манипулятор DONG FENG с КМУ FASSI",
+    specs: [
+      { label: "Марка", value: "DONG FENG" },
+      { label: "Габариты ТС", value: "8200 x 2450 x 3100 мм" },
+      { label: "Грузоподъемность, кг", value: "7500" }
+    ]
+  },
+  { 
+    id: 8, 
+    title: "Кран-манипулятор ISUZU ELF с КМУ UNIC",
+    specs: [
+      { label: "Марка", value: "ISUZU" },
+      { label: "Габариты ТС", value: "6000 x 2100 x 2700 мм" },
+      { label: "Грузоподъемность, кг", value: "2800" }
+    ]
+  },
+  { 
+    id: 9, 
+    title: "Кран-манипулятор МАЗ 6312 с КМУ HANGIL",
+    specs: [
+      { label: "Марка", value: "МАЗ" },
+      { label: "Габариты ТС", value: "9500 x 2550 x 3400 мм" },
+      { label: "Грузоподъемность, кг", value: "12000" }
     ]
   }
 ];
 
-const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
-const weights = ["до 12", "до 20", "до 5,5", "свыше 20"];
+const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ", "ISUZU", "HINO", "HYUNDAI", "УРАЛ"];
+const weights = ["до 12", "до 20", "свыше 20"];
+const lengths = ["4.5", "5.0", "5.5", "6.0", "6.2", "6.5", "6.8", "7.0", "7.5"];
 
-const Shtornye = () => {
+const Krany = () => {
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem("shtornyeViewMode") || "grid";
+    return localStorage.getItem("kranyViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
@@ -81,9 +107,9 @@ const Shtornye = () => {
     window.scrollTo(0, 0);
     setTimeout(() => {
       setViewMode(mode);
-      localStorage.setItem("shtornyeViewMode", mode);
+      localStorage.setItem("kranyViewMode", mode);
       setIsLocalLoading(false);
-    }, 600); // 0.6 soniya loader aylanadi
+    }, 600);
   };
 
   return (
@@ -97,17 +123,17 @@ const Shtornye = () => {
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">Каталог</li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">Шторные автомобили</li>
+            <li className="font-fira-sans text-gray-400 text-sm">Краны-манипуляторы</li>
           </ul>
 
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Шторные автомобили
+                Краны-манипуляторы
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
-                30 товаров
+                47 товаров
               </p>
             </div>
 
@@ -158,6 +184,7 @@ const Shtornye = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* Sidebar Filters */}
             <div className="w-full lg:w-[280px] bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              
               {/* Brand Filter */}
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
@@ -197,13 +224,51 @@ const Shtornye = () => {
                   ))}
                 </div>
               </div>
+              
+              {/* Length Filter */}
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Длина платформы, м</h3>
+                <div className="flex flex-col gap-3">
+                  {lengths.map((len, idx) => (
+                    <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                        <input type="checkbox" className="opacity-0 absolute w-full h-full cursor-pointer peer" />
+                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                      </div>
+                      <span className="font-fira-sans text-sm text-gray-700">{len}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Lifting Capacity Filter */}
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Грузоподъемность КМУ, тонн</h3>
+                <div className="flex items-center justify-between gap-4">
+                  <div className="relative flex-1">
+                    <input 
+                      type="number" 
+                      placeholder="от"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                    />
+                  </div>
+                  <div className="w-4 h-[1px] bg-gray-400 shrink-0"></div>
+                  <div className="relative flex-1">
+                    <input 
+                      type="number" 
+                      placeholder="до"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                    />
+                  </div>
+                </div>
+              </div>
 
               <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
                 Показать товары
               </button>
             </div>
 
-            {/* Product Area with Local Loader Overlay */}
+            {/* Product Area with Global Loader Triggered */}
             <div className="flex-1 relative min-h-[500px] w-full">
               <AnimatePresence>
                 {isLocalLoading && <Loader />}
@@ -239,7 +304,7 @@ const Shtornye = () => {
                           : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                       }>
                         <span className="text-gray-400 font-fira-sans text-sm">Место для фото</span>
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors">
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
                           <Heart className="w-6 h-6" />
                         </button>
                       </div>
@@ -307,10 +372,9 @@ const Shtornye = () => {
           </div>
         </div>
       </div>
-      <Feedback/>
       <Footer />
     </>
   );
 };
 
-export default Shtornye;
+export default Krany;

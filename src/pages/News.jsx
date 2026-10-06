@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import React from "react";
 
 import { Header } from "../components/Header";
@@ -19,7 +21,7 @@ const News = () => {
     <>
       <Header />
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2 ">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -48,47 +50,59 @@ const News = () => {
                 className="mySwiper news-swiper"
               >
                 <SwiperSlide className="w-1/1!">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-1.webp"
                     alt="swiper-news-1"
                     className="h-100 rounded-2xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
                 <SwiperSlide className="w-1/1!">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-2.jpg"
                     alt="swiper-news-2"
                     className="h-100 rounded-xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
                 <SwiperSlide className="w-1/1! object-cover">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-3.jpg"
                     alt="swiper-news-3"
                     className="h-100 rounded-xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
                 <SwiperSlide className="w-1/1! object-cover">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-4.jpg"
                     alt="swiper-news-4"
                     className="h-100 rounded-xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
                 <SwiperSlide className="w-1/1! object-cover">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-5.jpg"
                     alt="swiper-news-5"
                     className="h-100 rounded-xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
                 <SwiperSlide className="w-1/1! object-cover">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <img
                     src="swiper-news-6.jpg"
                     alt="swiper-news-6"
                     className="h-100 rounded-xl w-150!"
                   />
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
               </Swiper>
             </div>
 
@@ -131,7 +145,7 @@ const News = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
         <Feedback/>
         <Footer/>
       </div>

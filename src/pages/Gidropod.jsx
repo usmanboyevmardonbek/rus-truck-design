@@ -3,75 +3,63 @@ import { fadeUp, container } from "../utils/animation";
 import { Grid2x2, List, Search, Heart, ShoppingCart, Download, ChevronDown } from "lucide-react";
 import { Header } from "../components/Header";
 import Footer from "../components/footer";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
-
 
 const dummyProducts = [
   { 
     id: 1, 
-    title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
+    title: "Автогидроподъемник PALFINGER P180T на шасси ГАЗ C41R13",
+    price: "Цена по запросу",
+    outOfStock: false,
     specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "4300" }
+      { label: "Марка", value: "ГАЗ" },
+      { label: "Колесная формула", value: "4x2" },
+      { label: "Высота подъема", value: "18 м" }
     ]
   },
   { 
     id: 2, 
-    title: "Шторный грузовик МАЗ 631228-524-010 (модель 4389M2)",
+    title: "Автогидроподъемник PALFINGER P 240A на шасси HD-78",
+    price: "Цена по запросу",
+    outOfStock: true,
     specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "6500 x 2200 x 2400 мм" },
-      { label: "Грузоподъемность, кг", value: "6800" }
+      { label: "Марка", value: "Hyundai" },
+      { label: "Колесная формула", value: "4x2" },
+      { label: "Высота подъема", value: "24 м" }
     ]
   },
   { 
     id: 3, 
-    title: "Шторный грузовик КАМАЗ 4308",
+    title: "Автогидроподъемник PALFINGER P 200A на шасси ISUZU NMR-85H",
+    price: "Цена по запросу",
+    outOfStock: true,
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "6000 x 2100 x 2300 мм" },
-      { label: "Грузоподъемность, кг", value: "5500" }
+      { label: "Марка", value: "ISUZU" },
+      { label: "Колесная формула", value: "4x2" },
+      { label: "Высота подъема", value: "20 м" }
     ]
   },
   { 
     id: 4, 
-    title: "Шторный грузовик КАМАЗ 65657",
+    title: "Автогидроподъемник Hansin HS 3004 на базе шасси FUSO Canter",
+    price: "Цена по запросу",
+    outOfStock: true,
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "7200 x 2400 x 2500 мм" },
-      { label: "Грузоподъемность, кг", value: "10500" }
-    ]
-  },
-  { 
-    id: 5, 
-    title: "Шторный грузовик КОМПАС 5",
-    specs: [
-      { label: "Марка", value: "КОМПАС" },
-      { label: "Габариты ТС", value: "4800 x 1900 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "3200" }
-    ]
-  },
-  { 
-    id: 6, 
-    title: "Шторный грузовик КАМАЗ 65117 (модель 4388F3)",
-    specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "8100 x 2500 x 2600 мм" },
-      { label: "Грузоподъемность, кг", value: "14000" }
+      { label: "Марка", value: "FUSO" },
+      { label: "Колесная формула", value: "4x2" },
+      { label: "Высота подъема", value: "30 м" }
     ]
   }
 ];
 
-const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
-const weights = ["до 12", "до 20", "до 5,5", "свыше 20"];
+const brands = ["ГАЗ"];
+const formulas = ["4x2"];
 
-const Shtornye = () => {
+const Gidropod = () => {
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem("shtornyeViewMode") || "grid";
+    return localStorage.getItem("gidropodViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
@@ -81,9 +69,9 @@ const Shtornye = () => {
     window.scrollTo(0, 0);
     setTimeout(() => {
       setViewMode(mode);
-      localStorage.setItem("shtornyeViewMode", mode);
+      localStorage.setItem("gidropodViewMode", mode);
       setIsLocalLoading(false);
-    }, 600); // 0.6 soniya loader aylanadi
+    }, 600);
   };
 
   return (
@@ -97,17 +85,17 @@ const Shtornye = () => {
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">Каталог</li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">Шторные автомобили</li>
+            <li className="font-fira-sans text-gray-400 text-sm">Автогидроподъёмники</li>
           </ul>
 
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Шторные автомобили
+                Автогидроподъёмники
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
-                30 товаров
+                4 товара
               </p>
             </div>
 
@@ -158,6 +146,7 @@ const Shtornye = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* Sidebar Filters */}
             <div className="w-full lg:w-[280px] bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              
               {/* Brand Filter */}
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
@@ -182,17 +171,17 @@ const Shtornye = () => {
                 </div>
               </div>
 
-              {/* Weight Filter */}
+              {/* Wheel formula Filter */}
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">Полная масса, тонн</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Колесная формула</h3>
                 <div className="flex flex-col gap-3">
-                  {weights.map((weight, idx) => (
+                  {formulas.map((form, idx) => (
                     <label key={idx} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
                         <input type="checkbox" className="opacity-0 absolute w-full h-full cursor-pointer peer" />
                         <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                       </div>
-                      <span className="font-fira-sans text-sm text-gray-700">{weight}</span>
+                      <span className="font-fira-sans text-sm text-gray-700">{form}</span>
                     </label>
                   ))}
                 </div>
@@ -203,8 +192,8 @@ const Shtornye = () => {
               </button>
             </div>
 
-            {/* Product Area with Local Loader Overlay */}
-            <div className="flex-1 relative min-h-[500px] w-full">
+            {/* Product Area with Global Loader Triggered */}
+            <div className="flex-1 relative min-h-[500px] w-full flex flex-col gap-10">
               <AnimatePresence>
                 {isLocalLoading && <Loader />}
               </AnimatePresence>
@@ -228,8 +217,8 @@ const Shtornye = () => {
                       key={product.id} 
                       className={
                         viewMode === 'grid'
-                          ? "bg-white group flex flex-col hover:shadow-lg transition-shadow duration-300"
-                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-[220px]"
+                          ? "bg-white group flex flex-col hover:shadow-lg transition-shadow duration-300 relative"
+                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-[220px] relative"
                       }
                     >
                       {/* Image Container */}
@@ -239,7 +228,15 @@ const Shtornye = () => {
                           : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                       }>
                         <span className="text-gray-400 font-fira-sans text-sm">Место для фото</span>
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors">
+                        
+                        {/* Out of stock overlay */}
+                        {product.outOfStock && (
+                          <div className="absolute inset-0 bg-white/70 flex items-center justify-center backdrop-blur-[1px]">
+                            <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider bg-white/50 px-4 py-1 rounded">Нет в продаже</span>
+                          </div>
+                        )}
+
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
                           <Heart className="w-6 h-6" />
                         </button>
                       </div>
@@ -257,7 +254,18 @@ const Shtornye = () => {
                             {product.title}
                           </h3>
                           
-                          
+                          {/* Specs - Only visible in List View */}
+                          {viewMode === 'list' && (
+                            <div className="flex flex-col gap-2 mt-auto">
+                              {product.specs.map((spec, i) => (
+                                <div key={i} className="flex items-end text-sm font-fira-sans text-gray-500 w-full">
+                                  <span className="shrink-0">{spec.label}</span>
+                                  <span className="flex-1 border-b border-dashed border-gray-300 mx-2 mb-1"></span>
+                                  <span className="shrink-0 text-gray-800 font-medium">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                         
                         {/* Right / Bottom Actions */}
@@ -267,7 +275,7 @@ const Shtornye = () => {
                             : "flex flex-col items-end justify-between shrink-0"
                         }>
                           <p className={`font-fira-sans font-bold text-xl ${viewMode === 'grid' ? 'mb-5' : 'mb-4'}`}>
-                            Цена по запросу
+                            {product.price}
                           </p>
                           
                           <div className={
@@ -275,26 +283,34 @@ const Shtornye = () => {
                               ? "flex items-center justify-between gap-2"
                               : "flex flex-col items-end gap-4 w-full"
                           }>
-                            <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''}`}>
-                              Подробнее
-                            </button>
-                            
-                            <div className={`flex items-center text-gray-500 ${viewMode === 'grid' ? 'gap-3' : 'gap-4 w-full justify-between'}`}>
-                              {viewMode === 'grid' && (
-                                <>
-                                  <button className="hover:text-black transition-colors">
-                                    <ShoppingCart className="w-5 h-5" />
-                                  </button>
-                                  <button className="hover:text-black transition-colors">
-                                    <Heart className="w-5 h-5" />
-                                  </button>
-                                </>
-                              )}
-                              <button className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === 'list' ? 'ml-auto' : ''}`}>
-                                <Download className="w-4 h-4" />
-                                <span className="text-xs uppercase tracking-wider text-gray-400 group-hover/kp:text-black transition-colors font-medium">Получить КП</span>
+                            {product.outOfStock ? (
+                              <button className={`bg-[#FEC80B] text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full transition-colors flex items-center justify-center gap-2`}>
+                                Нет в наличии / под заказ
                               </button>
-                            </div>
+                            ) : (
+                              <>
+                                <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''}`}>
+                                  Подробнее
+                                </button>
+                                
+                                <div className={`flex items-center text-gray-500 ${viewMode === 'grid' ? 'gap-3' : 'gap-4 w-full justify-between'}`}>
+                                  {viewMode === 'grid' && (
+                                    <>
+                                      <button className="hover:text-black transition-colors">
+                                        <ShoppingCart className="w-5 h-5" />
+                                      </button>
+                                      <button className="hover:text-black transition-colors">
+                                        <Heart className="w-5 h-5" />
+                                      </button>
+                                    </>
+                                  )}
+                                  <button className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === 'list' ? 'ml-auto' : ''}`}>
+                                    <Download className="w-4 h-4" />
+                                    <span className="text-xs uppercase tracking-wider text-gray-400 group-hover/kp:text-black transition-colors font-medium">Получить КП</span>
+                                  </button>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
 
@@ -303,14 +319,44 @@ const Shtornye = () => {
                   ))}
                 </motion.div>
               )}
+
+              {/* SEO Text Block below Grid */}
+              {viewMode === 'grid' && (
+                <div className="bg-white p-6 md:p-8 rounded shadow-sm mt-10">
+                  <h2 className="font-fira-sans font-bold text-2xl mb-4">Ассортимент автогидроподъёмников</h2>
+                  <p className="font-fira-sans text-gray-600 mb-6 leading-relaxed">
+                    Машины для работы на высоте становятся всё более технологичными и удобными. Купить автогидроподъемник — выгодное решение для повышения эффективности и безопасности работ. Такая техника обеспечивает точное выполнение задач в минимальных рамках. Компания «РусТрак» предлагает надежные модели для разных условий эксплуатации. Продуманная конструкция гарантирует устойчивость и точность движений, дополнительные функции делают управление проще и повышают удобство работы.
+                  </p>
+
+                  <h3 className="font-fira-sans font-bold text-xl mb-3">Особенности автогидроподъёмников</h3>
+                  <ul className="list-disc pl-5 font-fira-sans text-gray-600 mb-6 flex flex-col gap-2">
+                    <li><strong>Регулируемая высота подъема.</strong> Позволяет точно поднимать людей и грузы на нужную высоту, повышая безопасность.</li>
+                    <li><strong>Гидравлическая система управления.</strong> Обеспечивает плавное и точное движение стрелы.</li>
+                    <li><strong>Стабилизационные опоры.</strong> Гарантируют устойчивость техники даже на неровной поверхности.</li>
+                    <li><strong>Компактные размеры шасси.</strong> Упрощают маневрирование в ограниченном пространстве.</li>
+                  </ul>
+
+                  <h3 className="font-fira-sans font-bold text-xl mb-3">Сферы применения</h3>
+                  <p className="font-fira-sans text-gray-600 mb-6 leading-relaxed">
+                    Купить автогидроподъемник будет надежным решением для повышения безопасности и эффективности работ. Такие машины применяются для обслуживания линий электропередач, монтажа и ремонта наружной рекламы, установки освещения, а также для строительных и отделочных работ.
+                  </p>
+
+                  <h3 className="font-fira-sans font-bold text-xl mb-3">Преимущества работы с компанией «РусТрак»</h3>
+                  <ul className="list-disc pl-5 font-fira-sans text-gray-600 flex flex-col gap-2">
+                    <li><strong>Широкий ассортимент техники.</strong> Компания предлагает разнообразные модели автогидроподъемников.</li>
+                    <li><strong>Профессиональная консультация.</strong> Специалисты помогут выбрать оптимальное оборудование.</li>
+                    <li><strong>Гарантия качества.</strong> Все машины проходят проверку и соответствуют стандартам.</li>
+                  </ul>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
       </div>
-      <Feedback/>
       <Footer />
     </>
   );
 };
 
-export default Shtornye;
+export default Gidropod;

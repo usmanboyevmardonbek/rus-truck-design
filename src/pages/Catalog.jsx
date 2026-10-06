@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp, container } from "../utils/animation";
 import { Header } from "../components/Header";
 import { catData } from "./objects";
 import Feedback from "../components/Feedback";
@@ -10,7 +12,7 @@ const Catalog = () => {
 
       <div>
         <div className="container">
-          <ul className="flex items-center gap-2">
+          <ul className="flex items-center gap-2 mb-4">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
             </li>
@@ -19,13 +21,20 @@ const Catalog = () => {
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Каталог</a>
+              <a href="#">Каталог</a>
             </li>
           </ul>
 
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  lg:gap-10 gap-3.5 md:gap-2  mb-10">
+          <motion.div 
+            variants={container} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2  lg:gap-10 gap-3.5 md:gap-2  mb-10"
+          >
             {catData.map((catalogs) => (
-              <a
+              <motion.a
+                variants={fadeUp}
                 key={catalogs.id}
                 href="#"
                 className="flex flex-col items-end justify-between border border-[#EBEBEB] rounded-xl lg:w-1/1 lg:h-80 hover:shadow-[0_0_18px_#FEC80B] transition duration-300 hover:scale-3d"
@@ -39,9 +48,9 @@ const Catalog = () => {
                   </p>
                 </div>
                 <img src={catalogs.catImage} alt="catImage" className="w-3/4" />
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
       <Feedback />

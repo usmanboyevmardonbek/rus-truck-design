@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import React, { useRef, useState } from "react";
 import {
   ArrowRight,
@@ -45,6 +47,7 @@ export function Home() {
               className="mySwiper"
             >
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -69,8 +72,10 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -97,8 +102,10 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -126,8 +133,10 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -160,8 +169,10 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -197,8 +208,10 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
               <SwiperSlide>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="relative">
                   <div className="z-90">
                     <img
@@ -234,7 +247,8 @@ export function Home() {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
             </Swiper>
           </div>
         </div>
@@ -284,6 +298,7 @@ export function Home() {
           >
             {catData.map((cats) => (
               <SwiperSlide key={cats.id}>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="mt-10 border border-[#EBEBEB]  rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d">
                   <a href="#" className="flex flex-col">
                     <div className="px-3 py-3">
@@ -299,7 +314,8 @@ export function Home() {
                     </div>
                   </a>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
             ))}
           </Swiper>
         </div>
@@ -425,6 +441,7 @@ export function Home() {
           >
             {recomendData.map((recomendProduct) => (
               <SwiperSlide key={recomendProduct.id} className="w-400 h-400">
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="wrapper-slider bg-white">
                   <div className="relative">
                     <a href="#">
@@ -465,7 +482,8 @@ export function Home() {
                     </button>
                   </div>
                 </div>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
             ))}
           </Swiper>
         </div>
@@ -516,6 +534,7 @@ export function Home() {
           >
             {novostData.map((novostItem) => (
               <SwiperSlide key={novostItem.id}>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                 <div className="mt-5">
                   <a href="#">
                     <img src={novostItem.novostImage} alt="" />
@@ -536,7 +555,8 @@ export function Home() {
 
                   <MoveRight className="text-[#A1A1A1]" />
                 </button>
-              </SwiperSlide>
+              </motion.div>
+</SwiperSlide>
             ))}
           </Swiper>
         </div>

@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import { Header } from "../components/Header";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef, useState } from "react";
@@ -16,7 +18,7 @@ const About = () => {
     <>
       <Header />
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -29,10 +31,10 @@ const About = () => {
               <a href="/">О нас</a>
             </li>
           </ul>
-        </div>
+        </motion.div>
 
-        <section className="about-section bg-[url(/about-company.jpg)] h-100 mt-5 relative">
-          <div className="container">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="about-section bg-[url(/about-company.jpg)] h-100 mt-5 relative">
+          <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
             <div className="pt-18">
               <h2 className="max-w-177 font-fira-sans font-medium lg:text-2xl text-[#ffffff]">
                 Автомобильный завод «РусТрак» - ведущий производитель
@@ -48,13 +50,13 @@ const About = () => {
                 className="w-30 bottom-0 absolute"
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="container"></div>
-        </section>
+          <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}></motion.div>
+        </motion.section>
 
         <div>
-          <div className="container">
+          <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
             <div className="flex mt-15 justify-between">
               <div>
                 <h4 className="font-fira-sans lg:text-2xl max-w-170">
@@ -103,6 +105,7 @@ const About = () => {
             >
               {aboutSlider.map((aboutData) => (
                 <SwiperSlide key={aboutData.id}>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <div className="border-2 border-gray-100 rounded-lg h-100 mb-10">
                     <div className="mb-10 ml-5 mr-5 ">
                       <img
@@ -120,7 +123,8 @@ const About = () => {
                       </p>
                     </div>
                   </div>
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
               ))}
             </Swiper>
 
@@ -178,10 +182,10 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <section>
-            <div className="container">
+          <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+            <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
               <div className="lg:grid lg:grid-cols-3 flex  flex-col    gap-6 mb-40 ">
                 <div className="bg-[#fec80b] rounded-xl">
                   <h2 className="font-fira-sans text-2xl font-bold mt-15 ml-5">
@@ -236,8 +240,8 @@ const About = () => {
                   др.
                 </p>
               </div>
-            </div>
-          </section>
+            </motion.div>
+          </motion.section>
         </div>
       </div>
 

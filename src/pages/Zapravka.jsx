@@ -5,73 +5,107 @@ import { Header } from "../components/Header";
 import Footer from "../components/footer";
 import { useState, useEffect } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
-
 
 const dummyProducts = [
   { 
     id: 1, 
-    title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
+    title: "Топливозаправщик Садко NEXT (С41А23) с АТЗ 4,9 м3",
+    price: "от 5 800 000 ₽",
     specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "4300" }
+      { label: "Марка", value: "ГАЗ" },
+      { label: "Объем цистерны, л", value: "4900" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   },
   { 
     id: 2, 
-    title: "Шторный грузовик МАЗ 631228-524-010 (модель 4389M2)",
+    title: "Автотопливозаправщик на шасси ГАЗ С41R13 (модель 43891T)",
+    price: "от 6 200 000 ₽",
     specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "6500 x 2200 x 2400 мм" },
-      { label: "Грузоподъемность, кг", value: "6800" }
+      { label: "Марка", value: "ГАЗ" },
+      { label: "Объем цистерны, л", value: "5000" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   },
   { 
     id: 3, 
-    title: "Шторный грузовик КАМАЗ 4308",
+    title: "Автотопливозаправщик Валдай 12 7985G1",
+    price: "от 9 050 000 ₽",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "6000 x 2100 x 2300 мм" },
-      { label: "Грузоподъемность, кг", value: "5500" }
+      { label: "Марка", value: "Валдай" },
+      { label: "Объем цистерны, л", value: "7000" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   },
   { 
     id: 4, 
-    title: "Шторный грузовик КАМАЗ 65657",
+    title: "Автотопливозаправщик Валдай 12 АТЗ 6",
+    price: "от 7 550 000 ₽",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "7200 x 2400 x 2500 мм" },
-      { label: "Грузоподъемность, кг", value: "10500" }
+      { label: "Марка", value: "Валдай" },
+      { label: "Объем цистерны, л", value: "6000" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   },
   { 
     id: 5, 
-    title: "Шторный грузовик КОМПАС 5",
+    title: "Топливозаправщик Валдай 12 АТЗ 8",
+    price: "от 7 850 000 ₽",
     specs: [
-      { label: "Марка", value: "КОМПАС" },
-      { label: "Габариты ТС", value: "4800 x 1900 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "3200" }
+      { label: "Марка", value: "Валдай" },
+      { label: "Объем цистерны, л", value: "8000" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   },
   { 
     id: 6, 
-    title: "Шторный грузовик КАМАЗ 65117 (модель 4388F3)",
+    title: "Автотопливозаправщик на шасси YANGAI 10",
+    price: "Цена по запросу",
     specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "8100 x 2500 x 2600 мм" },
-      { label: "Грузоподъемность, кг", value: "14000" }
+      { label: "Марка", value: "YANGAI" },
+      { label: "Объем цистерны, л", value: "10000" },
+      { label: "Полная масса, т", value: "до 12" }
+    ]
+  },
+  { 
+    id: 7, 
+    title: "Топливозаправщик SOLLERS TR180 боковина 10 м.куб",
+    price: "от 8 670 000 ₽",
+    specs: [
+      { label: "Марка", value: "SOLLERS" },
+      { label: "Объем цистерны, л", value: "10000" },
+      { label: "Полная масса, т", value: "свыше 12" }
+    ]
+  },
+  { 
+    id: 8, 
+    title: "Автотопливозаправщик SOLLERS TR120 АТЗ 8,0 м.куб",
+    price: "от 6 030 000 ₽",
+    specs: [
+      { label: "Марка", value: "SOLLERS" },
+      { label: "Объем цистерны, л", value: "8000" },
+      { label: "Полная масса, т", value: "до 12" }
+    ]
+  },
+  { 
+    id: 9, 
+    title: "Топливозаправщик JAC N90 АТЗ 6,0 двухсекционная",
+    price: "Цена по запросу",
+    specs: [
+      { label: "Марка", value: "JAC" },
+      { label: "Объем цистерны, л", value: "6000" },
+      { label: "Полная масса, т", value: "до 12" }
     ]
   }
 ];
 
-const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
-const weights = ["до 12", "до 20", "до 5,5", "свыше 20"];
+const brands = ["ГАЗ", "JAC", "FOTON", "DONG FENG", "SOLLERS", "YANGAI", "Валдай"];
+const weights = ["до 12"];
 
-const Shtornye = () => {
+const Zapravka = () => {
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem("shtornyeViewMode") || "grid";
+    return localStorage.getItem("zapravkaViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
@@ -81,9 +115,9 @@ const Shtornye = () => {
     window.scrollTo(0, 0);
     setTimeout(() => {
       setViewMode(mode);
-      localStorage.setItem("shtornyeViewMode", mode);
+      localStorage.setItem("zapravkaViewMode", mode);
       setIsLocalLoading(false);
-    }, 600); // 0.6 soniya loader aylanadi
+    }, 600);
   };
 
   return (
@@ -97,17 +131,17 @@ const Shtornye = () => {
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">Каталог</li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">Шторные автомобили</li>
+            <li className="font-fira-sans text-gray-400 text-sm">Автотопливозаправщики</li>
           </ul>
 
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Шторные автомобили
+                Автотопливозаправщики
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
-                30 товаров
+                26 товаров
               </p>
             </div>
 
@@ -158,6 +192,35 @@ const Shtornye = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* Sidebar Filters */}
             <div className="w-full lg:w-[280px] bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              
+              {/* Price Filter */}
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Цена</h3>
+                <div className="mb-2">
+                  <div className="h-1 bg-gray-200 w-full rounded relative mb-4 mt-2">
+                    <div className="absolute h-full bg-[#FEC80B] left-[0%] right-[30%]"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 left-[0%] cursor-pointer"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 right-[30%] cursor-pointer"></div>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="от"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="до"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Brand Filter */}
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
@@ -197,13 +260,41 @@ const Shtornye = () => {
                   ))}
                 </div>
               </div>
+              
+              {/* Volume Filter */}
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Объем цистерны, л.</h3>
+                <div className="mb-2">
+                  <div className="h-1 bg-gray-200 w-full rounded relative mb-4 mt-2">
+                    <div className="absolute h-full bg-[#FEC80B] left-[15%] right-[10%]"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 left-[15%] cursor-pointer"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 right-[10%] cursor-pointer"></div>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="от"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="до"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
                 Показать товары
               </button>
             </div>
 
-            {/* Product Area with Local Loader Overlay */}
+            {/* Product Area with Global Loader Triggered */}
             <div className="flex-1 relative min-h-[500px] w-full">
               <AnimatePresence>
                 {isLocalLoading && <Loader />}
@@ -239,7 +330,7 @@ const Shtornye = () => {
                           : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                       }>
                         <span className="text-gray-400 font-fira-sans text-sm">Место для фото</span>
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors">
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
                           <Heart className="w-6 h-6" />
                         </button>
                       </div>
@@ -267,7 +358,7 @@ const Shtornye = () => {
                             : "flex flex-col items-end justify-between shrink-0"
                         }>
                           <p className={`font-fira-sans font-bold text-xl ${viewMode === 'grid' ? 'mb-5' : 'mb-4'}`}>
-                            Цена по запросу
+                            {product.price}
                           </p>
                           
                           <div className={
@@ -307,10 +398,9 @@ const Shtornye = () => {
           </div>
         </div>
       </div>
-      <Feedback/>
       <Footer />
     </>
   );
 };
 
-export default Shtornye;
+export default Zapravka;

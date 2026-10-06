@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import { Header } from "../components/Header";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
@@ -8,7 +10,7 @@ const Suppliers = () => {
       <Header />
 
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -101,7 +103,7 @@ const Suppliers = () => {
 
             <p className="text-lg font-fira-sans">Всегда рады Вам!</p>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Feedback/>
       <Footer/>

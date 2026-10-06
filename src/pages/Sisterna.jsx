@@ -3,75 +3,79 @@ import { fadeUp, container } from "../utils/animation";
 import { Grid2x2, List, Search, Heart, ShoppingCart, Download, ChevronDown } from "lucide-react";
 import { Header } from "../components/Header";
 import Footer from "../components/footer";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
-
 
 const dummyProducts = [
   { 
     id: 1, 
-    title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
-    specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "4300" }
-    ]
+    title: "Пищевая цистерна КАМАЗ 43089",
+    price: "Цена по запросу",
+    outOfStock: false
   },
   { 
     id: 2, 
-    title: "Шторный грузовик МАЗ 631228-524-010 (модель 4389M2)",
-    specs: [
-      { label: "Марка", value: "МАЗ" },
-      { label: "Габариты ТС", value: "6500 x 2200 x 2400 мм" },
-      { label: "Грузоподъемность, кг", value: "6800" }
-    ]
+    title: "ГАЗон NEXT с пищевой цистерной 4,2 куба",
+    price: "Цена по запросу",
+    outOfStock: false
   },
   { 
     id: 3, 
-    title: "Шторный грузовик КАМАЗ 4308",
-    specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "6000 x 2100 x 2300 мм" },
-      { label: "Грузоподъемность, кг", value: "5500" }
-    ]
+    title: "Вакуумная цистерна JAC N90",
+    price: "Цена по запросу",
+    outOfStock: false
   },
   { 
     id: 4, 
-    title: "Шторный грузовик КАМАЗ 65657",
-    specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "7200 x 2400 x 2500 мм" },
-      { label: "Грузоподъемность, кг", value: "10500" }
-    ]
+    title: "Вакуумная автоцистерна на шасси JAC N90",
+    price: "Цена по запросу",
+    outOfStock: false
   },
   { 
     id: 5, 
-    title: "Шторный грузовик КОМПАС 5",
-    specs: [
-      { label: "Марка", value: "КОМПАС" },
-      { label: "Габариты ТС", value: "4800 x 1900 x 2000 мм" },
-      { label: "Грузоподъемность, кг", value: "3200" }
-    ]
+    title: "Вакуумное оборудование КО-523 на шасси JAC N-90",
+    price: "Цена по запросу",
+    outOfStock: false
   },
   { 
     id: 6, 
-    title: "Шторный грузовик КАМАЗ 65117 (модель 4388F3)",
-    specs: [
-      { label: "Марка", value: "КАМАЗ" },
-      { label: "Габариты ТС", value: "8100 x 2500 x 2600 мм" },
-      { label: "Грузоподъемность, кг", value: "14000" }
-    ]
+    title: "Пищевая цистерна ISUZU NPR 75 LK",
+    price: "Цена по запросу",
+    outOfStock: true
+  },
+  { 
+    id: 7, 
+    title: "Вакуумное оборудование КО-522 на шасси HYUNDAI MIGHTY EX8",
+    price: "Цена по запросу",
+    outOfStock: true
+  },
+  { 
+    id: 8, 
+    title: "Пищевая цистерна HYUNDAI HD MIGHTY",
+    price: "Цена по запросу",
+    outOfStock: true
+  },
+  { 
+    id: 9, 
+    title: "Пищевая цистерна HINO 300",
+    price: "Цена по запросу",
+    outOfStock: true
+  },
+  { 
+    id: 10, 
+    title: "Пищевая цистерна HINO 300 730",
+    price: "Цена по запросу",
+    outOfStock: true
   }
 ];
 
-const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
-const weights = ["до 12", "до 20", "до 5,5", "свыше 20"];
+const brands = ["ГАЗ", "КАМАЗ", "JAC"];
+const types = ["Вакуумная автоцистерна", "Пищевая автоцистерна"];
 
-const Shtornye = () => {
+const Sisterna = () => {
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
-    return localStorage.getItem("shtornyeViewMode") || "grid";
+    return localStorage.getItem("sisternaViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
@@ -81,9 +85,9 @@ const Shtornye = () => {
     window.scrollTo(0, 0);
     setTimeout(() => {
       setViewMode(mode);
-      localStorage.setItem("shtornyeViewMode", mode);
+      localStorage.setItem("sisternaViewMode", mode);
       setIsLocalLoading(false);
-    }, 600); // 0.6 soniya loader aylanadi
+    }, 600);
   };
 
   return (
@@ -97,17 +101,17 @@ const Shtornye = () => {
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">Каталог</li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">Шторные автомобили</li>
+            <li className="font-fira-sans text-gray-400 text-sm">Автоцистерны</li>
           </ul>
 
           {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Шторные автомобили
+                Автоцистерны
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
-                30 товаров
+                10 товаров
               </p>
             </div>
 
@@ -158,6 +162,7 @@ const Shtornye = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* Sidebar Filters */}
             <div className="w-full lg:w-[280px] bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              
               {/* Brand Filter */}
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
@@ -182,19 +187,47 @@ const Shtornye = () => {
                 </div>
               </div>
 
-              {/* Weight Filter */}
+              {/* Type Filter */}
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">Полная масса, тонн</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Тип автоцистерны</h3>
                 <div className="flex flex-col gap-3">
-                  {weights.map((weight, idx) => (
+                  {types.map((type, idx) => (
                     <label key={idx} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
                         <input type="checkbox" className="opacity-0 absolute w-full h-full cursor-pointer peer" />
                         <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                       </div>
-                      <span className="font-fira-sans text-sm text-gray-700">{weight}</span>
+                      <span className="font-fira-sans text-sm text-gray-700">{type}</span>
                     </label>
                   ))}
+                </div>
+              </div>
+
+              {/* Volume Filter (Range Slider UI) */}
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">Объем цистерны, л.</h3>
+                <div className="mb-2">
+                  <div className="h-1 bg-gray-200 w-full rounded relative mb-4 mt-2">
+                    <div className="absolute h-full bg-[#FEC80B] left-[10%] right-[20%]"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 left-[10%] cursor-pointer"></div>
+                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 right-[20%] cursor-pointer"></div>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="от"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                    <div className="relative flex-1">
+                      <input 
+                        type="number" 
+                        placeholder="до"
+                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -203,8 +236,8 @@ const Shtornye = () => {
               </button>
             </div>
 
-            {/* Product Area with Local Loader Overlay */}
-            <div className="flex-1 relative min-h-[500px] w-full">
+            {/* Product Area with Global Loader Triggered */}
+            <div className="flex-1 relative min-h-[500px] w-full flex flex-col gap-10">
               <AnimatePresence>
                 {isLocalLoading && <Loader />}
               </AnimatePresence>
@@ -228,8 +261,8 @@ const Shtornye = () => {
                       key={product.id} 
                       className={
                         viewMode === 'grid'
-                          ? "bg-white group flex flex-col hover:shadow-lg transition-shadow duration-300"
-                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-[220px]"
+                          ? "bg-white group flex flex-col hover:shadow-lg transition-shadow duration-300 relative"
+                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-[220px] relative"
                       }
                     >
                       {/* Image Container */}
@@ -239,7 +272,15 @@ const Shtornye = () => {
                           : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                       }>
                         <span className="text-gray-400 font-fira-sans text-sm">Место для фото</span>
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors">
+                        
+                        {/* Out of stock overlay */}
+                        {product.outOfStock && (
+                          <div className="absolute inset-0 bg-white/70 flex items-center justify-center backdrop-blur-[1px]">
+                            <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider bg-white/50 px-4 py-1 rounded">Нет в продаже</span>
+                          </div>
+                        )}
+
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
                           <Heart className="w-6 h-6" />
                         </button>
                       </div>
@@ -251,13 +292,11 @@ const Shtornye = () => {
                           : "p-6 flex flex-col md:flex-row flex-1 justify-between gap-6"
                       }>
                         
-                        {/* Title and Specs (for List view) */}
+                        {/* Title - (No specs text in list view as requested) */}
                         <div className={viewMode === 'list' ? "flex-1 flex flex-col max-w-[450px]" : "flex-1 flex flex-col"}>
                           <h3 className={`font-fira-sans font-medium text-base leading-tight ${viewMode === 'list' ? 'mb-6 text-lg' : 'mb-4 flex-1 line-clamp-2'}`}>
                             {product.title}
                           </h3>
-                          
-                          
                         </div>
                         
                         {/* Right / Bottom Actions */}
@@ -267,7 +306,7 @@ const Shtornye = () => {
                             : "flex flex-col items-end justify-between shrink-0"
                         }>
                           <p className={`font-fira-sans font-bold text-xl ${viewMode === 'grid' ? 'mb-5' : 'mb-4'}`}>
-                            Цена по запросу
+                            {product.price}
                           </p>
                           
                           <div className={
@@ -275,26 +314,34 @@ const Shtornye = () => {
                               ? "flex items-center justify-between gap-2"
                               : "flex flex-col items-end gap-4 w-full"
                           }>
-                            <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''}`}>
-                              Подробнее
-                            </button>
-                            
-                            <div className={`flex items-center text-gray-500 ${viewMode === 'grid' ? 'gap-3' : 'gap-4 w-full justify-between'}`}>
-                              {viewMode === 'grid' && (
-                                <>
-                                  <button className="hover:text-black transition-colors">
-                                    <ShoppingCart className="w-5 h-5" />
-                                  </button>
-                                  <button className="hover:text-black transition-colors">
-                                    <Heart className="w-5 h-5" />
-                                  </button>
-                                </>
-                              )}
-                              <button className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === 'list' ? 'ml-auto' : ''}`}>
-                                <Download className="w-4 h-4" />
-                                <span className="text-xs uppercase tracking-wider text-gray-400 group-hover/kp:text-black transition-colors font-medium">Получить КП</span>
+                            {product.outOfStock ? (
+                              <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full flex items-center justify-center gap-2`}>
+                                Мне нужен такой же <Download className="w-4 h-4 ml-1" />
                               </button>
-                            </div>
+                            ) : (
+                              <>
+                                <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''}`}>
+                                  Подробнее
+                                </button>
+                                
+                                <div className={`flex items-center text-gray-500 ${viewMode === 'grid' ? 'gap-3' : 'gap-4 w-full justify-between'}`}>
+                                  {viewMode === 'grid' && (
+                                    <>
+                                      <button className="hover:text-black transition-colors">
+                                        <ShoppingCart className="w-5 h-5" />
+                                      </button>
+                                      <button className="hover:text-black transition-colors">
+                                        <Heart className="w-5 h-5" />
+                                      </button>
+                                    </>
+                                  )}
+                                  <button className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === 'list' ? 'ml-auto' : ''}`}>
+                                    <Download className="w-4 h-4" />
+                                    <span className="text-xs uppercase tracking-wider text-gray-400 group-hover/kp:text-black transition-colors font-medium">Получить КП</span>
+                                  </button>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
 
@@ -303,14 +350,50 @@ const Shtornye = () => {
                   ))}
                 </motion.div>
               )}
+
+              {/* SEO Text Block below Grid (Hidden in List View) */}
+              {viewMode === 'grid' && (
+                <div className="bg-white p-6 md:p-8 rounded shadow-sm mt-10">
+                  <p className="font-fira-sans text-gray-600 mb-6 leading-relaxed">
+                    Техника для обслуживания жидких и вязких сред требует точности и продуманного подхода. Вакуумные автоцистерны обеспечивают аккуратное обращение с рабочими средами и поддерживают стабильность технологических операций. Ее конструкция направлена на удобное управление и безопасность персонала. Компания «РусТрак» предлагает решения, соответствующие строгим требованиям и особенностям отрасли. Модели отличаются прочностью и способностью сохранять рабочие характеристики при длительной эксплуатации. Такой подход укрепляет доверие к технике и снижает вероятность непредвиденных остановок.
+                  </p>
+
+                  <h2 className="font-fira-sans font-bold text-2xl mb-4">Ассортимент</h2>
+                  <p className="font-fira-sans text-gray-600 mb-4 leading-relaxed">
+                    Мы предлагаем модели автоцистерн, доступные в разных исполнениях и модификациях. В нашем каталоге представлен большой выбор техники, среди которой каждый сможет найти подходящий вариант для своих нужд. 
+                    <br/><br/>
+                    <strong>Марки:</strong>
+                  </p>
+                  <ul className="list-disc pl-5 font-fira-sans text-gray-600 mb-6 flex flex-col gap-2">
+                    <li>ГАЗ</li>
+                    <li>КАМАЗ</li>
+                    <li>JAC</li>
+                    <li>ISUZU</li>
+                    <li>HYUNDAI</li>
+                    <li>HINO</li>
+                  </ul>
+
+                  <p className="font-fira-sans text-gray-600 mb-4 leading-relaxed">
+                    <strong>Тип автоцистерны:</strong>
+                  </p>
+                  <ul className="list-disc pl-5 font-fira-sans text-gray-600 mb-6 flex flex-col gap-2">
+                    <li>Вакуумная автоцистерна</li>
+                    <li>Пищевая автоцистерна</li>
+                  </ul>
+
+                  <p className="font-fira-sans text-gray-600 leading-relaxed">
+                    Все модели проходят обязательную сертификацию и соответствуют российским и международным стандартам качества. Это обеспечивает надежность, безопасность эксплуатации и долговечность техники, а также дает уверенность в соответствии оборудования заявленным требованиям.
+                  </p>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
       </div>
-      <Feedback/>
       <Footer />
     </>
   );
 };
 
-export default Shtornye;
+export default Sisterna;

@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import { useEffect, useRef } from "react";
 import { Header } from "../components/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -66,7 +68,7 @@ const Production = () => {
     <>
       <Header />
       <div className="py-6">
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/" className="hover:text-black transition duration-200">
@@ -203,6 +205,7 @@ const Production = () => {
             >
               {productionSlides.map((slide) => (
                 <SwiperSlide key={slide.id}>
+<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
                   <a
                     data-fancybox="production-gallery"
                     href={slide.img}
@@ -234,7 +237,8 @@ const Production = () => {
                       </p>
                     </div>
                   </a>
-                </SwiperSlide>
+                </motion.div>
+</SwiperSlide>
               ))}
             </Swiper>
           </div>
@@ -282,7 +286,7 @@ const Production = () => {
               безотказную работу техники.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <Feedback />

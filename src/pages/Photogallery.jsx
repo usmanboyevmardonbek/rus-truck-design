@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+import { fadeUp } from "../utils/animation";
 import React, { useEffect, useRef, useState } from "react";
 import { Header } from "../components/Header";
 import { Fancybox } from "@fancyapps/ui";
@@ -53,7 +55,7 @@ const Photogallery = () => {
     <>
       <Header />
       <div>
-        <div className="container">
+        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -123,7 +125,7 @@ const Photogallery = () => {
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
       <Feedback/>
       <Footer/>
