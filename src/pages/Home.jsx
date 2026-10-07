@@ -26,10 +26,8 @@ import Footer from "../components/footer";
 import Feedback from "../components/Feedback";
 import ArcNavigation from "../components/ArcNavigation";
 
-
 export function Home() {
-
-  const [brendDropdown, setBrendDropdown] = useState(false)
+  const [brendDropdown, setBrendDropdown] = useState(false);
   return (
     <>
       <Header />
@@ -47,208 +45,244 @@ export function Home() {
               className="mySwiper"
             >
               <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-1.jpg"
-                      alt="banner-1"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-1/5 left-8">
-                    <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
-                      АТЗ Рустрак включены в реестр <br />
-                      российской промышленной <br /> продукции
-                    </h1>
-                    <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
-                      Теперь доступны для приобретения по 44 ФЗ
-                    </p>
-
-                    <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl hover:bg-[#ffd43a] hover:text-black transition duration-300 md:hidden">
-                      <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:bg-[#ffd43a] hover:text-black transition duration-300">
-                        Заказать звонок
-                      </button>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-1.jpg"
+                        alt="banner-1"
+                        className="w-full object-cover rounded-xl"
+                      />
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
-              <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-2.jpg"
-                      alt="banner-2"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-xl">
-                    <div className="px-10 py-20">
+                    <div className="absolute z-100 top-1/5 left-8">
                       <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
-                        В наличии шторные фургоны <br /> КАМАЗ 4308
+                        АТЗ Рустрак включены в реестр <br />
+                        российской промышленной <br /> продукции
                       </h1>
-                      <p className="text-lg font-fira-sans font-normal text-white md:hiddeb lg:block md:hidden">
-                        Размеры надстройки 6200х2550х2850 мм. <br />
-                        Цена 5 500 000 руб.
+                      <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
+                        Теперь доступны для приобретения по 44 ФЗ
                       </p>
 
-                      <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl group-hover:bg-[#ffd43a] group-hover:text-black transition duration-300 md:hidden">
-                        <button className="font-fira-sans text-white  font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300">
+                      <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl hover:bg-[#ffd43a] hover:text-black transition duration-300 md:hidden">
+                        <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:bg-[#ffd43a] hover:text-black transition duration-300">
                           Заказать звонок
                         </button>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                </motion.div>
+              </SwiperSlide>
               <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-3.webp"
-                      alt="banner-3"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-xl">
-                    <div className="px-10 py-20">
-                      <h1 className="font-fira-sans font-extrabold text-white text-[28px] lg:block md:hidden">
-                        Бортовые платформы со шторным механизмом
-                      </h1>
-                      <p className="text-lg font-fira-sans font-normal text-white lg:blog md:hidden">
-                        Производство и поставка коммерческого транспорта,
-                        бортовых платформ, в том числе со сдвижными шторами,
-                        сдвижной крышей.
-                      </p>
-
-                      <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300 md:hidden">
-                        <button className="font-fira-sans text-black font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300">
-                          Подробнее
-                        </button>
-                      </div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-2.jpg"
+                        alt="banner-2"
+                        className="w-full object-cover rounded-xl"
+                      />
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
-              <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-4.jpg"
-                      alt="banner-4"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
-                    <div className="px-10 py-20">
-                      <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
-                        ООО «РусТрак»
-                      </h1>
-                      <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
-                        Производство и поставка специализированной техники и
-                        спецтранспорта
-                      </p>
+                    <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-xl">
+                      <div className="px-10 py-20">
+                        <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
+                          В наличии шторные фургоны <br /> КАМАЗ 4308
+                        </h1>
+                        <p className="text-lg font-fira-sans font-normal text-white md:hiddeb lg:block md:hidden">
+                          Размеры надстройки 6200х2550х2850 мм. <br />
+                          Цена 5 500 000 руб.
+                        </p>
 
-                      <div className="lg:flex gap-5 md:hidden">
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
-                          <a href="#">Открыть каталог</a>
-                        </div>
-
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
-                          <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
+                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl group-hover:bg-[#ffd43a] group-hover:text-black transition duration-300 md:hidden">
+                          <button className="font-fira-sans text-white  font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300">
                             Заказать звонок
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                </motion.div>
+              </SwiperSlide>
               <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-5.jpg"
-                      alt="banner-5"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
-                    <div className="px-10 py-20">
-                      <h1 className="font-fira-sans font-extrabold text-white text-[28px] lg:block md:hidden">
-                        Краны манипуляторы на базе MCV/HCV грузовиков
-                      </h1>
-                      <p className="text-lg font-fira-sans font-normal text-white lg:block md:hidden">
-                        Производство автомобилей с крано-манипуляторными
-                        установками. Использование противосдвиговых пластин,
-                        установка блока распределителя управления задними
-                        опорами, открытый профиль HOSSEN, монтажные плиты в
-                        основании КМУ, окрас платформы в цвет крана.
-                      </p>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-3.webp"
+                        alt="banner-3"
+                        className="w-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-xl">
+                      <div className="px-10 py-20">
+                        <h1 className="font-fira-sans font-extrabold text-white text-[28px] lg:block md:hidden">
+                          Бортовые платформы со шторным механизмом
+                        </h1>
+                        <p className="text-lg font-fira-sans font-normal text-white lg:blog md:hidden">
+                          Производство и поставка коммерческого транспорта,
+                          бортовых платформ, в том числе со сдвижными шторами,
+                          сдвижной крышей.
+                        </p>
 
-                      <div className="lg:flex gap-5 md:hidden">
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
-                          <a href="#">Подробнее</a>
-                        </div>
-
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
-                          <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
-                            Заказать звонок
+                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 max-w-50 lg:flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300 md:hidden">
+                          <button className="font-fira-sans text-black font-normal text-base cursor-pointer hover:bg-[#ffd43a] transition duration-300">
+                            Подробнее
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                </motion.div>
+              </SwiperSlide>
               <SwiperSlide>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="relative">
-                  <div className="z-90">
-                    <img
-                      src="/banner-5.jpg"
-                      alt="banner-5"
-                      className="w-full object-cover rounded-xl"
-                    />
-                  </div>
-                  <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
-                    <div className="px-10 py-20">
-                      <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
-                        Краны манипуляторы на базе MCV/HCV грузовиков
-                      </h1>
-                      <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
-                        Производство автомобилей с крано-манипуляторными
-                        установками. Использование противосдвиговых пластин,
-                        установка блока распределителя управления задними
-                        опорами, открытый профиль HOSSEN, монтажные плиты в
-                        основании КМУ, окрас платформы в цвет крана.
-                      </p>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-4.jpg"
+                        alt="banner-4"
+                        className="w-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
+                      <div className="px-10 py-20">
+                        <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
+                          ООО «РусТрак»
+                        </h1>
+                        <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
+                          Производство и поставка специализированной техники и
+                          спецтранспорта
+                        </p>
 
-                      <div className="lg:flex gap-5 md:hidden">
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
-                          <a href="#">Подробнее</a>
-                        </div>
+                        <div className="lg:flex gap-5 md:hidden">
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
+                            <a href="#">Открыть каталог</a>
+                          </div>
 
-                        <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
-                          <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
-                            Заказать звонок
-                          </button>
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
+                            <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
+                              Заказать звонок
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                </motion.div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-5.jpg"
+                        alt="banner-5"
+                        className="w-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
+                      <div className="px-10 py-20">
+                        <h1 className="font-fira-sans font-extrabold text-white text-[28px] lg:block md:hidden">
+                          Краны манипуляторы на базе MCV/HCV грузовиков
+                        </h1>
+                        <p className="text-lg font-fira-sans font-normal text-white lg:block md:hidden">
+                          Производство автомобилей с крано-манипуляторными
+                          установками. Использование противосдвиговых пластин,
+                          установка блока распределителя управления задними
+                          опорами, открытый профиль HOSSEN, монтажные плиты в
+                          основании КМУ, окрас платформы в цвет крана.
+                        </p>
+
+                        <div className="lg:flex gap-5 md:hidden">
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
+                            <a href="#">Подробнее</a>
+                          </div>
+
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
+                            <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
+                              Заказать звонок
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="relative">
+                    <div className="z-90">
+                      <img
+                        src="/banner-5.jpg"
+                        alt="banner-5"
+                        className="w-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="absolute z-100 top-0  bg-[linear-gradient(90deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.5875)_54.17%,rgba(0,0,0,0.327131)_80.73%,rgba(0,0,0,0)_100%)] w-1/2 h-1/1 rounded-4xl">
+                      <div className="px-10 py-20">
+                        <h1 className="font-fira-sans font-extrabold text-white text-[28px] md:hidden lg:block">
+                          Краны манипуляторы на базе MCV/HCV грузовиков
+                        </h1>
+                        <p className="text-lg font-fira-sans font-normal text-white md:hidden lg:block">
+                          Производство автомобилей с крано-манипуляторными
+                          установками. Использование противосдвиговых пластин,
+                          установка блока распределителя управления задними
+                          опорами, открытый профиль HOSSEN, монтажные плиты в
+                          основании КМУ, окрас платформы в цвет крана.
+                        </p>
+
+                        <div className="lg:flex gap-5 md:hidden">
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3   flex justify-center rounded-xl  bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
+                            <a href="#">Подробнее</a>
+                          </div>
+
+                          <div className="border-2 border-[#fec80b] mt-6 py-2 px-2 w-1/3 flex justify-center rounded-xl   hover:bg-[#ffd43a] transition duration-300">
+                            <button className="font-fira-sans text-white font-normal text-base cursor-pointer hover:text-black transition duration-300">
+                              Заказать звонок
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
             </Swiper>
           </div>
         </div>
@@ -298,24 +332,30 @@ export function Home() {
           >
             {catData.map((cats) => (
               <SwiperSlide key={cats.id}>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="mt-10 border border-[#EBEBEB]  rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d">
-                  <a href="#" className="flex flex-col">
-                    <div className="px-3 py-3">
-                      <p className="font-fira-sans font-normal text-base md:text-xl truncate">
-                        {cats.catTitle}
-                      </p>
-                      <p className="font-fira-sans text-[#A1A1A1] font-normal text-base">
-                        {cats.catDesc}
-                      </p>
-                    </div>
-                    <div className="ml-10  mt-10 w-36 flex self">
-                      <img src={cats.catImage} alt="" className="w-full" />
-                    </div>
-                  </a>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="mt-10 border border-[#EBEBEB]  rounded-sm w-1/1 h-1/1 pb-10 hover:shadow-[0_0_18px_#FEC80B]   transition duration-300 hover:scale-3d">
+                    <a href="#" className="flex flex-col">
+                      <div className="px-3 py-3">
+                        <p className="font-fira-sans font-normal text-base md:text-xl truncate">
+                          {cats.catTitle}
+                        </p>
+                        <p className="font-fira-sans text-[#A1A1A1] font-normal text-base">
+                          {cats.catDesc}
+                        </p>
+                      </div>
+                      <div className="ml-10  mt-10 w-36 flex self">
+                        <img src={cats.catImage} alt="" className="w-full" />
+                      </div>
+                    </a>
+                  </div>
+                </motion.div>
+              </SwiperSlide>
             ))}
           </Swiper>
         </div>
@@ -441,49 +481,55 @@ export function Home() {
           >
             {recomendData.map((recomendProduct) => (
               <SwiperSlide key={recomendProduct.id} className="w-400 h-400">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="wrapper-slider bg-white">
-                  <div className="relative">
-                    <a href="#">
-                      <img
-                        src={recomendProduct.recImage}
-                        alt=""
-                        className="object-cover lg:w-full! lg:h-full! h-44 w-52! max-w-full"
-                      />
-                    </a>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="wrapper-slider bg-white">
+                    <div className="relative">
+                      <a href="#">
+                        <img
+                          src={recomendProduct.recImage}
+                          alt=""
+                          className="object-cover lg:w-full! lg:h-full! h-44 w-52! max-w-full"
+                        />
+                      </a>
 
-                    <Heart className="absolute top-1 right-2" />
+                      <Heart className="absolute top-1 right-2" />
+                    </div>
+
+                    <div>
+                      <a href="#">
+                        <p className="font-fira-sans text-sm font-normal lg:text-lg px-3 py-3 text-center lg:text-left line-clamp-1">
+                          {recomendProduct.recText}
+                        </p>
+                      </a>
+                    </div>
+                    <p className="font-fira-sans lg:text-2xl font-medium mt-2 px-3 text-xl text-center line-clamp-2!">
+                      {recomendProduct.product}
+                    </p>
+
+                    <div className="flex gap-5 items-center px-3 py-3 text-center">
+                      <button className="font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center lg:w-30 h-10 rounded-sm w-full    ">
+                        Подробнее
+                      </button>
+
+                      <button className="lg:flex cursor-pointer text-[#A1A1A1] hidden">
+                        <p className="font-fira-sans text-base font-normalt">
+                          Получить КП
+                        </p>
+
+                        <span>
+                          <Download />
+                        </span>
+                      </button>
+                    </div>
                   </div>
-
-                  <div>
-                    <a href="#">
-                      <p className="font-fira-sans text-sm font-normal lg:text-lg px-3 py-3 text-center lg:text-left line-clamp-1">
-                        {recomendProduct.recText}
-                      </p>
-                    </a>
-                  </div>
-                  <p className="font-fira-sans lg:text-2xl font-medium mt-2 px-3 text-xl text-center line-clamp-2!">
-                    {recomendProduct.product}
-                  </p>
-
-                  <div className="flex gap-5 items-center px-3 py-3 text-center">
-                    <button className="font-fira-sans text-black font-normal text-base cursor-pointer bg-[#FEC80B] transition duration-300 flex gap-2 items-center justify-center lg:w-30 h-10 rounded-sm w-full    ">
-                      Подробнее
-                    </button>
-
-                    <button className="lg:flex cursor-pointer text-[#A1A1A1] hidden">
-                      <p className="font-fira-sans text-base font-normalt">
-                        Получить КП
-                      </p>
-
-                      <span>
-                        <Download />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-</SwiperSlide>
+                </motion.div>
+              </SwiperSlide>
             ))}
           </Swiper>
         </div>
@@ -534,29 +580,35 @@ export function Home() {
           >
             {novostData.map((novostItem) => (
               <SwiperSlide key={novostItem.id}>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
-                <div className="mt-5">
-                  <a href="#">
-                    <img src={novostItem.novostImage} alt="" />
-                  </a>
-                </div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={fadeUp}
+                  className="h-full"
+                >
+                  <div className="mt-5">
+                    <a href="#">
+                      <img src={novostItem.novostImage} alt="" />
+                    </a>
+                  </div>
 
-                <p className="font-fira-sans font-normal text-base mt-3">
-                  {novostItem.novostDate}
-                </p>
-                <h5 className="font-fira-sans font-medium text-lg">
-                  {novostItem.novostDesc}
-                </h5>
-
-                <button className="flex items-center gap-3">
-                  <p className="text-[#A1A1A1] font-fira-sans font-normal text-lg ">
-                    Подробнее
+                  <p className="font-fira-sans font-normal text-base mt-3">
+                    {novostItem.novostDate}
                   </p>
+                  <h5 className="font-fira-sans font-medium text-lg">
+                    {novostItem.novostDesc}
+                  </h5>
 
-                  <MoveRight className="text-[#A1A1A1]" />
-                </button>
-              </motion.div>
-</SwiperSlide>
+                  <button className="flex items-center gap-3">
+                    <p className="text-[#A1A1A1] font-fira-sans font-normal text-lg ">
+                      Подробнее
+                    </p>
+
+                    <MoveRight className="text-[#A1A1A1]" />
+                  </button>
+                </motion.div>
+              </SwiperSlide>
             ))}
           </Swiper>
         </div>

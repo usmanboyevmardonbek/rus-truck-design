@@ -4,12 +4,14 @@ export const catData = [
     catTitle: "Шторные автомобили",
     catDesc: "30 моделей",
     catImage: "/cat-1.webp",
+    catLink: "/shtornye-avtomobili",
   },
   {
     id: 2,
     catTitle: "Краны-манипуляторы",
     catDesc: "79 моделей",
     catImage: "/cat-2.webp",
+    catLink: "/krany-manipulator",
   },
 
   {
@@ -17,6 +19,7 @@ export const catData = [
     catTitle: "Автотопливозаправщики",
     catDesc: "26 моделей",
     catImage: "/cat-3.png",
+    catLink: "/zapravka",
   },
 
   {
@@ -24,6 +27,7 @@ export const catData = [
     catTitle: "Автогидроподъёмники",
     catDesc: "4 модели",
     catImage: "/cat-4.webp",
+    catLink: "/gidropod",
   },
 
   {
@@ -31,6 +35,7 @@ export const catData = [
     catTitle: "Автоцистерны",
     catDesc: "10 моделей",
     catImage: "/cat-5.webp",
+    catLink: "/sisterna",
   },
 
   {
@@ -38,6 +43,7 @@ export const catData = [
     catTitle: "Автоэвакуаторы",
     catDesc: "2 модели",
     catImage: "/cat-6.webp",
+    catLink: "/evakuator",
   },
 
   {
@@ -45,6 +51,7 @@ export const catData = [
     catTitle: "Изотермические фургоны",
     catDesc: "16 моделей",
     catImage: "/cat-7.png",
+    catLink: "/avtofurgony",
   },
 
   {
@@ -52,6 +59,7 @@ export const catData = [
     catTitle: "Контейнеровозы",
     catDesc: "2 модели",
     catImage: "/cat-8.webp",
+    catLink: "/konteynerovozy",
   },
 
   {
@@ -59,6 +67,7 @@ export const catData = [
     catTitle: "Крюковые погрузчики",
     catDesc: "3 модели",
     catImage: "/cat-9.png",
+    catLink: "/kryukovye-pogruzchiki",
   },
 
   {
@@ -66,6 +75,7 @@ export const catData = [
     catTitle: "Самосвалы",
     catDesc: "12 моделей",
     catImage: "/cat-10.webp",
+    catLink: "/samosvaly",
   },
 
   {
@@ -73,12 +83,14 @@ export const catData = [
     catTitle: "Автомобили ДОПОГ категория EXII",
     catDesc: "4 модели",
     catImage: "/cat-11.webp",
+    catLink: "/avtomobili-dopog",
   },
   {
     id: 12,
     catTitle: "Автомобили ДОПОГ категория EXII",
     catDesc: "4 модели",
     catImage: "/cat-11.webp",
+    catLink: "/avtomobili-dopog",
   },
 ];
 
@@ -745,13 +757,11 @@ export const reviewData = [
   {
     id: 1,
     revImg: "/rev-1.jpg",
-    
   },
 
   {
     id: 2,
     revImg: "/rev-2.jpg",
-    
   },
 
   {
@@ -767,5 +777,99 @@ export const reviewData = [
   {
     id: 5,
     revImg: "/rev-5.jpg",
+  },
+];
+
+export const certData = [
+  {
+    id: 1,
+    certImg: "/sert-1.jpg",
+  },
+
+  {
+    id: 2,
+    certImg: "/sert-2.jpg",
+  },
+
+  {
+    id: 3,
+    certImg: "/sert-3.jpg",
+  },
+  {
+    id: 4,
+    certImg: "/sert-4.jpg",
+  },
+
+  {
+    id: 5,
+    certImg: "/sert-5.jpg",
+  },
+
+  {
+    id: 6,
+    certImg: "/sert-6.jpg",
+  },
+
+  {
+    id: 7,
+    certImg: "/sert-7.jpg",
+  },
+
+  {
+    id: 8,
+    certImg: "/sert-8.jpg",
+  },
+
+  {
+    id: 9,
+    certImg: "/sert-9.jpg",
+  },
+
+  {
+    id: 10,
+    certImg: "/sert-10.jpg",
+  },
+
+  {
+    id: 11,
+    certImg: "/sert-11.jpg",
+  },
+  ,
+];
+
+export const videoData = [
+  {
+    id: 1,
+    videoItem: "https://www.youtube.com/embed/08tNWRWhfo0",
+    videoTitle: "Кран манипулятор HKTC на шасси Камаз Компас"
+  },
+
+  {
+    id: 2,
+    videoItem: "https://www.youtube.com/embed/rD2Jr1l0kfM?si=lAdgT_nxeAeOef9q",
+    videoTitle: "КАМАЗ Компас 2022 | Cдвижная Штора и Крыша Тента | Обзор КАМАЗ | Грузовик с Бортом |"
+  },
+
+  {
+    id: 3,
+    videoItem: "https://www.youtube.com/embed/SZFOxY44O_Q?si=80V3-YP5rIjHCjv2",
+    videoTitle: "Крано-манипуляторная установка UNIC374К на шасси FUSO Canter"
+  },
+
+  {
+    id: 4,
+    videoItem: "https://www.youtube.com/embed/40Pt1Oi7r-s?si=4RJWT7PtxLfGE2Ad",
+    videoTitle: "Эвакуатор с прямой платформой на базе ISUZU с манипулятором PALFINGER"
+  },
+
+  {
+    id: 5,
+    videoItem: "https://youtube.com/embed/Cw-rxJR_RNg?si=HC474GIadSLwVRSS",
+    videoTitle: "ISUZU GIGA самосвал зерновоз"
+  },
+  {
+    id: 6,
+    videoItem: "https://youtube.com/embed/Zm1lZ53PK2I?si=TnfNuCE8qnvmCElF",
+    videoTitle: "Hyundai HD78 с автовышкой АГП HANSIN"
   },
 ];

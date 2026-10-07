@@ -29,6 +29,8 @@ import Konteyner from "./pages/Konteyner";
 import Pogruzki from "./pages/Pogruzki";
 import Samosvaly from "./pages/Samosvaly";
 import Dopog from "./pages/Dopog";
+import Cert from "./pages/Cert";
+import Video from "./pages/Video";
 
 // We define a smoother fadeUp variant specifically for page transitions
 const pageTransition = {
@@ -108,6 +110,10 @@ function App() {
             <Route path="/kryukovye-pogruzchiki" element={<PageWrapper><Pogruzki/></PageWrapper>}/>
             <Route path="/samosvaly" element={<PageWrapper><Samosvaly/></PageWrapper>}/>
             <Route path="/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
+            <Route path="/cert" element={<PageWrapper><Cert/></PageWrapper>}/>
+            <Route path="/video" element={<PageWrapper><Video/></PageWrapper>}/>
+
+
           </Routes>
         )}
       </AnimatePresence>

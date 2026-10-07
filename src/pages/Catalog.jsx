@@ -36,7 +36,7 @@ const Catalog = () => {
               <motion.a
                 variants={fadeUp}
                 key={catalogs.id}
-                href="#"
+                href={catalogs.catLink}
                 className="flex flex-col items-end justify-between border border-[#EBEBEB] rounded-xl lg:w-1/1 lg:h-80 hover:shadow-[0_0_18px_#FEC80B] transition duration-300 hover:scale-3d"
               >
                 <div className="w-full px-3 py-3">
