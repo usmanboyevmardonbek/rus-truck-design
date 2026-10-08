@@ -873,3 +873,54 @@ export const videoData = [
     videoTitle: "Hyundai HD78 с автовышкой АГП HANSIN"
   },
 ];
+
+export const similarList = [{
+  id: 1,
+  img: "kamaz-truck-1.jpg",
+  title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
+},
+
+{
+  id: 2,
+  img: "kamaz-truck-2.jpg",
+  title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
+},
+
+{
+  id: 3,
+  img: "kamaz-truck-3.jpg",
+  title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
+},
+
+{
+  id: 4,
+  img: "kamaz-truck-4.jpg",
+  title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
+},
+
+{
+  id: 5,
+  img: "kamaz-truck-5.jpg",
+  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
+},
+
+{
+  id: 6,
+  img: "kamaz-truck-6.jpg",
+  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
+},
+
+{
+  id: 7,
+  img: "kamaz-truck-5.jpg",
+  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
+},
+
+{
+  id: 8,
+  img: "kamaz-truck-6.jpg",
+  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
+},
+
+
+]

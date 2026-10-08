@@ -502,7 +502,7 @@ export function Header() {
                 </AnimatePresence>
               </div>
               <div>
-                <nav>
+                <nav> 
                   <ul
                     className={`lg:flex gap-8 hidden md:hidden ${isScrolled ? "hidden" : "block"}`}
                   >

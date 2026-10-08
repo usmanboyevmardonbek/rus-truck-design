@@ -118,3 +118,11 @@
   border-radius: 9999px !important;
   opacity: 1;
 }
+
+.romb {
+  width: 10px;
+  height: 10px;
+  background-color: #fec80b;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
