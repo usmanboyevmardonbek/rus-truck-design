@@ -5,11 +5,13 @@ import { Header } from "../components/Header";
 import Footer from "../components/footer";
 import { useState, useEffect } from "react";
 import { Loader } from "../components/Loader";
+import Feedback from "../components/Feedback";
 
 const dummyProducts = [
   { 
     id: 1, 
-    title: "Кран-манипулятор МАЗ 437121 с КМУ FASSI F110",
+    title: "Кран-манипулятор КАМАЗ 65115 с КМУ HKTC HLC-7016",
+    img: "/kran-1.jpg",
     specs: [
       { label: "Марка", value: "МАЗ" },
       { label: "Габариты ТС", value: "7300 x 2550 x 3000 мм" },
@@ -18,7 +20,8 @@ const dummyProducts = [
   },
   { 
     id: 2, 
-    title: "Кран-манипулятор КАМАЗ 43118 с КМУ ИНМАН ИМ 150N",
+    title: "Кран-манипулятор КАМАЗ 43118 с КМУ INMAN IT 200",
+    img: "/kran-2.jpg",
     specs: [
       { label: "Марка", value: "КАМАЗ" },
       { label: "Габариты ТС", value: "8500 x 2550 x 3600 мм" },
@@ -27,7 +30,8 @@ const dummyProducts = [
   },
   { 
     id: 3, 
-    title: "Кран-манипулятор JAC N120 с КМУ UNIC URV-374",
+    title: "Кран-манипулятор КАМАЗ 43118 с КМУ UNIC 503",
+    img: "/kran-3.jpg",
     specs: [
       { label: "Марка", value: "JAC" },
       { label: "Габариты ТС", value: "8100 x 2400 x 3200 мм" },
@@ -36,7 +40,8 @@ const dummyProducts = [
   },
   { 
     id: 4, 
-    title: "Кран-манипулятор ГАЗон NEXT с КМУ SOOSAN SCS334",
+    title: "Кран-манипулятор КАМАЗ 43118 с КМУ SOOSAN SCS736",
+    img: "/kran-4.jpg",
     specs: [
       { label: "Марка", value: "ГАЗ" },
       { label: "Габариты ТС", value: "7500 x 2300 x 2900 мм" },
@@ -45,7 +50,8 @@ const dummyProducts = [
   },
   { 
     id: 5, 
-    title: "Кран-манипулятор HINO 300 с КМУ HYUNDAI",
+    title: "Кран-манипулятор КамАЗ 43118 с КМУ PALFINGER РК 15500",
+    img: "/kran-5.jpg",
     specs: [
       { label: "Марка", value: "HINO" },
       { label: "Габариты ТС", value: "6500 x 2200 x 2800 мм" },
@@ -54,7 +60,8 @@ const dummyProducts = [
   },
   { 
     id: 6, 
-    title: "Кран-манипулятор УРАЛ 4320 с КМУ АНТ 12-2",
+    title: "Кран-манипулятор ГАЗ С42А43 с КМУ INMAN IM 20",
+    img: "/kran-6.jpg",
     specs: [
       { label: "Марка", value: "УРАЛ" },
       { label: "Габариты ТС", value: "9000 x 2500 x 3800 мм" },
@@ -63,7 +70,8 @@ const dummyProducts = [
   },
   { 
     id: 7, 
-    title: "Кран-манипулятор DONG FENG с КМУ FASSI",
+    title: "Кран-манипулятор ГАЗон NEXT c КМУ UNIC 374",
+    img: "/kran-7.jpg",
     specs: [
       { label: "Марка", value: "DONG FENG" },
       { label: "Габариты ТС", value: "8200 x 2450 x 3100 мм" },
@@ -72,7 +80,8 @@ const dummyProducts = [
   },
   { 
     id: 8, 
-    title: "Кран-манипулятор ISUZU ELF с КМУ UNIC",
+    title: "Кран-манипулятор ГАЗон NEXT c КМУ INMAN IT 80",
+    img: "/kran-8.jpg",
     specs: [
       { label: "Марка", value: "ISUZU" },
       { label: "Габариты ТС", value: "6000 x 2100 x 2700 мм" },
@@ -81,7 +90,8 @@ const dummyProducts = [
   },
   { 
     id: 9, 
-    title: "Кран-манипулятор МАЗ 6312 с КМУ HANGIL",
+    title: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N",
+    img: "/kran-9.jpg",
     specs: [
       { label: "Марка", value: "МАЗ" },
       { label: "Габариты ТС", value: "9500 x 2550 x 3400 мм" },
@@ -117,7 +127,7 @@ const Krany = () => {
       <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
-          {/* Breadcrumbs */}
+          
           <ul className="flex items-center gap-2 mb-6">
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">Главная</li>
             <li className="text-gray-400 text-sm">/</li>
@@ -126,7 +136,7 @@ const Krany = () => {
             <li className="font-fira-sans text-gray-400 text-sm">Краны-манипуляторы</li>
           </ul>
 
-          {/* Header Row */}
+         
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
@@ -182,10 +192,10 @@ const Krany = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8 items-start">
-            {/* Sidebar Filters */}
-            <div className="w-full lg:w-[280px] bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+            
+            <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               
-              {/* Brand Filter */}
+              
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
                 <div className="relative mb-4">
@@ -209,7 +219,7 @@ const Krany = () => {
                 </div>
               </div>
 
-              {/* Weight Filter */}
+              
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Полная масса, тонн</h3>
                 <div className="flex flex-col gap-3">
@@ -225,7 +235,7 @@ const Krany = () => {
                 </div>
               </div>
               
-              {/* Length Filter */}
+              
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Длина платформы, м</h3>
                 <div className="flex flex-col gap-3">
@@ -241,7 +251,7 @@ const Krany = () => {
                 </div>
               </div>
               
-              {/* Lifting Capacity Filter */}
+              
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Грузоподъемность КМУ, тонн</h3>
                 <div className="flex items-center justify-between gap-4">
@@ -268,7 +278,7 @@ const Krany = () => {
               </button>
             </div>
 
-            {/* Product Area with Global Loader Triggered */}
+            
             <div className="flex-1 relative min-h-[500px] w-full">
               <AnimatePresence>
                 {isLocalLoading && <Loader />}
@@ -293,39 +303,39 @@ const Krany = () => {
                       key={product.id} 
                       className={
                         viewMode === 'grid'
-                          ? "bg-white group flex flex-col hover:shadow-lg transition-shadow duration-300"
-                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-[220px]"
+                          ? "bg-white group flex flex-col"
+                          : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-55"
                       }
                     >
-                      {/* Image Container */}
+                      
                       <div className={
                         viewMode === 'grid'
-                          ? "relative bg-gray-200 aspect-[4/3] w-full flex items-center justify-center overflow-hidden shrink-0"
+                          ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
                           : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                       }>
-                        <span className="text-gray-400 font-fira-sans text-sm">Место для фото</span>
+                        <img src={product.img} alt="img" className="w-full h-full object-cover" />
                         <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
                           <Heart className="w-6 h-6" />
                         </button>
                       </div>
 
-                      {/* Content Container */}
+                      
                       <div className={
                         viewMode === 'grid'
-                          ? "p-5 flex flex-col flex-1"
-                          : "p-6 flex flex-col md:flex-row flex-1 justify-between gap-6"
+                          ? "p-2 flex flex-col flex-1"
+                          : "p-2 flex flex-col md:flex-row flex-1 justify-between gap-6"
                       }>
                         
-                        {/* Title and Specs (for List view) */}
-                        <div className={viewMode === 'list' ? "flex-1 flex flex-col max-w-[450px]" : "flex-1 flex flex-col"}>
-                          <h3 className={`font-fira-sans font-medium text-base leading-tight ${viewMode === 'list' ? 'mb-6 text-lg' : 'mb-4 flex-1 line-clamp-2'}`}>
+                        
+                        <div className={viewMode === 'list' ? "flex-1 flex flex-col max-w-110" : "flex-1 flex flex-col"}>
+                          <h3 className={`font-fira-sans  text-lg  ${viewMode === 'list' ? 'mb-6 text-lg' : 'mb-4 flex-1 line-clamp-2'}`}>
                             {product.title}
                           </h3>
                           
                           
                         </div>
                         
-                        {/* Right / Bottom Actions */}
+                        
                         <div className={
                           viewMode === 'grid'
                             ? "mt-auto"
@@ -340,7 +350,7 @@ const Krany = () => {
                               ? "flex items-center justify-between gap-2"
                               : "flex flex-col items-end gap-4 w-full"
                           }>
-                            <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''}`}>
+                            <button className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === 'list' ? 'w-full' : ''} cursor-pointer`}>
                               Подробнее
                             </button>
                             
@@ -355,9 +365,10 @@ const Krany = () => {
                                   </button>
                                 </>
                               )}
-                              <button className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === 'list' ? 'ml-auto' : ''}`}>
-                                <Download className="w-4 h-4" />
-                                <span className="text-xs uppercase tracking-wider text-gray-400 group-hover/kp:text-black transition-colors font-medium">Получить КП</span>
+                              <button className={`flex items-center gap-1.5  ${viewMode === 'list' ? 'ml-auto' : ''}`}>
+                                
+                                <p className="text-[9px]  text-gray-400 group-hover/kp:text-black transition-colors">Получить КП</p>
+                                <Download className="w-3 h-3 cursor-pointer" />
                               </button>
                             </div>
                           </div>
@@ -372,6 +383,7 @@ const Krany = () => {
           </div>
         </div>
       </div>
+      <Feedback/>
       <Footer />
     </>
   );
