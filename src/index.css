@@ -126,3 +126,10 @@
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
+.romb-2 {
+  width: 20px;
+  height: 10px;
+  background-color: #fec80b;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+

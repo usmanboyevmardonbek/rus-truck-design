@@ -589,19 +589,19 @@ export function Home() {
                 >
                   <div className="mt-5">
                     <a href="#">
-                      <img src={novostItem.novostImage} alt="" />
+                      <img src={novostItem.novostImage} alt="novostImage" className="w-full h-50 object-cover"  />
                     </a>
                   </div>
 
                   <p className="font-fira-sans font-normal text-base mt-3">
                     {novostItem.novostDate}
                   </p>
-                  <h5 className="font-fira-sans font-medium text-lg">
+                  <h5 className="font-fira-sans font-medium text-lg line-clamp-2">
                     {novostItem.novostDesc}
                   </h5>
 
                   <button className="flex items-center gap-3">
-                    <p className="text-[#A1A1A1] font-fira-sans font-normal text-lg ">
+                    <p className="text-[#A1A1A1] font-fira-sans font-normal text-lg">
                       Подробнее
                     </p>
 
