@@ -407,51 +407,51 @@ const Shtornye = () => {
                   </p>
 
                   <p className="font-fira-sans text-lg">Марки:</p>
-                  <ul>
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">ГАЗ</p>
-                    </li>
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">Валдай</p>
-                    </li>
+                      <ul>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">ГАЗ</p>
+                        </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">Валдай</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">КАМАЗ</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">КАМАЗ</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">Компас</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">Компас</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">JAC</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">JAC</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">МАЗ</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">МАЗ</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">FAW</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">FAW</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">FOTON</p>
-                    </li>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">FOTON</p>
+                        </li>
 
-                    <li className="flex items-center gap-4 mb-2">
-                      <span className="romb inline-block"></span>
-                      <p className="font-fira-sans text-lg">DAEWOO</p>
-                    </li>
-                  </ul>
+                        <li className="flex items-center gap-4 mb-2">
+                          <span className="romb inline-block"></span>
+                          <p className="font-fira-sans text-lg">DAEWOO</p>
+                        </li>
+                      </ul>
 
                   <p className="font-fira-sans text-lg mt-2">
                     Размеры и тоннаж автомобилей зависят от выбранного шасси: от

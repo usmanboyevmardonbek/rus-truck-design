@@ -976,3 +976,54 @@ export const kranySliders = [{
 
 
 ]
+
+export const zapravkaSlider = [{
+  id: 1,
+  img: "kran-swiper-1.jpg",
+  title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
+},
+
+{
+  id: 2,
+  img: "kran-swiper-2.jpg",
+  title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
+},
+
+{
+  id: 3,
+  img: "kran-swiper-3.jpg",
+  title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
+},
+
+{
+  id: 4,
+  img: "kran-swiper-4.jpg",
+  title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
+},
+
+{
+  id: 5,
+  img: "kran-swiper-5.jpg",
+  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
+},
+
+{
+  id: 6,
+  img: "kran-swiper-6.jpg",
+  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
+},
+
+{
+  id: 7,
+  img: "kran-swiper-5.jpg",
+  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
+},
+
+{
+  id: 8,
+  img: "kran-swiper-6.jpg",
+  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
+},
+
+
+]
