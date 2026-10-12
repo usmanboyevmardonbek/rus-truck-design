@@ -37,36 +37,7 @@ const dummyProducts = [
     price: "Цена по запросу",
     outOfStock: false
   },
-  { 
-    id: 6, 
-    title: "Пищевая цистерна ISUZU NPR 75 LK",
-    price: "Цена по запросу",
-    outOfStock: true
-  },
-  { 
-    id: 7, 
-    title: "Вакуумное оборудование КО-522 на шасси HYUNDAI MIGHTY EX8",
-    price: "Цена по запросу",
-    outOfStock: true
-  },
-  { 
-    id: 8, 
-    title: "Пищевая цистерна HYUNDAI HD MIGHTY",
-    price: "Цена по запросу",
-    outOfStock: true
-  },
-  { 
-    id: 9, 
-    title: "Пищевая цистерна HINO 300",
-    price: "Цена по запросу",
-    outOfStock: true
-  },
-  { 
-    id: 10, 
-    title: "Пищевая цистерна HINO 300 730",
-    price: "Цена по запросу",
-    outOfStock: true
-  }
+  insti
 ];
 
 const brands = ["ГАЗ", "КАМАЗ", "JAC"];
@@ -120,7 +91,7 @@ const Sisterna = () => {
                 <span className="font-fira-sans text-gray-400 text-sm">Сортировка:</span>
                 <div className="relative z-50">
                   <button className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors" onClick={() => setShtore(!shtor)}>
-                    По бренду <ChevronDown className="w-4 h-4" />
+                    По бренду 
                   </button>
                   <ul className={"absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " + (shtor ? "h-[216px]" : "h-0")}>
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">

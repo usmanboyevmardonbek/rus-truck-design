@@ -20,6 +20,7 @@ import "swiper/css";
 import { Loader } from "../components/Loader";
 import { div } from "motion/react-client";
 import Feedback from "../components/Feedback";
+import { zapravkaSlider } from "./objects";
 
 const dummyProducts = [
   {
@@ -851,7 +852,7 @@ const Zapravka = () => {
                   },
                 }}
               >
-                {/* {.map((krans) => (
+                {zapravkaSlider.map((krans) => (
                   <SwiperSlide key={krans.id} className="rounded-xl ">
                     <motion.div
                       initial="hidden"
@@ -885,7 +886,7 @@ const Zapravka = () => {
                       </div>
                     </div>
                   </SwiperSlide>
-                ))} */}
+                ))}
               </Swiper>
             </div>
           )}
