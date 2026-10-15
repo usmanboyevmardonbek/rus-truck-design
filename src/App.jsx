@@ -31,8 +31,10 @@ import Samosvaly from "./pages/Samosvaly";
 import Dopog from "./pages/Dopog";
 import Cert from "./pages/Cert";
 import Video from "./pages/Video";
+import Copy from "./pages/Copy";
 
-// We define a smoother fadeUp variant specifically for page transitions
+
+
 const pageTransition = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -112,6 +114,8 @@ function App() {
             <Route path="/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
             <Route path="/cert" element={<PageWrapper><Cert/></PageWrapper>}/>
             <Route path="/video" element={<PageWrapper><Video/></PageWrapper>}/>
+            <Route path="/copy" element={<PageWrapper><Copy/></PageWrapper>}/>
+
 
 
           </Routes>
