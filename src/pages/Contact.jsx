@@ -1,9 +1,8 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
-import React from "react";
 import { Header } from "../components/Header";
 import { contactData } from "./objects";
-import Feedback from "../components/feedback";
+import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 function Contact() {
@@ -11,7 +10,13 @@ function Contact() {
     <>
       <Header />
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">Главная</a>
@@ -80,7 +85,10 @@ function Contact() {
 
           <div className="grid lg:grid-cols-4 md:grid-cols-3 items-center gap-8 mb-5 grid-cols-1">
             {contactData.map((contactItems) => (
-              <div key={contactItems.id} className="mt-10 border-2 border-gray-200 rounded-xl">
+              <div
+                key={contactItems.id}
+                className="mt-10 border-2 border-gray-200 rounded-xl"
+              >
                 <img
                   src={contactItems.userImage}
                   alt="userImage"
@@ -103,9 +111,8 @@ function Contact() {
             ))}
           </div>
         </motion.div>
-          <Feedback/>
-          <Footer/>
-
+        <Feedback />
+        <Footer />
       </div>
     </>
   );
