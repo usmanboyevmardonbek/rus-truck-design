@@ -19,12 +19,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
-import { div } from "motion/react-client";
+import { NavLink } from "react-router-dom";
 import { kranySliders, similarList } from "./objects";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "kran-kamaz-65115-hktc",
     title: "Кран-манипулятор КАМАЗ 65115 с КМУ HKTC HLC-7016",
     img: "/kran-1.jpg",
     specs: [
@@ -35,6 +36,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "kran-kamaz-43118-inman-200",
     title: "Кран-манипулятор КАМАЗ 43118 с КМУ INMAN IT 200",
     img: "/kran-2.jpg",
     specs: [
@@ -45,6 +47,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "kran-kamaz-43118-unic-503",
     title: "Кран-манипулятор КАМАЗ 43118 с КМУ UNIC 503",
     img: "/kran-3.jpg",
     specs: [
@@ -55,6 +58,7 @@ const dummyProducts = [
   },
   {
     id: 4,
+    slug: "kran-kamaz-43118-soosan",
     title: "Кран-манипулятор КАМАЗ 43118 с КМУ SOOSAN SCS736",
     img: "/kran-4.jpg",
     specs: [
@@ -65,6 +69,7 @@ const dummyProducts = [
   },
   {
     id: 5,
+    slug: "kran-kamaz-43118-palfinger",
     title: "Кран-манипулятор КамАЗ 43118 с КМУ PALFINGER РК 15500",
     img: "/kran-5.jpg",
     specs: [
@@ -75,6 +80,7 @@ const dummyProducts = [
   },
   {
     id: 6,
+    slug: "kran-gaz-c42a43-inman-20",
     title: "Кран-манипулятор ГАЗ С42А43 с КМУ INMAN IM 20",
     img: "/kran-6.jpg",
     specs: [
@@ -85,6 +91,7 @@ const dummyProducts = [
   },
   {
     id: 7,
+    slug: "kran-gazon-next-unic-374",
     title: "Кран-манипулятор ГАЗон NEXT c КМУ UNIC 374",
     img: "/kran-7.jpg",
     specs: [
@@ -95,6 +102,7 @@ const dummyProducts = [
   },
   {
     id: 8,
+    slug: "kran-gazon-next-inman-80",
     title: "Кран-манипулятор ГАЗон NEXT c КМУ INMAN IT 80",
     img: "/kran-8.jpg",
     specs: [
@@ -105,6 +113,7 @@ const dummyProducts = [
   },
   {
     id: 9,
+    slug: "kran-valdaj-18-inman-240",
     title: "Кран-манипулятор Валдай-18 (FB6R51) с КМУ ИНМАН ИМ 240N",
     img: "/kran-9.jpg",
     specs: [
@@ -377,22 +386,23 @@ const Krany = () => {
                           : "bg-white group flex flex-col md:flex-row hover:shadow-lg transition-shadow duration-300 min-h-55"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/krany-manipulator/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="img"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10" onClick={(e) => e.preventDefault()}>
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -408,11 +418,13 @@ const Krany = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans  text-lg  ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/krany-manipulator/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -435,11 +447,12 @@ const Krany = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            <button
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""} cursor-pointer`}
+                            <NavLink
+                              to={`/krany-manipulator/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full text-center" : ""} cursor-pointer`}
                             >
                               Подробнее
-                            </button>
+                            </NavLink>
 
                             <div
                               className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}

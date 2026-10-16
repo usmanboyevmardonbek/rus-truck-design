@@ -18,16 +18,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import { Loader } from "../components/Loader";
-import { div } from "motion/react-client";
+import { NavLink } from "react-router-dom";
 import Feedback from "../components/Feedback";
 import { zapravkaSlider } from "./objects";
 
 const dummyProducts = [
   {
     id: 1,
-    img: "zapravka-1.jpg",
+    slug: "sadko-9-c41a13-atz-4-5",
+    img: "/zapravka-1.jpg",
     title: "Топливозаправщик Садко 9 (С41А13) с АТЗ 4,5 м3 двухсекционная",
-    price: "от 8   800 000 ₽",
+    price: "от 8 800 000 ₽",
     specs: [
       { label: "Марка", value: "ГАЗ" },
       { label: "Объем цистерны, л", value: "4900" },
@@ -36,7 +37,8 @@ const dummyProducts = [
   },
   {
     id: 2,
-    img: "zapravka-2.jpg",
+    slug: "gaz-c41r13-4389jy",
+    img: "/zapravka-2.jpg",
     title: "Автотопливозаправщик на шасси ГАЗ C41R13 (модель 4389JY)",
     price: "от 6 200 000 ₽",
     specs: [
@@ -47,7 +49,8 @@ const dummyProducts = [
   },
   {
     id: 3,
-    img: "zapravka-3.jpg",
+    slug: "valday-18-fb6r31",
+    img: "/zapravka-3.jpg",
     title: "Автотопливозаправщик Валдай 18 FB6R31",
     price: "от 9 050 000 ₽",
     specs: [
@@ -58,7 +61,8 @@ const dummyProducts = [
   },
   {
     id: 4,
-    img: "zapravka-4.jpg",
+    slug: "valday-12-atz-6",
+    img: "/zapravka-4.jpg",
     title: "Автотопливозаправщик Валдай 12 АТЗ 6",
     price: "от 7 550 000 ₽",
     specs: [
@@ -69,7 +73,8 @@ const dummyProducts = [
   },
   {
     id: 5,
-    img: "zapravka-5.jpg",
+    slug: "valday-12-atz-8",
+    img: "/zapravka-5.jpg",
     title: "Топливозаправщик Валдай 12 АТЗ 8",
     price: "от 7 850 000 ₽",
     specs: [
@@ -80,7 +85,8 @@ const dummyProducts = [
   },
   {
     id: 6,
-    img: "zapravka-6.jpg",
+    slug: "yanshi-10",
+    img: "/zapravka-6.jpg",
     title: "Автотопливозаправщик на шасси YANSHI 10",
     price: "Цена по запросу",
     specs: [
@@ -91,7 +97,8 @@ const dummyProducts = [
   },
   {
     id: 7,
-    img: "zapravka-7.jpg",
+    slug: "sollers-tr180-10",
+    img: "/zapravka-7.jpg",
     title: "Топливозаправщик SOLLERS TR180 боковина 10 м.куб",
     price: "от 8 670 000 ₽",
     specs: [
@@ -102,7 +109,8 @@ const dummyProducts = [
   },
   {
     id: 8,
-    img: "zapravka-8.jpg",
+    slug: "sollers-tr120-atz-8",
+    img: "/zapravka-8.jpg",
     title: "Автотопливозаправщик SOLLERS TR120 АТЗ 8,0 м.куб",
     price: "от 6 030 000 ₽",
     specs: [
@@ -113,7 +121,8 @@ const dummyProducts = [
   },
   {
     id: 9,
-    img: "zapravka-9.jpg",
+    slug: "jac-n90-atz-6",
+    img: "/zapravka-9.jpg",
     title: "Топливозаправщик JAC N90 АТЗ 6,0 двухсекционная",
     price: "Цена по запросу",
     specs: [
@@ -389,22 +398,27 @@ const Zapravka = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/zapravka/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="productImg"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          type="button"
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -420,11 +434,13 @@ const Zapravka = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/zapravka/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -447,11 +463,12 @@ const Zapravka = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            <button
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer ${viewMode === "list" ? "w-full" : ""}`}
+                            <NavLink
+                              to={`/zapravka/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer ${viewMode === "list" ? "w-full text-center" : ""}`}
                             >
                               Подробнее
-                            </button>
+                            </NavLink>
 
                             <div
                               className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
@@ -462,12 +479,12 @@ const Zapravka = () => {
                                     <ShoppingCart className="w-5 h-5 cursor-pointer" />
                                   </button>
                                   <button className="hover:text-black transition-colors">
-                                    <Heart className="w-5 h-5  cursor-pointer" />
+                                    <Heart className="w-5 h-5 cursor-pointer" />
                                   </button>
                                 </>
                               )}
                               <button
-                                className={`flex items-center gap-1.5 group-hover:text-black transition-colors  ${viewMode === "list" ? "ml-auto" : ""}`}
+                                className={`flex items-center gap-1.5 group-hover:text-black transition-colors ${viewMode === "list" ? "ml-auto" : ""}`}
                               >
                                 <p className="text-[9px] text-gray-400 hover:text-black transition duration-200">
                                   Получить КП

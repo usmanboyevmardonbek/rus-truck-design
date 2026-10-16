@@ -20,12 +20,13 @@ import Footer from "../components/footer";
 import { useState, useEffect, useRef } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
-import { div } from "motion/react-client";
+import { NavLink } from "react-router-dom";
 import { similarList } from "./objects";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "shtornyy-gruzovik-maz-438121",
     title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
     img: "/gruz-1.jpg",
     specs: [
@@ -36,6 +37,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "shtornyy-gruzovik-maz-631228",
     title: "Шторный грузовик МАЗ 631228-524-010 (модель 4389M2)",
     img: "/gruz-2.jpg",
     specs: [
@@ -46,6 +48,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "shtornyy-gruzovik-kamaz-4308",
     title: "Шторный грузовик КАМАЗ 4308",
     img: "/gruz-3.jpg",
     specs: [
@@ -56,6 +59,7 @@ const dummyProducts = [
   },
   {
     id: 4,
+    slug: "shtornyy-gruzovik-kamaz-65657",
     title: "Шторный грузовик КАМАЗ 65657",
     img: "/gruz-4.jpg",
     specs: [
@@ -66,6 +70,7 @@ const dummyProducts = [
   },
   {
     id: 5,
+    slug: "shtornyy-gruzovik-kompas-5",
     title: "Шторный грузовик КОМПАС 5",
     img: "/gruz-5.jpg",
     specs: [
@@ -76,6 +81,7 @@ const dummyProducts = [
   },
   {
     id: 6,
+    slug: "shtornyy-gruzovik-kamaz-65117",
     title: "Шторный грузовик КАМАЗ 65117 (модель 4388F3)",
     img: "/gruz-6.jpg",
     specs: [
@@ -287,22 +293,23 @@ const Shtornye = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/shtornye-avtomobili/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="img"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors">
+                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors" onClick={(e) => e.preventDefault()}>
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -318,11 +325,13 @@ const Shtornye = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans  text-lg leading-tight ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-1"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/shtornye-avtomobili/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans  text-lg leading-tight hover:text-[#FEC80B] transition-colors ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-1"}`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -345,11 +354,12 @@ const Shtornye = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            <button
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition duration-300 cursor-pointer  font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
+                            <NavLink
+                              to={`/shtornye-avtomobili/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition duration-300 cursor-pointer  font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full text-center" : ""}`}
                             >
                               Подробнее
-                            </button>
+                            </NavLink>
 
                             <div
                               className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
@@ -377,6 +387,7 @@ const Shtornye = () => {
                         </div>
                       </div>
                     </motion.div>
+
                   ))}
                 </motion.div>
               )}

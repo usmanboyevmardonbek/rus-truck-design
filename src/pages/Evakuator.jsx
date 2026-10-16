@@ -15,10 +15,12 @@ import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
+import { NavLink } from "react-router-dom";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "evakuator-kamaz-4308-palfinger-pk-13500t",
     img: "/evakuator-1.jpg",
     title: "Эвакуатор на шасси КАМАЗ 4308 с КМУ PALFINGER PK 13500T",
     price: "Цена по запросу",
@@ -26,6 +28,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "evakuator-isuzu-fsr-34ul-palfinger",
     img: "/evakuator-2.jpg",
     title: "Эвакуатор на шасси ISUZU FSR-34UL-NCUN с КМУ PALFINGER PK...",
     price: "Цена по запросу",
@@ -248,21 +251,22 @@ const Evakuator = () => {
                       key={product.id}
                       className={
                         viewMode === "grid"
-                          ? "bg-white group flex flex-col  duration-300 relative"
-                          : "bg-white group flex flex-col md:flex-row  min-h-55 relative"
+                          ? "bg-white group flex flex-col duration-300 relative"
+                          : "bg-white group flex flex-col md:flex-row min-h-55 relative"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/evakuator/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="img"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
 
                         {product.outOfStock && (
@@ -273,10 +277,14 @@ const Evakuator = () => {
                           </div>
                         )}
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          type="button"
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -288,15 +296,19 @@ const Evakuator = () => {
                         <div
                           className={
                             viewMode === "list"
-                              ? "flex-1 flex flex-col max-w-111]"
+                              ? "flex-1 flex flex-col max-w-111"
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/evakuator/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -319,23 +331,17 @@ const Evakuator = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            {product.outOfStock ? (
-                              <button
-                                className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full flex items-center justify-center gap-2`}
-                              >
-                                Мне нужен такой же{" "}
-                                <Download className="w-4 h-4 ml-1" />
-                              </button>
-                            ) : (
-                              <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
-                                >
-                                  Подробнее
-                                </button>
+                            <NavLink
+                              to={`/evakuator/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
+                                viewMode === "list" ? "w-full" : ""
+                              }`}
+                            >
+                              Подробнее
+                            </NavLink>
 
-                                <div
-                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                            <div
+                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
                                 >
                                   {viewMode === "grid" && (
                                     <>
@@ -356,8 +362,6 @@ const Evakuator = () => {
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
-                              </>
-                            )}
                           </div>
                         </div>
                       </div>

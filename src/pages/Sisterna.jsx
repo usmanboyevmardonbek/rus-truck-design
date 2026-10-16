@@ -14,12 +14,13 @@ import { Header } from "../components/Header";
 import Footer from "../components/footer";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
-import { div } from "motion/react-m";
+import { NavLink } from "react-router-dom";
 import Feedback from "../components/Feedback";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "kamaz-43089-food",
     img: "/sisterna-1.jpg",
     title: "Пищевая цистерна КАМАЗ 43089",
     price: "Цена по запросу",
@@ -27,6 +28,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "gazon-next-food-4-2",
     img: "/sisterna-2.jpg",
     title: "ГАЗон NEXT с пищевой цистерной 4,2 куба",
     price: "Цена по запросу",
@@ -34,6 +36,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "jac-n90-vacuum",
     img: "/sisterna-3.jpg",
     title: "Вакуумная цистерна JAC N90",
     price: "Цена по запросу",
@@ -41,6 +44,7 @@ const dummyProducts = [
   },
   {
     id: 4,
+    slug: "jac-n90-autocisterna",
     img: "/sisterna-4.jpg",
     title: "Вакуумная автоцистерна на шасси JAC N90",
     price: "Цена по запросу",
@@ -48,6 +52,7 @@ const dummyProducts = [
   },
   {
     id: 5,
+    slug: "jac-n90-ko-523",
     img: "/sisterna-5.jpg",
     title: "Вакуумное оборудование КО-523 на шасси JAC N-90",
     price: "Цена по запросу",
@@ -280,17 +285,18 @@ const Sisterna = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/sisterna/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="image"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
 
                         {product.outOfStock && (
@@ -301,10 +307,14 @@ const Sisterna = () => {
                           </div>
                         )}
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          type="button"
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -320,11 +330,15 @@ const Sisterna = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/sisterna/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -347,23 +361,17 @@ const Sisterna = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            {product.outOfStock ? (
-                              <button
-                                className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full flex items-center justify-center gap-2`}
-                              >
-                                Мне нужен такой же{" "}
-                                <Download className="w-4 h-4 ml-1" />
-                              </button>
-                            ) : (
-                              <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer ${viewMode === "list" ? "w-full" : ""}`}
-                                >
-                                  Подробнее
-                                </button>
+                            <NavLink
+                              to={`/sisterna/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer text-center ${
+                                viewMode === "list" ? "w-full" : ""
+                              }`}
+                            >
+                              Подробнее
+                            </NavLink>
 
-                                <div
-                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                            <div
+                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
                                 >
                                   {viewMode === "grid" && (
                                     <>
@@ -384,8 +392,6 @@ const Sisterna = () => {
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
-                              </>
-                            )}
                           </div>
                         </div>
                       </div>

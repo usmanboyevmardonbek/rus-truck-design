@@ -15,10 +15,12 @@ import Footer from "../components/footer";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
+import { NavLink } from "react-router-dom";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "samosval-kompas-9",
     img: "/sams-1.jpg",
     title: "Самосвал на шасси КОМПАС 9",
     price: "Цена по запросу",
@@ -26,6 +28,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "samosval-kamaz-6520",
     img: "/sams-2.jpg",
     title: "Самосвал-зерновоз на шасси КАМАЗ 6520-3072-53 (модель...",
     price: "Цена по запросу",
@@ -33,6 +36,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "samosval-jac-n90n",
     img: "/sams-3.jpg",
     title: "Самосвал на шасси JAC N90N (модель 53391A), высокий борт",
     price: "Цена по запросу",
@@ -265,23 +269,27 @@ const Samosvaly = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/samosvaly/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="Images"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -297,11 +305,15 @@ const Samosvaly = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/samosvaly/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -333,11 +345,14 @@ const Samosvaly = () => {
                               </button>
                             ) : (
                               <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
+                                <NavLink
+                                  to={`/samosvaly/${product.slug}`}
+                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
+                                    viewMode === "list" ? "w-full" : ""
+                                  }`}
                                 >
                                   Подробнее
-                                </button>
+                                </NavLink>
 
                                 <div
                                   className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}

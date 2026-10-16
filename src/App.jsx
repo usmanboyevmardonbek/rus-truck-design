@@ -32,6 +32,7 @@ import Dopog from "./pages/Dopog";
 import Cert from "./pages/Cert";
 import Video from "./pages/Video";
 import Copy from "./pages/Copy";
+import Detail from "./pages/Detail";
 
 
 
@@ -101,17 +102,29 @@ function App() {
             <Route path="/suppliers" element={<PageWrapper><Suppliers/></PageWrapper>}/>
             <Route path="/catalog" element={<PageWrapper><Catalog/></PageWrapper>}/>
             <Route path="/shtornye-avtomobili" element={<PageWrapper><Shtornye/></PageWrapper>}/>
+            <Route path="/shtornye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/krany-manipulator" element={<PageWrapper><Krany/></PageWrapper>}/>
+            <Route path="/krany-manipulator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/zapravka" element={<PageWrapper><Zapravka/></PageWrapper>}/>
+            <Route path="/zapravka/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/gidropod" element={<PageWrapper><Gidropod/></PageWrapper>}/>
+            <Route path="/gidropod/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/sisterna" element={<PageWrapper><Sisterna/></PageWrapper>}/>
+            <Route path="/sisterna/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/evakuator" element={<PageWrapper><Evakuator/></PageWrapper>}/>
+            <Route path="/evakuator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/bortovye-avtomobili" element={<PageWrapper><Bortov/></PageWrapper>}/>
+            <Route path="/bortovye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/avtofurgony" element={<PageWrapper><Autofurgony/></PageWrapper>}/>
+            <Route path="/avtofurgony/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/konteynerovozy" element={<PageWrapper><Konteyner/></PageWrapper>}/>
+            <Route path="/konteynerovozy/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/kryukovye-pogruzchiki" element={<PageWrapper><Pogruzki/></PageWrapper>}/>
+            <Route path="/kryukovye-pogruzchiki/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/samosvaly" element={<PageWrapper><Samosvaly/></PageWrapper>}/>
+            <Route path="/samosvaly/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
+            <Route path="/avtomobili-dopog/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/cert" element={<PageWrapper><Cert/></PageWrapper>}/>
             <Route path="/video" element={<PageWrapper><Video/></PageWrapper>}/>
             <Route path="/copy" element={<PageWrapper><Copy/></PageWrapper>}/>

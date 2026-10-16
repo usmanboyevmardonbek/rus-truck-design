@@ -16,12 +16,13 @@ import Slider from "../components/Slider";
 
 import { useState } from "react";
 import { Loader } from "../components/Loader";
-import { div } from "motion/react-client";
+import { NavLink } from "react-router-dom";
 
 const dummyProducts = [
   {
     id: 1,
-    img: "gid-1.jpg",
+    slug: "palfinger-p180t-gaz-c41r13",
+    img: "/gid-1.jpg",
     title: "Автогидроподъемник PALFINGER P180T на шасси ГАЗ C41R13",
     price: "Цена по запросу",
     outOfStock: false,
@@ -33,7 +34,8 @@ const dummyProducts = [
   },
   {
     id: 2,
-    img: "gid-2.jpg",
+    slug: "palfinger-p240a-hd-78",
+    img: "/gid-2.jpg",
     title: "Автогидроподъемник PALFINGER P 240A на шасси HD-78",
     price: "Цена по запросу",
     outOfStock: true,
@@ -45,7 +47,8 @@ const dummyProducts = [
   },
   {
     id: 3,
-    img: "gid-3.jpg",
+    slug: "palfinger-p200a-isuzu-nmr-85h",
+    img: "/gid-3.jpg",
     title: "Автогидроподъемник PALFINGER P 200A на шасси ISUZU NMR-85H",
     price: "Цена по запросу",
     outOfStock: true,
@@ -258,17 +261,18 @@ const Gidropod = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/gidropod/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="Images"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
 
                         {product.outOfStock && (
@@ -279,10 +283,14 @@ const Gidropod = () => {
                           </div>
                         )}
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          type="button"
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -298,11 +306,15 @@ const Gidropod = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans font-medium text-base leading-tight ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/gidropod/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans font-medium text-base leading-tight hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
 
                           {viewMode === "list" && (
                             <div className="flex flex-col gap-2 mt-auto">
@@ -342,22 +354,17 @@ const Gidropod = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            {product.outOfStock ? (
-                              <button
-                                className={`bg-[#FEC80B] text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full transition-colors flex items-center justify-center gap-2`}
-                              >
-                                Нет в наличии / под заказ
-                              </button>
-                            ) : (
-                              <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
-                                >
-                                  Подробнее
-                                </button>
+                            <NavLink
+                              to={`/gidropod/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
+                                viewMode === "list" ? "w-full" : ""
+                              }`}
+                            >
+                              Подробнее
+                            </NavLink>
 
-                                <div
-                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                            <div
+                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
                                 >
                                   {viewMode === "grid" && (
                                     <>
@@ -378,8 +385,6 @@ const Gidropod = () => {
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
-                              </>
-                            )}
                           </div>
                         </div>
                       </div>

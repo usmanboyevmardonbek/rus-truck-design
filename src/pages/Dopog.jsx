@@ -16,10 +16,12 @@ import { Loader } from "../components/Loader";
 import { img } from "motion/react-m";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
+import { NavLink } from "react-router-dom";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "dopog-kamaz-4308-furgon",
     img: "/dop-1.jpg",
     title: "Шторный грузовик КАМАЗ 4308 ДОПОГ ЕХII (модель 4388Н2-10)",
     price: "Цена по запросу",
@@ -27,6 +29,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "dopog-kamaz-4308-bort",
     img: "/dop-2.jpg",
     title: "Бортовой автомобиль КАМАЗ 4308-3063-69, ДОПОГ категория...",
     price: "Цена по запросу",
@@ -34,6 +37,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "dopog-jac-n200l-inman",
     img: "/dop-3.jpg",
     title: "Кран-манипулятор JAC N200L с КМУ INMAN IM150N, ДОПОГ...",
     price: "Цена по запросу",
@@ -41,6 +45,7 @@ const dummyProducts = [
   },
   {
     id: 4,
+    slug: "dopog-daewoo-cl8cf-palfinger",
     img: "/dop-4.jpg",
     title: "Кран-манипулятор DAEWOO CL8CF с КМУ PALFINGER PK 8500,...",
     price: "Цена по запросу",
@@ -252,23 +257,27 @@ const Dopog = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/avtomobili-dopog/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="Images"
-                          className="w-full h-full object-cover "
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -284,11 +293,15 @@ const Dopog = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/avtomobili-dopog/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -320,11 +333,14 @@ const Dopog = () => {
                               </button>
                             ) : (
                               <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
+                                <NavLink
+                                  to={`/avtomobili-dopog/${product.slug}`}
+                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
+                                    viewMode === "list" ? "w-full" : ""
+                                  }`}
                                 >
                                   Подробнее
-                                </button>
+                                </NavLink>
 
                                 <div
                                   className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}

@@ -15,10 +15,12 @@ import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
+import { NavLink } from "react-router-dom";
 
 const dummyProducts = [
   {
     id: 1,
+    slug: "palfinger-ph-t20pi-isuzu-giga",
     img: "/pog-1.jpg",
     title: "Крюковой погрузчик PALFINGER PH T20Pi на шасси ISUZU GIGA-Q",
     price: "Цена по запросу",
@@ -26,6 +28,7 @@ const dummyProducts = [
   },
   {
     id: 2,
+    slug: "palfinger-ph-t05-isuzu-1",
     img: "/pog-2.jpg",
     title: "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси ISUZ...",
     price: "Цена по запросу",
@@ -33,6 +36,7 @@ const dummyProducts = [
   },
   {
     id: 3,
+    slug: "palfinger-ph-t05-isuzu-2",
     img: "/pog-3.jpg",
     title: "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси...",
     price: "Цена по запросу",
@@ -209,31 +213,36 @@ const Pogruzki = () => {
                           : "bg-white group flex flex-col md:flex-row"
                       }
                     >
-                      <div
+                      <NavLink
+                        to={`/kryukovye-pogruzchiki/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
                         }
                       >
                         <img
                           src={product.img}
                           alt="Images"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
 
                         {product.outOfStock && (
                           <div className="absolute inset-0 bg-white/70 flex items-center justify-center backdrop-blur-[1px]">
-                            <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider  ">
+                            <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider">
                               Нет в продаже
                             </span>
                           </div>
                         )}
 
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10">
+                        <button
+                          type="button"
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
-                      </div>
+                      </NavLink>
 
                       <div
                         className={
@@ -249,11 +258,15 @@ const Pogruzki = () => {
                               : "flex-1 flex flex-col"
                           }
                         >
-                          <h3
-                            className={`font-fira-sans text-lg ${viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"}`}
-                          >
-                            {product.title}
-                          </h3>
+                          <NavLink to={`/kryukovye-pogruzchiki/${product.slug}`}>
+                            <h3
+                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
+                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                              }`}
+                            >
+                              {product.title}
+                            </h3>
+                          </NavLink>
                         </div>
 
                         <div
@@ -276,23 +289,17 @@ const Pogruzki = () => {
                                 : "flex flex-col items-end gap-4 w-full"
                             }
                           >
-                            {product.outOfStock ? (
-                              <button
-                                className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 rounded-sm w-full flex items-center justify-center gap-2`}
-                              >
-                                Мне нужен такой же{" "}
-                                <Download className="w-4 h-4 ml-1" />
-                              </button>
-                            ) : (
-                              <>
-                                <button
-                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full" : ""}`}
-                                >
-                                  Подробнее
-                                </button>
+                            <NavLink
+                              to={`/kryukovye-pogruzchiki/${product.slug}`}
+                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
+                                viewMode === "list" ? "w-full" : ""
+                              }`}
+                            >
+                              Подробнее
+                            </NavLink>
 
-                                <div
-                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                            <div
+                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
                                 >
                                   {viewMode === "grid" && (
                                     <>
@@ -313,8 +320,6 @@ const Pogruzki = () => {
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
-                              </>
-                            )}
                           </div>
                         </div>
                       </div>
