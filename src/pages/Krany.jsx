@@ -138,7 +138,6 @@ const brands = [
   "УРАЛ",
 ];
 const weights = ["до 12", "до 20", "свыше 20"];
-const lengths = ["4.5", "5.0", "5.5", "6.0", "6.2", "6.5", "6.8", "7.0", "7.5"];
 
 const Krany = () => {
   const [shtor, setShtore] = useState(false);
@@ -270,9 +269,8 @@ const Krany = () => {
                       <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {brand}
@@ -282,85 +280,12 @@ const Krany = () => {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Полная масса, тонн
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {weights.map((weight, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
-                        <input
-                          type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
-                        />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {weight}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Длина платформы, м
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {lengths.map((len, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
-                        <input
-                          type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
-                        />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {len}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Грузоподъемность КМУ, тонн
-                </h3>
-                <div className="flex items-center justify-between gap-4">
-                  <div className="relative flex-1">
-                    <input
-                      type="number"
-                      placeholder="от"
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                    />
-                  </div>
-                  <div className="w-4 h-[1px] bg-gray-400 shrink-0"></div>
-                  <div className="relative flex-1">
-                    <input
-                      type="number"
-                      placeholder="до"
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                    />
-                  </div>
-                </div>
-              </div>
-
               <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
                 Показать товары
               </button>
             </div>
 
-            <div className="flex-1 relative min-h-[500px] w-full">
+            <div className="flex-1 relative min-h-125 w-full">
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -399,7 +324,10 @@ const Krany = () => {
                           alt="img"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
-                        <button className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10" onClick={(e) => e.preventDefault()}>
+                        <button
+                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <Heart className="w-6 h-6" />
                         </button>
                       </NavLink>
