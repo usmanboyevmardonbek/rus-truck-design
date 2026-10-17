@@ -37,7 +37,7 @@ export default function Detail() {
     );
   }
 
-  // Shu toifadagi boshqa mashinalar (o'xshash mahsulotlar)
+  
   const similarProducts = Object.values(catalogProducts).filter(
     (item) => item.categoryPath === product.categoryPath && item.slug !== product.slug
   );
@@ -47,7 +47,7 @@ export default function Detail() {
       <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
-          {/* Breadcrumbs */}
+          
           <ul className="flex items-center gap-2 mb-6 flex-wrap">
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
               <NavLink to="/">Главная</NavLink>
@@ -64,14 +64,14 @@ export default function Detail() {
             <li className="font-fira-sans text-gray-400 text-sm line-clamp-1">{product.title}</li>
           </ul>
 
-          {/* Sarlavha */}
-          <h1 className="font-fira-sans font-bold text-2xl md:text-3xl text-black mb-8">
+          
+          <h1 className="font-fira-sans font-medium uppercase text-2xl md:text-3xl text-black mb-8">
             {product.title}
           </h1>
 
-          {/* Asosiy blok (Slider + Info) */}
+          
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Chap tomon: Slayder */}
+            
             <div className="w-full lg:w-[55%]">
               <Swiper
                 modules={[Navigation, Thumbs]}
@@ -92,51 +92,21 @@ export default function Detail() {
                     />
                   </SwiperSlide>
                 ))}
-                <button className="cat-detail-prev absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white/80 hover:bg-white flex items-center justify-center rounded-full shadow transition cursor-pointer">
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button className="cat-detail-next absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-white/80 hover:bg-white flex items-center justify-center rounded-full shadow transition cursor-pointer">
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+                
               </Swiper>
 
-              {/* Thumbnails */}
-              {product.images.length > 1 && (
-                <Swiper
-                  modules={[Thumbs]}
-                  onSwiper={setThumbsSwiper}
-                  spaceBetween={8}
-                  slidesPerView={4}
-                  watchSlidesProgress
-                  className="w-full"
-                >
-                  {product.images.map((img, i) => (
-                    <SwiperSlide key={i}>
-                      <div
-                        className={`aspect-4/3 bg-white rounded-sm overflow-hidden cursor-pointer border-2 transition-colors ${
-                          activeImg === i ? "border-[#FEC80B]" : "border-transparent"
-                        }`}
-                      >
-                        <img
-                          src={img}
-                          alt={`thumb-${i}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              )}
+              
+              
             </div>
 
-            {/* O'ng tomon: Qisqa ma'lumot va harakatlar */}
-            <div className="flex-1 bg-white p-6 rounded-sm shadow-sm flex flex-col justify-between">
+            
+            <div className="flex-1 p-6   flex flex-col justify-between">
               <div>
-                <p className="font-fira-sans font-bold text-2xl text-black mb-6">
+                <p className="font-fira-sans font-medium text-3xl text-black mb-6  ml-5">
                   {product.price}
                 </p>
 
-                <div className="flex flex-col gap-3 mb-8">
+                <div className="flex  gap-3 mb-8">
                   <button className="w-full bg-[#FEC80B] hover:bg-yellow-500 transition-colors py-3 font-fira-sans font-medium text-base rounded-sm cursor-pointer">
                     Добавить в корзину
                   </button>
@@ -145,15 +115,15 @@ export default function Detail() {
                   </button>
                 </div>
 
-                <ul className="divide-y divide-gray-100">
+                <ul>
                   {product.shortSpecs.map((spec, i) => (
                     <li key={i} className="flex justify-between py-2.5 gap-4">
-                      <span className="font-fira-sans text-sm text-gray-500 shrink-0">
+                      <p className="font-fira-sans text-base  text-black shrink-0">
                         {spec.label}
-                      </span>
-                      <span className="font-fira-sans text-sm text-black text-right font-medium">
+                      </p>
+                      <p className="font-fira-sans text-base text-black text-right">
                         {spec.value}
-                      </span>
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -161,25 +131,25 @@ export default function Detail() {
 
               <a
                 href="#feauture"
-                className="inline-block mt-4 text-sm font-fira-sans text-[#FEC80B] hover:underline"
+                className="inline-block mt-4 text-sm font-fira-sans text-gray-300 underline"
               >
                 Смотреть все характеристики →
               </a>
             </div>
           </div>
 
-          {/* Xarakteristikalar jadvali */}
+        
           <section id="feauture" className="mt-12">
             <h2 className="font-fira-sans font-bold text-2xl text-black mb-6">
               Характеристики
             </h2>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse bg-white shadow-sm rounded-sm overflow-hidden">
+              <table className="w-full border-collapse rounded-sm overflow-hidden">
                 <thead>
                   <tr className="bg-[#FEC80B]">
                     <th
                       colSpan={2}
-                      className="font-fira-sans font-bold text-left px-6 py-4 text-base"
+                      className="font-fira-sans  px-6 py-4 text-base text-center"
                     >
                       {product.title}
                     </th>
@@ -189,12 +159,12 @@ export default function Detail() {
                   {product.fullSpecs.map((spec, i) => (
                     <tr
                       key={i}
-                      className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                      className={i % 2 === 0 ? "bg-white" : "bg-white"}
                     >
-                      <td className="font-fira-sans text-sm text-gray-600 px-6 py-3 w-2/5 border-b border-gray-100">
+                      <td className="font-fira-sans text-base  px-6 py-3 w-2/5 border border-gray-300">
                         {spec.label}
                       </td>
-                      <td className="font-fira-sans text-sm text-black px-6 py-3 border-b border-gray-100">
+                      <td className="font-fira-sans text-base text-black px-6 py-3 border border-gray-300">
                         {spec.value}
                       </td>
                     </tr>
@@ -204,7 +174,7 @@ export default function Detail() {
             </div>
           </section>
 
-          {/* O'xshash yuk mashinalari */}
+          
           {similarProducts.length > 0 && (
             <section className="mt-12">
               <h2 className="font-fira-sans font-bold text-2xl text-black mb-6">
