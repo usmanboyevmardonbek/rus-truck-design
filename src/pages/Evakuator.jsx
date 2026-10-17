@@ -97,6 +97,39 @@ const Evakuator = () => {
                 >
                   По бренду
                 </button>
+
+                <ul
+                  className={
+                    "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
+                    (shtor ? "h-50" : "h-0")
+                  }
+                >
+                  <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
+                    <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                      По популярности
+                    </p>
+                  </li>
+                  <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                    <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                      Сначала новые
+                    </p>
+                  </li>
+                  <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                    <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                      В наличии
+                    </p>
+                  </li>
+                  <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                    <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                      По возрастанию цены
+                    </p>
+                  </li>
+                  <li className="border-b border-x rounded-b-sm border-[#a2a2a2] w-60 bg-white">
+                    <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                      По бренду
+                    </p>
+                  </li>
+                </ul>
               </div>
 
               <div className="flex items-center gap-2">
@@ -134,12 +167,12 @@ const Evakuator = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {brand}
@@ -159,12 +192,12 @@ const Evakuator = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {type}
@@ -184,10 +217,10 @@ const Evakuator = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
                         <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                       </div>
@@ -209,12 +242,12 @@ const Evakuator = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className=" absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {len}
@@ -259,8 +292,8 @@ const Evakuator = () => {
                         to={`/evakuator/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                         }
                       >
                         <img
@@ -303,7 +336,9 @@ const Evakuator = () => {
                           <NavLink to={`/evakuator/${product.slug}`}>
                             <h3
                               className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
-                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                viewMode === "list"
+                                  ? "mb-6 text-lg"
+                                  : "mb-4 flex-1 line-clamp-2"
                               }`}
                             >
                               {product.title}
@@ -342,26 +377,26 @@ const Evakuator = () => {
 
                             <div
                               className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
-                                >
-                                  {viewMode === "grid" && (
-                                    <>
-                                      <button className="hover:text-black transition-colors">
-                                        <ShoppingCart className="w-5 h-5" />
-                                      </button>
-                                      <button className="hover:text-black transition-colors">
-                                        <Heart className="w-5 h-5" />
-                                      </button>
-                                    </>
-                                  )}
-                                  <button
-                                    className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
-                                  >
-                                    <p className="text-[9px] font-fira-sans">
-                                      Получить КП
-                                    </p>
-                                    <Download className="w-3 h-3" />
+                            >
+                              {viewMode === "grid" && (
+                                <>
+                                  <button className="hover:text-black transition-colors">
+                                    <ShoppingCart className="w-5 h-5" />
                                   </button>
-                                </div>
+                                  <button className="hover:text-black transition-colors">
+                                    <Heart className="w-5 h-5" />
+                                  </button>
+                                </>
+                              )}
+                              <button
+                                className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
+                              >
+                                <p className="text-[9px] font-fira-sans">
+                                  Получить КП
+                                </p>
+                                <Download className="w-3 h-3" />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>

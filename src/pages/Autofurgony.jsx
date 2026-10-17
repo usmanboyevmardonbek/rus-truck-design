@@ -106,7 +106,7 @@ const Autofurgony = () => {
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-54" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -163,7 +163,7 @@ const Autofurgony = () => {
                   <input
                     type="text"
                     placeholder="Найти"
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none focus:border-[#FEC80B]"
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none"
                   />
                   <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -173,12 +173,12 @@ const Autofurgony = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {brand}
@@ -223,8 +223,8 @@ const Autofurgony = () => {
                         to={`/avtofurgony/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            ? "relative bg-gray-200 aspect-4/3-full flex items-center justify-center overflow-hidden shrink-0"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                         }
                       >
                         <img

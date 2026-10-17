@@ -115,7 +115,7 @@ const Sisterna = () => {
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1ransition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
                     По бренду
@@ -123,7 +123,7 @@ const Sisterna = () => {
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-54" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -193,9 +193,9 @@ const Sisterna = () => {
                       <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {brand}
@@ -215,42 +215,18 @@ const Sisterna = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className="absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {type}
                       </span>
                     </label>
                   ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Объем цистерны, л.
-                </h3>
-                <div className="mb-2">
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="от"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="до"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -289,8 +265,8 @@ const Sisterna = () => {
                         to={`/sisterna/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                         }
                       >
                         <img
@@ -333,7 +309,9 @@ const Sisterna = () => {
                           <NavLink to={`/sisterna/${product.slug}`}>
                             <h3
                               className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
-                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                viewMode === "list"
+                                  ? "mb-6 text-lg"
+                                  : "mb-4 flex-1 line-clamp-2"
                               }`}
                             >
                               {product.title}
@@ -372,26 +350,26 @@ const Sisterna = () => {
 
                             <div
                               className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
-                                >
-                                  {viewMode === "grid" && (
-                                    <>
-                                      <button className="hover:text-black transition-colors">
-                                        <ShoppingCart className="w-4 h-5" />
-                                      </button>
-                                      <button className="hover:text-black transition-colors">
-                                        <Heart className="w-5 h-5" />
-                                      </button>
-                                    </>
-                                  )}
-                                  <button
-                                    className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
-                                  >
-                                    <span className="text-[9px]  font-fira-sans">
-                                      Получить КП
-                                    </span>
-                                    <Download className="w-3 h-3" />
+                            >
+                              {viewMode === "grid" && (
+                                <>
+                                  <button className="hover:text-black transition-colors">
+                                    <ShoppingCart className="w-4 h-5" />
                                   </button>
-                                </div>
+                                  <button className="hover:text-black transition-colors">
+                                    <Heart className="w-5 h-5" />
+                                  </button>
+                                </>
+                              )}
+                              <button
+                                className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
+                              >
+                                <span className="text-[9px]  font-fira-sans">
+                                  Получить КП
+                                </span>
+                                <Download className="w-3 h-3" />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -629,14 +607,11 @@ const Sisterna = () => {
             </div>
           </div>
 
-
-          {viewMode === "grid" && (
-            <Slider/>
-          )}
+          {viewMode === "grid" && <Slider />}
         </div>
       </div>
 
-      <Feedback/>
+      <Feedback />
       <Footer />
     </>
   );

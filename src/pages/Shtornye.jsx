@@ -147,15 +147,15 @@ const Shtornye = () => {
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1  transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду <ChevronDown className="w-4 h-4" />
+                    По бренду 
                   </button>
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-[216px]" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -237,30 +237,7 @@ const Shtornye = () => {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Полная масса, тонн
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {weights.map((weight, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
-                        <input
-                          type="checkbox"
-                          className=" absolute w-full h-full cursor-pointer accent-black"
-                        />
-                        
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {weight}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+              
 
               <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
                 Показать товары

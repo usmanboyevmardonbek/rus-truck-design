@@ -191,15 +191,15 @@ const Krany = () => {
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду <ChevronDown className="w-4 h-4" />
+                    По бренду
                   </button>
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-[216px]" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -315,8 +315,8 @@ const Krany = () => {
                         to={`/krany-manipulator/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                         }
                       >
                         <img

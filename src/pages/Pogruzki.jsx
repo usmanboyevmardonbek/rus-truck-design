@@ -98,7 +98,7 @@ const Pogruzki = () => {
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1  transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
                     По бренду
@@ -106,7 +106,7 @@ const Pogruzki = () => {
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-54" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -167,12 +167,12 @@ const Pogruzki = () => {
                       key={idx}
                       className="flex items-center gap-3 cursor-pointer group"
                     >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
+                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className=" absolute w-full h-full cursor-pointer  accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                       
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {form}

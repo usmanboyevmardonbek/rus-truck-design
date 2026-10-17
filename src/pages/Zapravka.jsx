@@ -196,15 +196,15 @@ const Zapravka = () => {
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 hover:text-yellow-500 transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду <ChevronDown className="w-4 h-4" />
+                    По бренду 
                   </button>
                   <ul
                     className={
                       "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-[216px]" : "h-0")
+                      (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
@@ -255,32 +255,7 @@ const Zapravka = () => {
 
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">Цена</h3>
-                <div className="mb-2">
-                  <div className="h-1 bg-gray-200 w-full rounded relative mb-4 mt-2">
-                    <div className="absolute h-full bg-[#FEC80B] left-[0%] right-[30%]"></div>
-                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 left-[0%] cursor-pointer"></div>
-                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 right-[30%] cursor-pointer"></div>
-                  </div>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="от"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="до"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
@@ -288,7 +263,7 @@ const Zapravka = () => {
                   <input
                     type="text"
                     placeholder="Найти"
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none focus:border-[#FEC80B]"
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none"
                   />
                   <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -301,9 +276,9 @@ const Zapravka = () => {
                       <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
                         <input
                           type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
+                          className=" absolute w-full h-full cursor-pointer accent-black"
                         />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        
                       </div>
                       <span className="font-fira-sans text-sm text-gray-700">
                         {brand}
@@ -313,59 +288,9 @@ const Zapravka = () => {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Полная масса, тонн
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {weights.map((weight, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm group-hover:border-[#FEC80B] transition-colors">
-                        <input
-                          type="checkbox"
-                          className="opacity-0 absolute w-full h-full cursor-pointer peer"
-                        />
-                        <div className="w-3 h-3 bg-[#FEC80B] rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {weight}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+             
 
-              <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Объем цистерны, л.
-                </h3>
-                <div className="mb-2">
-                  <div className="h-1 bg-gray-200 w-full rounded relative mb-4 mt-2">
-                    <div className="absolute h-full bg-[#FEC80B] left-[15%] right-[10%]"></div>
-                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 left-[15%] cursor-pointer"></div>
-                    <div className="absolute w-4 h-4 bg-white border-4 border-[#FEC80B] rounded-full top-1/2 -translate-y-1/2 right-[10%] cursor-pointer"></div>
-                  </div>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="от"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                    <div className="relative flex-1">
-                      <input
-                        type="number"
-                        placeholder="до"
-                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm outline-none focus:border-[#FEC80B]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
 
               <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
                 Показать товары
@@ -402,8 +327,8 @@ const Zapravka = () => {
                         to={`/zapravka/${product.slug}`}
                         className={
                           viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                         }
                       >
                         <img
