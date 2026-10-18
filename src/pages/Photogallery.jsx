@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React, { useEffect, useRef, useState } from "react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import { Fancybox } from "@fancyapps/ui";
 import { photoData } from "./objects";
 import Footer from "../components/footer";
@@ -38,6 +39,7 @@ const categories = {
 };
 
 const Photogallery = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const [activeTab, setActiveTab] = useState("cars");
 
@@ -58,26 +60,26 @@ const Photogallery = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Фотогалерея</a>
+              <a href="/photogallery">{t("photogallery", "Фотогалерея")}</a>
             </li>
           </ul>
 
           <div className="flex justify-between items-center mt-10">
             <h1 className="font-fira-sans text-3xl font-medium">
-              Фотогалерея производителя автоспецтехники РусТрак
+              {t("photoTitle", "Фотогалерея производителя автоспецтехники РусТрак")}
             </h1>
             <a
               href="/video/"
               className="border-2 border-[#fec80b] rounded-sm inline-block px-5 py-2 hover:bg-[#ffd43a] transition duration-300 ease-in"
             >
-              <p className="font-fira-sans text-lg">Смотреть видео</p>
+              <p className="font-fira-sans text-lg">{t("watchVideo", "Смотреть видео")}</p>
             </a>
           </div>
 
@@ -86,25 +88,25 @@ const Photogallery = () => {
               onClick={() => setActiveTab("cars")}
               className={`border border-[#ebebeb] inline-block px-4 py-2 cursor-pointer transition duration-300 rounded-sm text-sm sm:text-base ${activeTab === "cars" ? "bg-[#FEC80B]" : "hover:bg-[#FEC80B]"}`}
             >
-              <p className="font-fira-sans">Автомобили</p>
+              <p className="font-fira-sans">{t("tab_cars", "Автомобили")}</p>
             </button>
             <button 
               onClick={() => setActiveTab("production")}
               className={`border border-[#ebebeb] inline-block px-4 py-2 cursor-pointer transition duration-300 rounded-sm text-sm sm:text-base ${activeTab === "production" ? "bg-[#FEC80B]" : "hover:bg-[#FEC80B]"}`}
             >
-              <p className="font-fira-sans">Производство</p>
+              <p className="font-fira-sans">{t("tab_production", "Производство")}</p>
             </button>
             <button 
               onClick={() => setActiveTab("about")}
               className={`border border-[#ebebeb] inline-block px-4 py-2 cursor-pointer transition duration-300 rounded-sm text-sm sm:text-base ${activeTab === "about" ? "bg-[#FEC80B]" : "hover:bg-[#FEC80B]"}`}
             >
-              <p className="font-fira-sans">О компании</p>
+              <p className="font-fira-sans">{t("tab_about", "О компании")}</p>
             </button>
             <button 
               onClick={() => setActiveTab("exhibitions")}
               className={`border border-[#ebebeb] inline-block px-4 py-2 cursor-pointer transition duration-300 rounded-sm text-sm sm:text-base ${activeTab === "exhibitions" ? "bg-[#FEC80B]" : "hover:bg-[#FEC80B]"}`}
             >
-              <p className="font-fira-sans">Выставки</p>
+              <p className="font-fira-sans">{t("tab_exhibitions", "Выставки")}</p>
             </button>
           </div>
           <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-5 mb-20">

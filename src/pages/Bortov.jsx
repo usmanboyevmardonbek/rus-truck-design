@@ -7,15 +7,24 @@ import {
   Heart,
   ShoppingCart,
   Download,
-  ChevronDown,
 } from "lucide-react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
+import { useCart } from "../context/CartContext";
 import Footer from "../components/footer";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
 import { NavLink } from "react-router-dom";
+import { matchesBrand, matchesLength } from "../utils/filterUtils";
+import {
+  translateTitle,
+  translateSpecLabel,
+  translateSpecValue,
+  translatePrice,
+} from "../utils/productTranslation";
+import CategoryArticle from "../components/CategoryArticle";
 
 const dummyProducts = [
   {
@@ -25,6 +34,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль МАЗ 631228",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "МАЗ" },
+      { label: "Длина платформы", value: "7400" },
+    ],
   },
   {
     id: 2,
@@ -33,6 +46,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль Камаз Компас 43089-33T1",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "КАМАЗ" },
+      { label: "Длина платформы", value: "5200...5400" },
+    ],
   },
   {
     id: 3,
@@ -41,6 +58,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль КАМАЗ 43082",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "КАМАЗ" },
+      { label: "Длина платформы", value: "6200...7500" },
+    ],
   },
   {
     id: 4,
@@ -49,6 +70,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль КАМАЗ 43089",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "КАМАЗ" },
+      { label: "Длина платформы", value: "6200...6400" },
+    ],
   },
   {
     id: 5,
@@ -57,6 +82,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль JAC N120L",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "JAC" },
+      { label: "Длина платформы", value: "6700...7400" },
+    ],
   },
   {
     id: 6,
@@ -65,6 +94,10 @@ const dummyProducts = [
     title: "Бортовой автомобиль JAC N90L",
     price: "Цена по запросу",
     outOfStock: false,
+    specs: [
+      { label: "Марка", value: "JAC" },
+      { label: "Длина платформы", value: "5500...7500" },
+    ],
   },
 ];
 
@@ -83,11 +116,45 @@ const lengths = [
 ];
 
 const Bortov = () => {
+  const { t, lang } = useLanguage();
+  const { addToCart, isInCart, toggleFavorite, isInFavorites } = useCart();
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
     return localStorage.getItem("bortovViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
+
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedLengths, setSelectedLengths] = useState([]);
+  const [brandSearch, setBrandSearch] = useState("");
+
+  const handleToggleBrand = (brand) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+    );
+  };
+
+  const handleToggleLength = (length) => {
+    setSelectedLengths((prev) =>
+      prev.includes(length) ? prev.filter((l) => l !== length) : [...prev, length]
+    );
+  };
+
+  const handleResetFilters = () => {
+    setSelectedBrands([]);
+    setSelectedLengths([]);
+    setBrandSearch("");
+  };
+
+  const visibleBrands = brands.filter((b) =>
+    b.toLowerCase().includes(brandSearch.trim().toLowerCase())
+  );
+
+  const filteredProducts = dummyProducts.filter((product) => {
+    const brandMatch = matchesBrand(product, selectedBrands);
+    const lengthMatch = matchesLength(product, selectedLengths);
+    return brandMatch && lengthMatch;
+  });
 
   const handleViewChange = (mode) => {
     if (mode === viewMode) return;
@@ -105,69 +172,71 @@ const Bortov = () => {
       <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
-          <ul className="flex items-center gap-2 mb-6">
+          <ul className="flex items-center gap-2 mb-6 flex-wrap">
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Главная
+              <NavLink to="/">{t("home", "Главная")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Каталог
+              <NavLink to="/catalog">{t("catalog", "Каталог")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm">
-              Бортовые автомобили
+              {t("cat_bortovye", "Бортовые автомобили")}
             </li>
           </ul>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Бортовые автомобили
+                {t("cat_bortovye", "Бортовые автомобили")}
               </h1>
-              <p className="font-fira-sans text-gray-400 text-sm">21 товар</p>
+              <p className="font-fira-sans text-gray-400 text-sm">
+                {filteredProducts.length} {t("productsWord", "товаров")}
+              </p>
             </div>
 
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2 relative">
                 <span className="font-fira-sans text-gray-400 text-sm">
-                  Сортировка:
+                  {t("sortBy", "Сортировка:")}
                 </span>
                 <div className="relative z-50">
                   <button
                     className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду
+                    {t("sortBrand", "По бренду")}
                   </button>
                   <ul
                     className={
-                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
+                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden shadow-lg z-50 " +
                       (shtor ? "h-54" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По популярности
+                        {t("sortPopular", "По популярности")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        Сначала новые
+                        {t("sortNewest", "Сначала новые")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        В наличии
+                        {t("sortInStock", "В наличии")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По возрастанию цены
+                        {t("sortPriceAsc", "По возрастанию цены")}
                       </p>
                     </li>
                     <li className="border-b border-x rounded-b-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По бренду
+                        {t("sortBrand", "По бренду")}
                       </p>
                     </li>
                   </ul>
@@ -177,13 +246,17 @@ const Bortov = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleViewChange("list")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <List className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => handleViewChange("grid")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <Grid2x2 className="w-5 h-5" />
                 </button>
@@ -194,67 +267,138 @@ const Bortov = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start mb-25">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">{t("brand", "Марка")}</h3>
                 <div className="relative mb-4">
                   <input
                     type="text"
-                    placeholder="Найти"
+                    value={brandSearch}
+                    onChange={(e) => setBrandSearch(e.target.value)}
+                    placeholder={t("search", "Найти")}
                     className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none focus:border-[#FEC80B]"
                   />
-                  <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <div className="flex flex-col gap-3">
-                  {brands.map((brand, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
-                        <input
-                          type="checkbox"
-                          className="absolute w-full h-full cursor-pointer accent-black"
-                        />
-                       
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {brand}
-                      </span>
-                    </label>
-                  ))}
+                  {visibleBrands.length === 0 ? (
+                    <p className="text-xs text-gray-400 py-2 font-fira-sans">{t("brandNotFound", "Бренд не найден")}</p>
+                  ) : (
+                    visibleBrands.map((brand, idx) => {
+                      const isChecked = selectedBrands.includes(brand);
+                      return (
+                        <label
+                          key={idx}
+                          className="flex items-center gap-3 cursor-pointer group select-none"
+                        >
+                          <div
+                            className={`relative flex items-center justify-center w-5 h-5 border rounded-sm transition-colors shrink-0 ${
+                              isChecked
+                                ? "bg-[#FEC80B] border-[#FEC80B]"
+                                : "border-gray-300 group-hover:border-[#FEC80B]"
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={isChecked}
+                              onChange={() => handleToggleBrand(brand)}
+                              className="absolute opacity-0 w-full h-full cursor-pointer z-10"
+                            />
+                            {isChecked && (
+                              <svg
+                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            )}
+                          </div>
+                          <span
+                            className={`font-fira-sans text-sm transition-colors ${
+                              isChecked ? "text-black font-semibold" : "text-gray-700"
+                            }`}
+                          >
+                            {brand}
+                          </span>
+                        </label>
+                      );
+                    })
+                  )}
                 </div>
               </div>
 
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Длина платформы, м
+                  {t("platformLength", "Длина платформы")}
                 </h3>
                 <div className="flex flex-col gap-3">
-                  {lengths.map((len, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
-                        <input
-                          type="checkbox"
-                          className="accent-black absolute w-full h-full cursor-pointer"
-                        />
-                        
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {len}
-                      </span>
-                    </label>
-                  ))}
+                  {lengths.map((len, idx) => {
+                    const isChecked = selectedLengths.includes(len);
+                    return (
+                      <label
+                        key={idx}
+                        className="flex items-center gap-3 cursor-pointer group select-none"
+                      >
+                        <div
+                          className={`relative flex items-center justify-center w-5 h-5 border rounded-sm transition-colors shrink-0 ${
+                            isChecked
+                              ? "bg-[#FEC80B] border-[#FEC80B]"
+                              : "border-gray-300 group-hover:border-[#FEC80B]"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleToggleLength(len)}
+                            className="absolute opacity-0 w-full h-full cursor-pointer z-10"
+                          />
+                          {isChecked && (
+                            <svg
+                              className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          )}
+                        </div>
+                        <span
+                          className={`font-fira-sans text-sm transition-colors ${
+                            isChecked ? "text-black font-semibold" : "text-gray-700"
+                          }`}
+                        >
+                          {len} {lang === "en" ? "mm" : "мм"}
+                        </span>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
 
-              <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
-                Показать товары
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("product-grid-view");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
+                >
+                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                </button>
+                {(selectedBrands.length > 0 || selectedLengths.length > 0) && (
+                  <button
+                    onClick={handleResetFilters}
+                    className="w-full py-1 text-gray-500 hover:text-black transition-colors font-fira-sans text-xs underline cursor-pointer text-center"
+                  >
+                    {t("resetFilters", "Сбросить фильтры")}
+                  </button>
+                )}
+              </div>
             </div>
 
-            <div className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -270,382 +414,182 @@ const Bortov = () => {
                       : "flex flex-col gap-5"
                   }
                 >
-                  {dummyProducts.map((product) => (
-                    <motion.div
-                      variants={fadeUp}
-                      key={product.id}
-                      className={
-                        viewMode === "grid"
-                          ? "bg-white group flex flex-col "
-                          : "bg-white group flex flex-col md:flex-row"
-                      }
-                    >
-                      <NavLink
-                        to={`/bortovye-avtomobili/${product.slug}`}
-                        className={
-                          viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
-                        }
+                  {filteredProducts.length === 0 ? (
+                    <div className="col-span-full py-16 text-center bg-white border border-dashed border-gray-300 rounded-md p-8">
+                      <p className="font-fira-sans text-lg font-medium text-gray-700 mb-2">
+                        {t("noProductsFound", "Товары не найдены")}
+                      </p>
+                      <p className="font-fira-sans text-sm text-gray-500 mb-6">{t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}</p>
+                      <button
+                        onClick={handleResetFilters}
+                        className="bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer"
                       >
-                        <img
-                          src={product.img}
-                          alt="image"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        />
-
-                        <button
-                          type="button"
-                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <Heart className="w-6 h-6" />
-                        </button>
-                      </NavLink>
-
-                      <div
-                        className={
-                          viewMode === "grid"
-                            ? "p-2 flex flex-col flex-1"
-                            : "p-2 flex flex-col md:flex-row flex-1 justify-between gap-6"
-                        }
-                      >
-                        <div
-                          className={
-                            viewMode === "list"
-                              ? "flex-1 flex flex-col max-w-111"
-                              : "flex-1 flex flex-col"
-                          }
-                        >
-                          <NavLink to={`/bortovye-avtomobili/${product.slug}`}>
-                            <h3
-                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
-                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
-                              }`}
-                            >
-                              {product.title}
-                            </h3>
-                          </NavLink>
-                        </div>
-
-                        <div
+                        {t("resetFilters", "Сбросить фильтры")}
+                      </button>
+                    </div>
+                  ) : (
+                    filteredProducts.map((product) => {
+                      const localizedTitle = translateTitle(product.title, lang);
+                      return (
+                        <motion.div
+                          variants={fadeUp}
+                          key={product.id}
                           className={
                             viewMode === "grid"
-                              ? "mt-auto"
-                              : "flex flex-col items-end justify-between shrink-0"
+                              ? "bg-white group flex flex-col"
+                              : "bg-white group flex flex-col md:flex-row"
                           }
                         >
-                          <p
-                            className={`font-fira-sans font-bold text-xl ${viewMode === "grid" ? "mb-5" : "mb-4"}`}
+                          <NavLink
+                            to={`/catalog/bortovye-avtomobili/${product.slug}`}
+                            className={
+                              viewMode === "grid"
+                                ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                                : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            }
                           >
-                            {product.price}
-                          </p>
+                            <img
+                              src={product.img}
+                              alt={localizedTitle}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                            <button
+                              type="button"
+                              className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
+                                isInFavorites(product) ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleFavorite(product);
+                              }}
+                              title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                            >
+                              <Heart className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                            </button>
+                          </NavLink>
 
                           <div
                             className={
                               viewMode === "grid"
-                                ? "flex items-center justify-between gap-2"
-                                : "flex flex-col items-end gap-4 w-full"
+                                ? "p-3 flex flex-col flex-1"
+                                : "p-3 flex flex-col md:flex-row flex-1 justify-between gap-6"
                             }
                           >
-                            <NavLink
-                              to={`/bortovye-avtomobili/${product.slug}`}
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
-                                viewMode === "list" ? "w-full" : ""
-                              }`}
+                            <div
+                              className={
+                                viewMode === "list"
+                                  ? "flex-1 flex flex-col max-w-111"
+                                  : "flex-1 flex flex-col"
+                              }
                             >
-                              Подробнее
-                            </NavLink>
+                              <NavLink to={`/catalog/bortovye-avtomobili/${product.slug}`}>
+                                <h3
+                                  className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
+                                    viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                  }`}
+                                >
+                                  {localizedTitle}
+                                </h3>
+                              </NavLink>
+
+                              {product.specs && (
+                                <ul className="space-y-1 mb-4 text-xs text-gray-600">
+                                  {product.specs.map((s, idx) => (
+                                    <li key={idx} className="flex justify-between border-b border-gray-100 py-0.5">
+                                      <span className="text-gray-400">{translateSpecLabel(s.label, lang)}:</span>
+                                      <span className="font-medium text-gray-700">{translateSpecValue(s.value, lang)}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
 
                             <div
-                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
-                                >
-                                  {viewMode === "grid" && (
-                                    <>
-                                      <button className="hover:text-black transition-colors">
-                                        <ShoppingCart className="w-5 h-5" />
-                                      </button>
-                                      <button className="hover:text-black transition-colors">
-                                        <Heart className="w-5 h-5" />
-                                      </button>
-                                    </>
-                                  )}
-                                  <button
-                                    className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
-                                  >
-                                    <span className="font-fira-sans text-[9px]">
-                                      Получить КП
-                                    </span>
+                              className={
+                                viewMode === "grid"
+                                  ? "mt-auto"
+                                  : "flex flex-col items-end justify-between shrink-0"
+                              }
+                            >
+                              <p
+                                className={`font-fira-sans font-bold text-lg sm:text-xl text-black ${viewMode === "grid" ? "mb-4" : "mb-4"}`}
+                              >
+                                {translatePrice(product.price, lang)}
+                              </p>
 
+                              <div
+                                className={
+                                  viewMode === "grid"
+                                    ? "flex items-center justify-between gap-2"
+                                    : "flex flex-col items-end gap-4 w-full"
+                                }
+                              >
+                                <NavLink
+                                  to={`/catalog/bortovye-avtomobili/${product.slug}`}
+                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm text-center ${
+                                    viewMode === "list" ? "w-full" : ""
+                                  }`}
+                                >
+                                  {t("learnMore", "Подробнее")}
+                                </NavLink>
+
+                                <div
+                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <button
+                                      type="button"
+                                      onClick={() => addToCart(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInCart(product) ? "text-green-600 font-bold" : "hover:text-black"
+                                      }`}
+                                      title={isInCart(product) ? t("inCart", "В корзине") : t("addToCart", "Добавить в корзину")}
+                                    >
+                                      <ShoppingCart className={`w-5 h-5 ${isInCart(product) ? "text-green-600" : ""}`} />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleFavorite(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInFavorites(product) ? "text-red-500" : "hover:text-black"
+                                      }`}
+                                      title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                                    >
+                                      <Heart className={`w-5 h-5 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                                    </button>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const el = document.getElementById("feedback-section");
+                                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                                    }}
+                                    className={`flex items-center gap-1.5 hover:text-black transition-colors cursor-pointer group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
+                                  >
+                                    <span className="font-fira-sans text-[9px]">{t("getKp", "Получить КП")}</span>
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                        </motion.div>
+                      );
+                    })
+                  )}
                 </motion.div>
               )}
 
-              {viewMode === "grid" && (
-                <div>
-                  <p className="text-lg font-fira-sans mt-6">
-                    Автомобильная техника продолжает развиваться, открывая новые
-                    возможности для бизнеса и промышленности. Многие компании
-                    стремятся купить бортовые автомобили для повышения
-                    эффективности транспортировки грузов. Выбор подходящей
-                    модели требует внимательного изучения характеристик и
-                    эксплуатационных качеств. Компания «РусТрак» предлагает
-                    широкий ассортимент грузовых машин, отвечающих современным
-                    требованиям надежности. Техническая поддержка и сервисное
-                    обслуживание играют важную роль в долгосрочной эксплуатации
-                    транспорта. Инвестиции в качественную технику помогают
-                    оптимизировать расходы и ускорить логистические процессы.
-                  </p>
-
-                  <h2 className="font-fira-sans text-2xl mt-3 mb-3 font-medium">
-                    Ассортимент
-                  </h2>
-
-                  <p className="font-fira-sans text-lg">
-                    Компания «РусТрак» предлагает широкий выбор бортовых
-                    автомобилей, позволяя подобрать технику под любые задачи и
-                    бюджет. В нашем каталоге представлены надежные и проверенные
-                    модели от ведущих производителей:
-                  </p>
-
-                  <ul>
-                    <li className="flex items-center gap-3 mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">KAMAZ</p>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">JAC</p>
-                    </li>
-                    <li className="flex items-center gap-3 mt-2 mb-3" mt-2 mb-3>
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">DAEWOO</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">FAW</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">ISUZU</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">FOTON</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">HYUNDAI</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">HINO</p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">FUSO</p>
-                    </li>
-
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">DONG FENG</p>
-                    </li>
-
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">МАЗ mt-2 mb-3</p>
-                    </li>
-                  </ul>
-
-                  <p className="font-fira-sans text-lg mt-2 mb-3">
-                    Каждая марка обладает своими преимуществами, а специалисты
-                    «РусТрак» помогут выбрать оптимальный вариант для вашего
-                    бизнеса. Независимо от выбранной модели, вы получите высокое
-                    качество, гарантию и полное сервисное сопровождение.
-                  </p>
-
-                  <h2 className="font-fira-sans text-2xl font-medium mb-3">
-                    Особенности бортовых автомобилей
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-3 mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Надежность и долговечность — техника выдерживает большие
-                        нагрузки и интенсивную эксплуатацию без снижения
-                        производительности.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Разнообразие моделей — широкий выбор марок и модификаций
-                        позволяет подобрать автомобиль под любые задачи и
-                        бюджет.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3 mt-2 mb-3" mt-2 mb-3>
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Высокая грузоподъемность — каждая грузовая бортовая
-                        платформа, спроектирована для эффективной
-                        транспортировки грузов различного объема и веса.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Современные технологии — машины оснащены современными
-                        двигателями и системами безопасности, что повышает
-                        комфорт и экономичность.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Гарантийное обслуживание — «РусТрак» обеспечивает
-                        поддержку и сервисное сопровождение на весь срок
-                        эксплуатации.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Дополнительные опции и комплектации — возможность
-                        адаптировать автомобиль под специфические требования
-                        бизнеса.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Экономичность и эффективность — оптимальное соотношение
-                        цены, затрат на обслуживание и эксплуатационных
-                        характеристик.
-                      </p>
-                    </li>
-                  </ul>
-                  <h2 className="font-fira-sans text-2xl font-medium mb-3">
-                    Сферы применения
-                  </h2>
-
-                  <p className="font-fira-sans text-lg">
-                    Бортовые автомобили находят широкое применение в сфере
-                    грузоперевозок, обеспечивая быструю и безопасную доставку
-                    различных товаров. Многие компании стремятся купить бортовой
-                    грузовик, чтобы транспортировать строительные материалы,
-                    промышленное оборудование и другие тяжелые грузы, где важна
-                    надежность техники и стабильная работа в любых условиях.
-                  </p>
-                  <p className="font-fira-sans text-lg">
-                    Кроме того, такой автомобиль с бортовой платформой активно
-                    используется в сельском хозяйстве для перевозки
-                    сельскохозяйственной продукции, кормов и техники. Компактные
-                    и маневренные модели позволяют работать на узких дорогах и
-                    сельских участках, облегчая логистику и снижая время на
-                    транспортировку.
-                  </p>
-                  <p className="font-fira-sans text-lg">
-                    В промышленном и коммерческом секторе бортовые машины
-                    помогают организовать оперативные поставки продукции,
-                    ускоряют работу предприятий и повышают эффективность
-                    бизнеса. Возможность адаптировать технику под конкретные
-                    задачи делает её универсальным решением для компаний
-                    различного профиля.
-                  </p>
-
-                  <h2 className="font-fira-sans text-2xl font-medium mb-3">
-                    Преимущества работы с компанией «РусТрак»
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-3 mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Широкий выбор техники — разнообразие марок и моделей
-                        позволяет подобрать бортовой грузовик цена которого не
-                        только выгодна, но и соответствует потребностям под
-                        любые задачи и бюджет.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Профессиональная консультация — специалисты помогут
-                        выбрать оптимальную модель, учитывая потребности вашего
-                        бизнеса.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3 mt-2 mb-3" mt-2 mb-3>
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Гарантия качества — все автомобили проходят проверку и
-                        поставляются с официальной гарантией производителя.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Сервисное сопровождение — полная поддержка на всех
-                        этапах эксплуатации: от обслуживания до ремонта.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Индивидуальный подход — подбор дополнительных опций и
-                        комплектаций под конкретные задачи и отрасли.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Удобные условия покупки — гибкие схемы оплаты и помощь в
-                        оформлении документов делают процесс покупки простым и
-                        прозрачным.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-3  mt-2 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">
-                        Надежность и ответственность — компания обеспечивает
-                        своевременную поставку и долгосрочное сотрудничество с
-                        клиентами.
-                      </p>
-                    </li>
-                  </ul>
-
-                  <h2 className="font-fira-sans text-2xl font-medium">
-                    Надежные машины для больших задач
-                  </h2>
-
-                  <p className="font-fira-sans text-lg ">
-                    Новый бортовой автомобиль станет надежным помощником в любых
-                    транспортных задачах. Компания «РусТрак» предлагает широкий
-                    выбор техники с гарантией качества и поддержкой
-                    специалистов. Мы поможем подобрать подходящую модель и
-                    оформить покупку без лишних сложностей. Обновите автопарк и
-                    повысьте эффективность работы вашей компании. Воспользуйтесь
-                    дополнительными опциями и сервисными пакетами для долгой и
-                    бесперебойной эксплуатации. Для оформления заказа свяжитесь
-                    с нами любым удобным способом, и мы обеспечим быстрый и
-                    удобный процесс покупки.
-                  </p>
-                </div>
-              )}
+              {/* Multilingual SEO Description Article */}
+              {viewMode === "grid" && <CategoryArticle category="bortovye" />}
             </div>
           </div>
+
           {viewMode === "grid" && <Slider />}
         </div>
       </div>
+
       <Feedback />
       <Footer />
     </>

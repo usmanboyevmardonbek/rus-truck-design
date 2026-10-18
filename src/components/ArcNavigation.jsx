@@ -1,49 +1,51 @@
 import { useState, useEffect, useRef } from "react";
 import { UserCog, FileCog, Clock, ShieldCheck, Wrench } from "lucide-react";
-
-const MENU_DATA = [
-  {
-    id: "kb",
-    title: "Конструкторское бюро",
-    text: "Собственное конструкторское бюро позволяет реализовать индивидуальные проекты клиента.",
-    icon: <UserCog size={52} strokeWidth={1.4} className="text-neutral-900" />,
-    coords: { top: "7.7%", left: "70.6%" },
-  },
-  {
-    id: "dev",
-    title: "Разработка",
-    text: "Все проекты разработаны согласно мануал кузовостроителей.",
-    icon: <FileCog size={52} strokeWidth={1.4} className="text-neutral-900" />,
-    coords: { top: "28%", left: "93.6%" },
-  },
-  {
-    id: "prod",
-    title: "Производственная база",
-    text: "Собственная производственная база позволяет максимально снизить себестоимость продукции, повышая её конкурентоспособность.",
-    icon: <Clock size={52} strokeWidth={1.4} className="text-neutral-900" />,
-    coords: { top: "50%", left: "99.5%" },
-  },
-  {
-    id: "warranty",
-    title: "Гарантия",
-    text: "Предоставляем официальную гарантию на всю производимую технику.",
-    icon: <ShieldCheck size={52} strokeWidth={1.4} className="text-neutral-900" />,
-    coords: { top: "81%", left: "89.2%" },
-  },
-  {
-    id: "service",
-    title: "Сервис",
-    text: "Круглосуточная сервисная поддержка и оперативная поставка запчастей.",
-    icon: <Wrench size={52} strokeWidth={1.4} className="text-neutral-900" />,
-    coords: { top: "92.5%", left: "76.6%" },
-  },
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ArcNavigation() {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0); // Desktop pinned scroll uchun
   const [scrollProgress, setScrollProgress] = useState(0); // Progress bar o'sishi uchun
   const [activeMobileId, setActiveMobileId] = useState("kb"); // Mobile intersection observer uchun
+
+  const MENU_DATA = [
+    {
+      id: "kb",
+      title: t("arc_kb_title", "Конструкторское бюро"),
+      text: t("arc_kb_text", "Собственное конструкторское бюро позволяет реализовать индивидуальные проекты клиента."),
+      icon: <UserCog size={52} strokeWidth={1.4} className="text-neutral-900" />,
+      coords: { top: "7.7%", left: "70.6%" },
+    },
+    {
+      id: "dev",
+      title: t("arc_dev_title", "Разработка"),
+      text: t("arc_dev_text", "Все проекты разработаны согласно мануал кузовостроителей."),
+      icon: <FileCog size={52} strokeWidth={1.4} className="text-neutral-900" />,
+      coords: { top: "28%", left: "93.6%" },
+    },
+    {
+      id: "prod",
+      title: t("arc_prod_title", "Производственная база"),
+      text: t("arc_prod_text", "Собственная производственная база позволяет максимально снизить себестоимость продукции, повышая её конкурентоспособность."),
+      icon: <Clock size={52} strokeWidth={1.4} className="text-neutral-900" />,
+      coords: { top: "50%", left: "99.5%" },
+    },
+    {
+      id: "warranty",
+      title: t("arc_warranty_title", "Гарантия"),
+      text: t("arc_warranty_text", "Предоставляем официальную гарантию на всю производимую технику."),
+      icon: <ShieldCheck size={52} strokeWidth={1.4} className="text-neutral-900" />,
+      coords: { top: "81%", left: "89.2%" },
+    },
+    {
+      id: "service",
+      title: t("arc_service_title", "Сервис"),
+      text: t("arc_service_text", "Круглосуточная сервисная поддержка и оперативная поставка запчастей."),
+      icon: <Wrench size={52} strokeWidth={1.4} className="text-neutral-900" />,
+      coords: { top: "92.5%", left: "76.6%" },
+    },
+  ];
 
   const handleDotClick = (index) => {
     setActiveIndex(index);

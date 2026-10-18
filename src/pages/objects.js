@@ -4,14 +4,14 @@ export const catData = [
     catTitle: "Шторные автомобили",
     catDesc: "30 моделей",
     catImage: "/cat-1.webp",
-    catLink: "/shtornye-avtomobili",
+    catLink: "/catalog/shtornye-avtomobili",
   },
   {
     id: 2,
     catTitle: "Краны-манипуляторы",
     catDesc: "79 моделей",
     catImage: "/cat-2.webp",
-    catLink: "/krany-manipulator",
+    catLink: "/catalog/krany-manipulator",
   },
 
   {
@@ -19,7 +19,7 @@ export const catData = [
     catTitle: "Автотопливозаправщики",
     catDesc: "26 моделей",
     catImage: "/cat-3.png",
-    catLink: "/zapravka",
+    catLink: "/catalog/zapravka",
   },
 
   {
@@ -27,7 +27,7 @@ export const catData = [
     catTitle: "Автогидроподъёмники",
     catDesc: "4 модели",
     catImage: "/cat-4.webp",
-    catLink: "/gidropod",
+    catLink: "/catalog/gidropod",
   },
 
   {
@@ -35,7 +35,7 @@ export const catData = [
     catTitle: "Автоцистерны",
     catDesc: "10 моделей",
     catImage: "/cat-5.webp",
-    catLink: "/sisterna",
+    catLink: "/catalog/sisterna",
   },
 
   {
@@ -43,7 +43,7 @@ export const catData = [
     catTitle: "Автоэвакуаторы",
     catDesc: "2 модели",
     catImage: "/cat-6.webp",
-    catLink: "/evakuator",
+    catLink: "/catalog/evakuator",
   },
 
   {
@@ -51,7 +51,7 @@ export const catData = [
     catTitle: "Изотермические фургоны",
     catDesc: "16 моделей",
     catImage: "/cat-7.png",
-    catLink: "/avtofurgony",
+    catLink: "/catalog/avtofurgony",
   },
 
   {
@@ -59,7 +59,7 @@ export const catData = [
     catTitle: "Контейнеровозы",
     catDesc: "2 модели",
     catImage: "/cat-8.webp",
-    catLink: "/konteynerovozy",
+    catLink: "/catalog/konteynerovozy",
   },
 
   {
@@ -67,7 +67,7 @@ export const catData = [
     catTitle: "Крюковые погрузчики",
     catDesc: "3 модели",
     catImage: "/cat-9.png",
-    catLink: "/kryukovye-pogruzchiki",
+    catLink: "/catalog/kryukovye-pogruzchiki",
   },
 
   {
@@ -75,7 +75,7 @@ export const catData = [
     catTitle: "Самосвалы",
     catDesc: "12 моделей",
     catImage: "/cat-10.webp",
-    catLink: "/samosvaly",
+    catLink: "/catalog/samosvaly",
   },
 
   {
@@ -83,14 +83,14 @@ export const catData = [
     catTitle: "Автомобили ДОПОГ категория EXII",
     catDesc: "4 модели",
     catImage: "/cat-11.webp",
-    catLink: "/avtomobili-dopog",
+    catLink: "/catalog/avtomobili-dopog",
   },
   {
     id: 12,
-    catTitle: "Автомобили ДОПОГ категория EXII",
-    catDesc: "4 модели",
-    catImage: "/cat-11.webp",
-    catLink: "/avtomobili-dopog",
+    catTitle: "Бортовые автомобили",
+    catDesc: "15 моделей",
+    catImage: "/cat-12.webp",
+    catLink: "/catalog/bortovye-avtomobili",
   },
 ];
 
@@ -876,49 +876,49 @@ export const videoData = [
 
 export const similarList = [{
   id: 1,
-  img: "kamaz-truck-1.jpg",
+  img: "/kamaz-truck-1.jpg",
   title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
 },
 
 {
   id: 2,
-  img: "kamaz-truck-2.jpg",
+  img: "/kamaz-truck-2.jpg",
   title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
 },
 
 {
   id: 3,
-  img: "kamaz-truck-3.jpg",
+  img: "/kamaz-truck-3.jpg",
   title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
 },
 
 {
   id: 4,
-  img: "kamaz-truck-4.jpg",
+  img: "/kamaz-truck-4.jpg",
   title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
 },
 
 {
   id: 5,
-  img: "kamaz-truck-5.jpg",
+  img: "/kamaz-truck-5.jpg",
   title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
 },
 
 {
   id: 6,
-  img: "kamaz-truck-6.jpg",
+  img: "/kamaz-truck-6.jpg",
   title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
 },
 
 {
   id: 7,
-  img: "kamaz-truck-5.jpg",
+  img: "/kamaz-truck-5.jpg",
   title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
 },
 
 {
   id: 8,
-  img: "kamaz-truck-6.jpg",
+  img: "/kamaz-truck-6.jpg",
   title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
 },
 
@@ -928,107 +928,281 @@ export const similarList = [{
 
 export const kranySliders = [{
   id: 1,
-  img: "kran-swiper-1.jpg",
+  img: "/kran-swiper-1.jpg",
   title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
 },
 
 {
   id: 2,
-  img: "kran-swiper-2.jpg",
+  img: "/kran-swiper-2.jpg",
   title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
 },
 
 {
   id: 3,
-  img: "kran-swiper-3.jpg",
+  img: "/kran-swiper-3.jpg",
   title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
 },
 
 {
   id: 4,
-  img: "kran-swiper-4.jpg",
+  img: "/kran-swiper-4.jpg",
   title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
 },
 
 {
   id: 5,
-  img: "kran-swiper-5.jpg",
+  img: "/kran-swiper-5.jpg",
   title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
 },
 
 {
   id: 6,
-  img: "kran-swiper-6.jpg",
+  img: "/kran-swiper-6.jpg",
   title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
 },
 
 {
   id: 7,
-  img: "kran-swiper-5.jpg",
+  img: "/kran-swiper-5.jpg",
   title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
 },
 
 {
   id: 8,
-  img: "kran-swiper-6.jpg",
+  img: "/kran-swiper-6.jpg",
   title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
 },
 
 
 ]
 
-export const zapravkaSlider = [{
-  id: 1,
-  img: "kran-swiper-1.jpg",
-  title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
-},
-
-{
-  id: 2,
-  img: "kran-swiper-2.jpg",
-  title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
-},
-
-{
-  id: 3,
-  img: "kran-swiper-3.jpg",
-  title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
-},
-
-{
-  id: 4,
-  img: "kran-swiper-4.jpg",
-  title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
-},
-
-{
-  id: 5,
-  img: "kran-swiper-5.jpg",
-  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
-},
-
-{
-  id: 6,
-  img: "kran-swiper-6.jpg",
-  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
-},
-
-{
-  id: 7,
-  img: "kran-swiper-5.jpg",
-  title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
-},
-
-{
-  id: 8,
-  img: "kran-swiper-6.jpg",
-  title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
-},
-
-
-]
+export const zapravkaSlider = [
+  {
+    id: 1,
+    slug: "sollers-tr80-47-kmu-hktc-3014",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-1.jpg",
+    title: "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)"
+  },
+  {
+    id: 2,
+    slug: "dong-feng-c120l-kmu-xcmg-125-4",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-2.jpg",
+    title: "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)"
+  },
+  {
+    id: 3,
+    slug: "dong-feng-c180ls-kmu-dong-yang-ss1956",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-3.jpg",
+    title: "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)"
+  },
+  {
+    id: 4,
+    slug: "faw-tiger-6g12-hktc-5014",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-4.jpg",
+    title: "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014"
+  },
+  {
+    id: 5,
+    slug: "jac-n120l-kmu-inman-im150n",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-5.jpg",
+    title: "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)"
+  },
+  {
+    id: 6,
+    slug: "jac-n200n-kmu-fassi-f215a",
+    categoryPath: "/catalog/krany-manipulator",
+    img: "/kran-swiper-6.jpg",
+    title: "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)"
+  }
+];
 
 export const catalogProducts = {
+  "sollers-tr80-47-kmu-hktc-3014": {
+    "id": 101,
+    "slug": "sollers-tr80-47-kmu-hktc-3014",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор SOLLERS TR80-47 с КМУ HKTC 3014 (модель 4389A8)",
+    "brand": "SOLLERS",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-1.jpg",
+      "/kran-swiper-2.jpg",
+      "/kran-swiper-3.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "SOLLERS TR80-47" },
+      { "label": "КМУ", "value": "HKTC HLC-3014" },
+      { "label": "Грузовой момент, т*м", "value": "7.5" },
+      { "label": "Грузоподъемность на мин. вылете, кг", "value": "3200" },
+      { "label": "Макс. вылет стрелы, м", "value": "9.8" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "SOLLERS TR80-47" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "Дизельный, 149 л.с." },
+      { "label": "КПП", "value": "Механическая, 6-ступенчатая" },
+      { "label": "Модель КМУ", "value": "HKTC HLC-3014" },
+      { "label": "Тип стрелы", "value": "Телескопическая 4-секционная" },
+      { "label": "Максимальный вылет, м", "value": "9.8" },
+      { "label": "Материал платформы", "value": "Стальной профиль Hossen, откидные борта" }
+    ]
+  },
+  "dong-feng-c120l-kmu-xcmg-125-4": {
+    "id": 102,
+    "slug": "dong-feng-c120l-kmu-xcmg-125-4",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор DONG FENG C120L с КМУ XCMG 125-4 (модель 5389H8-03)",
+    "brand": "DONG FENG",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-2.jpg",
+      "/kran-swiper-1.jpg",
+      "/kran-swiper-3.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "DONG FENG C120L" },
+      { "label": "КМУ", "value": "XCMG SQS 125-4" },
+      { "label": "Грузовой момент, т*м", "value": "12.5" },
+      { "label": "Грузоподъемность на мин. вылете, кг", "value": "5000" },
+      { "label": "Макс. вылет стрелы, м", "value": "11.5" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "DONG FENG C120L" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "Cummins ISF3.8s5168, 166 л.с." },
+      { "label": "Модель КМУ", "value": "XCMG SQS 125-4" },
+      { "label": "Максимальная грузоподъемность, кг", "value": "5000" },
+      { "label": "Максимальный вылет, м", "value": "11.5" },
+      { "label": "Длина бортовой платформы, мм", "value": "6200" }
+    ]
+  },
+  "dong-feng-c180ls-kmu-dong-yang-ss1956": {
+    "id": 103,
+    "slug": "dong-feng-c180ls-kmu-dong-yang-ss1956",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор Dong Feng C180LS с КМУ Dong Yang SS1956 ACE (модель 5389N7)",
+    "brand": "DONG FENG",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-3.jpg",
+      "/kran-swiper-2.jpg",
+      "/kran-swiper-4.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "Dong Feng C180LS" },
+      { "label": "КМУ", "value": "Dong Yang SS1956 ACE" },
+      { "label": "Грузовой момент, т*м", "value": "19.0" },
+      { "label": "Грузоподъемность, кг", "value": "7400" },
+      { "label": "Макс. вылет стрелы, м", "value": "19.0" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "Dong Feng C180LS" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "Cummins B6.2EV210, 210 л.с." },
+      { "label": "КМУ", "value": "Dong Yang SS1956 ACE (Южная Корея)" },
+      { "label": "Грузоподъемность максимальная, кг", "value": "7400" },
+      { "label": "Вылет стрелы максимальный, м", "value": "19.0" },
+      { "label": "Бортовая платформа", "value": "Стальная усиленная, 6800x2550x600 мм" }
+    ]
+  },
+  "faw-tiger-6g12-hktc-5014": {
+    "id": 104,
+    "slug": "faw-tiger-6g12-hktc-5014",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор FAW TIGER 6G12 с HKTC-5014",
+    "brand": "FAW",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-4.jpg",
+      "/kran-swiper-3.jpg",
+      "/kran-swiper-5.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "FAW TIGER 6G12" },
+      { "label": "КМУ", "value": "HKTC HLC-5014M" },
+      { "label": "Грузовой момент, т*м", "value": "11.0" },
+      { "label": "Грузоподъемность, кг", "value": "5000" },
+      { "label": "Макс. вылет стрелы, м", "value": "10.7" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "FAW CA1120 TIGER" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "WP4.1NQ190E50, 190 л.с." },
+      { "label": "Модель КМУ", "value": "HKTC HLC-5014M" },
+      { "label": "Количество секций стрелы", "value": "4 секции" },
+      { "label": "Максимальный вылет, м", "value": "10.7" },
+      { "label": "Борт", "value": "6200х2550х600 мм" }
+    ]
+  },
+  "jac-n120l-kmu-inman-im150n": {
+    "id": 105,
+    "slug": "jac-n120l-kmu-inman-im150n",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор JAC N120L c КМУ ИНМАН ИМ150N (модель 5389E8-02)",
+    "brand": "JAC",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-5.jpg",
+      "/kran-swiper-4.jpg",
+      "/kran-swiper-6.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "JAC N120L" },
+      { "label": "КМУ", "value": "ИНМАН ИМ 150N" },
+      { "label": "Грузовой момент, т*м", "value": "14.1" },
+      { "label": "Грузоподъемность, кг", "value": "6100" },
+      { "label": "Макс. вылет стрелы, м", "value": "8.2" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "JAC N120L" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "Cummins B4.5EV210, 206 л.с." },
+      { "label": "КМУ", "value": "ИНМАН ИМ 150N (Palfinger)" },
+      { "label": "Тип КМУ", "value": "Z-образная (шарнирно-сочлененная)" },
+      { "label": "Макс. вылет стрелы, м", "value": "8.2" },
+      { "label": "Бортовая платформа", "value": "6200x2550x600 мм" }
+    ]
+  },
+  "jac-n200n-kmu-fassi-f215a": {
+    "id": 106,
+    "slug": "jac-n200n-kmu-fassi-f215a",
+    "categoryTitle": "Краны-манипуляторы",
+    "categoryPath": "/catalog/krany-manipulator",
+    "title": "Кран-манипулятор JAC N200N c КМУ FASSI F215A.0.22 (модель 5389E8-01)",
+    "brand": "JAC",
+    "price": "Цена по запросу",
+    "images": [
+      "/kran-swiper-6.jpg",
+      "/kran-swiper-5.jpg",
+      "/kran-swiper-1.jpg"
+    ],
+    "shortSpecs": [
+      { "label": "Базовое шасси", "value": "JAC N200N" },
+      { "label": "КМУ", "value": "FASSI F215A.0.22" },
+      { "label": "Грузовой момент, т*м", "value": "18.7" },
+      { "label": "Грузоподъемность, кг", "value": "8700" },
+      { "label": "Макс. вылет стрелы, м", "value": "10.3" }
+    ],
+    "fullSpecs": [
+      { "label": "Базовое шасси", "value": "JAC N200N" },
+      { "label": "Колесная формула", "value": "4x2" },
+      { "label": "Двигатель", "value": "Cummins ISD285 50, 277 л.с." },
+      { "label": "Модель КМУ", "value": "FASSI F215A.0.22 (Италия)" },
+      { "label": "Грузоподъемность на макс. вылете, кг", "value": "2000" },
+      { "label": "Бортовая платформа", "value": "7200x2550x600 мм, сталь 09Г2С" }
+    ]
+  },
   "shtornyy-gruzovik-maz-438121": {
     "id": 1,
     "slug": "shtornyy-gruzovik-maz-438121",
@@ -1141,7 +1315,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "shtornyy-gruzovik-maz-631228": {
     "id": 2,
@@ -1243,7 +1417,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "shtornyy-gruzovik-kamaz-4308": {
     "id": 3,
@@ -1357,7 +1531,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "shtornyy-gruzovik-kamaz-65657": {
     "id": 4,
@@ -1471,7 +1645,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "shtornyy-gruzovik-kompas-5": {
     "id": 5,
@@ -1573,7 +1747,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "shtornyy-gruzovik-kamaz-65117": {
     "id": 6,
@@ -1687,7 +1861,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Шторные автомобили",
-    "categoryPath": "/shtornye-avtomobili"
+    "categoryPath": "/catalog/shtornye-avtomobili"
   },
   "kran-kamaz-65115-hktc": {
     "id": 1,
@@ -1821,7 +1995,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-kamaz-43118-inman-200": {
     "id": 2,
@@ -1955,7 +2129,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-kamaz-43118-unic-503": {
     "id": 3,
@@ -2089,7 +2263,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-kamaz-43118-soosan": {
     "id": 4,
@@ -2223,7 +2397,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-kamaz-43118-palfinger": {
     "id": 5,
@@ -2357,7 +2531,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-gaz-c42a43-inman-20": {
     "id": 6,
@@ -2491,7 +2665,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-gazon-next-unic-374": {
     "id": 7,
@@ -2609,7 +2783,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-gazon-next-inman-80": {
     "id": 8,
@@ -2727,7 +2901,7 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "kran-valdaj-18-inman-240": {
     "id": 9,
@@ -2861,13 +3035,13 @@ export const catalogProducts = {
       }
     ],
     "categoryTitle": "Краны-манипуляторы",
-    "categoryPath": "/krany-manipulator"
+    "categoryPath": "/catalog/krany-manipulator"
   },
   "sadko-9-c41a13-atz-4-5": {
     "id": 1,
     "slug": "sadko-9-c41a13-atz-4-5",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Топливозаправщик Садко 9 (С41А13) с АТЗ 4,5 м3 двухсекционная",
     "brand": "ГАЗ",
     "price": "от 8 800 000 ₽",
@@ -2973,7 +3147,7 @@ export const catalogProducts = {
     "id": 2,
     "slug": "gaz-c41r13-4389jy",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Автотопливозаправщик на шасси ГАЗ C41R13 (модель 4389JY)",
     "brand": "ГАЗ",
     "price": "от 6 200 000 ₽",
@@ -3043,7 +3217,7 @@ export const catalogProducts = {
     "id": 3,
     "slug": "valday-18-fb6r31",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Автотопливозаправщик Валдай 18 FB6R31",
     "brand": "Валдай",
     "price": "от 9 050 000 ₽",
@@ -3097,7 +3271,7 @@ export const catalogProducts = {
     "id": 4,
     "slug": "valday-12-atz-6",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Автотопливозаправщик Валдай 12 АТЗ 6",
     "brand": "Валдай",
     "price": "от 7 550 000 ₽",
@@ -3143,7 +3317,7 @@ export const catalogProducts = {
     "id": 5,
     "slug": "valday-12-atz-8",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Топливозаправщик Валдай 12 АТЗ 8",
     "brand": "Валдай",
     "price": "от 7 850 000 ₽",
@@ -3181,7 +3355,7 @@ export const catalogProducts = {
     "id": 6,
     "slug": "yanshi-10",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Автотопливозаправщик на шасси YANSHI 10",
     "brand": "YANSHI",
     "price": "Цена по запросу",
@@ -3219,7 +3393,7 @@ export const catalogProducts = {
     "id": 7,
     "slug": "sollers-tr180-10",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Топливозаправщик SOLLERS TR180 боковина 10 м.куб",
     "brand": "SOLLERS",
     "price": "от 8 670 000 ₽",
@@ -3257,7 +3431,7 @@ export const catalogProducts = {
     "id": 8,
     "slug": "sollers-tr120-atz-8",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Автотопливозаправщик SOLLERS TR120 АТЗ 8,0 м.куб",
     "brand": "SOLLERS",
     "price": "от 6 030 000 ₽",
@@ -3295,7 +3469,7 @@ export const catalogProducts = {
     "id": 9,
     "slug": "jac-n90-atz-6",
     "categoryTitle": "Автотопливозаправщики",
-    "categoryPath": "/zapravka",
+    "categoryPath": "/catalog/zapravka",
     "title": "Топливозаправщик JAC N90 АТЗ 6,0 двухсекционная",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -3333,7 +3507,7 @@ export const catalogProducts = {
     "id": 10,
     "slug": "palfinger-p180t-gaz-c41r13",
     "categoryTitle": "Автогидроподъёмники",
-    "categoryPath": "/gidropod",
+    "categoryPath": "/catalog/gidropod",
     "title": "Автогидроподъемник PALFINGER P180T на шасси ГАЗ C41R13",
     "brand": "ГАЗ",
     "price": "Цена по запросу",
@@ -3407,7 +3581,7 @@ export const catalogProducts = {
     "id": 11,
     "slug": "palfinger-p240a-hd-78",
     "categoryTitle": "Автогидроподъёмники",
-    "categoryPath": "/gidropod",
+    "categoryPath": "/catalog/gidropod",
     "title": "Автогидроподъемник PALFINGER P 240A на шасси HD-78",
     "brand": "Hyundai",
     "price": "Цена по запросу",
@@ -3461,7 +3635,7 @@ export const catalogProducts = {
     "id": 12,
     "slug": "palfinger-p200a-isuzu-nmr-85h",
     "categoryTitle": "Автогидроподъёмники",
-    "categoryPath": "/gidropod",
+    "categoryPath": "/catalog/gidropod",
     "title": "Автогидроподъемник PALFINGER P 200A на шасси ISUZU NMR-85H",
     "brand": "ISUZU",
     "price": "Цена по запросу",
@@ -3507,7 +3681,7 @@ export const catalogProducts = {
     "id": 13,
     "slug": "kamaz-43089-food",
     "categoryTitle": "Автоцистерны",
-    "categoryPath": "/sisterna",
+    "categoryPath": "/catalog/sisterna",
     "title": "Пищевая цистерна КАМАЗ 43089",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -3573,7 +3747,7 @@ export const catalogProducts = {
     "id": 14,
     "slug": "gazon-next-food-4-2",
     "categoryTitle": "Автоцистерны",
-    "categoryPath": "/sisterna",
+    "categoryPath": "/catalog/sisterna",
     "title": "ГАЗон NEXT с пищевой цистерной 4,2 куба",
     "brand": "ГАЗ",
     "price": "Цена по запросу",
@@ -3611,7 +3785,7 @@ export const catalogProducts = {
     "id": 15,
     "slug": "jac-n90-vacuum",
     "categoryTitle": "Автоцистерны",
-    "categoryPath": "/sisterna",
+    "categoryPath": "/catalog/sisterna",
     "title": "Вакуумная цистерна JAC N90",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -3657,7 +3831,7 @@ export const catalogProducts = {
     "id": 16,
     "slug": "jac-n90-autocisterna",
     "categoryTitle": "Автоцистерны",
-    "categoryPath": "/sisterna",
+    "categoryPath": "/catalog/sisterna",
     "title": "Вакуумная автоцистерна на шасси JAC N90",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -3691,7 +3865,7 @@ export const catalogProducts = {
     "id": 17,
     "slug": "jac-n90-ko-523",
     "categoryTitle": "Автоцистерны",
-    "categoryPath": "/sisterna",
+    "categoryPath": "/catalog/sisterna",
     "title": "Вакуумное оборудование КО-523 на шасси JAC N-90",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -3729,7 +3903,7 @@ export const catalogProducts = {
     "id": 18,
     "slug": "evakuator-kamaz-4308-palfinger-pk-13500t",
     "categoryTitle": "Автоэвакуаторы",
-    "categoryPath": "/evakuator",
+    "categoryPath": "/catalog/evakuator",
     "title": "Эвакуатор на шасси КАМАЗ 4308 с КМУ PALFINGER PK 13500T",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -3799,7 +3973,7 @@ export const catalogProducts = {
     "id": 19,
     "slug": "evakuator-isuzu-fsr-34ul-palfinger",
     "categoryTitle": "Автоэвакуаторы",
-    "categoryPath": "/evakuator",
+    "categoryPath": "/catalog/evakuator",
     "title": "Эвакуатор на шасси ISUZU FSR-34UL-NCUN с КМУ PALFINGER PK 13500T",
     "brand": "ISUZU",
     "price": "Цена по запросу",
@@ -3845,7 +4019,7 @@ export const catalogProducts = {
     "id": 20,
     "slug": "maz-631228-bortovoy",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль МАЗ 631228",
     "brand": "МАЗ",
     "price": "Цена по запросу",
@@ -3915,7 +4089,7 @@ export const catalogProducts = {
     "id": 21,
     "slug": "kamaz-kompas-43089-33t1",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль Камаз Компас 43089-33T1",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -3961,7 +4135,7 @@ export const catalogProducts = {
     "id": 22,
     "slug": "kamaz-43082-bortovoy",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль КАМАЗ 43082",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -3999,7 +4173,7 @@ export const catalogProducts = {
     "id": 23,
     "slug": "kamaz-43089-bortovoy",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль КАМАЗ 43089",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4037,7 +4211,7 @@ export const catalogProducts = {
     "id": 24,
     "slug": "jac-n120l-bortovoy",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль JAC N120L",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -4075,7 +4249,7 @@ export const catalogProducts = {
     "id": 25,
     "slug": "jac-n90l-bortovoy",
     "categoryTitle": "Бортовые автомобили",
-    "categoryPath": "/bortovye-avtomobili",
+    "categoryPath": "/catalog/bortovye-avtomobili",
     "title": "Бортовой автомобиль JAC N90L",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -4113,7 +4287,7 @@ export const catalogProducts = {
     "id": 26,
     "slug": "furgon-kamaz-43089",
     "categoryTitle": "Изотермические фургоны",
-    "categoryPath": "/avtofurgony",
+    "categoryPath": "/catalog/avtofurgony",
     "title": "Изотермический фургон КАМАЗ 43089",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4187,7 +4361,7 @@ export const catalogProducts = {
     "id": 27,
     "slug": "furgon-kamaz-43082",
     "categoryTitle": "Изотермические фургоны",
-    "categoryPath": "/avtofurgony",
+    "categoryPath": "/catalog/avtofurgony",
     "title": "Изотермический фургон КАМАЗ 43082",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4225,7 +4399,7 @@ export const catalogProducts = {
     "id": 28,
     "slug": "furgon-shacman-x3000",
     "categoryTitle": "Изотермические фургоны",
-    "categoryPath": "/avtofurgony",
+    "categoryPath": "/catalog/avtofurgony",
     "title": "Изотермический фургон SHACMAN X3000",
     "brand": "SHACMAN",
     "price": "Цена по запросу",
@@ -4263,7 +4437,7 @@ export const catalogProducts = {
     "id": 29,
     "slug": "konteynerovoz-kamaz-65115",
     "categoryTitle": "Контейнеровозы",
-    "categoryPath": "/konteynerovozy",
+    "categoryPath": "/catalog/konteynerovozy",
     "title": "Контейнеровоз на шасси КАМАЗ 65115",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4325,7 +4499,7 @@ export const catalogProducts = {
     "id": 30,
     "slug": "konteynerovoz-gaz-c41r33",
     "categoryTitle": "Контейнеровозы",
-    "categoryPath": "/konteynerovozy",
+    "categoryPath": "/catalog/konteynerovozy",
     "title": "Контейнеровоз на шасси ГАЗ C41R33",
     "brand": "ГАЗ",
     "price": "Цена по запросу",
@@ -4363,7 +4537,7 @@ export const catalogProducts = {
     "id": 31,
     "slug": "palfinger-ph-t20pi-isuzu-giga",
     "categoryTitle": "Крюковые погрузчики",
-    "categoryPath": "/kryukovye-pogruzchiki",
+    "categoryPath": "/catalog/kryukovye-pogruzchiki",
     "title": "Крюковой погрузчик PALFINGER PH T20Pi на шасси ISUZU GIGA-Q",
     "brand": "ISUZU",
     "price": "Цена по запросу",
@@ -4433,7 +4607,7 @@ export const catalogProducts = {
     "id": 32,
     "slug": "palfinger-ph-t05-isuzu-1",
     "categoryTitle": "Крюковые погрузчики",
-    "categoryPath": "/kryukovye-pogruzchiki",
+    "categoryPath": "/catalog/kryukovye-pogruzchiki",
     "title": "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси ISUZU ELF",
     "brand": "ISUZU",
     "price": "Цена по запросу",
@@ -4471,7 +4645,7 @@ export const catalogProducts = {
     "id": 33,
     "slug": "palfinger-ph-t05-isuzu-2",
     "categoryTitle": "Крюковые погрузчики",
-    "categoryPath": "/kryukovye-pogruzchiki",
+    "categoryPath": "/catalog/kryukovye-pogruzchiki",
     "title": "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси ISUZU Forward",
     "brand": "ISUZU",
     "price": "Цена по запросу",
@@ -4505,7 +4679,7 @@ export const catalogProducts = {
     "id": 34,
     "slug": "samosval-kompas-9",
     "categoryTitle": "Самосвалы",
-    "categoryPath": "/samosvaly",
+    "categoryPath": "/catalog/samosvaly",
     "title": "Самосвал на шасси Компас 9",
     "brand": "Компас",
     "price": "Цена по запросу",
@@ -4571,7 +4745,7 @@ export const catalogProducts = {
     "id": 35,
     "slug": "samosval-kamaz-6520",
     "categoryTitle": "Самосвалы",
-    "categoryPath": "/samosvaly",
+    "categoryPath": "/catalog/samosvaly",
     "title": "Самосвал-зерновоз на шасси КАМАЗ 6520-3072-53",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4629,7 +4803,7 @@ export const catalogProducts = {
     "id": 36,
     "slug": "samosval-jac-n90n",
     "categoryTitle": "Самосвалы",
-    "categoryPath": "/samosvaly",
+    "categoryPath": "/catalog/samosvaly",
     "title": "Самосвал на шасси JAC N90N (модель 53391A)",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -4675,7 +4849,7 @@ export const catalogProducts = {
     "id": 37,
     "slug": "dopog-kamaz-4308-furgon",
     "categoryTitle": "Автомобили ДОПОГ категория EXII",
-    "categoryPath": "/avtomobili-dopog",
+    "categoryPath": "/catalog/avtomobili-dopog",
     "title": "Фургон ДОПОГ EXII КАМАЗ 4308 (модель 4388M2-10)",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4745,7 +4919,7 @@ export const catalogProducts = {
     "id": 38,
     "slug": "dopog-kamaz-4308-bort",
     "categoryTitle": "Автомобили ДОПОГ категория EXII",
-    "categoryPath": "/avtomobili-dopog",
+    "categoryPath": "/catalog/avtomobili-dopog",
     "title": "Бортовой автомобиль КАМАЗ 4308-3063-69, ДОПОГ EXII",
     "brand": "КАМАЗ",
     "price": "Цена по запросу",
@@ -4783,7 +4957,7 @@ export const catalogProducts = {
     "id": 39,
     "slug": "dopog-jac-n200l-inman",
     "categoryTitle": "Автомобили ДОПОГ категория EXII",
-    "categoryPath": "/avtomobili-dopog",
+    "categoryPath": "/catalog/avtomobili-dopog",
     "title": "КМУ-манипулятор JAC N200L с КМУ INMAN IM150N, ДОПОГ EXII",
     "brand": "JAC",
     "price": "Цена по запросу",
@@ -4821,7 +4995,7 @@ export const catalogProducts = {
     "id": 40,
     "slug": "dopog-daewoo-cl8cf-palfinger",
     "categoryTitle": "Автомобили ДОПОГ категория EXII",
-    "categoryPath": "/avtomobili-dopog",
+    "categoryPath": "/catalog/avtomobili-dopog",
     "title": "КМУ-манипулятор DAEWOO CL8CF с КМУ PALFINGER PK 8500, ДОПОГ EXII",
     "brand": "DAEWOO",
     "price": "Цена по запросу",

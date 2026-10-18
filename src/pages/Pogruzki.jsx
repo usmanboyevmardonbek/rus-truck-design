@@ -3,19 +3,27 @@ import { fadeUp, container } from "../utils/animation";
 import {
   Grid2x2,
   List,
-  Search,
   Heart,
   ShoppingCart,
   Download,
-  ChevronDown,
 } from "lucide-react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
+import { useCart } from "../context/CartContext";
 import Footer from "../components/footer";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
 import { NavLink } from "react-router-dom";
+import { matchesFormula } from "../utils/filterUtils";
+import {
+  translateTitle,
+  translateSpecLabel,
+  translateSpecValue,
+  translatePrice,
+} from "../utils/productTranslation";
+import CategoryArticle from "../components/CategoryArticle";
 
 const dummyProducts = [
   {
@@ -25,6 +33,10 @@ const dummyProducts = [
     title: "Крюковой погрузчик PALFINGER PH T20Pi на шасси ISUZU GIGA-Q",
     price: "Цена по запросу",
     outOfStock: true,
+    specs: [
+      { label: "Марка", value: "ISUZU" },
+      { label: "Колесная формула", value: "6x4" },
+    ],
   },
   {
     id: 2,
@@ -33,6 +45,10 @@ const dummyProducts = [
     title: "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси ISUZ...",
     price: "Цена по запросу",
     outOfStock: true,
+    specs: [
+      { label: "Марка", value: "ISUZU" },
+      { label: "Колесная формула", value: "4x2" },
+    ],
   },
   {
     id: 3,
@@ -41,17 +57,39 @@ const dummyProducts = [
     title: "Крюковой погрузчик PALFINGER PH T05_L3900 SLD на шасси...",
     price: "Цена по запросу",
     outOfStock: true,
+    specs: [
+      { label: "Марка", value: "ISUZU" },
+      { label: "Колесная формула", value: "4x2" },
+    ],
   },
 ];
 
 const formulas = ["4x2", "6x4"];
 
 const Pogruzki = () => {
+  const { t, lang } = useLanguage();
+  const { addToCart, isInCart, toggleFavorite, isInFavorites } = useCart();
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
     return localStorage.getItem("pogruzkiViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
+
+  const [selectedFormulas, setSelectedFormulas] = useState([]);
+
+  const handleToggleFormula = (formula) => {
+    setSelectedFormulas((prev) =>
+      prev.includes(formula) ? prev.filter((f) => f !== formula) : [...prev, formula]
+    );
+  };
+
+  const handleResetFilters = () => {
+    setSelectedFormulas([]);
+  };
+
+  const filteredProducts = dummyProducts.filter((product) =>
+    matchesFormula(product, selectedFormulas)
+  );
 
   const handleViewChange = (mode) => {
     if (mode === viewMode) return;
@@ -69,69 +107,71 @@ const Pogruzki = () => {
       <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
-          <ul className="flex items-center gap-2 mb-6">
+          <ul className="flex items-center gap-2 mb-6 flex-wrap">
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Главная
+              <NavLink to="/">{t("home", "Главная")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Каталог
+              <NavLink to="/catalog">{t("catalog", "Каталог")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm">
-              Крюковые погрузчики
+              {t("cat_kryukovye", "Крюковые погрузчики")}
             </li>
           </ul>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Крюковые погрузчики
+                {t("cat_kryukovye", "Крюковые погрузчики")}
               </h1>
-              <p className="font-fira-sans text-gray-400 text-sm">3 товара</p>
+              <p className="font-fira-sans text-gray-400 text-sm">
+                {filteredProducts.length} {t("productsWord", "товаров")}
+              </p>
             </div>
 
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2 relative">
                 <span className="font-fira-sans text-gray-400 text-sm">
-                  Сортировка:
+                  {t("sortBy", "Сортировка:")}
                 </span>
                 <div className="relative z-50">
                   <button
-                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1  transition-colors"
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду
+                    {t("sortBrand", "По бренду")}
                   </button>
                   <ul
                     className={
-                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
+                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden shadow-lg z-50 " +
                       (shtor ? "h-50" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По популярности
+                        {t("sortPopular", "По популярности")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        Сначала новые
+                        {t("sortNewest", "Сначала новые")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        В наличии
+                        {t("sortInStock", "В наличии")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По возрастанию цены
+                        {t("sortPriceAsc", "По возрастанию цены")}
                       </p>
                     </li>
                     <li className="border-b border-x rounded-b-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По бренду
+                        {t("sortBrand", "По бренду")}
                       </p>
                     </li>
                   </ul>
@@ -141,13 +181,21 @@ const Pogruzki = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleViewChange("list")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm ${
+                    viewMode === "list"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <List className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => handleViewChange("grid")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm ${
+                    viewMode === "grid"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <Grid2x2 className="w-5 h-5" />
                 </button>
@@ -159,35 +207,78 @@ const Pogruzki = () => {
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
                 <h3 className="font-fira-sans font-bold text-lg mb-4">
-                  Колесная формула
+                  {t("wheelFormula", "Колесная формула")}
                 </h3>
                 <div className="flex flex-col gap-3">
-                  {formulas.map((form, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
-                        <input
-                          type="checkbox"
-                          className=" absolute w-full h-full cursor-pointer  accent-black"
-                        />
-                       
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {form}
-                      </span>
-                    </label>
-                  ))}
+                  {formulas.map((form, idx) => {
+                    const isChecked = selectedFormulas.includes(form);
+                    return (
+                      <label
+                        key={idx}
+                        className="flex items-center gap-3 cursor-pointer group select-none"
+                      >
+                        <div
+                          className={`relative flex items-center justify-center w-5 h-5 border rounded-sm transition-colors shrink-0 ${
+                            isChecked
+                              ? "bg-[#FEC80B] border-[#FEC80B]"
+                              : "border-gray-300 group-hover:border-[#FEC80B]"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleToggleFormula(form)}
+                            className="absolute opacity-0 w-full h-full cursor-pointer z-10"
+                          />
+                          {isChecked && (
+                            <svg
+                              className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          )}
+                        </div>
+                        <span
+                          className={`font-fira-sans text-sm transition-colors ${
+                            isChecked
+                              ? "text-black font-semibold"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {form}
+                        </span>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
 
-              <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
-                Показать товары
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("product-grid-view");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
+                >
+                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                </button>
+                {selectedFormulas.length > 0 && (
+                  <button
+                    onClick={handleResetFilters}
+                    className="w-full py-1 text-gray-500 hover:text-black transition-colors font-fira-sans text-xs underline cursor-pointer text-center"
+                  >
+                    {t("resetFilters", "Сбросить фильтры")}
+                  </button>
+                )}
+              </div>
             </div>
 
-            <div className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -203,349 +294,246 @@ const Pogruzki = () => {
                       : "flex flex-col gap-5"
                   }
                 >
-                  {dummyProducts.map((product) => (
-                    <motion.div
-                      variants={fadeUp}
-                      key={product.id}
-                      className={
-                        viewMode === "grid"
-                          ? "bg-white group flex flex-col"
-                          : "bg-white group flex flex-col md:flex-row"
-                      }
-                    >
-                      <NavLink
-                        to={`/kryukovye-pogruzchiki/${product.slug}`}
-                        className={
-                          viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
-                        }
+                  {filteredProducts.length === 0 ? (
+                    <div className="col-span-full py-16 text-center bg-white border border-dashed border-gray-300 rounded-md p-8">
+                      <p className="font-fira-sans text-lg font-medium text-gray-700 mb-2">
+                        {t("noProductsFound", "Товары не найдены")}
+                      </p>
+                      <p className="font-fira-sans text-sm text-gray-500 mb-6">
+                        {t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}
+                      </p>
+                      <button
+                        onClick={handleResetFilters}
+                        className="bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer"
                       >
-                        <img
-                          src={product.img}
-                          alt="Images"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        />
-
-                        {product.outOfStock && (
-                          <div className="absolute inset-0 bg-white/70 flex items-center justify-center backdrop-blur-[1px]">
-                            <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider">
-                              Нет в продаже
-                            </span>
-                          </div>
-                        )}
-
-                        <button
-                          type="button"
-                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <Heart className="w-6 h-6" />
-                        </button>
-                      </NavLink>
-
-                      <div
-                        className={
-                          viewMode === "grid"
-                            ? "p-2 flex flex-col flex-1"
-                            : "p-2 flex flex-col md:flex-row flex-1 justify-between gap-6"
-                        }
-                      >
-                        <div
-                          className={
-                            viewMode === "list"
-                              ? "flex-1 flex flex-col max-w-112.5"
-                              : "flex-1 flex flex-col"
-                          }
-                        >
-                          <NavLink to={`/kryukovye-pogruzchiki/${product.slug}`}>
-                            <h3
-                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
-                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
-                              }`}
-                            >
-                              {product.title}
-                            </h3>
-                          </NavLink>
-                        </div>
-
-                        <div
+                        {t("resetFilters", "Сбросить фильтры")}
+                      </button>
+                    </div>
+                  ) : (
+                    filteredProducts.map((product) => {
+                      const localizedTitle = translateTitle(product.title, lang);
+                      return (
+                        <motion.div
+                          variants={fadeUp}
+                          key={product.id}
                           className={
                             viewMode === "grid"
-                              ? "mt-auto"
-                              : "flex flex-col items-end justify-between shrink-0"
+                              ? "bg-white group flex flex-col"
+                              : "bg-white group flex flex-col md:flex-row"
                           }
                         >
-                          <p
-                            className={`font-fira-sans font-bold text-xl ${viewMode === "grid" ? "mb-5" : "mb-4"}`}
+                          <NavLink
+                            to={`/catalog/kryukovye-pogruzchiki/${product.slug}`}
+                            className={
+                              viewMode === "grid"
+                                ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
+                                : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                            }
                           >
-                            {product.price}
-                          </p>
+                            <img
+                              src={product.img}
+                              alt={localizedTitle}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+
+                            {product.outOfStock && (
+                              <div className="absolute inset-0 bg-white/70 flex items-center justify-center backdrop-blur-[1px]">
+                                <span className="font-fira-sans font-bold text-gray-600 text-lg uppercase tracking-wider">
+                                  {t("outOfStock", "Нет в продаже")}
+                                </span>
+                              </div>
+                            )}
+
+                            <button
+                              type="button"
+                              className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
+                                isInFavorites(product)
+                                  ? "text-red-500"
+                                  : "text-gray-500 hover:text-red-500"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleFavorite(product);
+                              }}
+                              title={
+                                isInFavorites(product)
+                                  ? t("removeFromFavorites", "Удалить из избранного")
+                                  : t("addToFavorites", "В избранное")
+                              }
+                            >
+                              <Heart
+                                className={`w-6 h-6 transition-transform active:scale-125 ${
+                                  isInFavorites(product)
+                                    ? "fill-red-500 text-red-500"
+                                    : ""
+                                }`}
+                              />
+                            </button>
+                          </NavLink>
 
                           <div
                             className={
                               viewMode === "grid"
-                                ? "flex items-center justify-between gap-2"
-                                : "flex flex-col items-end gap-4 w-full"
+                                ? "p-3 flex flex-col flex-1"
+                                : "p-3 flex flex-col md:flex-row flex-1 justify-between gap-6"
                             }
                           >
-                            <NavLink
-                              to={`/kryukovye-pogruzchiki/${product.slug}`}
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
-                                viewMode === "list" ? "w-full" : ""
-                              }`}
+                            <div
+                              className={
+                                viewMode === "list"
+                                  ? "flex-1 flex flex-col max-w-112.5"
+                                  : "flex-1 flex flex-col"
+                              }
                             >
-                              Подробнее
-                            </NavLink>
+                              <NavLink to={`/catalog/kryukovye-pogruzchiki/${product.slug}`}>
+                                <h3
+                                  className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
+                                    viewMode === "list"
+                                      ? "mb-6 text-lg"
+                                      : "mb-4 flex-1 line-clamp-2"
+                                  }`}
+                                >
+                                  {localizedTitle}
+                                </h3>
+                              </NavLink>
+
+                              {product.specs && (
+                                <ul className="space-y-1 mb-4 text-xs text-gray-600">
+                                  {product.specs.map((s, idx) => (
+                                    <li
+                                      key={idx}
+                                      className="flex justify-between border-b border-gray-100 py-0.5"
+                                    >
+                                      <span className="text-gray-400">
+                                        {translateSpecLabel(s.label, lang)}:
+                                      </span>
+                                      <span className="font-medium text-gray-700">
+                                        {translateSpecValue(s.value, lang)}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
 
                             <div
-                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                              className={
+                                viewMode === "grid"
+                                  ? "mt-auto"
+                                  : "flex flex-col items-end justify-between shrink-0"
+                              }
+                            >
+                              <p
+                                className={`font-fira-sans font-bold text-lg sm:text-xl text-black ${
+                                  viewMode === "grid" ? "mb-4" : "mb-4"
+                                }`}
+                              >
+                                {translatePrice(product.price, lang)}
+                              </p>
+
+                              <div
+                                className={
+                                  viewMode === "grid"
+                                    ? "flex items-center justify-between gap-2"
+                                    : "flex flex-col items-end gap-4 w-full"
+                                }
+                              >
+                                <NavLink
+                                  to={`/catalog/kryukovye-pogruzchiki/${product.slug}`}
+                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm text-center ${
+                                    viewMode === "list" ? "w-full" : ""
+                                  }`}
                                 >
-                                  {viewMode === "grid" && (
-                                    <>
-                                      <button className="hover:text-black transition-colors">
-                                        <ShoppingCart className="w-5 h-5" />
-                                      </button>
-                                      <button className="hover:text-black transition-colors">
-                                        <Heart className="w-5 h-5" />
-                                      </button>
-                                    </>
-                                  )}
+                                  {t("learnMore", "Подробнее")}
+                                </NavLink>
+
+                                <div
+                                  className={`flex items-center text-gray-500 ${
+                                    viewMode === "grid"
+                                      ? "gap-3"
+                                      : "gap-4 w-full justify-between"
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <button
+                                      type="button"
+                                      onClick={() => addToCart(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInCart(product)
+                                          ? "text-green-600 font-bold"
+                                          : "hover:text-black"
+                                      }`}
+                                      title={
+                                        isInCart(product)
+                                          ? t("inCart", "В корзине")
+                                          : t("addToCart", "Добавить в корзину")
+                                      }
+                                    >
+                                      <ShoppingCart
+                                        className={`w-5 h-5 ${
+                                          isInCart(product)
+                                            ? "text-green-600"
+                                            : ""
+                                        }`}
+                                      />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleFavorite(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInFavorites(product)
+                                          ? "text-red-500"
+                                          : "hover:text-black"
+                                      }`}
+                                      title={
+                                        isInFavorites(product)
+                                          ? t("removeFromFavorites", "Удалить из избранного")
+                                          : t("addToFavorites", "В избранное")
+                                      }
+                                    >
+                                      <Heart
+                                        className={`w-5 h-5 ${
+                                          isInFavorites(product)
+                                            ? "fill-red-500 text-red-500"
+                                            : ""
+                                        }`}
+                                      />
+                                    </button>
+                                  </div>
                                   <button
-                                    className={`flex items-center gap-1.5 ${viewMode === "list" ? "ml-auto" : ""}`}
+                                    type="button"
+                                    onClick={() => {
+                                      const el = document.getElementById(
+                                        "feedback-section"
+                                      );
+                                      if (el)
+                                        el.scrollIntoView({
+                                          behavior: "smooth",
+                                        });
+                                    }}
+                                    className={`flex items-center gap-1.5 hover:text-black transition-colors cursor-pointer group/kp ${
+                                      viewMode === "list" ? "ml-auto" : ""
+                                    }`}
                                   >
-                                    <span className="text-[9px] text-gray-400 hover:text-black transition-colors font-medium">
-                                      Получить КП
+                                    <span className="font-fira-sans text-[9px]">
+                                      {t("getKp", "Получить КП")}
                                     </span>
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                        </motion.div>
+                      );
+                    })
+                  )}
                 </motion.div>
               )}
 
-              {viewMode === "grid" && (
-                <div>
-                  <p className="text-lg font-fira-sans">
-                    Транспортная логистика оказывает значительное влияние на
-                    развитие промышленности и торговли. Для эффективной работы
-                    портов и складов используют крюковой погрузчик, способный
-                    справляться с тяжелыми грузами. Новые технические решения в
-                    этой сфере повышают скорость и безопасность операций.
-                    Компания «РусТрак» внедряет инновационные подходы,
-                    оптимизируя процессы перевозки и хранения. Автоматизация и
-                    цифровые системы контроля позволяют снизить человеческий
-                    фактор и ускорить обработку грузов. Применение современных
-                    механизмов значительно увеличивает производительность и
-                    снижает издержки.
-                  </p>
-
-                  <h2 className="font-fira-sans font-medium text-2xl mt-3 mb-3">
-                    Ассортимент
-                  </h2>
-
-                  <p className="text-lg font-fira-sans">
-                    Мы предлагаем только качественную и сертифицированную
-                    технику, которая соответствует всем стандартам безопасности
-                    и надежности. Каждая единица оборудования проходит строгий
-                    контроль и готова к интенсивной эксплуатации, что
-                    гарантирует долгий срок службы и эффективность работы. Среди
-                    представленных марок:
-                  </p>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">ISUZU</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="inline-block romb"></span>
-                      <p className="text-lg font-fira-sans">HYUNDAI</p>
-                    </li>
-                  </ul>
-
-                  <p className="text-lg font-fira-sans">
-                    Все модели оснащены современными системами управления и
-                    проверенными механизмами, что делает их удобными и
-                    безопасными в эксплуатации. Выбор техники позволяет
-                    подобрать оптимальное решение под любые задачи и условия
-                    работы, обеспечивая стабильность и производительность на
-                    высоком уровне.
-                  </p>
-
-                  <h2 className="text-2xl font-fira-sans font-medium mt-3 mb-3">
-                    Особенности крюковых погрузчиков
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Мощные подъемные механизмы – крюковые мультилифты
-                        позволяют легко справляться с тяжелыми и
-                        крупногабаритными грузами.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Надёжная конструкция шасси – обеспечивает стабильность и
-                        долговечность даже при интенсивной эксплуатации.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Гибкость и маневренность – техника легко работает в
-                        ограниченном пространстве, на узких складах и
-                        стройплощадках.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Система автоматической защиты – предотвращает перегрузку
-                        и защищает механизмы от поломок.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Энергоэффективность – оптимизированный расход топлива
-                        снижает эксплуатационные затраты.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Удобство обслуживания – простая конструкция узлов и
-                        лёгкий доступ к сервисным точкам ускоряют ремонт и
-                        техобслуживание.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Адаптивность к условиям работы – техника готова к
-                        эксплуатации при разных климатических и дорожных
-                        условиях.
-                      </p>
-                    </li>
-                  </ul>
-
-                  <h2 className="text-2xl font-medium font-fira-sans mt-3 mb-3">
-                    Сферы применения
-                  </h2>
-
-                  <p className="text-lg font-fira-sans">
-                    Погрузчик с крюком активно используется в портах и на
-                    терминалах для быстрой погрузки и разгрузки контейнеров и
-                    крупногабаритных грузов. Техника позволяет эффективно
-                    перемещать тяжелые материалы между складами и транспортными
-                    средствами, ускоряя обработку грузов и снижая нагрузку на
-                    персонал. На строительных площадках такие машины помогают
-                    транспортировать строительные блоки, металлоконструкции и
-                    другие тяжёлые материалы, обеспечивая точность и
-                    безопасность при подъёме и перемещении. Их универсальность
-                    позволяет работать в ограниченном пространстве и на неровной
-                    местности, что особенно важно для крупных объектов и
-                    многоэтажного строительства.
-                  </p>
-                  <p className="text-lg font-fira-sans">
-                    В промышленности техника применяется для перемещения сырья,
-                    готовой продукции и крупногабаритного оборудования внутри
-                    производственных цехов и складских помещений. Использование
-                    современных механизмов повышает скорость операций и
-                    минимизирует риск повреждения грузов, что делает
-                    логистические процессы более стабильными и предсказуемыми.
-                  </p>
-
-                  <h2 className="text-2xl font-fira-sans font-medium mt-3 mb-3">
-                    Преимущества работы с компанией «РусТрак»
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Широкий выбор техники – компания предлагает
-                        разнообразные модели погрузчиков и специализированного
-                        оборудования, что позволяет подобрать решение под любые
-                        задачи.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Качественная сертифицированная техника – крюковой
-                        погрузчик проходит строгий контроль качества и полностью
-                        соответствует стандартам безопасности и надежности.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Профессиональная поддержка – специалисты компании готовы
-                        помочь с выбором, настройкой и эксплуатацией
-                        оборудования.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Сервисное обслуживание и запчасти – оперативный ремонт и
-                        наличие оригинальных запчастей минимизируют простои
-                        техники.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Индивидуальные решения – компания подбирает технику и
-                        условия работы с учетом особенностей бизнеса каждого
-                        клиента.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Опыт и репутация – «РусТрак» имеет многолетний опыт на
-                        рынке и зарекомендовал себя как надежный партнер в сфере
-                        транспортной логистики.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Оптимизация затрат – выгодные условия поставки и
-                        обслуживания помогают снизить расходы на эксплуатацию
-                        оборудования.
-                      </p>
-                    </li>
-                  </ul>
-
-                  <h2 className="text-2xl font-medium font-fira-sans mt-3 mb-3">
-                    Надёжные решения для грузоперевозок
-                  </h2>
-                  <p className="font-fira-sans text-lg">
-                    Погрузчик с крюком демонстрирует высокую эффективность при
-                    работе с тяжелыми грузами и ускоряет логистические процессы.
-                    Инвестиции в современную технику помогают повысить
-                    производительность и снизить затраты. Компания «РусТрак»
-                    предлагает широкий спектр решений для транспортной логистики
-                    и обслуживания оборудования. Оцените возможности
-                    автоматизации и внедрите новые технологии в свой бизнес.
-                    Следите за обновлениями и совершенствуйте процессы хранения
-                    и перевозки грузов. Для оформления заказа свяжитесь с нами
-                    любым удобным способом, и наши специалисты помогут подобрать
-                    оптимальное решение.
-                  </p>
-                </div>
-              )}
+              {/* Multilingual SEO Description Article */}
+              {viewMode === "grid" && <CategoryArticle category="kryukovye" />}
             </div>
           </div>
           {viewMode === "grid" && <Slider />}

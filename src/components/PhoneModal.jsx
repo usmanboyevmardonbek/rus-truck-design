@@ -2,8 +2,11 @@ import { X } from "lucide-react";
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { fadeUp } from "../utils/animation";
+import { useLanguage } from "../context/LanguageContext";
 
 export function PhoneModal({ isOpen, onClose }) {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -22,33 +25,39 @@ export function PhoneModal({ isOpen, onClose }) {
           >
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-gray-500 hover:text-black"
+          className="absolute right-4 top-4 text-gray-500 hover:text-black cursor-pointer"
         >
           <X className="w-6 h-6" />
         </button>
 
-        <h2 className="text-2xl font-bold text-center mt-2 mb-2 font-fira-sans">Заказать звонок</h2>
-        <p className="text-center text-sm font-medium mb-8 font-fira-sans">
-          Наш менеджер свяжется с Вами в ближайшее время
+        <h2 className="text-2xl font-bold text-center mt-2 mb-2 font-fira-sans">
+          {t("modalCallTitle", "Заказать звонок")}
+        </h2>
+        <p className="text-center text-sm font-medium mb-8 font-fira-sans text-gray-600">
+          {t("modalCallSubtitle", "Наш менеджер свяжется с Вами в ближайшее время")}
         </p>
 
         <form className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1 font-fira-sans">Ваше имя *</label>
+            <label className="block text-sm font-medium mb-1 font-fira-sans">
+              {t("modalName", "Ваше имя *")}
+            </label>
             <input
               type="text"
-              placeholder="Иван"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:border-yellow-400"
+              placeholder=""
+              className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:border-yellow-400 font-fira-sans"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1 font-fira-sans">Телефон *</label>
+            <label className="block text-sm font-medium mb-1 font-fira-sans">
+              {t("modalPhone", "Телефон *")}
+            </label>
             <input
               type="tel"
-              placeholder="+7"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:border-yellow-400"
+              placeholder="+998 / +7"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:border-yellow-400 font-fira-sans"
               required
             />
           </div>
@@ -60,25 +69,22 @@ export function PhoneModal({ isOpen, onClose }) {
               className="mt-1 w-5 h-5 accent-black cursor-pointer rounded"
               required
             />
-            <label htmlFor="agreement" className="text-sm text-gray-600 leading-tight font-fira-sans mt-2">
-              Я согласен{" "}
-              <a href="#" className="text-blue-600 hover:underline ">
-                на обработку персональных данных
-              </a>
+            <label htmlFor="agreement" className="text-sm text-gray-600 leading-tight font-fira-sans mt-1">
+              {t("modalAgree", "Даю согласие на обработку персональных данных")}
             </label>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-[#FEC80B] hover:bg-yellow-500 text-black font-medium py-3 rounded-md transition-colors mt-6"
+            className="w-full bg-[#FEC80B] hover:bg-yellow-500 text-black font-medium py-3 rounded-md transition-colors mt-6 font-fira-sans cursor-pointer"
           >
-            Оставить заявку
+            {t("modalSubmit", "Заказать звонок")}
           </button>
         </form>
 
         <div className="mt-8 text-center text-sm space-y-1">
-          <p className="font-fira-sans">Для регионов: <span className="font-medium font-fira-sans">8 (800) 511-05-25</span></p>
-          <p className="font-fira-sans">Нижний Новгород: <span className="font-medium font-fira-sans">8 (831) 235-25-51</span></p>
+          <p className="font-fira-sans">{t("forRegions", "Для регионов:")} <span className="font-medium font-fira-sans">8 (800) 511-05-25</span></p>
+          <p className="font-fira-sans">{t("nizhnyNovgorod", "Нижний Новгород:")} <span className="font-medium font-fira-sans">8 (831) 235-25-51</span></p>
         </div>
           </motion.div>
         </motion.div>

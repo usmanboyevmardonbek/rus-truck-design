@@ -7,15 +7,24 @@ import {
   Heart,
   ShoppingCart,
   Download,
-  ChevronDown,
 } from "lucide-react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
+import { useCart } from "../context/CartContext";
 import Footer from "../components/footer";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
 import Feedback from "../components/Feedback";
 import Slider from "../components/Slider";
 import { NavLink } from "react-router-dom";
+import { matchesBrand } from "../utils/filterUtils";
+import {
+  translateTitle,
+  translateSpecLabel,
+  translateSpecValue,
+  translatePrice,
+} from "../utils/productTranslation";
+import CategoryArticle from "../components/CategoryArticle";
 
 const dummyProducts = [
   {
@@ -47,11 +56,35 @@ const dummyProducts = [
 const brands = ["КАМАЗ", "JAC", "DAEWOO", "FAW", "DONG FENG", "SHACMAN"];
 
 const Autofurgony = () => {
+  const { t, lang } = useLanguage();
+  const { addToCart, isInCart, toggleFavorite, isInFavorites } = useCart();
   const [shtor, setShtore] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
     return localStorage.getItem("autofurgonyViewMode") || "grid";
   });
   const [isLocalLoading, setIsLocalLoading] = useState(false);
+
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [brandSearch, setBrandSearch] = useState("");
+
+  const handleToggleBrand = (brand) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+    );
+  };
+
+  const handleResetFilters = () => {
+    setSelectedBrands([]);
+    setBrandSearch("");
+  };
+
+  const visibleBrands = brands.filter((b) =>
+    b.toLowerCase().includes(brandSearch.trim().toLowerCase())
+  );
+
+  const filteredProducts = dummyProducts.filter((product) =>
+    matchesBrand(product, selectedBrands)
+  );
 
   const handleViewChange = (mode) => {
     if (mode === viewMode) return;
@@ -69,69 +102,71 @@ const Autofurgony = () => {
       <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
-          <ul className="flex items-center gap-2 mb-6">
+          <ul className="flex items-center gap-2 mb-6 flex-wrap">
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Главная
+              <NavLink to="/">{t("home", "Главная")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
-              Каталог
+              <NavLink to="/catalog">{t("catalog", "Каталог")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
             <li className="font-fira-sans text-gray-400 text-sm">
-              Изотермические фургоны
+              {t("cat_avtofurgony", "Изотермические фургоны")}
             </li>
           </ul>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                Изотермические фургоны
+                {t("cat_avtofurgony", "Изотермические фургоны")}
               </h1>
-              <p className="font-fira-sans text-gray-400 text-sm">16 товаров</p>
+              <p className="font-fira-sans text-gray-400 text-sm">
+                {filteredProducts.length} {t("productsWord", "товаров")}
+              </p>
             </div>
 
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2 relative">
                 <span className="font-fira-sans text-gray-400 text-sm">
-                  Сортировка:
+                  {t("sortBy", "Сортировка:")}
                 </span>
                 <div className="relative z-50">
                   <button
                     className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
                     onClick={() => setShtore(!shtor)}
                   >
-                    По бренду
+                    {t("sortBrand", "По бренду")}
                   </button>
                   <ul
                     className={
-                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden " +
-                      (shtor ? "h-50" : "h-0")
+                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden shadow-lg z-50 " +
+                      (shtor ? "h-54" : "h-0")
                     }
                   >
                     <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По популярности
+                        {t("sortPopular", "По популярности")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        Сначала новые
+                        {t("sortNewest", "Сначала новые")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        В наличии
+                        {t("sortInStock", "В наличии")}
                       </p>
                     </li>
                     <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По возрастанию цены
+                        {t("sortPriceAsc", "По возрастанию цены")}
                       </p>
                     </li>
                     <li className="border-b border-x rounded-b-sm border-[#a2a2a2] w-60 bg-white">
                       <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
-                        По бренду
+                        {t("sortBrand", "По бренду")}
                       </p>
                     </li>
                   </ul>
@@ -141,13 +176,17 @@ const Autofurgony = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleViewChange("list")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <List className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => handleViewChange("grid")}
-                  className={`p-2 transition-colors rounded-sm ${viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"}`}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                  }`}
                 >
                   <Grid2x2 className="w-5 h-5" />
                 </button>
@@ -155,45 +194,92 @@ const Autofurgony = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-start mb-20">
+          <div className="flex flex-col lg:flex-row gap-8 items-start mb-25">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">Марка</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">{t("brand", "Марка")}</h3>
                 <div className="relative mb-4">
                   <input
                     type="text"
-                    placeholder="Найти"
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none"
+                    value={brandSearch}
+                    onChange={(e) => setBrandSearch(e.target.value)}
+                    placeholder={t("search", "Найти")}
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none focus:border-[#FEC80B]"
                   />
-                  <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <div className="flex flex-col gap-3">
-                  {brands.map((brand, idx) => (
-                    <label
-                      key={idx}
-                      className="flex items-center gap-3 cursor-pointer group"
-                    >
-                      <div className="relative flex items-center justify-center w-5 h-5 border border-gray-300 rounded-sm  transition-colors">
-                        <input
-                          type="checkbox"
-                          className="absolute w-full h-full cursor-pointer accent-black"
-                        />
-                        
-                      </div>
-                      <span className="font-fira-sans text-sm text-gray-700">
-                        {brand}
-                      </span>
-                    </label>
-                  ))}
+                  {visibleBrands.length === 0 ? (
+                    <p className="text-xs text-gray-400 py-2 font-fira-sans">{t("brandNotFound", "Бренд не найден")}</p>
+                  ) : (
+                    visibleBrands.map((brand, idx) => {
+                      const isChecked = selectedBrands.includes(brand);
+                      return (
+                        <label
+                          key={idx}
+                          className="flex items-center gap-3 cursor-pointer group select-none"
+                        >
+                          <div
+                            className={`relative flex items-center justify-center w-5 h-5 border rounded-sm transition-colors shrink-0 ${
+                              isChecked
+                                ? "bg-[#FEC80B] border-[#FEC80B]"
+                                : "border-gray-300 group-hover:border-[#FEC80B]"
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={isChecked}
+                              onChange={() => handleToggleBrand(brand)}
+                              className="absolute opacity-0 w-full h-full cursor-pointer z-10"
+                            />
+                            {isChecked && (
+                              <svg
+                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            )}
+                          </div>
+                          <span
+                            className={`font-fira-sans text-sm transition-colors ${
+                              isChecked ? "text-black font-semibold" : "text-gray-700"
+                            }`}
+                          >
+                            {brand}
+                          </span>
+                        </label>
+                      );
+                    })
+                  )}
                 </div>
               </div>
 
-              <button className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm">
-                Показать товары
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("product-grid-view");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
+                >
+                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                </button>
+                {selectedBrands.length > 0 && (
+                  <button
+                    onClick={handleResetFilters}
+                    className="w-full py-1 text-gray-500 hover:text-black transition-colors font-fira-sans text-xs underline cursor-pointer text-center"
+                  >
+                    {t("resetFilters", "Сбросить фильтры")}
+                  </button>
+                )}
+              </div>
             </div>
 
-            <div className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -209,362 +295,171 @@ const Autofurgony = () => {
                       : "flex flex-col gap-5"
                   }
                 >
-                  {dummyProducts.map((product) => (
-                    <motion.div
-                      variants={fadeUp}
-                      key={product.id}
-                      className={
-                        viewMode === "grid"
-                          ? "bg-white group flex flex-col"
-                          : "bg-white group flex flex-col md:flex-row"
-                      }
-                    >
-                      <NavLink
-                        to={`/avtofurgony/${product.slug}`}
-                        className={
-                          viewMode === "grid"
-                            ? "relative bg-gray-200 aspect-4/3-full flex items-center justify-center overflow-hidden shrink-0"
-                            : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
-                        }
+                  {filteredProducts.length === 0 ? (
+                    <div className="col-span-full py-16 text-center bg-white border border-dashed border-gray-300 rounded-md p-8">
+                      <p className="font-fira-sans text-lg font-medium text-gray-700 mb-2">
+                        {t("noProductsFound", "Товары не найдены")}
+                      </p>
+                      <p className="font-fira-sans text-sm text-gray-500 mb-6">{t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}</p>
+                      <button
+                        onClick={handleResetFilters}
+                        className="bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer"
                       >
-                        <img
-                          src={product.img}
-                          alt="Images"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        />
-
-                        <button
-                          type="button"
-                          className="absolute top-4 right-4 text-gray-500 hover:text-black transition-colors z-10"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <Heart className="w-6 h-6" />
-                        </button>
-                      </NavLink>
-
-                      <div
-                        className={
-                          viewMode === "grid"
-                            ? "p-2 flex flex-col flex-1"
-                            : "p-2 flex flex-col md:flex-row flex-1 justify-between gap-6"
-                        }
-                      >
-                        <div
-                          className={
-                            viewMode === "list"
-                              ? "flex-1 flex flex-col max-w-112.5"
-                              : "flex-1 flex flex-col"
-                          }
-                        >
-                          <NavLink to={`/avtofurgony/${product.slug}`}>
-                            <h3
-                              className={`font-fira-sans text-lg hover:text-[#FEC80B] transition-colors ${
-                                viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
-                              }`}
-                            >
-                              {product.title}
-                            </h3>
-                          </NavLink>
-                        </div>
-
-                        <div
+                        {t("resetFilters", "Сбросить фильтры")}
+                      </button>
+                    </div>
+                  ) : (
+                    filteredProducts.map((product) => {
+                      const localizedTitle = translateTitle(product.title, lang);
+                      return (
+                        <motion.div
+                          variants={fadeUp}
+                          key={product.id}
                           className={
                             viewMode === "grid"
-                              ? "mt-auto"
-                              : "flex flex-col items-end justify-between shrink-0"
+                              ? "bg-white group flex flex-col"
+                              : "bg-white group flex flex-col md:flex-row"
                           }
                         >
-                          <p
-                            className={`font-fira-sans font-bold text-xl ${viewMode === "grid" ? "mb-5" : "mb-4"}`}
+                          <NavLink
+                            to={`/catalog/avtofurgony/${product.slug}`}
+                            className={
+                              viewMode === "grid"
+                                ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                                : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                            }
                           >
-                            {product.price}
-                          </p>
+                            <img
+                              src={product.img}
+                              alt={localizedTitle}
+                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            />
+                            <button
+                              type="button"
+                              className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
+                                isInFavorites(product) ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleFavorite(product);
+                              }}
+                              title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                            >
+                              <Heart className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                            </button>
+                          </NavLink>
 
                           <div
                             className={
                               viewMode === "grid"
-                                ? "flex items-center justify-between gap-2"
-                                : "flex flex-col items-end gap-4 w-full"
+                                ? "p-3 flex flex-col flex-1"
+                                : "p-3 flex flex-col md:flex-row flex-1 justify-between gap-6"
                             }
                           >
-                            <NavLink
-                              to={`/avtofurgony/${product.slug}`}
-                              className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm text-center ${
-                                viewMode === "list" ? "w-full" : ""
-                              }`}
+                            <div
+                              className={
+                                viewMode === "list"
+                                  ? "flex-1 flex flex-col max-w-111"
+                                  : "flex-1 flex flex-col"
+                              }
                             >
-                              Подробнее
-                            </NavLink>
+                              <NavLink to={`/catalog/avtofurgony/${product.slug}`}>
+                                <h3
+                                  className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
+                                    viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                  }`}
+                                >
+                                  {localizedTitle}
+                                </h3>
+                              </NavLink>
+                            </div>
 
                             <div
-                              className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                              className={
+                                viewMode === "grid"
+                                  ? "mt-auto"
+                                  : "flex flex-col items-end justify-between shrink-0"
+                              }
+                            >
+                              <p
+                                className={`font-fira-sans font-bold text-lg sm:text-xl text-black ${viewMode === "grid" ? "mb-4" : "mb-4"}`}
+                              >
+                                {translatePrice(product.price, lang)}
+                              </p>
+
+                              <div
+                                className={
+                                  viewMode === "grid"
+                                    ? "flex items-center justify-between gap-2"
+                                    : "flex flex-col items-end gap-4 w-full"
+                                }
+                              >
+                                <NavLink
+                                  to={`/catalog/avtofurgony/${product.slug}`}
+                                  className={`bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm text-center ${
+                                    viewMode === "list" ? "w-full" : ""
+                                  }`}
                                 >
-                                  {viewMode === "grid" && (
-                                    <>
-                                      <button className="hover:text-black transition-colors">
-                                        <ShoppingCart className="w-5 h-5" />
-                                      </button>
-                                      <button className="hover:text-black transition-colors">
-                                        <Heart className="w-5 h-5" />
-                                      </button>
-                                    </>
-                                  )}
+                                  {t("learnMore", "Подробнее")}
+                                </NavLink>
+
+                                <div
+                                  className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <button
+                                      type="button"
+                                      onClick={() => addToCart(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInCart(product) ? "text-green-600 font-bold" : "hover:text-black"
+                                      }`}
+                                      title={isInCart(product) ? t("inCart", "В корзине") : t("addToCart", "Добавить в корзину")}
+                                    >
+                                      <ShoppingCart className={`w-5 h-5 ${isInCart(product) ? "text-green-600" : ""}`} />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleFavorite(product)}
+                                      className={`transition-colors cursor-pointer ${
+                                        isInFavorites(product) ? "text-red-500" : "hover:text-black"
+                                      }`}
+                                      title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                                    >
+                                      <Heart className={`w-5 h-5 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                                    </button>
+                                  </div>
                                   <button
-                                    className={`flex items-center gap-1.5 hover:text-black transition-colors group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
+                                    type="button"
+                                    onClick={() => {
+                                      const el = document.getElementById("feedback-section");
+                                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                                    }}
+                                    className={`flex items-center gap-1.5 hover:text-black transition-colors cursor-pointer group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
                                   >
-                                    <p className="text-[9px] font-fira-sans ">
-                                      Получить КП
-                                    </p>
+                                    <span className="font-fira-sans text-[9px]">{t("getKp", "Получить КП")}</span>
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                        </motion.div>
+                      );
+                    })
+                  )}
                 </motion.div>
               )}
 
-              {viewMode === "grid" && (
-                <div>
-                  <p className="text-lg font-fira-sans">
-                    Транспортировка товаров с соблюдением температурного режима
-                    становится всё более востребованной в разных отраслях.
-                    Купить изотермический фургон для сохранения качества
-                    продукции на протяжении всего пути становится рациональным
-                    решением для компаний, стремящихся к оптимизации логистики.
-                    Использование специализированных транспортных средств
-                    снижает риск порчи и экономит ресурсы. Компания «РусТрак»
-                    предлагает широкий выбор моделей с современными технологиями
-                    изоляции и контроля температуры. Инвестиции в надежный
-                    транспорт повышают эффективность логистических процессов и
-                    минимизируют убытки. Надёжность техники напрямую отражается
-                    на доверии клиентов и стабильности бизнеса.
-                  </p>
-                  <h2 className="mt-3 mb-3 text-2xl font-fira-sans font-medium">
-                    Ассортимент
-                  </h2>
-
-                  <p className="text-lg font-fira-sans">
-                    В компании представлен широкий выбор техники для перевозки
-                    различных грузов. Каждый грузовой фургон изотермический
-                    способен обеспечить надежную доставку и сохранность
-                    продукции. Модели отличаются габаритами, грузоподъемностью и
-                    особенностями конструкции, что позволяет подобрать
-                    оптимальный вариант для любых перевозок. Среди доступных
-                    марок:
-                  </p>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">KAMAZ</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">JAC</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">DAEWOO</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">FAW</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">ISUZU</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">HYUNDAI</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">HINO</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">DONG FENG</p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">SHACMAN</p>
-                    </li>
-                  </ul>
-                  <p className="text-lg font-fira-sans">
-                    Каждая марка отличается надежностью и современными
-                    технологиями, обеспечивая сохранность груза на всех этапах
-                    транспортировки. Выбор подходящей модели позволяет
-                    оптимизировать логистику и повысить эффективность работы
-                    компании.
-                  </p>
-
-                  <h2 className="text-2xl font-fira-sans mt-3 mb-3 font-medium">
-                    Особенности изотермических фургонов
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Сохранение температуры – надежная термоизоляция
-                        позволяет поддерживать стабильный температурный режим,
-                        предотвращая порчу продукции.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Разнообразие моделей – широкий выбор фургонов разного
-                        объема и грузоподъёмности обеспечивает оптимальный
-                        вариант для любых задач.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Надежность техники – проверенные марки и современные
-                        технологии снижают риск поломок и обеспечивают долгий
-                        срок службы транспорта.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb-2 inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Экономия ресурсов – уменьшение потерь груза и
-                        оптимизация логистики сокращают затраты на перевозку и
-                        хранение, при этом фургоны изотермические цены которые
-                        остаются доступными для компаний любого масштаба.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Удобство эксплуатации – продуманная конструкция фургонов
-                        облегчает загрузку, разгрузку и обслуживание транспорта.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Поддержка производителя – наличие сервисных центров и
-                        консультаций позволяет быстро решать любые вопросы,
-                        связанные с эксплуатацией.
-                      </p>
-                    </li>
-                  </ul>
-
-                  <h2 className="font-medium font-fira-sans text-2xl mt-3 mb-3">
-                    Сферы применения
-                  </h2>
-                  <p className="text-lg font-fira-sans">
-                    Изотермические фургоны активно используются в пищевой
-                    промышленности для перевозки продуктов, требующих
-                    поддержания определённой температуры. Фрукты, овощи, мясо и
-                    молочная продукция сохраняют свежесть на протяжении всего
-                    пути, что особенно важно для дальних перевозок и дистрибуции
-                    в розничные сети.
-                  </p>
-                  <p className="text-lg font-fira-sans">
-                    Транспорт с термоизоляцией также незаменим для
-                    фармацевтической отрасли. Лекарства, вакцины и другие
-                    медицинские препараты требуют строгого соблюдения
-                    температурного режима, а изотермический фургон обеспечивает
-                    безопасные условия доставки от производителя до конечного
-                    потребителя.
-                  </p>
-                  <p className="text-lg font-fira-sans">
-                    Кроме того, такие фургоны применяются в химической и
-                    косметической промышленности. Продукция, чувствительная к
-                    перепадам температуры, сохраняет свои свойства благодаря
-                    поддержанию стабильного микроклимата внутри кузова.
-                    Использование надёжного транспорта минимизирует риски порчи
-                    и повышает эффективность логистических процессов.
-                  </p>
-
-                  <h2 className="text-2xl font-medium font-fira-sans mt-3 mb-3">
-                    Преимущества работы с компанией «РусТрак»
-                  </h2>
-
-                  <ul>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb-2 inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Широкий выбор техники – компания предлагает фургоны
-                        разных марок и моделей, что позволяет подобрать
-                        оптимальный вариант под любые задачи, при этом новый
-                        изотермический фургон цена остаётся конкурентоспособной.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Качество и надежность – все транспортные средства
-                        соответствуют современным стандартам и проходят проверку
-                        перед продажей, обеспечивая долгий срок службы.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Профессиональная консультация – специалисты помогают
-                        выбрать подходящую модель с учётом особенностей бизнеса
-                        и требований к перевозкам.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Поддержка и сервис – «РусТрак» обеспечивает сервисное
-                        обслуживание, ремонт и поставку запчастей, что снижает
-                        риски простоя техники.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Индивидуальный подход – компания учитывает потребности
-                        каждого клиента, предлагая гибкие условия покупки и
-                        дополнительное оборудование.
-                      </p>
-                    </li>
-                    <li className="flex items-center gap-4 mt-3 mb-3">
-                      <span className="romb inline-block"></span>
-                      <p className="text-lg font-fira-sans">
-                        Оптимизация логистики – грамотный подбор техники и
-                        сопровождение сделки позволяют повысить эффективность
-                        перевозок и сократить расходы.
-                      </p>
-                    </li>
-                  </ul>
-
-                  <h2 className="text-2xl font-medium font-fira-sans mt-3 mb-3">
-                    Оптимальные решения для температурной логистики
-                  </h2>
-
-                  <p className="font-fira-sans text-lg">
-                    Купить фургон изотермический цена которого соответствует
-                    бюджету и разным задачам — разумное решение для компаний,
-                    стремящихся к надежной перевозке товаров. Такой транспорт
-                    обеспечивает стабильный температурный режим и минимизирует
-                    потери продукции. Компания «РусТрак» помогает подобрать
-                    технику с учётом индивидуальных требований и особенностей
-                    бизнеса. Оцените доступные варианты и выберите оптимальное
-                    решение для своих перевозок. Начните улучшать логистику уже
-                    сейчас, повышая эффективность работы и сокращая риски. Для
-                    оформления заказа свяжитесь с нами любым удобным способом, и
-                    специалисты помогут завершить процесс быстро и удобно.
-                  </p>
-                </div>
-              )}
+              {/* Multilingual SEO Description Article */}
+              {viewMode === "grid" && <CategoryArticle category="avtofurgony" />}
             </div>
           </div>
+
           {viewMode === "grid" && <Slider />}
         </div>
       </div>
+
       <Feedback />
       <Footer />
     </>

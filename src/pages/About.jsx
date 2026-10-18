@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { aboutSlider } from "./objects";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
+import { useLanguage } from "../context/LanguageContext";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -14,6 +15,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 const About = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -21,14 +23,14 @@ const About = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">О нас</a>
+              <a href="/about">{t("aboutUs", "О нас")}</a>
             </li>
           </ul>
         </motion.div>
@@ -37,9 +39,7 @@ const About = () => {
           <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
             <div className="pt-18">
               <h2 className="max-w-177 font-fira-sans font-medium lg:text-2xl text-[#ffffff]">
-                Автомобильный завод «РусТрак» - ведущий производитель
-                коммерческого транспорта и специализированной техники в Нижнем
-                Новгороде.
+                {t("about_hero_title", "Автомобильный завод «РусТрак» - ведущий производитель коммерческого транспорта и специализированной техники в Нижнем Новгороде.")}
               </h2>
             </div>
 
@@ -60,9 +60,7 @@ const About = () => {
             <div className="flex mt-15 justify-between">
               <div>
                 <h4 className="font-fira-sans lg:text-2xl max-w-170">
-                  Автомобильный завод «РусТрак» является предприятием полного
-                  цикла: от конструкторско-технологических разработок до
-                  готового изделия.
+                  {t("about_cycle_title", "Автомобильный завод «РусТрак» является предприятием полного цикла: от конструкторско-технологических разработок до готового изделия.")}
                 </h4>
               </div>
 
@@ -105,7 +103,7 @@ const About = () => {
             >
               {aboutSlider.map((aboutData) => (
                 <SwiperSlide key={aboutData.id}>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+
                   <div className="border-2 border-gray-100 rounded-lg h-100 mb-10">
                     <div className="mb-10 ml-5 mr-5 ">
                       <img
@@ -123,14 +121,14 @@ const About = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+
 </SwiperSlide>
               ))}
             </Swiper>
 
             <div className="mt-30">
               <h2 className="font-fira-sans font-medium lg:text-3xl md:text-2xl">
-                Сегодня ООО «Рустрак» - это:
+                {t("todayRusTrak", "Сегодня ООО «Рустрак» - это:")}
               </h2>
               <div className="flex justify-between lg:flex-row flex-col md:flex-row md:gap-5 md:items-center">
                 <div>
@@ -138,40 +136,37 @@ const About = () => {
                     <li className="flex items-center gap-4 mb-5 text-lg mt-15">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        3 производственных корпуса, общей площадью более 7000
-                        м2;
+                        {t("about_p1", "3 производственных корпуса, общей площадью более 7000 м2;")}
                       </p>
                     </li>
                     <li className="flex items-center gap-4 mb-5 text-lg">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        производственная территория более 20000 м2;
+                        {t("about_p2", "производственная территория более 20000 м2;")}
                       </p>
                     </li>
                     <li className="flex items-center gap-4 mb-5 text-lg">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        служба качества, гарантирующая выпуск высококачественной
-                        техники;
+                        {t("about_p3", "служба качества, гарантирующая выпуск высококачественной техники;")}
                       </p>
                     </li>
                     <li className="flex items-center gap-4 mb-5 text-lg">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        современный парк станочного оборудования;
+                        {t("about_p4", "современный парк станочного оборудования;")}
                       </p>
                     </li>
                     <li className="flex items-center gap-4 mb-5 text-lg">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        ежемесячный объём выпускаемой техники - до 110 единиц.
+                        {t("about_p5", "ежемесячный объём выпускаемой техники - до 110 единиц.")}
                       </p>
                     </li>
                     <li className="flex items-center gap-4 mb-5 text-lg">
                       <img src="/ok-icon.svg" alt="ok" />
                       <p className="font-fira-sans">
-                        наличие собственной конструкторско-технологической
-                        службы
+                        {t("about_p6", "наличие собственной конструкторско-технологической службы")}
                       </p>
                     </li>
                   </ul>
@@ -189,21 +184,17 @@ const About = () => {
               <div className="lg:grid lg:grid-cols-3 flex  flex-col    gap-6 mb-40 ">
                 <div className="bg-[#fec80b] rounded-xl">
                   <h2 className="font-fira-sans text-2xl font-bold mt-15 ml-5">
-                    Отрасли применения выпускаемой техники:
+                    {t("industriesOfApplication", "Отрасли применения выпускаемой техники:")}
                   </h2>
                   <p className="ml-5 font-fira-sans text-lg mt-3">
-                    Cтроительная, телекоммуникационная, коммунальная, дорожное
-                    хозяйство, логистика, сельское хозяйство.
+                    {t("about_industries_desc", "Строительная, телекоммуникационная, коммунальная, дорожное хозяйство, логистика, сельское хозяйство.")}
                   </p>
 
                   <h2 className="font-fira-sans font-bold text-2xl mt-15 ml-5">
-                    Выпускаемая техника:
+                    {t("producedVehicles", "Выпускаемая техника:")}
                   </h2>
                   <p className="ml-5 font-fira-sans text-lg mt-3 pb-10">
-                    Краны-манипуляторы, автотопливозаправщики, автовышки,
-                    фургоны, самосвалы, бортовые платформы, эвакуаторы, крюковые
-                    погрузчики, мастерские, пищевые цистерны, вакуумные машины,
-                    автогидроподъёмники.
+                    {t("about_vehicles_desc", "Краны-манипуляторы, автотопливозаправщики, автовышки, фургоны, самосвалы, бортовые платформы, эвакуаторы, крюковые погрузчики, мастерские, пищевые цистерны, вакуумные машины, автогидроподъёмники.")}
                   </p>
                 </div>
 
@@ -224,20 +215,13 @@ const About = () => {
 
               <div>
                 <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
-                  ООО «РусТрак» является официальным дилером на территории РФ
-                  следующих марок: Palfinger, ИНМАН, HKTC, UNIC, DongYang,
-                  FASSI, Hangil, XCMG, HIAB.
+                  {t("about_dealer_text", "ООО «РусТрак» является официальным дилером на территории РФ следующих марок: Palfinger, ИНМАН, HKTC, UNIC, DongYang, FASSI, Hangil, XCMG, HIAB.")}
                 </p>
                 <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
-                  За 16 лет деятельности компания заслужила высокий уровень
-                  доверия дистрибьютеров и автопроизводителей: ИСУЗУ РУС, КАМАЗ,
-                  ГАЗ, DAEWOO, FAW, JAC, ТРАКС ВОСТОК РУС (КОМПАС), МАЗ РУС,
-                  ДАЙМЛЕР КАМАЗ РУС (FUSO), ХИНО МОТОРС, FOTON, DONG FENG,
-                  SHACHMAN, НЕФАЗ, ЗАВОД СТАРТ
+                  {t("about_trust_text", "За 16 лет деятельности компания заслужила высокий уровень доверия дистрибьютеров и автопроизводителей: ИСУЗУ РУС, КАМАЗ, ГАЗ, DAEWOO, FAW, JAC, ТРАКС ВОСТОК РУС (КОМПАС), МАЗ РУС, ДАЙМЛЕР КАМАЗ РУС (FUSO), ХИНО МОТОРС, FOTON, DONG FENG, SHACHMAN, НЕФАЗ, ЗАВОД СТАРТ")}
                 </p>
                 <p className="font-fira-sans lg:text-lg mb-10 max-w-220">
-                  Наши клиенты: Газпром, Росатом, Россети, РСК «МИГ», Роснефть и
-                  др.
+                  {t("about_clients_text", "Наши клиенты: Газпром, Росатом, Россети, РСК «МИГ», Роснефть и др.")}
                 </p>
               </div>
             </motion.div>

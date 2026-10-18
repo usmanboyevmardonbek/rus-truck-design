@@ -2,10 +2,12 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React from "react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 const Service = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -14,14 +16,14 @@ const Service = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2 ">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Сервис и гарантии</a>
+              <a href="/service">{t("serviceAndWarranty", "Сервис и гарантии")}</a>
             </li>
           </ul>
 
@@ -43,7 +45,7 @@ const Service = () => {
 
           <div>
             <h3 className="font-fira-sans text-2xl font-medium mt-10">
-              Как получить поддержку?
+              {t("howToGetSupport", "Как получить поддержку?")}
             </h3>
 
             <ul className="inline-block mr-5">

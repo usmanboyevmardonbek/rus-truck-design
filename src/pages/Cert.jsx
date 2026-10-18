@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import Feedback from "../components/Feedback";
 import React, { useEffect, useRef } from "react";
 import Footer from "../components/footer";
@@ -9,6 +10,7 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 
 const Cert = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -28,20 +30,18 @@ const Cert = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2 mb-4">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="#">Сертификаты</a>
+              <a href="/cert">{t("certificates", "Сертификаты")}</a>
             </li>
           </ul>
           <div>
-            <h1 className="font-fira-sans text-3xl font-medium mb-8">
-              Сертификаты
-            </h1>
+            <h1 className="font-fira-sans text-3xl font-medium mb-8">{t("certificates", "Сертификаты")}</h1>
           </div>
 
           <div ref={containerRef} className="grid lg:grid-cols-4 grid-cols-2 md:grid-cols-3  gap-6">

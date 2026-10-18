@@ -4,8 +4,10 @@ import { Header } from "../components/Header";
 import { contactData } from "./objects";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
+import { useLanguage } from "../context/LanguageContext";
 
 function Contact() {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -19,19 +21,19 @@ function Contact() {
         >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Контакты</a>
+              <a href="/contact">{t("contacts", "Контакты")}</a>
             </li>
           </ul>
 
           <h2 className="font-fira-sans text-3xl font-medium mt-3">
-            Контакты производителя автоспецтехники РусТрак
+            {t("contactTitle", "Контакты производителя автоспецтехники РусТрак")}
           </h2>
 
           <div className="flex mt-8 flex-col lg:flex-row">
@@ -41,23 +43,23 @@ function Contact() {
 
               <div>
                 <p className="font-fira-sans font-bold text-lg">
-                  Нижний Новгород:{" "}
+                  {t("nizhnyNovgorod", "Нижний Новгород:")}{" "}
                   <span className="font-normal">8 (831) 225-00-55</span>
                 </p>
                 <p className="font-fira-sans font-bold text-lg">
-                  Для регионов:{" "}
+                  {t("forRegions", "Для регионов:")}{" "}
                   <span className="font-normal">8 (800)-511-05-25</span>
                 </p>
               </div>
               <p className="font-fira-sans font-bold text-lg mb-10">
-                Электронная почта:
+                {t("email", "Электронная почта:")}{" "}
                 <span className="font-normal">
                   <a href="#">info@rtrf.ru</a>
                 </span>
               </p>
 
               <p className="font-fira-sans font-bold text-lg">
-                Запись на техническое обслуживание:
+                {t("techServiceRecord", "Запись на техническое обслуживание:")}
               </p>
 
               <span className="font-fira-sans">
@@ -79,7 +81,7 @@ function Contact() {
 
           <div>
             <h2 className="font-fira-sans font-medium text-3xl mt-6">
-              Сотрудники
+              {t("employees", "Сотрудники")}
             </h2>
           </div>
 

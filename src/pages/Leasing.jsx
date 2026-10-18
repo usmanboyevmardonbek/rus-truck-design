@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import Footer from "../components/footer";
 import Feedback from "../components/Feedback";
 
 const Leasing = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -12,44 +14,38 @@ const Leasing = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Кредит и лизинг</a>
+              <a href="/leasing">{t("leasing", "Кредит и лизинг")}</a>
             </li>
           </ul>
 
           <div className="title-1">
             <h1 className="text-3xl mb-6 font-fira-sans font-medium mt-3">
-              Кредит и лизинг на автоспецтехнику компании РусТрак
+              {t("leasingTitle", "Кредит и лизинг на автоспецтехнику компании РусТрак")}
             </h1>
             <p className="font-fira-sans text-lg max-w-200">
-              Компания Рустрак предоставляет возможность покупки автоспецтехники
-              в кредит и в лизинг. Мы работаем со всеми банками и лизинговыми
-              компаниями. Помните, Вы можете выбрать любую лизинговую компанию,
-              которая Вас устроит.
+              {t("leasingDesc", "Компания Рустрак предоставляет возможность покупки автоспецтехники в кредит и в лизинг. Мы работаем со всеми банками и лизинговыми компаниями. Помните, Вы можете выбрать любую лизинговую компанию, которая Вас устроит.")}
             </p>
           </div>
 
           <div className="title-2 mt-10">
             <h3 className="text-2xl mb-6 font-fira-sans font-medium mt-3">
-              Основные условия лизинга
+              {t("leasingConditions", "Основные условия лизинга")}
             </h3>
             <p className="font-fira-sans text-lg max-w-200">
-              Сумма аванса 5-30% от стоимости техники. Удорожание объекта
-              лизинга в год на 8-9% Срок выплаты лизинговых платежей от 6-ти
-              месяцев до 5-ти лет. После полного расчёта по лизингу техника
-              переходит в собственность Вашей фирмы.
+              {t("leasingConditionsText", "Сумма аванса 5-30% от стоимости техники. Удорожание объекта лизинга в год на 8-9% Срок выплаты лизинговых платежей от 6-ти месяцев до 5-ти лет. После полного расчёта по лизингу техника переходит в собственность Вашей фирмы.")}
             </p>
           </div>
 
           <div className="title-2 mt-10">
             <h3 className="text-2xl mb-6 font-fira-sans font-medium mt-3">
-              Преимущества лизинговых схем:
+              {t("leasingAdvantages", "Преимущества лизинговых схем:")}
             </h3>
             <p className="font-fira-sans text-lg max-w-200">
               Максимальная отсрочка платежа. Ускоренная амортизация: участники

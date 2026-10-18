@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 import { motion } from "motion/react";
@@ -7,6 +8,7 @@ import { videoData } from "./objects";
 import { div } from "motion/react-client";
 
 const Video = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -21,27 +23,27 @@ const Video = () => {
         >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="#">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="#">Видео</a>
+              <a href="/video">{t("video", "Видео")}</a>
             </li>
           </ul>
 
           <div className="flex justify-between mt-5">
             <h1 className="lg:text-3xl font-fira-sans font-medium text-2xl">
-              Видеогалерея производителя автоспецтехники РусТрак
+              {t("videoTitle", "Видеогалерея производителя автоспецтехники РусТрак")}
             </h1>
 
             <a
               href="/photogallery/"
               className="border-2 border-[#fec80b] rounded-sm lg:inline-block px-5 py-2 hover:bg-[#ffd43a] transition duration-300 ease-in hidden"
             >
-              <p className="font-fira-sans text-lg">Смотреть фото</p>
+              <p className="font-fira-sans text-lg">{t("watchPhoto", "Смотреть фото")}</p>
             </a>
           </div>
 

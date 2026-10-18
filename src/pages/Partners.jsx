@@ -2,10 +2,12 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { useState } from "react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import Feedback from "../components/Feedback";
 import Footer from "../components/footer";
 
 const Partners = () => {
+  const { t } = useLanguage();
 
      const [expand, setExpand] = useState(false)
 
@@ -20,21 +22,19 @@ const Partners = () => {
           <div>
             <ul className="flex items-center gap-2">
               <li className="font-fira-sans text-gray-500 text-sm">
-                <a href="/">Главная</a>
+                <a href="/">{t("home", "Главная")}</a>
               </li>
               <li className="text-gray-500">
                 <span>/</span>
               </li>
 
               <li className="font-fira-sans text-gray-500 text-sm">
-                <a href="/">Партнёры</a>
+                <a href="/">{t("partners", "Партнёры")}</a>
               </li>
             </ul>
           </div>
           <div>
-            <h2 className="font-fira-sans text-3xl font-medium mt-5">
-              Партнёры
-            </h2>
+            <h2 className="font-fira-sans font-medium text-3xl mt-4 mb-11">{t("partners", "Наши партнёры")}</h2>
           </div>
           <div>
             <h3 className="font-fira-sans text-2xl font-medium mt-6">КАМАЗ</h3>
@@ -52,7 +52,7 @@ const Partners = () => {
               сопровождения.
             </p>
 
-            <button onClick={matnExpand}  className="opacity-50 font-fira-sans underline block mt-5 cursor-pointer">{!expand ? `Читать полностью` : "Свернуть"}</button>
+            <button onClick={matnExpand}  className="opacity-50 font-fira-sans underline block mt-5 cursor-pointer">{!expand ? t("readFull", "Читать полностью") : t("collapseText", "Свернуть")}</button>
           </div>
 
           <div className="mt-20">

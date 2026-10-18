@@ -33,6 +33,9 @@ import Cert from "./pages/Cert";
 import Video from "./pages/Video";
 import Copy from "./pages/Copy";
 import Detail from "./pages/Detail";
+import Cart from "./pages/Cart";
+import Favorites from "./pages/Favorites";
+import { CartProvider } from "./context/CartContext";
 
 
 
@@ -80,7 +83,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <>
+    <CartProvider>
       <AnimatePresence mode="wait">
         {isLoading ? (
           <Loader key="global-loader" />
@@ -101,40 +104,39 @@ function App() {
             <Route path="/review" element={<PageWrapper><Review/></PageWrapper>}/>
             <Route path="/suppliers" element={<PageWrapper><Suppliers/></PageWrapper>}/>
             <Route path="/catalog" element={<PageWrapper><Catalog/></PageWrapper>}/>
-            <Route path="/shtornye-avtomobili" element={<PageWrapper><Shtornye/></PageWrapper>}/>
-            <Route path="/shtornye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/krany-manipulator" element={<PageWrapper><Krany/></PageWrapper>}/>
-            <Route path="/krany-manipulator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/zapravka" element={<PageWrapper><Zapravka/></PageWrapper>}/>
-            <Route path="/zapravka/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/gidropod" element={<PageWrapper><Gidropod/></PageWrapper>}/>
-            <Route path="/gidropod/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/sisterna" element={<PageWrapper><Sisterna/></PageWrapper>}/>
-            <Route path="/sisterna/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/evakuator" element={<PageWrapper><Evakuator/></PageWrapper>}/>
-            <Route path="/evakuator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/bortovye-avtomobili" element={<PageWrapper><Bortov/></PageWrapper>}/>
-            <Route path="/bortovye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/avtofurgony" element={<PageWrapper><Autofurgony/></PageWrapper>}/>
-            <Route path="/avtofurgony/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/konteynerovozy" element={<PageWrapper><Konteyner/></PageWrapper>}/>
-            <Route path="/konteynerovozy/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/kryukovye-pogruzchiki" element={<PageWrapper><Pogruzki/></PageWrapper>}/>
-            <Route path="/kryukovye-pogruzchiki/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/samosvaly" element={<PageWrapper><Samosvaly/></PageWrapper>}/>
-            <Route path="/samosvaly/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
-            <Route path="/avtomobili-dopog/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/shtornye-avtomobili" element={<PageWrapper><Shtornye/></PageWrapper>}/>
+            <Route path="/catalog/shtornye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/krany-manipulator" element={<PageWrapper><Krany/></PageWrapper>}/>
+            <Route path="/catalog/krany-manipulator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/zapravka" element={<PageWrapper><Zapravka/></PageWrapper>}/>
+            <Route path="/catalog/zapravka/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/gidropod" element={<PageWrapper><Gidropod/></PageWrapper>}/>
+            <Route path="/catalog/gidropod/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/sisterna" element={<PageWrapper><Sisterna/></PageWrapper>}/>
+            <Route path="/catalog/sisterna/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/evakuator" element={<PageWrapper><Evakuator/></PageWrapper>}/>
+            <Route path="/catalog/evakuator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/bortovye-avtomobili" element={<PageWrapper><Bortov/></PageWrapper>}/>
+            <Route path="/catalog/bortovye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/avtofurgony" element={<PageWrapper><Autofurgony/></PageWrapper>}/>
+            <Route path="/catalog/avtofurgony/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/konteynerovozy" element={<PageWrapper><Konteyner/></PageWrapper>}/>
+            <Route path="/catalog/konteynerovozy/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/kryukovye-pogruzchiki" element={<PageWrapper><Pogruzki/></PageWrapper>}/>
+            <Route path="/catalog/kryukovye-pogruzchiki/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/samosvaly" element={<PageWrapper><Samosvaly/></PageWrapper>}/>
+            <Route path="/catalog/samosvaly/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
+            <Route path="/catalog/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
+            <Route path="/catalog/avtomobili-dopog/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
             <Route path="/cert" element={<PageWrapper><Cert/></PageWrapper>}/>
             <Route path="/video" element={<PageWrapper><Video/></PageWrapper>}/>
             <Route path="/copy" element={<PageWrapper><Copy/></PageWrapper>}/>
-
-
-
+            <Route path="/cart" element={<PageWrapper><Cart/></PageWrapper>}/>
+            <Route path="/favorites" element={<PageWrapper><Favorites/></PageWrapper>}/>
           </Routes>
         )}
       </AnimatePresence>
-    </>
+    </CartProvider>
   )
 }
 

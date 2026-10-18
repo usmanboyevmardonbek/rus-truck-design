@@ -3,6 +3,7 @@ import { fadeUp } from "../utils/animation";
 import React from "react";
 
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import { newsData } from "./objects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Feedback from "../components/Feedback";
@@ -17,6 +18,7 @@ import { Pagination } from "swiper/modules";
 import { MoveRight } from "lucide-react";
 
 const News = () => {
+  const { t } = useLanguage();
   return (
     <>
       <Header />
@@ -24,19 +26,19 @@ const News = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2 ">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Главная</a>
+              <a href="/">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-500">
               <span>/</span>
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">Новости</a>
+              <a href="/news">{t("news", "Новости")}</a>
             </li>
           </ul>
 
           <h2 className="font-fira-sans font-medium text-3xl mt-4 mb-11">
-            Новости РусТрак
+            {t("newsRusTrak", "Новости РусТрак")}
           </h2>
 
           <div className="lg:flex  gap-5 hidden">
@@ -47,62 +49,50 @@ const News = () => {
                 }}
                 loop={true}
                 modules={[Pagination]}
-                className="mySwiper news-swiper"
+                className="mySwiper news-swiper rounded-2xl overflow-hidden"
               >
-                <SwiperSlide className="w-1/1!">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                <SwiperSlide>
                   <img
-                    src="swiper-news-1.webp"
+                    src="/swiper-news-1.webp"
                     alt="swiper-news-1"
-                    className="h-100 rounded-2xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
-                <SwiperSlide className="w-1/1!">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img
-                    src="swiper-news-2.jpg"
+                    src="/swiper-news-2.jpg"
                     alt="swiper-news-2"
-                    className="h-100 rounded-xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
-                <SwiperSlide className="w-1/1! object-cover">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img
-                    src="swiper-news-3.jpg"
+                    src="/swiper-news-3.jpg"
                     alt="swiper-news-3"
-                    className="h-100 rounded-xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
-                <SwiperSlide className="w-1/1! object-cover">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img
-                    src="swiper-news-4.jpg"
+                    src="/swiper-news-4.jpg"
                     alt="swiper-news-4"
-                    className="h-100 rounded-xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
-                <SwiperSlide className="w-1/1! object-cover">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img
-                    src="swiper-news-5.jpg"
+                    src="/swiper-news-5.jpg"
                     alt="swiper-news-5"
-                    className="h-100 rounded-xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
-                <SwiperSlide className="w-1/1! object-cover">
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+                </SwiperSlide>
+                <SwiperSlide>
                   <img
-                    src="swiper-news-6.jpg"
+                    src="/swiper-news-6.jpg"
                     alt="swiper-news-6"
-                    className="h-100 rounded-xl w-150!"
+                    className="w-full h-[400px] object-cover rounded-2xl"
                   />
-                </motion.div>
-</SwiperSlide>
+                </SwiperSlide>
               </Swiper>
             </div>
 
@@ -117,9 +107,7 @@ const News = () => {
               </a>
 
               <a href="#" className="flex gap-3 items-center group">
-                <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">
-                  Подробнее
-                </p>
+                <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">{t("learnMore", "Подробнее")}</p>
                 <MoveRight className="text-[#a2a2a2] group-hover:text-[#ffd43a] group-transition duration-200 ease-in:" />
               </a>
             </div>
@@ -136,9 +124,7 @@ const News = () => {
                   </div>
 
                   <span className="flex items-center gap-2 ml-1">
-                    <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">
-                      Подробнее
-                    </p>
+                    <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">{t("learnMore", "Подробнее")}</p>
                     <MoveRight className="text-[#a2a2a2] group-hover:text-[#ffd43a] group-transition duration-200 ease-in" />
                   </span>
                 </a>

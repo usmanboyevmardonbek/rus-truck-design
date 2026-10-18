@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { useEffect, useRef } from "react";
 import { Header } from "../components/Header";
+import { useLanguage } from "../context/LanguageContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -52,6 +53,7 @@ const productionSlides = [
 ];
 
 const Production = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -71,21 +73,15 @@ const Production = () => {
         <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/" className="hover:text-black transition duration-200">
-                Главная
-              </a>
+              <a href="/" className="hover:text-black transition duration-200">{t("home", "Главная")}</a>
             </li>
             <li className="text-gray-400">
               <span>/</span>
             </li>
-            <li className="font-fira-sans text-gray-800 text-sm font-medium">
-              Производство
-            </li>
+            <li className="font-fira-sans text-gray-800 text-sm font-medium">{t("production", "Производство")}</li>
           </ul>
 
-          <h1 className="font-fira-sans text-2xl sm:text-3xl lg:text-4xl font-semibold mt-6 text-gray-900">
-            Производство
-          </h1>
+          <h1 className="font-fira-sans text-2xl sm:text-3xl lg:text-4xl font-semibold mt-6 text-gray-900">{t("production", "Производство")}</h1>
 
           <div className="mt-6 overflow-hidden rounded-xl shadow-sm border border-gray-100">
             <img
@@ -205,7 +201,7 @@ const Production = () => {
             >
               {productionSlides.map((slide) => (
                 <SwiperSlide key={slide.id}>
-<motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp} className="h-full">
+
                   <a
                     data-fancybox="production-gallery"
                     href={slide.img}
@@ -237,7 +233,7 @@ const Production = () => {
                       </p>
                     </div>
                   </a>
-                </motion.div>
+
 </SwiperSlide>
               ))}
             </Swiper>

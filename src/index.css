@@ -13,6 +13,12 @@
   padding: 0 40px;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
 /* Footer menus are accordions only below 768px. */
 .footer-mobile-menu {
   display: block;

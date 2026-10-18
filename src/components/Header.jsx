@@ -7,18 +7,200 @@ import {
   ShoppingCart,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { PhoneModal } from "./PhoneModal";
+import { SearchBox } from "./SearchBox";
 import { motion, AnimatePresence } from "motion/react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "../context/LanguageContext";
+import { useCart } from "../context/CartContext";
+
+// Full 4-Column Mega Menu (matching rtrf.ru and design screenshot)
+function MegaMenuDropdown({ activeTrigger, onClose }) {
+  const { t } = useLanguage();
+
+  const categories = [
+    { to: "/catalog/shtornye-avtomobili", label: t("cat_shtornye", "Шторные автомобили") },
+    { to: "/catalog/krany-manipulator", label: t("cat_krany", "Краны-манипуляторы") },
+    { to: "/catalog/zapravka", label: t("cat_zapravka", "Автотопливозаправщики") },
+    { to: "/catalog/sisterna", label: t("cat_sisterna", "Автоцистерны") },
+    { to: "/catalog/evakuator", label: t("cat_evakuator", "Автоэвакуаторы") },
+    { to: "/catalog/bortovye-avtomobili", label: t("cat_bortovye", "Бортовые автомобили") },
+    { to: "/catalog/avtofurgony", label: t("cat_avtofurgony", "Изотермические фургоны") },
+    { to: "/catalog/konteynerovozy", label: t("cat_konteynerovozy", "Контейнеровозы") },
+    { to: "/catalog/kryukovye-pogruzchiki", label: t("cat_kryukovye", "Крюковые погрузчики") },
+    { to: "/catalog/samosvaly", label: t("cat_samosvaly", "Самосвалы") },
+    { to: "/catalog/avtomobili-dopog", label: t("cat_dopog", "Автомобили ДОПОГ категория EXII") },
+    { to: "/catalog/gidropod", label: t("cat_gidropod", "Автогидроподъёмники") },
+  ];
+
+  const aboutLinks = [
+    { to: "/about", label: t("about_company", "О компании ООО «Рустрак»") },
+    { to: "/news", label: t("news", "Новости") },
+    { to: "/partners", label: t("partners", "Наши партнёры") },
+    { to: "/production", label: t("production", "Производство") },
+    { to: "/suppliers", label: t("suppliers", "Поставщикам и партнёрам") },
+    { to: "/review", label: t("reviews", "Отзывы") },
+    { to: "/cert", label: t("certificates", "Сертификаты") },
+    { to: "/vacancies", label: t("vacancies", "Вакансии") },
+    { to: "/leasing", label: t("leasing", "Кредит и лизинг") },
+    { to: "/catalog/samosvaly", label: t("cat_samosvaly", "Самосвалы") },
+  ];
+
+  const mediaLinks = [
+    { to: "/photogallery", label: t("photogallery", "Фотогалерея") },
+    { to: "/video", label: t("video", "Видео") },
+    { to: "/promo", label: t("promo", "Рекламные материалы") },
+    { to: "/", label: t("info", "Информационные материалы") },
+  ];
+
+  const directLinks = [
+    { to: "/service", label: t("service", "Сервис") },
+    { to: "/remont", label: t("repair", "Ремонт") },
+    { to: "/news", label: t("news", "Новости") },
+    { to: "/contact", label: t("contacts", "Контакты") },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      className="absolute top-full left-0 right-0 w-full max-h-[85vh] overflow-y-auto bg-[#F4F4F4] z-60 shadow-2xl border-t-2 border-[#FEC80B]"
+    >
+      <div className="container py-8 lg:py-12">
+        {/* Mobile Header in MegaMenu */}
+        <div className="flex items-center justify-between pb-3 mb-6 border-b border-gray-300 lg:hidden">
+          <div className="flex items-center gap-2">
+            <Menu className="w-5 h-5 text-amber-500" />
+            <span className="font-fira-sans font-bold text-lg text-gray-900">
+              {t("catalog", "Каталог")}
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1.5 text-gray-500 hover:text-black cursor-pointer rounded-full bg-white shadow-xs"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12">
+          {/* Column 1: Categories */}
+          <div>
+            <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
+              {t("categories", "Категории")}
+            </h3>
+            <ul className="space-y-2.5">
+              {categories.map((c, i) => (
+                <li key={i}>
+                  <NavLink
+                    to={c.to}
+                    onClick={onClose}
+                    className="font-fira-sans text-sm sm:text-base text-gray-800 hover:text-[#FEC80B] transition-colors block py-0.5"
+                  >
+                    {c.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: About us */}
+          <div>
+            <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
+              {t("aboutUs", "О нас")}
+            </h3>
+            <ul className="space-y-2.5">
+              {aboutLinks.map((a, i) => (
+                <li key={i}>
+                  <NavLink
+                    to={a.to}
+                    onClick={onClose}
+                    className="font-fira-sans text-sm sm:text-base text-gray-800 hover:text-[#FEC80B] transition-colors block py-0.5"
+                  >
+                    {a.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Media */}
+          <div>
+            <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
+              {t("media", "Медиа")}
+            </h3>
+            <ul className="space-y-2.5">
+              {mediaLinks.map((m, i) => (
+                <li key={i}>
+                  <NavLink
+                    to={m.to}
+                    onClick={onClose}
+                    className="font-fira-sans text-sm sm:text-base text-gray-800 hover:text-[#FEC80B] transition-colors block py-0.5"
+                  >
+                    {m.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Big Bold Navigation Links (Service, Repair, News, Contacts) */}
+          <div>
+            <ul className="space-y-4 pt-1">
+              {directLinks.map((d, i) => (
+                <li key={i}>
+                  <NavLink
+                    to={d.to}
+                    onClick={onClose}
+                    className="font-fira-sans text-2xl lg:text-[1.85rem] font-bold text-black hover:text-[#FEC80B] transition-colors block tracking-tight"
+                  >
+                    {d.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Mobile contacts in mega menu */}
+        <div className="mt-8 pt-6 border-t border-gray-300 lg:hidden space-y-2 text-sm font-fira-sans text-gray-600">
+          <p>
+            <span className="text-gray-500">{t("forRegions", "Для регионов:")}</span>{" "}
+            <a href="tel:88005110525" className="text-black font-semibold">
+              8 (800)-511-05-25
+            </a>
+          </p>
+          <p>
+            <span className="text-gray-500">{t("nizhnyNovgorod", "Нижний Новгород:")}</span>{" "}
+            <a href="tel:88312250055" className="text-black font-semibold">
+              8 (831) 225-00-55
+            </a>
+          </p>
+          <p className="text-xs text-gray-400 pt-1">
+            {t("address", "г. Нижний Новгород ул. Торфяная, 35")}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Header() {
+  const { t } = useLanguage();
+  const { cartCount, favoritesCount } = useCart();
   const [workingTime, setWorkingTime] = useState(false);
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
-  const [catalog, setCatalog] = useState(false);
-  const [parse, setParse] = useState(false);
-  const [specSourse, setSpecSource] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [activeTrigger, setActiveTrigger] = useState(null); // 'catalog' | 'about' | 'media' | 'service'
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const workingTimeRef = useRef(null);
+  const menuContainerRef = useRef(null);
 
   useEffect(() => {
     function handleScroll() {
@@ -28,1246 +210,368 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Click outside listener for working time and mega menu
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (workingTimeRef.current && !workingTimeRef.current.contains(e.target)) {
+        setWorkingTime(false);
+      }
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(e.target)
+      ) {
+        setIsMegaMenuOpen(false);
+        setActiveTrigger(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // ESC key listener
+  useEffect(() => {
+    function handleEsc(e) {
+      if (e.key === "Escape") {
+        setIsMegaMenuOpen(false);
+        setActiveTrigger(null);
+        setWorkingTime(false);
+      }
+    }
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
+
   function openWorkingTimeDropdown() {
     setWorkingTime(!workingTime);
-    setCatalog(false);
-    setParse(false);
-    setSpecSource(false);
+    setIsMegaMenuOpen(false);
+    setActiveTrigger(null);
   }
 
-  function openCatalog() {
-    setCatalog(!catalog);
+  function handleMenuToggle(triggerName) {
     setWorkingTime(false);
-    setParse(false);
-    setSpecSource(false);
-  }
-
-  function openParse() {
-    setParse(!parse);
-    setWorkingTime(false);
-    setCatalog(false);
-    setSpecSource(false);
-  }
-
-  function Openspec() {
-    setSpecSource(!specSourse);
-    setWorkingTime(false);
-    setCatalog(false);
-    setParse(false);
+    if (isMegaMenuOpen && activeTrigger === triggerName) {
+      setIsMegaMenuOpen(false);
+      setActiveTrigger(null);
+    } else {
+      setIsMegaMenuOpen(true);
+      setActiveTrigger(triggerName);
+    }
   }
 
   return (
     <header
-      className={`z-100 transition-all duration-300 ${isScrolled ? "fixed top-0 left-0 w-full bg-white shadow-md" : "relative"}`}
+      className={`z-100 transition-all duration-300 ${
+        isScrolled ? "fixed top-0 left-0 w-full bg-white shadow-md" : "relative"
+      }`}
     >
+      {/* Top Header Bar */}
       <div
-        className={`justify-around items-center border-b border-b-yellow-400 ${isScrolled ? "hidden" : "flex"}`}
+        className={`justify-around items-center border-b border-b-yellow-400 py-2 sm:py-2.5 relative z-40 bg-white ${
+          isScrolled ? "hidden" : "flex"
+        }`}
       >
-        <div className="form-wrapper">
-          <div></div>
-        </div>
         <div className="container">
-          <div className="flex justify-between mt-3!">
-            <a href="/" className="flex items-center gap-2.5">
-              <img src="/header-logo.svg" alt="header-logo" />
-              <span className="font-fira-sans text-black font-normal text-sm relative before:content-[''] before:absolute before:top-3 before:left-0 before:z-10 before:w-0.5 before:h-5 before:bg-yellow-400 pl-5!">
-                производство и продажа <br />
-                автоспецтехники
+          <div className="flex justify-between items-center">
+            <NavLink
+              to="/"
+              onClick={() => {
+                setIsMegaMenuOpen(false);
+                setActiveTrigger(null);
+              }}
+              className="flex items-center gap-2 sm:gap-3 shrink-0"
+            >
+              <img
+                src="/header-logo.svg"
+                alt="РусТрак"
+                className="h-8 sm:h-10 w-auto object-contain"
+              />
+              <span className="hidden sm:inline-block font-fira-sans text-black font-normal text-xs sm:text-sm relative before:content-[''] before:absolute before:top-2 before:left-0 before:z-10 before:w-0.5 before:h-5 before:bg-yellow-400 pl-4 sm:pl-5 whitespace-pre-line leading-tight">
+                {t("headerSubtitle", "производство и продажа\nавтоспецтехники")}
               </span>
-            </a>
-            <div className="flex gap-5">
-              <div className="hidden lg:flex lg:flex-col md:hidden">
-                <div className="lg:flex cursor-pointer w-max relative z-0 hidden">
-                  <button
-                    onClick={openWorkingTimeDropdown}
-                    className="flex cursor-pointer"
-                  >
-                    <p className="text-black font-normal font-fira-sans text-base">
-                      Время работы
-                    </p>
-                    <ChevronDown
-                      className={`text-yellow-300 cursor-pointer transition-all duration-500 ${workingTime ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  <AnimatePresence>
-                    {workingTime && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 15 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-1/2 -translate-x-1/3 top-[calc(100%+6px)] shadow-[0_4px_12px_0_rgba(0,0,0,0.1)] w-max bg-white p-4"
-                      >
-                        <p className="text-black font-normal font-fira-sans text-base">
-                          Пн-пт: с 8:00 до 18:00
-                        </p>
-                        <p className="text-black font-normal font-fira-sans text-base">
-                          Сб-вс: Выходной
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <p className="text-[#A1A1A1] font-fira-sans text-base font-normal hidden lg:block">
-                  г. Нижний Новгород ул. Торфяная, 35
+            </NavLink>
+
+            <div className="flex items-center gap-6">
+              {/* Working Hours Dropdown */}
+              <div className="hidden lg:flex lg:flex-col relative" ref={workingTimeRef}>
+                <button
+                  type="button"
+                  onClick={openWorkingTimeDropdown}
+                  className="flex items-center gap-1 cursor-pointer text-left select-none"
+                >
+                  <span className="text-black font-normal font-fira-sans text-sm whitespace-nowrap">
+                    {t("workingHours", "Время работы")}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-yellow-500 transition-transform duration-300 ${
+                      workingTime ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {workingTime && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 lg:left-0 top-[calc(100%+8px)] shadow-2xl rounded-xl border border-gray-200 min-w-[220px] bg-white p-3.5 z-60 text-xs font-fira-sans space-y-1.5"
+                    >
+                      <p className="text-gray-900 font-medium">{t("monFri", "Пн-пт: с 8:00 до 18:00")}</p>
+                      <p className="text-gray-500">{t("weekend", "Сб-вс: Выходной")}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <p className="text-gray-400 font-fira-sans text-xs whitespace-nowrap">
+                  {t("address", "г. Нижний Новгород ул. Торфяная, 35")}
                 </p>
               </div>
-              <div className="flex items-center gap-2.5">
-                <div className="hidden lg:block">
-                  <p className="text-[#A1A1A1] font-fira-sans text-base font-normal">
-                    Для регионов:{" "}
-                    <a href="tel:88005110525">8 (800)-511-05-25</a>
-                  </p>
-                  <p className="text-[#A1A1A1] font-fira-sans text-base font-normal">
-                    Нижний Новгород:{" "}
-                    <a href="tel:88312250055">8 (831) 225-00-55</a>
-                  </p>
-                </div>
+
+              {/* Phone Contacts */}
+              <div className="hidden lg:flex flex-col text-xs font-fira-sans whitespace-nowrap">
+                <p className="text-gray-500">
+                  {t("forRegions", "Для регионов:")}{" "}
+                  <a href="tel:88005110525" className="text-black font-semibold hover:text-[#FEC80B]">
+                    8 (800)-511-05-25
+                  </a>
+                </p>
+                <p className="text-gray-500">
+                  {t("nizhnyNovgorod", "Нижний Новгород:")}{" "}
+                  <a href="tel:88312250055" className="text-black font-semibold hover:text-[#FEC80B]">
+                    8 (831) 225-00-55
+                  </a>
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <section className="py-4 relative z-0">
+      {/* Main Nav / Action Bar */}
+      <section className="py-2.5 sm:py-3 relative z-30 bg-white" ref={menuContainerRef}>
         <div className="container">
-          <div className="flex items-center gap-2 justify-between ">
-            <div className="flex items-center gap-8">
-              <div>
-                <div className="flex gap-3">
-                  <button
-                    onClick={Openspec}
-                    className="cursor-pointer flex items-center bg-amber-400 gap-2 p-2 rounded-md"
-                  >
-                    {specSourse ? (
-                      <X />
-                    ) : (
-                      <Menu
-                        className={`w-[18px] h-[18px] [stroke-width:1.75]`}
-                      />
-                    )}
-                    <p
-                      className={`font-fira-sans font-normal text-lg ${isScrolled ? "hidden" : "block"}`}
-                    >
-                      Каталог
-                    </p>
-                  </button>
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
+            {/* Left: Scrolled Burger + Logo + Nav */}
+            <div className="flex items-center gap-2.5 sm:gap-4 xl:gap-6 min-w-0">
+              {/* Catalog Burger Button */}
+              <button
+                type="button"
+                onClick={() => handleMenuToggle("catalog")}
+                className={`cursor-pointer flex items-center justify-center bg-[#FEC80B] hover:bg-[#ffd43a] transition duration-200 shadow-xs active:scale-95 shrink-0 ${
+                  isScrolled
+                    ? "w-10 h-10 sm:w-11 sm:h-11 rounded-lg p-2"
+                    : "gap-2 px-3 sm:px-4 py-2 rounded-xl"
+                }`}
+                title={t("catalog", "Каталог")}
+              >
+                {isMegaMenuOpen && activeTrigger === "catalog" ? (
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+                ) : (
+                  <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+                )}
+                {!isScrolled && (
+                  <span className="font-fira-sans font-medium text-sm sm:text-base text-black whitespace-nowrap">
+                    {t("catalog", "Каталог")}
+                  </span>
+                )}
+              </button>
 
+              {/* Scrolled Logo (Only when scrolled, placed immediately after Catalog button) */}
+              {isScrolled && (
+                <NavLink
+                  to="/"
+                  onClick={() => {
+                    setIsMegaMenuOpen(false);
+                    setActiveTrigger(null);
+                  }}
+                  className="shrink-0 flex items-center pr-1 sm:pr-2"
+                >
                   <img
                     src="/header-logo.svg"
-                    alt="header-logo"
-                    className={`${isScrolled ? "w-40" : "w-0"}`}
+                    alt="РусТрак"
+                    className="h-7 sm:h-8 w-auto object-contain"
                   />
-                </div>
+                </NavLink>
+              )}
 
-                <AnimatePresence>
-                  {specSourse && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      transition={{ duration: 0.2 }}
-                      className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6 z-60"
+              {/* Desktop Nav Links */}
+              <nav className="hidden lg:block">
+                <ul className="flex items-center gap-4 xl:gap-7 font-fira-sans text-sm font-medium text-gray-800">
+                  {/* About Us (О нас / Biz haqimizda) */}
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => handleMenuToggle("about")}
+                      className={`flex items-center gap-1 cursor-pointer transition-colors py-1 select-none whitespace-nowrap ${
+                        isMegaMenuOpen && activeTrigger === "about"
+                          ? "text-amber-500 font-bold"
+                          : "hover:text-amber-500"
+                      }`}
                     >
-                      <div className="grid grid-cols-4">
-                        <div>
-                          <p className="font-fira-sans font-extrabold text-lg mb-4">
-                            Категории
-                          </p>
-                          <ul>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/shtornye-avtomobili"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Шторные автомобили
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/krany-manipulator"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Краны-манипуляторы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/zapravka"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Автотопливозаправщики
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/sisterna"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Автоцистерны
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/evakuator"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Автоэвакуаторы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/bortovye-avtomobili"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Бортовые автомобили
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/avtofurgony"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Изотермические фургоны
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/konteynerovozy"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Контейнеровозы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/kryukovye-pogruzchiki"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Крюковые погрузчики
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/samosvaly"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Самосвалы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/avtomobili-dopog"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Автомобили ДОПОГ категория EXII
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/gidropod"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Автогидроподъёмники
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </div>
+                      <span className="whitespace-nowrap">{t("aboutUs", "О нас")}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
+                          isMegaMenuOpen && activeTrigger === "about" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </li>
 
-                        <div>
-                          <p className="font-fira-sans font-extrabold text-lg mb-4">
-                            О нас
-                          </p>
-                          <ul>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/about"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                О компании ООО «Рустрак»
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/news"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Новости
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/partners"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Наши партнёры
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/production"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Производство
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/suppliers"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Поставщикам и партнёрам
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/review"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Отзывы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/cert"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Сертификаты
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/vacancies"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Вакансии
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/leasing"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Кредит и лизинг
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/samosvaly"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Самосвалы
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <p className="font-fira-sans font-extrabold text-lg mb-4">
-                            Медиа
-                          </p>
-                          <ul>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/photogallery"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Фотогалерея
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/video"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Видео
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/promo"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Рекламные материалы
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-base font-normal">
-                              <NavLink
-                                to={"/"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Информационные материалы
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <ul>
-                            <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                              <NavLink
-                                to={"/service"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Сервис
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                              <NavLink
-                                to={"/remont"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Ремонт
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                              <NavLink
-                                to={"/news"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Новости
-                              </NavLink>
-                            </li>
-                            <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                              <NavLink
-                                to={"/contact"}
-                                className={
-                                  "hover:text-[#FEC80B] transition duration-300"
-                                }
-                              >
-                                Контакты
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              <div>
-                <nav> 
-                  <ul
-                    className={`lg:flex gap-8 hidden md:hidden ${isScrolled ? "hidden" : "block"}`}
-                  >
-                    <li>
-                      <div>
-                        <button
-                          onClick={openParse}
-                          className="flex cursor-pointer"
-                        >
-                          <p className="text-black font-fira-sans">О нас</p>
-                          <ChevronDown
-                            className={`text-yellow-300 cursor-pointer transition-all duration-500 ${parse ? "rotate-180" : ""}`}
-                          />
-                        </button>
+                  {/* Media (Медиа / Media) */}
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => handleMenuToggle("media")}
+                      className={`flex items-center gap-1 cursor-pointer transition-colors py-1 select-none whitespace-nowrap ${
+                        isMegaMenuOpen && activeTrigger === "media"
+                          ? "text-amber-500 font-bold"
+                          : "hover:text-amber-500"
+                      }`}
+                    >
+                      <span className="whitespace-nowrap">{t("media", "Медиа")}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
+                          isMegaMenuOpen && activeTrigger === "media" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </li>
 
-                        <AnimatePresence>
-                          {parse && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 15 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: 15 }}
-                              transition={{ duration: 0.2 }}
-                              className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6"
-                            >
-                              <div className="grid grid-cols-4">
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    Категории
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/shtornye-avtomobili"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Шторные автомобили
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/krany-manipulator"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Краны-манипуляторы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/zapravka"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автотопливозаправщики
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/sisterna"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автоцистерны
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/evakuator"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автоэвакуаторы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/bortovye-avtomobili"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Бортовые автомобили
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/avtofurgony"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Изотермические фургоны
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/konteynerovozy"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Контейнеровозы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/kryukovye-pogruzchiki"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Крюковые погрузчики
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/samosvaly"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Самосвалы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/avtomobili-dopog"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автомобили ДОПОГ категория EXII
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/gidropod"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автогидроподъёмники
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
+                  {/* Service (Сервис / Xizmat ko'rsatish) */}
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() => handleMenuToggle("service")}
+                      className={`flex items-center gap-1 cursor-pointer transition-colors py-1 select-none whitespace-nowrap ${
+                        isMegaMenuOpen && activeTrigger === "service"
+                          ? "text-amber-500 font-bold"
+                          : "hover:text-amber-500"
+                      }`}
+                    >
+                      <span className="whitespace-nowrap">{t("service", "Сервис")}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
+                          isMegaMenuOpen && activeTrigger === "service" ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </li>
 
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    О нас
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/about"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        О компании ООО «Рустрак»
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/news"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Новости
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/partners"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Наши партнёры
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/production"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Производство
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/suppliers"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Поставщикам и партнёрам
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/review"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Отзывы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/cert"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Сертификаты
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/vacancies"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Вакансии
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/leasing"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Кредит и лизинг
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/samosvaly"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Самосвалы
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    Медиа
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/photogallery"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Фотогалерея
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Видео
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/promo"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Рекламные материалы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Информационные материалы
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/service"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Сервис
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/remont"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Ремонт
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/news"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Новости
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/contact"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Контакты
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </li>
+                  <li>
+                    <NavLink
+                      to="/remont"
+                      onClick={() => {
+                        setIsMegaMenuOpen(false);
+                        setActiveTrigger(null);
+                      }}
+                      className="hover:text-amber-500 transition-colors cursor-pointer whitespace-nowrap"
+                    >
+                      {t("repair", "Ремонт")}
+                    </NavLink>
+                  </li>
 
-                    <li>
-                      <div>
-                        <button
-                          onClick={openCatalog}
-                          className="flex cursor-pointer"
-                        >
-                          <p className="text-black font-normal font-fira-sans text-base">
-                            Медиа
-                          </p>
-                          <ChevronDown
-                            className={`text-yellow-300 cursor-pointer transition-all duration-500 ${catalog ? "rotate-180" : ""}`}
-                          />
-                        </button>
-
-                        <AnimatePresence>
-                          {catalog && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 15 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: 15 }}
-                              transition={{ duration: 0.2 }}
-                              className="wrapper absolute top-full left-1/2 -translate-x-1/2 max-w-300 w-full bg-gray-200 p-6"
-                            >
-                              <div className="grid grid-cols-4">
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    Категории
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/shtornye-avtomobili"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Шторные автомобили
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/krany-manipulator"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Краны-манипуляторы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/zapravka"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автотопливозаправщики
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/sisterna"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автоцистерны
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/evakuator"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автоэвакуаторы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/bortovye-avtomobili"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Бортовые автомобили
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/avtofurgony"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Изотермические фургоны
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/konteynerovozy"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Контейнеровозы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/kryukovye-pogruzchiki"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Крюковые погрузчики
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/samosvaly"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Самосвалы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/avtomobili-dopog"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автомобили ДОПОГ категория EXII
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/gidropod"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Автогидроподъёмники
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    О нас
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/about"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        О компании ООО «Рустрак»
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/news"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Новости
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/partners"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Наши партнёры
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/production"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Производство
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/suppliers"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Поставщикам и партнёрам
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/review"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Отзывы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/cert"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Сертификаты
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/vacancies"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Вакансии
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/leasing"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Кредит и лизинг
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/samosvaly"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Самосвалы
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div>
-                                  <p className="font-fira-sans font-extrabold text-lg mb-4">
-                                    Медиа
-                                  </p>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/photogallery"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Фотогалерея
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Видео
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/promo"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Рекламные материалы
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-base font-normal">
-                                      <NavLink
-                                        to={"/"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Информационные материалы
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div>
-                                  <ul>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/service"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Сервис
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/remont"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Ремонт
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/news"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Новости
-                                      </NavLink>
-                                    </li>
-                                    <li className="mb-4 font-fira-sans text-[2.2rem] font-bold">
-                                      <NavLink
-                                        to={"/contact"}
-                                        className={
-                                          "hover:text-[#FEC80B] transition duration-300"
-                                        }
-                                      >
-                                        Контакты
-                                      </NavLink>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </li>
-
-                    <li className="text-black font-normal font-fira-sans text-base cursor-pointer">
-                      <NavLink to="/service">Сервис</NavLink>
-                    </li>
-
-                    <li className="text-black font-normal font-fira-sans text-base cursor-pointer">
-                      <NavLink to="/remont">Ремонт</NavLink>
-                    </li>
-
-                    <li className="text-black font-normal font-fira-sans text-base cursor-pointer">
-                      <NavLink to="/contact">Контакты</NavLink>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
+                  <li>
+                    <NavLink
+                      to="/contact"
+                      onClick={() => {
+                        setIsMegaMenuOpen(false);
+                        setActiveTrigger(null);
+                      }}
+                      className="hover:text-amber-500 transition-colors cursor-pointer whitespace-nowrap"
+                    >
+                      {t("contacts", "Контакты")}
+                    </NavLink>
+                  </li>
+                </ul>
+              </nav>
             </div>
 
-            <div>
-              <div className="flex gap-5">
-                <form action="#" className="hidden lg:block">
-                  <div className="flex relative">
-                    <label htmlFor="name"></label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="border border-[#FEC80B] outline-0 rounded-full font-fira-sans w-78 h-9 pt-3 pr-10 pb-3 pl-4 text-base shadow-[0_0_10px_#FEC80B]"
-                    />
-                    <button className="cursor-pointer absolute top-1 right-[15px] z-1">
-                      <Search />
-                    </button>
-                  </div>
-                </form>
-                <Search className="cursor-pointer lg:hidden" />
-
-                <button>
-                  <ShoppingCart />
-                </button>
-
-                <button>
-                  <Heart />
-                </button>
-
-                <button onClick={() => setIsPhoneModalOpen(true)}>
-                  <Phone className="bg-[#FEC80B] rounded-full w-10 h-10 cursor-pointer p-2!" />
-                </button>
+            {/* Right: Search, Cart, Favorites, Call, Language */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              {/* Desktop Search Bar */}
+              <div className="hidden lg:block">
+                <SearchBox mode="desktop" />
               </div>
+
+              {/* Mobile Search Icon */}
+              <button
+                type="button"
+                onClick={() => setIsMobileSearchOpen(true)}
+                className="lg:hidden p-2 text-gray-700 hover:text-black hover:bg-gray-100 rounded-full cursor-pointer transition-colors"
+                title={t("search", "Поиск")}
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
+              {/* Cart Button */}
+              <NavLink
+                to="/cart"
+                className="relative p-2 text-gray-700 hover:text-[#FEC80B] transition-colors flex items-center justify-center cursor-pointer"
+                title={t("cart", "Корзина")}
+              >
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#FEC80B] text-black font-fira-sans font-bold text-[10px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-xs">
+                    {cartCount}
+                  </span>
+                )}
+              </NavLink>
+
+              {/* Favorites Button */}
+              <NavLink
+                to="/favorites"
+                className="relative p-2 text-gray-700 hover:text-red-500 transition-colors flex items-center justify-center cursor-pointer"
+                title={t("favorites", "Избранное")}
+              >
+                <Heart
+                  className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors ${
+                    favoritesCount > 0 ? "fill-red-500 text-red-500" : ""
+                  }`}
+                />
+                {favoritesCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white font-fira-sans font-bold text-[10px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-xs">
+                    {favoritesCount}
+                  </span>
+                )}
+              </NavLink>
+
+              {/* Call Order Button */}
+              <button
+                type="button"
+                onClick={() => setIsPhoneModalOpen(true)}
+                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs"
+                title={t("orderCall", "Заказать звонок")}
+              >
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+
+              {/* Language Switcher */}
+              <LanguageSwitcher />
             </div>
           </div>
         </div>
+
+        {/* Full-width 4-Column MegaMenu Dropdown (Matches user's screenshot) */}
+        <AnimatePresence>
+          {isMegaMenuOpen && (
+            <MegaMenuDropdown
+              activeTrigger={activeTrigger}
+              onClose={() => {
+                setIsMegaMenuOpen(false);
+                setActiveTrigger(null);
+              }}
+            />
+          )}
+        </AnimatePresence>
       </section>
 
+      {/* Mobile Search Overlay Drawer */}
+      <SearchBox
+        mode="mobile"
+        isOpen={isMobileSearchOpen}
+        onClose={() => setIsMobileSearchOpen(false)}
+      />
+
+      {/* Call Order Modal */}
       <PhoneModal
         isOpen={isPhoneModalOpen}
         onClose={() => setIsPhoneModalOpen(false)}
@@ -1275,3 +579,4 @@ export function Header() {
     </header>
   );
 }
+export default Header;
