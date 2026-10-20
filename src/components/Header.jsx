@@ -303,7 +303,7 @@ export function Header() {
       >
         <div className="container">
           <div className="flex justify-between items-center">
-            <div className="flex lg:block gap-40">
+            <div className="flex  gap-40">
               <NavLink
               to="/"
               onClick={() => {
@@ -324,10 +324,10 @@ export function Header() {
             <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
-                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs"
+                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:hidden"
                 title={t("orderCall", "Заказать звонок")}
               >
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Phone className="lg:w-4 lg:h-4 w-5 h-5" />
               </button>
             </div>
 
@@ -426,7 +426,7 @@ export function Header() {
                   <Menu className="lg:w-5 lg:h-5 w-6 h-6 text-black" />
                 )}
                 {!isScrolled && (
-                  <span className="font-fira-sans font-medium text-sm sm:text-base text-black whitespace-nowrap  hidden">
+                  <span className="font-fira-sans font-medium text-sm sm:text-base text-black whitespace-nowrap  hidden lg:block md:hidden">
                     {t("catalog", "Каталог")}
                   </span>
                 )}
@@ -606,7 +606,7 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
-                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs"
+                className={`bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs ${isScrolled ? "inline-block" : "hidden"}`}
                 title={t("orderCall", "Заказать звонок")}
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
