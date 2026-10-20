@@ -324,7 +324,7 @@ export function Header() {
             <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
-                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:block"
+                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:hidden"
                 title={t("orderCall", "Заказать звонок")}
               >
                 <Phone className="lg:w-4 lg:h-4 w-5 h-5" />
@@ -606,19 +606,19 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
-                className={`bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs ${isScrolled ? "inline-block" : "hidden"}`}
+                className={`bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs $`}
                 title={t("orderCall", "Заказать звонок")}
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              {/* Language Switcher */}
+              
               <LanguageSwitcher />
             </div>
           </div>
         </div>
 
-        {/* Full-width 4-Column MegaMenu Dropdown (Matches user's screenshot) */}
+        
         <AnimatePresence>
           {isMegaMenuOpen && (
             <MegaMenuDropdown
@@ -632,7 +632,7 @@ export function Header() {
         </AnimatePresence>
       </section>
 
-      {/* Mobile Search Overlay Drawer */}
+      
       <SearchBox
         mode="mobile"
         isOpen={isMobileSearchOpen}
