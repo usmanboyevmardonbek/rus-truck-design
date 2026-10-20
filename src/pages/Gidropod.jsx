@@ -264,7 +264,7 @@ const Gidropod = () => {
                             />
                             {isChecked && (
                               <svg
-                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-3"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -314,7 +314,7 @@ const Gidropod = () => {
                           />
                           {isChecked && (
                             <svg
-                              className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                              className="w-3.5 h-3.5 text-black pointer-events-none stroke-3"
                               viewBox="0 0 24 24"
                               fill="none"
                               stroke="currentColor"
@@ -406,8 +406,8 @@ const Gidropod = () => {
                             to={`/catalog/gidropod/${product.slug}`}
                             className={
                               viewMode === "grid"
-                                ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0 block"
-                                : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0 block"
+                                ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                                : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
                             }
                           >
                             <img

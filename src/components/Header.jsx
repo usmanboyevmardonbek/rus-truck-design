@@ -16,23 +16,49 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
 
-// Full 4-Column Mega Menu (matching rtrf.ru and design screenshot)
 function MegaMenuDropdown({ activeTrigger, onClose }) {
   const { t } = useLanguage();
 
   const categories = [
-    { to: "/catalog/shtornye-avtomobili", label: t("cat_shtornye", "Шторные автомобили") },
-    { to: "/catalog/krany-manipulator", label: t("cat_krany", "Краны-манипуляторы") },
-    { to: "/catalog/zapravka", label: t("cat_zapravka", "Автотопливозаправщики") },
+    {
+      to: "/catalog/shtornye-avtomobili",
+      label: t("cat_shtornye", "Шторные автомобили"),
+    },
+    {
+      to: "/catalog/krany-manipulator",
+      label: t("cat_krany", "Краны-манипуляторы"),
+    },
+    {
+      to: "/catalog/zapravka",
+      label: t("cat_zapravka", "Автотопливозаправщики"),
+    },
     { to: "/catalog/sisterna", label: t("cat_sisterna", "Автоцистерны") },
     { to: "/catalog/evakuator", label: t("cat_evakuator", "Автоэвакуаторы") },
-    { to: "/catalog/bortovye-avtomobili", label: t("cat_bortovye", "Бортовые автомобили") },
-    { to: "/catalog/avtofurgony", label: t("cat_avtofurgony", "Изотермические фургоны") },
-    { to: "/catalog/konteynerovozy", label: t("cat_konteynerovozy", "Контейнеровозы") },
-    { to: "/catalog/kryukovye-pogruzchiki", label: t("cat_kryukovye", "Крюковые погрузчики") },
+    {
+      to: "/catalog/bortovye-avtomobili",
+      label: t("cat_bortovye", "Бортовые автомобили"),
+    },
+    {
+      to: "/catalog/avtofurgony",
+      label: t("cat_avtofurgony", "Изотермические фургоны"),
+    },
+    {
+      to: "/catalog/konteynerovozy",
+      label: t("cat_konteynerovozy", "Контейнеровозы"),
+    },
+    {
+      to: "/catalog/kryukovye-pogruzchiki",
+      label: t("cat_kryukovye", "Крюковые погрузчики"),
+    },
     { to: "/catalog/samosvaly", label: t("cat_samosvaly", "Самосвалы") },
-    { to: "/catalog/avtomobili-dopog", label: t("cat_dopog", "Автомобили ДОПОГ категория EXII") },
-    { to: "/catalog/gidropod", label: t("cat_gidropod", "Автогидроподъёмники") },
+    {
+      to: "/catalog/avtomobili-dopog",
+      label: t("cat_dopog", "Автомобили ДОПОГ категория EXII"),
+    },
+    {
+      to: "/catalog/gidropod",
+      label: t("cat_gidropod", "Автогидроподъёмники"),
+    },
   ];
 
   const aboutLinks = [
@@ -71,7 +97,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
       className="absolute top-full left-0 right-0 w-full max-h-[85vh] overflow-y-auto bg-[#F4F4F4] z-60 shadow-2xl border-t-2 border-[#FEC80B]"
     >
       <div className="container py-8 lg:py-12">
-        {/* Mobile Header in MegaMenu */}
         <div className="flex items-center justify-between pb-3 mb-6 border-b border-gray-300 lg:hidden">
           <div className="flex items-center gap-2">
             <Menu className="w-5 h-5 text-amber-500" />
@@ -88,7 +113,7 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12">
-          {/* Column 1: Categories */}
+          
           <div>
             <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
               {t("categories", "Категории")}
@@ -108,7 +133,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
             </ul>
           </div>
 
-          {/* Column 2: About us */}
           <div>
             <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
               {t("aboutUs", "О нас")}
@@ -128,7 +152,7 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
             </ul>
           </div>
 
-          {/* Column 3: Media */}
+      
           <div>
             <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
               {t("media", "Медиа")}
@@ -148,7 +172,7 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
             </ul>
           </div>
 
-          {/* Column 4: Big Bold Navigation Links (Service, Repair, News, Contacts) */}
+          
           <div>
             <ul className="space-y-4 pt-1">
               {directLinks.map((d, i) => (
@@ -166,16 +190,20 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
           </div>
         </div>
 
-        {/* Mobile contacts in mega menu */}
+        
         <div className="mt-8 pt-6 border-t border-gray-300 lg:hidden space-y-2 text-sm font-fira-sans text-gray-600">
           <p>
-            <span className="text-gray-500">{t("forRegions", "Для регионов:")}</span>{" "}
+            <span className="text-gray-500">
+              {t("forRegions", "Для регионов:")}
+            </span>{" "}
             <a href="tel:88005110525" className="text-black font-semibold">
               8 (800)-511-05-25
             </a>
           </p>
           <p>
-            <span className="text-gray-500">{t("nizhnyNovgorod", "Нижний Новгород:")}</span>{" "}
+            <span className="text-gray-500">
+              {t("nizhnyNovgorod", "Нижний Новгород:")}
+            </span>{" "}
             <a href="tel:88312250055" className="text-black font-semibold">
               8 (831) 225-00-55
             </a>
@@ -196,7 +224,7 @@ export function Header() {
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const [activeTrigger, setActiveTrigger] = useState(null); // 'catalog' | 'about' | 'media' | 'service'
+  const [activeTrigger, setActiveTrigger] = useState(null); 
   const [isScrolled, setIsScrolled] = useState(false);
 
   const workingTimeRef = useRef(null);
@@ -210,10 +238,13 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Click outside listener for working time and mega menu
+  
   useEffect(() => {
     function handleClickOutside(e) {
-      if (workingTimeRef.current && !workingTimeRef.current.contains(e.target)) {
+      if (
+        workingTimeRef.current &&
+        !workingTimeRef.current.contains(e.target)
+      ) {
         setWorkingTime(false);
       }
       if (
@@ -228,7 +259,7 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // ESC key listener
+  
   useEffect(() => {
     function handleEsc(e) {
       if (e.key === "Escape") {
@@ -264,35 +295,50 @@ export function Header() {
         isScrolled ? "fixed top-0 left-0 w-full bg-white shadow-md" : "relative"
       }`}
     >
-      {/* Top Header Bar */}
+      
       <div
-        className={`justify-around items-center border-b border-b-yellow-400 py-2 sm:py-2.5 relative z-40 bg-white ${
+        className={`justify-around items-center border-b border-b-yellow-400 lg:py-2 py-2.5 relative z-40 bg-white ${
           isScrolled ? "hidden" : "flex"
         }`}
       >
         <div className="container">
           <div className="flex justify-between items-center">
-            <NavLink
+            <div className="flex lg:block gap-40">
+              <NavLink
               to="/"
               onClick={() => {
                 setIsMegaMenuOpen(false);
                 setActiveTrigger(null);
               }}
-              className="flex items-center gap-2 sm:gap-3 shrink-0"
+              className="flex items-center lg:gap-2 gap-3 shrink-0"
             >
               <img
                 src="/header-logo.svg"
                 alt="РусТрак"
-                className="h-8 sm:h-10 w-auto object-contain"
+                className={`lg:h-8 h-10 w-auto object-contain hidden lg:inline-block ${isScrolled ? "hidden" : "inline-block" }`}
               />
               <span className="hidden sm:inline-block font-fira-sans text-black font-normal text-xs sm:text-sm relative before:content-[''] before:absolute before:top-2 before:left-0 before:z-10 before:w-0.5 before:h-5 before:bg-yellow-400 pl-4 sm:pl-5 whitespace-pre-line leading-tight">
                 {t("headerSubtitle", "производство и продажа\nавтоспецтехники")}
               </span>
             </NavLink>
+            <button
+                type="button"
+                onClick={() => setIsPhoneModalOpen(true)}
+                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs"
+                title={t("orderCall", "Заказать звонок")}
+              >
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </div>
+
+            
 
             <div className="flex items-center gap-6">
-              {/* Working Hours Dropdown */}
-              <div className="hidden lg:flex lg:flex-col relative" ref={workingTimeRef}>
+              
+              <div
+                className="hidden lg:flex lg:flex-col relative"
+                ref={workingTimeRef}
+              >
                 <button
                   type="button"
                   onClick={openWorkingTimeDropdown}
@@ -314,10 +360,14 @@ export function Header() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 8, scale: 0.98 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 lg:left-0 top-[calc(100%+8px)] shadow-2xl rounded-xl border border-gray-200 min-w-[220px] bg-white p-3.5 z-60 text-xs font-fira-sans space-y-1.5"
+                      className="absolute right-0 lg:left-0 top-[calc(100%+8px)] shadow-2xl rounded-xl border border-gray-200 min-w-55 bg-white p-3.5 z-60 text-xs font-fira-sans space-y-1.5"
                     >
-                      <p className="text-gray-900 font-medium">{t("monFri", "Пн-пт: с 8:00 до 18:00")}</p>
-                      <p className="text-gray-500">{t("weekend", "Сб-вс: Выходной")}</p>
+                      <p className="text-gray-900 font-medium">
+                        {t("monFri", "Пн-пт: с 8:00 до 18:00")}
+                      </p>
+                      <p className="text-gray-500">
+                        {t("weekend", "Сб-вс: Выходной")}
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -326,17 +376,23 @@ export function Header() {
                 </p>
               </div>
 
-              {/* Phone Contacts */}
+              
               <div className="hidden lg:flex flex-col text-xs font-fira-sans whitespace-nowrap">
                 <p className="text-gray-500">
                   {t("forRegions", "Для регионов:")}{" "}
-                  <a href="tel:88005110525" className="text-black font-semibold hover:text-[#FEC80B]">
+                  <a
+                    href="tel:88005110525"
+                    className="text-black font-semibold hover:text-[#FEC80B]"
+                  >
                     8 (800)-511-05-25
                   </a>
                 </p>
                 <p className="text-gray-500">
                   {t("nizhnyNovgorod", "Нижний Новгород:")}{" "}
-                  <a href="tel:88312250055" className="text-black font-semibold hover:text-[#FEC80B]">
+                  <a
+                    href="tel:88312250055"
+                    className="text-black font-semibold hover:text-[#FEC80B]"
+                  >
                     8 (831) 225-00-55
                   </a>
                 </p>
@@ -346,13 +402,14 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main Nav / Action Bar */}
-      <section className="py-2.5 sm:py-3 relative z-30 bg-white" ref={menuContainerRef}>
+      
+      <section
+        className="lg:py-2.5 py-3 relative z-30 bg-white"
+        ref={menuContainerRef}
+      >
         <div className="container">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
-            {/* Left: Scrolled Burger + Logo + Nav */}
             <div className="flex items-center gap-2.5 sm:gap-4 xl:gap-6 min-w-0">
-              {/* Catalog Burger Button */}
               <button
                 type="button"
                 onClick={() => handleMenuToggle("catalog")}
@@ -366,16 +423,15 @@ export function Header() {
                 {isMegaMenuOpen && activeTrigger === "catalog" ? (
                   <X className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
                 ) : (
-                  <Menu className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+                  <Menu className="lg:w-5 lg:h-5 w-6 h-6 text-black" />
                 )}
                 {!isScrolled && (
-                  <span className="font-fira-sans font-medium text-sm sm:text-base text-black whitespace-nowrap">
+                  <span className="font-fira-sans font-medium text-sm sm:text-base text-black whitespace-nowrap  hidden">
                     {t("catalog", "Каталог")}
                   </span>
                 )}
               </button>
 
-              {/* Scrolled Logo (Only when scrolled, placed immediately after Catalog button) */}
               {isScrolled && (
                 <NavLink
                   to="/"
@@ -383,17 +439,17 @@ export function Header() {
                     setIsMegaMenuOpen(false);
                     setActiveTrigger(null);
                   }}
-                  className="shrink-0 flex items-center pr-1 sm:pr-2"
+                  className="shrink-0 flex items-center lg:pr-1 pr-2"
                 >
                   <img
                     src="/header-logo.svg"
                     alt="РусТрак"
-                    className="h-7 sm:h-8 w-auto object-contain"
+                    className="lg:h-7 h-8 w-auto object-contain hidden"
                   />
                 </NavLink>
               )}
 
-              {/* Desktop Nav Links */}
+              
               <nav className="hidden lg:block">
                 <ul className="flex items-center gap-4 xl:gap-7 font-fira-sans text-sm font-medium text-gray-800">
                   {/* About Us (О нас / Biz haqimizda) */}
@@ -407,10 +463,14 @@ export function Header() {
                           : "hover:text-amber-500"
                       }`}
                     >
-                      <span className="whitespace-nowrap">{t("aboutUs", "О нас")}</span>
+                      <span className="whitespace-nowrap">
+                        {t("aboutUs", "О нас")}
+                      </span>
                       <ChevronDown
                         className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
-                          isMegaMenuOpen && activeTrigger === "about" ? "rotate-180" : ""
+                          isMegaMenuOpen && activeTrigger === "about"
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -427,10 +487,14 @@ export function Header() {
                           : "hover:text-amber-500"
                       }`}
                     >
-                      <span className="whitespace-nowrap">{t("media", "Медиа")}</span>
+                      <span className="whitespace-nowrap">
+                        {t("media", "Медиа")}
+                      </span>
                       <ChevronDown
                         className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
-                          isMegaMenuOpen && activeTrigger === "media" ? "rotate-180" : ""
+                          isMegaMenuOpen && activeTrigger === "media"
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -447,10 +511,14 @@ export function Header() {
                           : "hover:text-amber-500"
                       }`}
                     >
-                      <span className="whitespace-nowrap">{t("service", "Сервис")}</span>
+                      <span className="whitespace-nowrap">
+                        {t("service", "Сервис")}
+                      </span>
                       <ChevronDown
                         className={`w-4 h-4 text-amber-500 transition-transform duration-300 ${
-                          isMegaMenuOpen && activeTrigger === "service" ? "rotate-180" : ""
+                          isMegaMenuOpen && activeTrigger === "service"
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -510,7 +578,7 @@ export function Header() {
               >
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#FEC80B] text-black font-fira-sans font-bold text-[10px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1 -right-1 bg-[#FEC80B] text-black font-fira-sans font-bold text-[10px] min-w-4.5 h-4.5 px-1 rounded-full flex items-center justify-center shadow-xs">
                     {cartCount}
                   </span>
                 )}
@@ -528,7 +596,7 @@ export function Header() {
                   }`}
                 />
                 {favoritesCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white font-fira-sans font-bold text-[10px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white font-fira-sans font-bold text-[10px] min-w-4.5 h-4.5 px-1 rounded-full flex items-center justify-center shadow-xs">
                     {favoritesCount}
                   </span>
                 )}

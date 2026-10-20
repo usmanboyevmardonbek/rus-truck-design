@@ -111,7 +111,7 @@ export function Home() {
   return (
     <>
       <Header />
-      <section className="pt-2 sm:pt-4">
+      <section className="lg:pt-2 pt-4">
         <div className="container">
           <div className="z-10 relative">
             <Swiper
@@ -126,18 +126,18 @@ export function Home() {
             >
               {heroSlides.map((slide, idx) => (
                 <SwiperSlide key={idx}>
-                  <div className="relative rounded-2xl overflow-hidden min-h-[320px] sm:min-h-[400px] md:min-h-[460px] lg:min-h-[500px]">
+                  <div className="relative rounded-2xl overflow-hidden min-h-80 md:min-h-115 lg:min-h-125">
                     <img
                       src={slide.image}
                       alt={t(slide.titleKey, slide.titleDefault)}
                       className="absolute inset-0 w-full h-full object-cover rounded-2xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/65 to-black/35 md:bg-gradient-to-r md:from-black/95 md:via-black/75 md:to-transparent flex items-center p-5 sm:p-8 lg:p-14 z-20">
-                      <div className="max-w-2xl text-white space-y-2.5 sm:space-y-4">
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/65 to-black/35 md:bg-linear-to-r md:from-black/95 md:via-black/75 md:to-transparent flex items-center p-5 sm:p-8 lg:p-14 z-20">
+                      <div className="max-w-2xl text-white lg:space-y-2.5 space-y-4">
                         <h1 className="font-fira-sans font-extrabold text-white text-lg sm:text-2xl lg:text-[32px] leading-snug sm:leading-tight">
                           {t(slide.titleKey, slide.titleDefault)}
                         </h1>
-                        <p className="text-xs sm:text-sm lg:text-base font-fira-sans text-gray-200 line-clamp-3 sm:line-clamp-none whitespace-pre-line leading-relaxed">
+                        <p className="lg:text-xs text-sm  font-fira-sans text-gray-200 lg:line-clamp-3 line-clamp-none whitespace-pre-line leading-relaxed">
                           {t(slide.descKey, slide.descDefault)}
                         </p>
 
@@ -180,14 +180,14 @@ export function Home() {
       <section className="category">
         <div className="container">
           <div className="flex mt-15 justify-between">
-            <h2 className="font-fira-sans font-medium md:text-[42px] sm:text-xl pl-5">
+            <h2 className="font-fira-sans font-medium md:text-[42px] text-xl pl-5">
               {t("categories", "Категории")}
             </h2>
             <div className="flex items-center gap-2">
-              <button className="category-swiper-button-prev md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer">
-                <ChevronLeft />
+              <button className="category-swiper-button-prev md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer>">
+                <ChevronLeft/>
               </button>
-              <button className="category-swiper-button-next md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer">
+              <button className="category-swiper-button-next md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer>">
                 <ChevronRight />
               </button>
             </div>
@@ -221,7 +221,7 @@ export function Home() {
           >
             {catData.map((cats) => (
               <SwiperSlide key={cats.id}>
-                <div className="mt-10 border border-[#EBEBEB] rounded-sm w-full h-[280px] pb-6 hover:shadow-[0_0_18px_#FEC80B] transition duration-300 bg-white flex flex-col justify-between">
+                <div className="mt-10 border border-[#EBEBEB] rounded-sm w-full h-70 pb-6 hover:shadow-[0_0_18px_#FEC80B] transition duration-300 bg-white flex flex-col justify-between">
                   <a href={cats.catLink} className="flex flex-col h-full justify-between">
                     <div className="px-4 py-3">
                       <p className="font-fira-sans font-medium text-base md:text-lg text-gray-900 truncate">
@@ -388,7 +388,7 @@ export function Home() {
 
                     <div className="p-3">
                       <a href="/catalog">
-                        <p className="font-fira-sans text-sm font-normal lg:text-base text-gray-800 line-clamp-2 min-h-[44px]">
+                        <p className="font-fira-sans text-sm font-normal lg:text-base text-gray-800 line-clamp-2 min-h-11">
                           {recomendProduct.recText}
                         </p>
                       </a>

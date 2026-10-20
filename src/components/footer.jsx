@@ -93,7 +93,7 @@ const Footer = () => {
                   {t("orderCall", "Заказать звонок")}
                 </button>
               </div>
-              <img src="/s.svg" alt="logo" className="mt-8 w-44 opacity-80" />
+              <img src="/footer-uchun.svg" alt="logo" className="mt-8 w-44 opacity-80" />
             </div>
 
             {/* Navigation Columns */}
