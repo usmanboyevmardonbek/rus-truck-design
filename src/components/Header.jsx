@@ -324,7 +324,7 @@ export function Header() {
             <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
-                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:hidden"
+                className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:block"
                 title={t("orderCall", "Заказать звонок")}
               >
                 <Phone className="lg:w-4 lg:h-4 w-5 h-5" />
@@ -452,7 +452,7 @@ export function Header() {
               
               <nav className="hidden lg:block">
                 <ul className="flex items-center gap-4 xl:gap-7 font-fira-sans text-sm font-medium text-gray-800">
-                  {/* About Us (О нас / Biz haqimizda) */}
+                  
                   <li>
                     <button
                       type="button"
