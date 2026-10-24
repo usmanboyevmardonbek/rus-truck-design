@@ -2,12 +2,9 @@ import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React from "react";
 
-import { Header } from "../components/Header";
 import { useLanguage } from "../context/LanguageContext";
 import { newsData } from "./objects";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
 
 // Import Swiper styles
 import "swiper/css";
@@ -21,9 +18,14 @@ const News = () => {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2 ">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -107,7 +109,9 @@ const News = () => {
               </a>
 
               <a href="#" className="flex gap-3 items-center group">
-                <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">{t("learnMore", "Подробнее")}</p>
+                <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">
+                  {t("learnMore", "Подробнее")}
+                </p>
                 <MoveRight className="text-[#a2a2a2] group-hover:text-[#ffd43a] group-transition duration-200 ease-in:" />
               </a>
             </div>
@@ -117,14 +121,24 @@ const News = () => {
             {newsData.map((newsThings) => (
               <div key={newsThings.id}>
                 <a href="#" className="group">
-                  <img src={newsThings.newsImage} alt="news-image" className="w-140 h-70 max-w-full rounded-xl"/>
+                  <img
+                    src={newsThings.newsImage}
+                    alt="news-image"
+                    className="w-140 h-70 max-w-full rounded-xl"
+                  />
                   <div className="ml-1 mt-2 mb-5">
-                    <p className="font-fira-sans text-lg">{newsThings.newsDate}</p>
-                    <p className="font-fira-sans line-clamp-2 font-medium text-lg">{newsThings.newsDesc}</p>
+                    <p className="font-fira-sans text-lg">
+                      {newsThings.newsDate}
+                    </p>
+                    <p className="font-fira-sans line-clamp-2 font-medium text-lg">
+                      {newsThings.newsDesc}
+                    </p>
                   </div>
 
                   <span className="flex items-center gap-2 ml-1">
-                    <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">{t("learnMore", "Подробнее")}</p>
+                    <p className="font-fira-sans text-[#a2a2a2] text-lg group-hover:text-[#ffd43a] group-hover:transition duration-200 ease-in">
+                      {t("learnMore", "Подробнее")}
+                    </p>
                     <MoveRight className="text-[#a2a2a2] group-hover:text-[#ffd43a] group-transition duration-200 ease-in" />
                   </span>
                 </a>
@@ -132,8 +146,6 @@ const News = () => {
             ))}
           </div>
         </motion.div>
-        <Feedback/>
-        <Footer/>
       </div>
     </>
   );

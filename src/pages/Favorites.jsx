@@ -1,15 +1,18 @@
+import { ChevronDown, Download, Heart, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Heart, ShoppingCart, Download, ChevronDown } from "lucide-react";
-import { Header } from "../components/Header";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
 import { useCart } from "../context/CartContext";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Favorites() {
   const { t } = useLanguage();
-  const { favoriteItems, removeFromFavorites, addToCart, isInCart, favoritesCount } = useCart();
+  const {
+    favoriteItems,
+    removeFromFavorites,
+    addToCart,
+    isInCart,
+    favoritesCount,
+  } = useCart();
   const [filterAvailability, setFilterAvailability] = useState("all"); // 'all' | 'inStock' | 'outOfStock'
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [sortKey, setSortKey] = useState("popular");
@@ -18,7 +21,11 @@ export default function Favorites() {
     { id: "popular", labelKey: "sortPopular", defaultLabel: "По популярности" },
     { id: "newest", labelKey: "sortNewest", defaultLabel: "Сначала новые" },
     { id: "inStock", labelKey: "sortInStock", defaultLabel: "В наличии" },
-    { id: "priceAsc", labelKey: "sortPriceAsc", defaultLabel: "По возрастанию цены" },
+    {
+      id: "priceAsc",
+      labelKey: "sortPriceAsc",
+      defaultLabel: "По возрастанию цены",
+    },
   ];
 
   const filteredItems = favoriteItems.filter((item) => {
@@ -27,11 +34,11 @@ export default function Favorites() {
     return true;
   });
 
-  const currentSortOption = sortOptions.find((opt) => opt.id === sortKey) || sortOptions[0];
+  const currentSortOption =
+    sortOptions.find((opt) => opt.id === sortKey) || sortOptions[0];
 
   return (
     <>
-      <Header />
       <main className="bg-white min-h-[60vh] pb-12">
         <div className="container mx-auto px-4 pt-6">
           {/* Breadcrumbs */}
@@ -40,7 +47,9 @@ export default function Favorites() {
               <NavLink to="/">{t("home", "Главная")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">{t("favorites", "Избранное")}</li>
+            <li className="font-fira-sans text-gray-400 text-sm">
+              {t("favorites", "Избранное")}
+            </li>
           </ul>
 
           {favoriteItems.length === 0 ? (
@@ -50,7 +59,10 @@ export default function Favorites() {
                 {t("favoritesEmptyTitle", "Ваше избранное пусто.")}
               </h1>
               <p className="font-fira-sans text-sm text-black mb-8">
-                {t("favoritesEmptyDesc", "Воспользуйтесь каталогом или поиском, чтобы сохранить подходящий товар.")}
+                {t(
+                  "favoritesEmptyDesc",
+                  "Воспользуйтесь каталогом или поиском, чтобы сохранить подходящий товар.",
+                )}
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
@@ -77,7 +89,10 @@ export default function Favorites() {
                   {t("favorites", "Избранное")}
                 </h1>
                 <span className="font-fira-sans text-gray-400 text-sm">
-                  {favoritesCount} {favoritesCount === 1 ? t("itemWordSingular", "товар") : t("itemWordPlural", "товаров")}
+                  {favoritesCount}{" "}
+                  {favoritesCount === 1
+                    ? t("itemWordSingular", "товар")
+                    : t("itemWordPlural", "товаров")}
                 </span>
               </div>
 
@@ -125,12 +140,19 @@ export default function Favorites() {
                 {/* Sort Dropdown */}
                 <div className="relative">
                   <div className="flex items-center gap-2 text-sm font-fira-sans">
-                    <span className="text-gray-400">{t("sortBy", "Сортировка:")}</span>
+                    <span className="text-gray-400">
+                      {t("sortBy", "Сортировка:")}
+                    </span>
                     <button
                       onClick={() => setIsSortOpen(!isSortOpen)}
                       className="flex items-center gap-1 font-medium hover:text-yellow-600 transition-colors cursor-pointer"
                     >
-                      <span>{t(currentSortOption.labelKey, currentSortOption.defaultLabel)}</span>
+                      <span>
+                        {t(
+                          currentSortOption.labelKey,
+                          currentSortOption.defaultLabel,
+                        )}
+                      </span>
                       <ChevronDown className="w-4 h-4 text-gray-400" />
                     </button>
                   </div>
@@ -145,7 +167,9 @@ export default function Favorites() {
                             setIsSortOpen(false);
                           }}
                           className={`w-full text-left px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer ${
-                            sortKey === option.id ? "font-bold text-black bg-gray-50" : "text-gray-700"
+                            sortKey === option.id
+                              ? "font-bold text-black bg-gray-50"
+                              : "text-gray-700"
                           }`}
                         >
                           {t(option.labelKey, option.defaultLabel)}
@@ -166,7 +190,13 @@ export default function Favorites() {
                     {/* Card Image */}
                     <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden shrink-0">
                       <img
-                        src={item.img ? (item.img.startsWith('/') ? item.img : `/${item.img}`) : "/furgon-1.jpg"}
+                        src={
+                          item.img
+                            ? item.img.startsWith("/")
+                              ? item.img
+                              : `/${item.img}`
+                            : "/furgon-1.jpg"
+                        }
                         alt={item.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -213,20 +243,32 @@ export default function Favorites() {
                                 ? "bg-[#FEC80B] border-[#FEC80B] text-black"
                                 : "hover:text-black border-gray-200"
                             }`}
-                            title={isInCart(item.id, item.page) ? t("inCart", "В корзине") : t("toCart", "В корзину")}
+                            title={
+                              isInCart(item.id, item.page)
+                                ? t("inCart", "В корзине")
+                                : t("toCart", "В корзину")
+                            }
                           >
                             <ShoppingCart className="w-4 h-4" />
                           </button>
 
                           <button
-                            onClick={() => removeFromFavorites(item.id, item.page)}
+                            onClick={() =>
+                              removeFromFavorites(item.id, item.page)
+                            }
                             className="p-2 rounded-xs border border-gray-200 text-red-500 hover:text-red-700 transition-colors cursor-pointer"
-                            title={t("removeFromFavorites", "Убрать из избранного")}
+                            title={t(
+                              "removeFromFavorites",
+                              "Убрать из избранного",
+                            )}
                           >
                             <Heart className="w-4 h-4 fill-current" />
                           </button>
 
-                          <button className="p-2 rounded-xs border border-gray-200 text-gray-400 hover:text-black transition-colors cursor-pointer" title={t("getKp", "Получить КП")}>
+                          <button
+                            className="p-2 rounded-xs border border-gray-200 text-gray-400 hover:text-black transition-colors cursor-pointer"
+                            title={t("getKp", "Получить КП")}
+                          >
                             <Download className="w-4 h-4" />
                           </button>
                         </div>
@@ -239,9 +281,6 @@ export default function Favorites() {
           )}
         </div>
       </main>
-
-      <Feedback />
-      <Footer />
     </>
   );
 }

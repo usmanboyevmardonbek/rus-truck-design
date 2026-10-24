@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { PhoneModal } from "./PhoneModal";
+import { PhoneModal } from "../components/PhoneModal";
 
 const catalogLinks = [
   { key: "cat_shtornye", defaultTitle: "Шторные автомобили", path: "/catalog/shtornye-avtomobili" },

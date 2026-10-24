@@ -1,12 +1,10 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React, { useEffect, useRef } from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import { Fancybox } from "@fancyapps/ui";
 import { reviewData } from "./objects";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
 
 const Review = () => {
   const { t } = useLanguage();
@@ -24,9 +22,14 @@ const Review = () => {
 
   return (
     <>
-      <Header />
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -36,34 +39,33 @@ const Review = () => {
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/">{t("reviewsBreadcrumb", "Отзывы и рекомендательные письма партнёров ООО «Рустрак»")}</a>
+              <a href="/">
+                {t(
+                  "reviewsBreadcrumb",
+                  "Отзывы и рекомендательные письма партнёров ООО «Рустрак»",
+                )}
+              </a>
             </li>
           </ul>
 
           <div>
-            <h1 className="font-fira-sans text-3xl font-medium mt-3">{t("reviews", "Отзывы")}</h1>
+            <h1 className="font-fira-sans text-3xl font-medium mt-3">
+              {t("reviews", "Отзывы")}
+            </h1>
           </div>
 
-          <div ref={containerRef} className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:grid-cols-3">
+          <div
+            ref={containerRef}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:grid-cols-3"
+          >
             {reviewData.map((revItem) => (
-                <a
-              data-fancybox="gallery"
-              href={revItem.revImg}
-              key={revItem.id}
-            >
-              <img
-                src={revItem.revImg}
-                alt="revImg"
-              />
-            </a>
+              <a data-fancybox="gallery" href={revItem.revImg} key={revItem.id}>
+                <img src={revItem.revImg} alt="revImg" />
+              </a>
             ))}
-            
           </div>
         </motion.div>
       </div>
-
-      <Feedback/>
-      <Footer/>
     </>
   );
 };

@@ -1,16 +1,15 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
-import { Header } from "../components/Header";
+
 import { contactData } from "./objects";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext";
 
 function Contact() {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
+      
       <div>
         <motion.div
           className="container"
@@ -33,7 +32,10 @@ function Contact() {
           </ul>
 
           <h2 className="font-fira-sans text-3xl font-medium mt-3">
-            {t("contactTitle", "Контакты производителя автоспецтехники РусТрак")}
+            {t(
+              "contactTitle",
+              "Контакты производителя автоспецтехники РусТрак",
+            )}
           </h2>
 
           <div className="flex mt-8 flex-col lg:flex-row">
@@ -113,8 +115,7 @@ function Contact() {
             ))}
           </div>
         </motion.div>
-        <Feedback />
-        <Footer />
+        
       </div>
     </>
   );

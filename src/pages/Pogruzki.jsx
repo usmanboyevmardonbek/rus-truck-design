@@ -1,19 +1,13 @@
 import { motion, AnimatePresence } from "motion/react";
 import { fadeUp, container } from "../utils/animation";
-import {
-  Grid2x2,
-  List,
-  Heart,
-  ShoppingCart,
-  Download,
-} from "lucide-react";
-import { Header } from "../components/Header";
+import { Grid2x2, List, Heart, ShoppingCart, Download } from "lucide-react";
+
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import Footer from "../components/footer";
+
 import { useState } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
+
 import Slider from "../components/Slider";
 import { NavLink } from "react-router-dom";
 import { matchesFormula } from "../utils/filterUtils";
@@ -79,7 +73,9 @@ const Pogruzki = () => {
 
   const handleToggleFormula = (formula) => {
     setSelectedFormulas((prev) =>
-      prev.includes(formula) ? prev.filter((f) => f !== formula) : [...prev, formula]
+      prev.includes(formula)
+        ? prev.filter((f) => f !== formula)
+        : [...prev, formula],
     );
   };
 
@@ -88,7 +84,7 @@ const Pogruzki = () => {
   };
 
   const filteredProducts = dummyProducts.filter((product) =>
-    matchesFormula(product, selectedFormulas)
+    matchesFormula(product, selectedFormulas),
   );
 
   const handleViewChange = (mode) => {
@@ -104,7 +100,7 @@ const Pogruzki = () => {
 
   return (
     <>
-      <Header />
+      
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
           <ul className="flex items-center gap-2 mb-6 flex-wrap">
@@ -265,7 +261,8 @@ const Pogruzki = () => {
                   }}
                   className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
                 >
-                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                  {t("showProducts", "Показать товары")} (
+                  {filteredProducts.length})
                 </button>
                 {selectedFormulas.length > 0 && (
                   <button
@@ -278,7 +275,10 @@ const Pogruzki = () => {
               </div>
             </div>
 
-            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div
+              id="product-grid-view"
+              className="flex-1 relative min-h-125 w-full flex flex-col gap-10"
+            >
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -300,7 +300,10 @@ const Pogruzki = () => {
                         {t("noProductsFound", "Товары не найдены")}
                       </p>
                       <p className="font-fira-sans text-sm text-gray-500 mb-6">
-                        {t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}
+                        {t(
+                          "tryChangingFilters",
+                          "Попробуйте изменить параметры фильтрации",
+                        )}
                       </p>
                       <button
                         onClick={handleResetFilters}
@@ -311,7 +314,10 @@ const Pogruzki = () => {
                     </div>
                   ) : (
                     filteredProducts.map((product) => {
-                      const localizedTitle = translateTitle(product.title, lang);
+                      const localizedTitle = translateTitle(
+                        product.title,
+                        lang,
+                      );
                       return (
                         <motion.div
                           variants={fadeUp}
@@ -358,7 +364,10 @@ const Pogruzki = () => {
                               }}
                               title={
                                 isInFavorites(product)
-                                  ? t("removeFromFavorites", "Удалить из избранного")
+                                  ? t(
+                                      "removeFromFavorites",
+                                      "Удалить из избранного",
+                                    )
                                   : t("addToFavorites", "В избранное")
                               }
                             >
@@ -386,7 +395,9 @@ const Pogruzki = () => {
                                   : "flex-1 flex flex-col"
                               }
                             >
-                              <NavLink to={`/catalog/kryukovye-pogruzchiki/${product.slug}`}>
+                              <NavLink
+                                to={`/catalog/kryukovye-pogruzchiki/${product.slug}`}
+                              >
                                 <h3
                                   className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
                                     viewMode === "list"
@@ -488,7 +499,10 @@ const Pogruzki = () => {
                                       }`}
                                       title={
                                         isInFavorites(product)
-                                          ? t("removeFromFavorites", "Удалить из избранного")
+                                          ? t(
+                                              "removeFromFavorites",
+                                              "Удалить из избранного",
+                                            )
                                           : t("addToFavorites", "В избранное")
                                       }
                                     >
@@ -504,9 +518,10 @@ const Pogruzki = () => {
                                   <button
                                     type="button"
                                     onClick={() => {
-                                      const el = document.getElementById(
-                                        "feedback-section"
-                                      );
+                                      const el =
+                                        document.getElementById(
+                                          "feedback-section",
+                                        );
                                       if (el)
                                         el.scrollIntoView({
                                           behavior: "smooth",
@@ -539,8 +554,7 @@ const Pogruzki = () => {
           {viewMode === "grid" && <Slider />}
         </div>
       </div>
-      <Feedback />
-      <Footer />
+     
     </>
   );
 };

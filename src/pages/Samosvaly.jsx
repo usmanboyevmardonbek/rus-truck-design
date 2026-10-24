@@ -9,13 +9,13 @@ import {
   ShoppingCart,
   Download,
 } from "lucide-react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import Footer from "../components/footer";
+
 import { useState } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
+
 import { NavLink } from "react-router-dom";
 import { matchesBrand, matchesFormula } from "../utils/filterUtils";
 import {
@@ -83,13 +83,15 @@ const Samosvaly = () => {
 
   const handleToggleBrand = (brand) => {
     setSelectedBrands((prev) =>
-      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand],
     );
   };
 
   const handleToggleFormula = (formula) => {
     setSelectedFormulas((prev) =>
-      prev.includes(formula) ? prev.filter((f) => f !== formula) : [...prev, formula]
+      prev.includes(formula)
+        ? prev.filter((f) => f !== formula)
+        : [...prev, formula],
     );
   };
 
@@ -100,7 +102,7 @@ const Samosvaly = () => {
   };
 
   const visibleBrands = brands.filter((b) =>
-    b.toLowerCase().includes(brandSearch.trim().toLowerCase())
+    b.toLowerCase().includes(brandSearch.trim().toLowerCase()),
   );
 
   const filteredProducts = dummyProducts.filter((product) => {
@@ -122,7 +124,6 @@ const Samosvaly = () => {
 
   return (
     <>
-      <Header />
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
           <ul className="flex items-center gap-2 mb-6 flex-wrap">
@@ -134,7 +135,9 @@ const Samosvaly = () => {
               <NavLink to="/catalog">{t("catalog", "Каталог")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">{t("cat_samosvaly", "Самосвалы")}</li>
+            <li className="font-fira-sans text-gray-400 text-sm">
+              {t("cat_samosvaly", "Самосвалы")}
+            </li>
           </ul>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
@@ -222,7 +225,9 @@ const Samosvaly = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start mb-30">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">{t("brand", "Марка")}</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">
+                  {t("brand", "Марка")}
+                </h3>
                 <div className="relative mb-4">
                   <input
                     type="text"
@@ -235,7 +240,9 @@ const Samosvaly = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   {visibleBrands.length === 0 ? (
-                    <p className="text-xs text-gray-400 py-2">{t("brandNotFound", "Марки не найдены")}</p>
+                    <p className="text-xs text-gray-400 py-2">
+                      {t("brandNotFound", "Марки не найдены")}
+                    </p>
                   ) : (
                     visibleBrands.map((brand, idx) => {
                       const isChecked = selectedBrands.includes(brand);
@@ -270,7 +277,9 @@ const Samosvaly = () => {
                           </div>
                           <span
                             className={`font-fira-sans text-sm transition-colors ${
-                              isChecked ? "text-black font-semibold" : "text-gray-700"
+                              isChecked
+                                ? "text-black font-semibold"
+                                : "text-gray-700"
                             }`}
                           >
                             {brand}
@@ -320,7 +329,9 @@ const Samosvaly = () => {
                         </div>
                         <span
                           className={`font-fira-sans text-sm transition-colors ${
-                            isChecked ? "text-black font-semibold" : "text-gray-700"
+                            isChecked
+                              ? "text-black font-semibold"
+                              : "text-gray-700"
                           }`}
                         >
                           {formula}
@@ -340,7 +351,8 @@ const Samosvaly = () => {
                   }}
                   className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
                 >
-                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                  {t("showProducts", "Показать товары")} (
+                  {filteredProducts.length})
                 </button>
                 {(selectedBrands.length > 0 || selectedFormulas.length > 0) && (
                   <button
@@ -353,7 +365,10 @@ const Samosvaly = () => {
               </div>
             </div>
 
-            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div
+              id="product-grid-view"
+              className="flex-1 relative min-h-125 w-full flex flex-col gap-10"
+            >
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -375,7 +390,10 @@ const Samosvaly = () => {
                         {t("noProductsFound", "Товары не найдены")}
                       </p>
                       <p className="font-fira-sans text-sm text-gray-500 mb-6">
-                        {t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}
+                        {t(
+                          "tryChangingFilters",
+                          "Попробуйте изменить параметры фильтрации",
+                        )}
                       </p>
                       <button
                         onClick={handleResetFilters}
@@ -386,7 +404,10 @@ const Samosvaly = () => {
                     </div>
                   ) : (
                     filteredProducts.map((product) => {
-                      const localizedTitle = translateTitle(product.title, lang);
+                      const localizedTitle = translateTitle(
+                        product.title,
+                        lang,
+                      );
                       return (
                         <motion.div
                           variants={fadeUp}
@@ -433,7 +454,10 @@ const Samosvaly = () => {
                               }}
                               title={
                                 isInFavorites(product)
-                                  ? t("removeFromFavorites", "Удалить из избранного")
+                                  ? t(
+                                      "removeFromFavorites",
+                                      "Удалить из избранного",
+                                    )
                                   : t("addToFavorites", "В избранное")
                               }
                             >
@@ -461,7 +485,9 @@ const Samosvaly = () => {
                                   : "flex-1 flex flex-col"
                               }
                             >
-                              <NavLink to={`/catalog/samosvaly/${product.slug}`}>
+                              <NavLink
+                                to={`/catalog/samosvaly/${product.slug}`}
+                              >
                                 <h3
                                   className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
                                     viewMode === "list"
@@ -518,9 +544,10 @@ const Samosvaly = () => {
                                   <button
                                     type="button"
                                     onClick={() => {
-                                      const el = document.getElementById(
-                                        "feedback-section"
-                                      );
+                                      const el =
+                                        document.getElementById(
+                                          "feedback-section",
+                                        );
                                       if (el)
                                         el.scrollIntoView({
                                           behavior: "smooth",
@@ -561,7 +588,10 @@ const Samosvaly = () => {
                                           title={
                                             isInCart(product)
                                               ? t("inCart", "В корзине")
-                                              : t("addToCart", "Добавить в корзину")
+                                              : t(
+                                                  "addToCart",
+                                                  "Добавить в корзину",
+                                                )
                                           }
                                         >
                                           <ShoppingCart
@@ -574,7 +604,9 @@ const Samosvaly = () => {
                                         </button>
                                         <button
                                           type="button"
-                                          onClick={() => toggleFavorite(product)}
+                                          onClick={() =>
+                                            toggleFavorite(product)
+                                          }
                                           className={`transition-colors cursor-pointer ${
                                             isInFavorites(product)
                                               ? "text-red-500"
@@ -582,8 +614,14 @@ const Samosvaly = () => {
                                           }`}
                                           title={
                                             isInFavorites(product)
-                                              ? t("removeFromFavorites", "Удалить из избранного")
-                                              : t("addToFavorites", "В избранное")
+                                              ? t(
+                                                  "removeFromFavorites",
+                                                  "Удалить из избранного",
+                                                )
+                                              : t(
+                                                  "addToFavorites",
+                                                  "В избранное",
+                                                )
                                           }
                                         >
                                           <Heart
@@ -598,9 +636,10 @@ const Samosvaly = () => {
                                       <button
                                         type="button"
                                         onClick={() => {
-                                          const el = document.getElementById(
-                                            "feedback-section"
-                                          );
+                                          const el =
+                                            document.getElementById(
+                                              "feedback-section",
+                                            );
                                           if (el)
                                             el.scrollIntoView({
                                               behavior: "smooth",
@@ -635,8 +674,6 @@ const Samosvaly = () => {
           {viewMode === "grid" && <Slider />}
         </div>
       </div>
-      <Feedback />
-      <Footer />
     </>
   );
 };

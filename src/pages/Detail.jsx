@@ -1,8 +1,7 @@
 import { useParams, NavLink } from "react-router-dom";
 import { useState } from "react";
-import { Header } from "../components/Header";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
+
+import Feedback from "../layout/Feedback";
 import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -46,10 +45,17 @@ export default function Detail() {
   if (!product) {
     return (
       <>
-        <Header />
+        
         <div className="container py-24 text-center">
-          <h1 className="font-fira-sans text-2xl font-bold mb-4">{t("noProductsFound", "Товар не найден")}</h1>
-          <p className="text-gray-500 mb-6">{t("tryChangingFilters", "Запрашиваемый автомобиль не найден в каталоге.")}</p>
+          <h1 className="font-fira-sans text-2xl font-bold mb-4">
+            {t("noProductsFound", "Товар не найден")}
+          </h1>
+          <p className="text-gray-500 mb-6">
+            {t(
+              "tryChangingFilters",
+              "Запрашиваемый автомобиль не найден в каталоге.",
+            )}
+          </p>
           <NavLink
             to="/catalog"
             className="inline-block bg-[#FEC80B] hover:bg-yellow-500 text-black px-6 py-2.5 rounded font-fira-sans font-medium transition-colors"
@@ -57,17 +63,21 @@ export default function Detail() {
             ← {t("catalog", "Каталог")}
           </NavLink>
         </div>
-        <Footer />
+        
       </>
     );
   }
 
   const localizedTitle = translateTitle(product.title, lang);
-  const localizedCategory = t(categoryPathToKey[product.categoryPath] || "catalog", product.categoryTitle);
+  const localizedCategory = t(
+    categoryPathToKey[product.categoryPath] || "catalog",
+    product.categoryTitle,
+  );
   const localizedPrice = translatePrice(product.price, lang);
 
   const similarProducts = Object.values(catalogProducts).filter(
-    (item) => item.categoryPath === product.categoryPath && item.slug !== product.slug
+    (item) =>
+      item.categoryPath === product.categoryPath && item.slug !== product.slug,
   );
 
   return (
@@ -88,7 +98,9 @@ export default function Detail() {
               <NavLink to={product.categoryPath}>{localizedCategory}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm line-clamp-1">{localizedTitle}</li>
+            <li className="font-fira-sans text-gray-400 text-sm line-clamp-1">
+              {localizedTitle}
+            </li>
           </ul>
 
           <h1 className="font-fira-sans font-medium uppercase text-2xl md:text-3xl text-black mb-8">
@@ -99,7 +111,12 @@ export default function Detail() {
             <div className="w-full lg:w-[55%]">
               <Swiper
                 modules={[Navigation, Thumbs]}
-                thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+                thumbs={{
+                  swiper:
+                    thumbsSwiper && !thumbsSwiper.destroyed
+                      ? thumbsSwiper
+                      : null,
+                }}
                 navigation={{
                   nextEl: ".cat-detail-next",
                   prevEl: ".cat-detail-prev",
@@ -135,7 +152,9 @@ export default function Detail() {
                         : "bg-[#FEC80B] hover:bg-yellow-500 text-black"
                     }`}
                   >
-                    {isInCart(product) ? `✓ ${t("inCart", "В корзине")}` : t("addToCart", "Добавить в корзину")}
+                    {isInCart(product)
+                      ? `✓ ${t("inCart", "В корзине")}`
+                      : t("addToCart", "Добавить в корзину")}
                   </button>
                   <button
                     type="button"
@@ -150,14 +169,20 @@ export default function Detail() {
                   <button
                     type="button"
                     onClick={() => toggleFavorite(product)}
-                    title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                    title={
+                      isInFavorites(product)
+                        ? t("removeFromFavorites", "Удалить из избранного")
+                        : t("addToFavorites", "В избранное")
+                    }
                     className={`p-3 border rounded-sm transition-all cursor-pointer flex items-center justify-center shrink-0 ${
                       isInFavorites(product)
                         ? "border-red-400 bg-red-50 text-red-500 shadow-sm"
                         : "border-gray-300 text-gray-500 hover:text-red-500 hover:border-red-300 hover:bg-white"
                     }`}
                   >
-                    <Heart className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                    <Heart
+                      className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`}
+                    />
                   </button>
                 </div>
 
@@ -234,7 +259,10 @@ export default function Detail() {
                     transition={{ duration: 0.4 }}
                     className="bg-white rounded-sm overflow-hidden shadow-sm group"
                   >
-                    <NavLink to={`${item.categoryPath}/${item.slug}`} className="block">
+                    <NavLink
+                      to={`${item.categoryPath}/${item.slug}`}
+                      className="block"
+                    >
                       <div className="aspect-4/3 bg-gray-100 overflow-hidden">
                         <img
                           src={item.images[0]}
@@ -253,16 +281,27 @@ export default function Detail() {
                           <button
                             type="button"
                             className={`transition-colors p-1 cursor-pointer ${
-                              isInFavorites(item) ? "text-red-500" : "text-gray-400 hover:text-red-500"
+                              isInFavorites(item)
+                                ? "text-red-500"
+                                : "text-gray-400 hover:text-red-500"
                             }`}
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
                               toggleFavorite(item);
                             }}
-                            title={isInFavorites(item) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                            title={
+                              isInFavorites(item)
+                                ? t(
+                                    "removeFromFavorites",
+                                    "Удалить из избранного",
+                                  )
+                                : t("addToFavorites", "В избранное")
+                            }
                           >
-                            <Heart className={`w-5 h-5 transition-transform active:scale-125 ${isInFavorites(item) ? "fill-red-500" : ""}`} />
+                            <Heart
+                              className={`w-5 h-5 transition-transform active:scale-125 ${isInFavorites(item) ? "fill-red-500" : ""}`}
+                            />
                           </button>
                         </div>
                       </div>
@@ -274,8 +313,7 @@ export default function Detail() {
           )}
         </div>
       </div>
-      <Feedback />
-      <Footer />
+      
     </>
   );
 }

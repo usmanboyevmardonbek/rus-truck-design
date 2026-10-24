@@ -1,19 +1,24 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 
 const Promo = () => {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
+      
 
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -28,7 +33,9 @@ const Promo = () => {
           </ul>
 
           <div>
-            <h1 className="font-fira-sans text-3xl font-medium mt-6">{t("promo", "Рекламные материалы")}</h1>
+            <h1 className="font-fira-sans text-3xl font-medium mt-6">
+              {t("promo", "Рекламные материалы")}
+            </h1>
           </div>
 
           <div>
@@ -75,8 +82,7 @@ const Promo = () => {
           </div>
         </motion.div>
       </div>
-      <Feedback/>
-      <Footer/>
+    
     </>
   );
 };

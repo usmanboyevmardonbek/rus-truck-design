@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Download, Trash2, Heart, CheckCircle2 } from "lucide-react";
-import { Header } from "../components/Header";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
 import { PhoneModal } from "../components/PhoneModal";
 import { useCart } from "../context/CartContext";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Cart() {
   const { t } = useLanguage();
-  const { cartItems, removeFromCart, updateQuantity, toggleFavorite, isInFavorites } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    toggleFavorite,
+    isInFavorites,
+  } = useCart();
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,7 +34,12 @@ export default function Cart() {
   const handleSubmitOrder = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
-      alert(t("fillRequiredFields", "Пожалуйста, заполните обязательные поля (Имя и Телефон)"));
+      alert(
+        t(
+          "fillRequiredFields",
+          "Пожалуйста, заполните обязательные поля (Имя и Телефон)",
+        ),
+      );
       return;
     }
     setIsSubmitted(true);
@@ -43,7 +51,6 @@ export default function Cart() {
 
   return (
     <>
-      <Header />
       <main className="bg-white min-h-[60vh] pb-12">
         <div className="container mx-auto px-4 pt-6">
           {/* Breadcrumbs */}
@@ -52,7 +59,9 @@ export default function Cart() {
               <NavLink to="/">{t("home", "Главная")}</NavLink>
             </li>
             <li className="text-gray-400 text-sm">/</li>
-            <li className="font-fira-sans text-gray-400 text-sm">{t("cart", "Корзина")}</li>
+            <li className="font-fira-sans text-gray-400 text-sm">
+              {t("cart", "Корзина")}
+            </li>
           </ul>
 
           {cartItems.length === 0 ? (
@@ -66,7 +75,10 @@ export default function Cart() {
                   {t("cartEmptyTitle", "Ваша корзина пуста.")}
                 </p>
                 <p className="font-fira-sans text-base text-black">
-                  {t("cartEmptyDesc", "Воспользуйтесь каталогом или поиском, чтобы найти подходящий товар.")}
+                  {t(
+                    "cartEmptyDesc",
+                    "Воспользуйтесь каталогом или поиском, чтобы найти подходящий товар.",
+                  )}
                 </p>
               </div>
 
@@ -104,7 +116,13 @@ export default function Cart() {
                       {/* Image Thumbnail */}
                       <div className="relative w-full sm:w-44 h-32 bg-gray-100 rounded-sm overflow-hidden shrink-0">
                         <img
-                          src={item.img ? (item.img.startsWith('/') ? item.img : `/${item.img}`) : "/furgon-1.jpg"}
+                          src={
+                            item.img
+                              ? item.img.startsWith("/")
+                                ? item.img
+                                : `/${item.img}`
+                              : "/furgon-1.jpg"
+                          }
                           alt={item.title}
                           className="w-full h-full object-cover"
                           onError={(e) => {
@@ -144,14 +162,18 @@ export default function Cart() {
                         {/* Specs with Dotted Leaders */}
                         <div className="space-y-1.5 text-xs font-fira-sans text-gray-500">
                           <div className="flex items-baseline">
-                            <span className="shrink-0">{t("vehicleDimensions", "Габариты ТС")}</span>
+                            <span className="shrink-0">
+                              {t("vehicleDimensions", "Габариты ТС")}
+                            </span>
                             <span className="flex-1 mx-2 border-b border-dotted border-gray-400"></span>
                             <span className="shrink-0 text-gray-800">
                               {item.dimensions || "10405 х 2550 х 3080 мм"}
                             </span>
                           </div>
                           <div className="flex items-baseline">
-                            <span className="shrink-0">{t("capacity", "Грузоподъёмность")}</span>
+                            <span className="shrink-0">
+                              {t("capacity", "Грузоподъёмность")}
+                            </span>
                             <span className="flex-1 mx-2 border-b border-dotted border-gray-400"></span>
                             <span className="shrink-0 text-gray-800">
                               {item.capacity || "21600 кг"}
@@ -171,7 +193,7 @@ export default function Cart() {
                       >
                         -
                       </button>
-                      <span className="px-4 py-1.5 text-sm font-fira-sans text-center min-w-[36px] border-x border-gray-200">
+                      <span className="px-4 py-1.5 text-sm font-fira-sans text-center min-w-9 border-x border-gray-200">
                         {item.quantity}
                       </span>
                       <button
@@ -218,11 +240,17 @@ export default function Cart() {
                         {t("orderSuccessTitle", "Спасибо! Ваш заказ принят.")}
                       </h3>
                       <p className="font-fira-sans text-sm text-gray-600">
-                        {t("orderSuccessDesc", "Наш менеджер свяжется с вами в ближайшее время.")}
+                        {t(
+                          "orderSuccessDesc",
+                          "Наш менеджер свяжется с вами в ближайшее время.",
+                        )}
                       </p>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmitOrder} className="space-y-4 max-w-md">
+                    <form
+                      onSubmit={handleSubmitOrder}
+                      className="space-y-4 max-w-md"
+                    >
                       <div>
                         <label className="block font-fira-sans text-sm font-medium mb-1">
                           {t("modalName", "Ваше имя *")}
@@ -278,7 +306,10 @@ export default function Cart() {
                             className="accent-[#FEC80B] w-4 h-4 rounded cursor-pointer"
                           />
                           <span>
-                            {t("modalAgree", "Даю согласие на обработку персональных данных")}
+                            {t(
+                              "modalAgree",
+                              "Даю согласие на обработку персональных данных",
+                            )}
                           </span>
                         </label>
                       </div>
@@ -301,7 +332,10 @@ export default function Cart() {
                     {t("haveQuestions", "Остались вопросы?")}
                   </h3>
                   <p className="font-fira-sans text-sm text-gray-500 mb-6 max-w-sm">
-                    {t("haveQuestionsDesc", "Свяжитесь с нашим менеджером или оставьте заявку на обратный звонок")}
+                    {t(
+                      "haveQuestionsDesc",
+                      "Свяжитесь с нашим менеджером или оставьте заявку на обратный звонок",
+                    )}
                   </p>
 
                   <div className="space-y-1.5 mb-6 text-sm font-fira-sans text-gray-600">
@@ -337,9 +371,6 @@ export default function Cart() {
           )}
         </div>
       </main>
-
-      <Feedback />
-      <Footer />
 
       <PhoneModal
         isOpen={isPhoneModalOpen}

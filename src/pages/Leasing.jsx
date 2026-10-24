@@ -1,9 +1,7 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
 
 const Leasing = () => {
   const { t } = useLanguage();
@@ -11,7 +9,13 @@ const Leasing = () => {
     <>
       <Header />
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -27,10 +31,16 @@ const Leasing = () => {
 
           <div className="title-1">
             <h1 className="text-3xl mb-6 font-fira-sans font-medium mt-3">
-              {t("leasingTitle", "Кредит и лизинг на автоспецтехнику компании РусТрак")}
+              {t(
+                "leasingTitle",
+                "Кредит и лизинг на автоспецтехнику компании РусТрак",
+              )}
             </h1>
             <p className="font-fira-sans text-lg max-w-200">
-              {t("leasingDesc", "Компания Рустрак предоставляет возможность покупки автоспецтехники в кредит и в лизинг. Мы работаем со всеми банками и лизинговыми компаниями. Помните, Вы можете выбрать любую лизинговую компанию, которая Вас устроит.")}
+              {t(
+                "leasingDesc",
+                "Компания Рустрак предоставляет возможность покупки автоспецтехники в кредит и в лизинг. Мы работаем со всеми банками и лизинговыми компаниями. Помните, Вы можете выбрать любую лизинговую компанию, которая Вас устроит.",
+              )}
             </p>
           </div>
 
@@ -39,7 +49,10 @@ const Leasing = () => {
               {t("leasingConditions", "Основные условия лизинга")}
             </h3>
             <p className="font-fira-sans text-lg max-w-200">
-              {t("leasingConditionsText", "Сумма аванса 5-30% от стоимости техники. Удорожание объекта лизинга в год на 8-9% Срок выплаты лизинговых платежей от 6-ти месяцев до 5-ти лет. После полного расчёта по лизингу техника переходит в собственность Вашей фирмы.")}
+              {t(
+                "leasingConditionsText",
+                "Сумма аванса 5-30% от стоимости техники. Удорожание объекта лизинга в год на 8-9% Срок выплаты лизинговых платежей от 6-ти месяцев до 5-ти лет. После полного расчёта по лизингу техника переходит в собственность Вашей фирмы.",
+              )}
             </p>
           </div>
 
@@ -120,7 +133,9 @@ const Leasing = () => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-fira-sans font-medium mb-8">Информация о партнёре - компания "CARCADE"</h3>
+            <h3 className="text-2xl font-fira-sans font-medium mb-8">
+              Информация о партнёре - компания "CARCADE"
+            </h3>
             <p className="font-fira-sans text-lg">
               Компания CARCADE – это универсальный лизинговый партнёр. CARCADE
               финансирует покупку как легковых автомобилей, так и коммерческого
@@ -139,8 +154,6 @@ const Leasing = () => {
           </div>
         </motion.div>
       </div>
-      <Feedback/>
-      <Footer/>
     </>
   );
 };

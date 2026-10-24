@@ -8,13 +8,13 @@ import {
   ShoppingCart,
   Download,
 } from "lucide-react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import Footer from "../components/footer";
+
 import { useState } from "react";
 import { Loader } from "../components/Loader";
-import Feedback from "../components/Feedback";
+
 import Slider from "../components/Slider";
 import { NavLink } from "react-router-dom";
 import { matchesBrand, matchesFormula } from "../utils/filterUtils";
@@ -71,13 +71,15 @@ const Konteyner = () => {
 
   const handleToggleBrand = (brand) => {
     setSelectedBrands((prev) =>
-      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand],
     );
   };
 
   const handleToggleFormula = (formula) => {
     setSelectedFormulas((prev) =>
-      prev.includes(formula) ? prev.filter((f) => f !== formula) : [...prev, formula]
+      prev.includes(formula)
+        ? prev.filter((f) => f !== formula)
+        : [...prev, formula],
     );
   };
 
@@ -88,7 +90,7 @@ const Konteyner = () => {
   };
 
   const visibleBrands = brands.filter((b) =>
-    b.toLowerCase().includes(brandSearch.trim().toLowerCase())
+    b.toLowerCase().includes(brandSearch.trim().toLowerCase()),
   );
 
   const filteredProducts = dummyProducts.filter((product) => {
@@ -110,7 +112,7 @@ const Konteyner = () => {
 
   return (
     <>
-      <Header />
+      
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
           <ul className="flex items-center gap-2 mb-6 flex-wrap">
@@ -188,7 +190,9 @@ const Konteyner = () => {
                 <button
                   onClick={() => handleViewChange("list")}
                   className={`p-2 transition-colors rounded-sm cursor-pointer ${
-                    viewMode === "list" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                    viewMode === "list"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
                   }`}
                 >
                   <List className="w-5 h-5" />
@@ -196,7 +200,9 @@ const Konteyner = () => {
                 <button
                   onClick={() => handleViewChange("grid")}
                   className={`p-2 transition-colors rounded-sm cursor-pointer ${
-                    viewMode === "grid" ? "bg-[#FEC80B] text-black shadow-sm" : "text-gray-400 hover:text-black"
+                    viewMode === "grid"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
                   }`}
                 >
                   <Grid2x2 className="w-5 h-5" />
@@ -208,7 +214,9 @@ const Konteyner = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start mb-25">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">{t("brand", "Марка")}</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">
+                  {t("brand", "Марка")}
+                </h3>
                 <div className="relative mb-4">
                   <input
                     type="text"
@@ -221,7 +229,9 @@ const Konteyner = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   {visibleBrands.length === 0 ? (
-                    <p className="text-xs text-gray-400 py-2 font-fira-sans">{t("brandNotFound", "Бренд не найден")}</p>
+                    <p className="text-xs text-gray-400 py-2 font-fira-sans">
+                      {t("brandNotFound", "Бренд не найден")}
+                    </p>
                   ) : (
                     visibleBrands.map((brand, idx) => {
                       const isChecked = selectedBrands.includes(brand);
@@ -256,7 +266,9 @@ const Konteyner = () => {
                           </div>
                           <span
                             className={`font-fira-sans text-sm transition-colors ${
-                              isChecked ? "text-black font-semibold" : "text-gray-700"
+                              isChecked
+                                ? "text-black font-semibold"
+                                : "text-gray-700"
                             }`}
                           >
                             {brand}
@@ -306,7 +318,9 @@ const Konteyner = () => {
                         </div>
                         <span
                           className={`font-fira-sans text-sm transition-colors ${
-                            isChecked ? "text-black font-semibold" : "text-gray-700"
+                            isChecked
+                              ? "text-black font-semibold"
+                              : "text-gray-700"
                           }`}
                         >
                           {formula}
@@ -326,7 +340,8 @@ const Konteyner = () => {
                   }}
                   className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
                 >
-                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                  {t("showProducts", "Показать товары")} (
+                  {filteredProducts.length})
                 </button>
                 {(selectedBrands.length > 0 || selectedFormulas.length > 0) && (
                   <button
@@ -339,7 +354,10 @@ const Konteyner = () => {
               </div>
             </div>
 
-            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div
+              id="product-grid-view"
+              className="flex-1 relative min-h-125 w-full flex flex-col gap-10"
+            >
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -360,7 +378,12 @@ const Konteyner = () => {
                       <p className="font-fira-sans text-lg font-medium text-gray-700 mb-2">
                         {t("noProductsFound", "Товары не найдены")}
                       </p>
-                      <p className="font-fira-sans text-sm text-gray-500 mb-6">{t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}</p>
+                      <p className="font-fira-sans text-sm text-gray-500 mb-6">
+                        {t(
+                          "tryChangingFilters",
+                          "Попробуйте изменить параметры фильтрации",
+                        )}
+                      </p>
                       <button
                         onClick={handleResetFilters}
                         className="bg-[#FEC80B] hover:bg-yellow-500 transition-colors text-black font-fira-sans text-sm font-medium py-2.5 px-6 rounded-sm cursor-pointer"
@@ -370,7 +393,10 @@ const Konteyner = () => {
                     </div>
                   ) : (
                     filteredProducts.map((product) => {
-                      const localizedTitle = translateTitle(product.title, lang);
+                      const localizedTitle = translateTitle(
+                        product.title,
+                        lang,
+                      );
                       return (
                         <motion.div
                           variants={fadeUp}
@@ -397,16 +423,27 @@ const Konteyner = () => {
                             <button
                               type="button"
                               className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
-                                isInFavorites(product) ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                                isInFavorites(product)
+                                  ? "text-red-500"
+                                  : "text-gray-500 hover:text-red-500"
                               }`}
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 toggleFavorite(product);
                               }}
-                              title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                              title={
+                                isInFavorites(product)
+                                  ? t(
+                                      "removeFromFavorites",
+                                      "Удалить из избранного",
+                                    )
+                                  : t("addToFavorites", "В избранное")
+                              }
                             >
-                              <Heart className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                              <Heart
+                                className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`}
+                              />
                             </button>
                           </NavLink>
 
@@ -424,10 +461,14 @@ const Konteyner = () => {
                                   : "flex-1 flex flex-col"
                               }
                             >
-                              <NavLink to={`/catalog/konteynerovozy/${product.slug}`}>
+                              <NavLink
+                                to={`/catalog/konteynerovozy/${product.slug}`}
+                              >
                                 <h3
                                   className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
-                                    viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                    viewMode === "list"
+                                      ? "mb-6 text-lg"
+                                      : "mb-4 flex-1 line-clamp-2"
                                   }`}
                                 >
                                   {localizedTitle}
@@ -437,9 +478,16 @@ const Konteyner = () => {
                               {product.specs && (
                                 <ul className="space-y-1 mb-4 text-xs text-gray-600">
                                   {product.specs.map((s, idx) => (
-                                    <li key={idx} className="flex justify-between border-b border-gray-100 py-0.5">
-                                      <span className="text-gray-400">{translateSpecLabel(s.label, lang)}:</span>
-                                      <span className="font-medium text-gray-700">{translateSpecValue(s.value, lang)}</span>
+                                    <li
+                                      key={idx}
+                                      className="flex justify-between border-b border-gray-100 py-0.5"
+                                    >
+                                      <span className="text-gray-400">
+                                        {translateSpecLabel(s.label, lang)}:
+                                      </span>
+                                      <span className="font-medium text-gray-700">
+                                        {translateSpecValue(s.value, lang)}
+                                      </span>
                                     </li>
                                   ))}
                                 </ul>
@@ -483,32 +531,59 @@ const Konteyner = () => {
                                       type="button"
                                       onClick={() => addToCart(product)}
                                       className={`transition-colors cursor-pointer ${
-                                        isInCart(product) ? "text-green-600 font-bold" : "hover:text-black"
+                                        isInCart(product)
+                                          ? "text-green-600 font-bold"
+                                          : "hover:text-black"
                                       }`}
-                                      title={isInCart(product) ? t("inCart", "В корзине") : t("addToCart", "Добавить в корзину")}
+                                      title={
+                                        isInCart(product)
+                                          ? t("inCart", "В корзине")
+                                          : t("addToCart", "Добавить в корзину")
+                                      }
                                     >
-                                      <ShoppingCart className={`w-5 h-5 ${isInCart(product) ? "text-green-600" : ""}`} />
+                                      <ShoppingCart
+                                        className={`w-5 h-5 ${isInCart(product) ? "text-green-600" : ""}`}
+                                      />
                                     </button>
                                     <button
                                       type="button"
                                       onClick={() => toggleFavorite(product)}
                                       className={`transition-colors cursor-pointer ${
-                                        isInFavorites(product) ? "text-red-500" : "hover:text-black"
+                                        isInFavorites(product)
+                                          ? "text-red-500"
+                                          : "hover:text-black"
                                       }`}
-                                      title={isInFavorites(product) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                                      title={
+                                        isInFavorites(product)
+                                          ? t(
+                                              "removeFromFavorites",
+                                              "Удалить из избранного",
+                                            )
+                                          : t("addToFavorites", "В избранное")
+                                      }
                                     >
-                                      <Heart className={`w-5 h-5 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`} />
+                                      <Heart
+                                        className={`w-5 h-5 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`}
+                                      />
                                     </button>
                                   </div>
                                   <button
                                     type="button"
                                     onClick={() => {
-                                      const el = document.getElementById("feedback-section");
-                                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                                      const el =
+                                        document.getElementById(
+                                          "feedback-section",
+                                        );
+                                      if (el)
+                                        el.scrollIntoView({
+                                          behavior: "smooth",
+                                        });
                                     }}
                                     className={`flex items-center gap-1.5 hover:text-black transition-colors cursor-pointer group/kp ${viewMode === "list" ? "ml-auto" : ""}`}
                                   >
-                                    <span className="font-fira-sans text-[9px]">{t("getKp", "Получить КП")}</span>
+                                    <span className="font-fira-sans text-[9px]">
+                                      {t("getKp", "Получить КП")}
+                                    </span>
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>
@@ -523,7 +598,9 @@ const Konteyner = () => {
               )}
 
               {/* Multilingual SEO Description Article */}
-              {viewMode === "grid" && <CategoryArticle category="konteynerovozy" />}
+              {viewMode === "grid" && (
+                <CategoryArticle category="konteynerovozy" />
+              )}
             </div>
           </div>
 
@@ -531,8 +608,7 @@ const Konteyner = () => {
         </div>
       </div>
 
-      <Feedback />
-      <Footer />
+      
     </>
   );
 };

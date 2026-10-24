@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { useEffect, useRef } from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -10,8 +10,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Fancybox } from "@fancyapps/ui";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
+
 
 const productionSlides = [
   {
@@ -68,20 +68,31 @@ const Production = () => {
 
   return (
     <>
-      <Header />
       <div className="py-6">
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/" className="hover:text-black transition duration-200">{t("home", "Главная")}</a>
+              <a href="/" className="hover:text-black transition duration-200">
+                {t("home", "Главная")}
+              </a>
             </li>
             <li className="text-gray-400">
               <span>/</span>
             </li>
-            <li className="font-fira-sans text-gray-800 text-sm font-medium">{t("production", "Производство")}</li>
+            <li className="font-fira-sans text-gray-800 text-sm font-medium">
+              {t("production", "Производство")}
+            </li>
           </ul>
 
-          <h1 className="font-fira-sans text-2xl sm:text-3xl lg:text-4xl font-semibold mt-6 text-gray-900">{t("production", "Производство")}</h1>
+          <h1 className="font-fira-sans text-2xl sm:text-3xl lg:text-4xl font-semibold mt-6 text-gray-900">
+            {t("production", "Производство")}
+          </h1>
 
           <div className="mt-6 overflow-hidden rounded-xl shadow-sm border border-gray-100">
             <img
@@ -201,7 +212,6 @@ const Production = () => {
             >
               {productionSlides.map((slide) => (
                 <SwiperSlide key={slide.id}>
-
                   <a
                     data-fancybox="production-gallery"
                     href={slide.img}
@@ -233,8 +243,7 @@ const Production = () => {
                       </p>
                     </div>
                   </a>
-
-</SwiperSlide>
+                </SwiperSlide>
               ))}
             </Swiper>
           </div>
@@ -244,11 +253,12 @@ const Production = () => {
               Собственное конструкторское бюро
             </h3>
             <p className="font-fira-sans text-base sm:text-lg mt-4 mb-8 max-w-4xl text-gray-700 leading-relaxed">
-              Компания «РусТрак» имеет собственное конструкторско-технологическое
-              бюро, которое работает в тесном сотрудничестве с производством.
-              Такая схема работы позволяет постоянно улучшать и модернизировать
-              выпускаемую спецтехнику, учитывая пожелания наших клиентов. Мы
-              готовы изготовить автомобиль практически для любых нужд!
+              Компания «РусТрак» имеет собственное
+              конструкторско-технологическое бюро, которое работает в тесном
+              сотрудничестве с производством. Такая схема работы позволяет
+              постоянно улучшать и модернизировать выпускаемую спецтехнику,
+              учитывая пожелания наших клиентов. Мы готовы изготовить автомобиль
+              практически для любых нужд!
             </p>
           </div>
 
@@ -285,8 +295,7 @@ const Production = () => {
         </motion.div>
       </div>
 
-      <Feedback />
-      <Footer />
+      
     </>
   );
 };

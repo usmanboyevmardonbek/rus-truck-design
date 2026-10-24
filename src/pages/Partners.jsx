@@ -1,24 +1,29 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { useState } from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 
 const Partners = () => {
   const { t } = useLanguage();
 
-     const [expand, setExpand] = useState(false)
+  const [expand, setExpand] = useState(false);
 
-     function matnExpand() {
-        setExpand(!expand)
-     }
+  function matnExpand() {
+    setExpand(!expand);
+  }
   return (
     <>
-      <Header />
+      
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <div>
             <ul className="flex items-center gap-2">
               <li className="font-fira-sans text-gray-500 text-sm">
@@ -34,11 +39,15 @@ const Partners = () => {
             </ul>
           </div>
           <div>
-            <h2 className="font-fira-sans font-medium text-3xl mt-4 mb-11">{t("partners", "Наши партнёры")}</h2>
+            <h2 className="font-fira-sans font-medium text-3xl mt-4 mb-11">
+              {t("partners", "Наши партнёры")}
+            </h2>
           </div>
           <div>
             <h3 className="font-fira-sans text-2xl font-medium mt-6">КАМАЗ</h3>
-            <p className={`font-fira-sans max-w-220 text-lg mt-6 h-27 overflow-y-hidden ${expand ? "h-auto" : ""}`}>
+            <p
+              className={`font-fira-sans max-w-220 text-lg mt-6 h-27 overflow-y-hidden ${expand ? "h-auto" : ""}`}
+            >
               Группа компаний «КАМАЗ» – крупнейшая автомобильная корпорация
               Российской Федерации. ПАО «КАМАЗ» входит в 20-ку ведущих мировых
               производителей тяжёлых грузовых автомобилей и находится на 16-м
@@ -52,7 +61,14 @@ const Partners = () => {
               сопровождения.
             </p>
 
-            <button onClick={matnExpand}  className="opacity-50 font-fira-sans underline block mt-5 cursor-pointer">{!expand ? t("readFull", "Читать полностью") : t("collapseText", "Свернуть")}</button>
+            <button
+              onClick={matnExpand}
+              className="opacity-50 font-fira-sans underline block mt-5 cursor-pointer"
+            >
+              {!expand
+                ? t("readFull", "Читать полностью")
+                : t("collapseText", "Свернуть")}
+            </button>
           </div>
 
           <div className="mt-20">
@@ -251,8 +267,7 @@ const Partners = () => {
           </div>
         </motion.div>
       </div>
-      <Feedback/>
-      <Footer/>
+      
     </>
   );
 };

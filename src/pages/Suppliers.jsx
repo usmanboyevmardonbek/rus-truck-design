@@ -1,18 +1,19 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
-import { Header } from "../components/Header";
 import { useLanguage } from "../context/LanguageContext";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
 
 const Suppliers = () => {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
-
       <div>
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -22,28 +23,46 @@ const Suppliers = () => {
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/suppliers">{t("suppliers", "Поставщикам и партнёрам")}</a>
+              <a href="/suppliers">
+                {t("suppliers", "Поставщикам и партнёрам")}
+              </a>
             </li>
           </ul>
 
           <div>
-            <h1 className="font-fira-sans text-3xl font-medium mt-5">{t("suppliers", "Поставщикам и партнёрам")}</h1>
+            <h1 className="font-fira-sans text-3xl font-medium mt-5">
+              {t("suppliers", "Поставщикам и партнёрам")}
+            </h1>
             <h3 className="font-fira-sans text-3xl font-medium mt-6 mb-6">
-              {t("suppliersInvite", "ООО «Рустрак» приглашает к сотрудничеству.")}
+              {t(
+                "suppliersInvite",
+                "ООО «Рустрак» приглашает к сотрудничеству.",
+              )}
             </h3>
           </div>
 
           <div>
             <p className="font-fira-sans text-lg mb-6">
-              {t("suppliersDesc1", "Наша компания 17 лет работает на рынке производства и продажи коммерческого транспорта и спецтехники и прочно занимает ведущие позиции на российском рынке.")}
+              {t(
+                "suppliersDesc1",
+                "Наша компания 17 лет работает на рынке производства и продажи коммерческого транспорта и спецтехники и прочно занимает ведущие позиции на российском рынке.",
+              )}
             </p>
             <p className="font-fira-sans text-lg">
-              {t("suppliersDesc2", "Мы приглашаем к сотрудничеству поставщиков комплектующих, как одно из основных направлений развития компании.")}{" "}
+              {t(
+                "suppliersDesc2",
+                "Мы приглашаем к сотрудничеству поставщиков комплектующих, как одно из основных направлений развития компании.",
+              )}{" "}
             </p>
             <p className="font-fira-sans text-lg mb-10">
-              {t("suppliersDesc3", "Наша компания заинтересована в долгосрочном и эффективном сотрудничестве.")}{" "}
+              {t(
+                "suppliersDesc3",
+                "Наша компания заинтересована в долгосрочном и эффективном сотрудничестве.",
+              )}{" "}
             </p>
-            <p className="font-fira-sans text-lg">{t("suppliersWeValue", "Мы ценим в партнёрах:")}</p>
+            <p className="font-fira-sans text-lg">
+              {t("suppliersWeValue", "Мы ценим в партнёрах:")}
+            </p>
           </div>
 
           <ul className="mt-6">
@@ -59,14 +78,19 @@ const Suppliers = () => {
               <span className="text-xl font-medium  w-9 h-9 bg-[#FEC80B] flex items-center justify-center rounded-full">
                 2
               </span>
-              <p className="font-fira-sans text-lg">{t("val_2", "Гибкую ценовую политику;")}</p>
+              <p className="font-fira-sans text-lg">
+                {t("val_2", "Гибкую ценовую политику;")}
+              </p>
             </li>
             <li className="flex mb-2 items-center gap-3">
               <span className="text-xl font-medium w-9 h-9 bg-[#FEC80B] flex items-center justify-center rounded-full">
                 3
               </span>
               <p className="font-fira-sans text-lg">
-                {t("val_3", "Регулярное информирование об ассортименте и складских остатках продукции;")}
+                {t(
+                  "val_3",
+                  "Регулярное информирование об ассортименте и складских остатках продукции;",
+                )}
               </p>
             </li>
             <li className="flex mb-2 items-center gap-3">
@@ -100,8 +124,6 @@ const Suppliers = () => {
           </div>
         </motion.div>
       </div>
-      <Feedback/>
-      <Footer/>
     </>
   );
 };

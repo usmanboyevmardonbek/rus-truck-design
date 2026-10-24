@@ -9,12 +9,12 @@ import {
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { PhoneModal } from "./PhoneModal";
-import { SearchBox } from "./SearchBox";
 import { motion, AnimatePresence } from "motion/react";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
+import { SearchBox } from "../components/SearchBox";
+import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { PhoneModal } from "../components/PhoneModal";
 
 function MegaMenuDropdown({ activeTrigger, onClose }) {
   const { t } = useLanguage();
@@ -113,7 +113,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12">
-          
           <div>
             <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
               {t("categories", "Категории")}
@@ -152,7 +151,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
             </ul>
           </div>
 
-      
           <div>
             <h3 className="font-fira-sans font-bold text-lg text-black mb-4">
               {t("media", "Медиа")}
@@ -172,7 +170,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
             </ul>
           </div>
 
-          
           <div>
             <ul className="space-y-4 pt-1">
               {directLinks.map((d, i) => (
@@ -190,7 +187,6 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
           </div>
         </div>
 
-        
         <div className="mt-8 pt-6 border-t border-gray-300 lg:hidden space-y-2 text-sm font-fira-sans text-gray-600">
           <p>
             <span className="text-gray-500">
@@ -224,7 +220,7 @@ export function Header() {
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const [activeTrigger, setActiveTrigger] = useState(null); 
+  const [activeTrigger, setActiveTrigger] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const workingTimeRef = useRef(null);
@@ -238,7 +234,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  
   useEffect(() => {
     function handleClickOutside(e) {
       if (
@@ -259,7 +254,6 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  
   useEffect(() => {
     function handleEsc(e) {
       if (e.key === "Escape") {
@@ -295,7 +289,6 @@ export function Header() {
         isScrolled ? "fixed top-0 left-0 w-full bg-white shadow-md" : "relative"
       }`}
     >
-      
       <div
         className={`justify-around items-center border-b border-b-yellow-400 lg:py-2 py-2.5 relative z-40 bg-white ${
           isScrolled ? "hidden" : "flex"
@@ -305,23 +298,26 @@ export function Header() {
           <div className="flex justify-between items-center">
             <div className="flex  gap-40">
               <NavLink
-              to="/"
-              onClick={() => {
-                setIsMegaMenuOpen(false);
-                setActiveTrigger(null);
-              }}
-              className="flex items-center lg:gap-2 gap-3 shrink-0"
-            >
-              <img
-                src="/header-logo.svg"
-                alt="РусТрак"
-                className={`lg:h-8 h-10 w-auto object-contain hidden lg:inline-block ${isScrolled ? "hidden" : "inline-block" }`}
-              />
-              <span className="hidden sm:inline-block font-fira-sans text-black font-normal text-xs sm:text-sm relative before:content-[''] before:absolute before:top-2 before:left-0 before:z-10 before:w-0.5 before:h-5 before:bg-yellow-400 pl-4 sm:pl-5 whitespace-pre-line leading-tight">
-                {t("headerSubtitle", "производство и продажа\nавтоспецтехники")}
-              </span>
-            </NavLink>
-            <button
+                to="/"
+                onClick={() => {
+                  setIsMegaMenuOpen(false);
+                  setActiveTrigger(null);
+                }}
+                className="flex items-center lg:gap-2 gap-3 shrink-0"
+              >
+                <img
+                  src="/header-logo.svg"
+                  alt="РусТрак"
+                  className={`lg:h-8 h-10 w-auto object-contain hidden lg:inline-block ${isScrolled ? "hidden" : "inline-block"}`}
+                />
+                <span className="hidden sm:inline-block font-fira-sans text-black font-normal text-xs sm:text-sm relative before:content-[''] before:absolute before:top-2 before:left-0 before:z-10 before:w-0.5 before:h-5 before:bg-yellow-400 pl-4 sm:pl-5 whitespace-pre-line leading-tight">
+                  {t(
+                    "headerSubtitle",
+                    "производство и продажа\nавтоспецтехники",
+                  )}
+                </span>
+              </NavLink>
+              <button
                 type="button"
                 onClick={() => setIsPhoneModalOpen(true)}
                 className="bg-[#FEC80B] hover:bg-[#ffd43a] rounded-full p-2 text-black cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-xs lg:hidden"
@@ -331,10 +327,7 @@ export function Header() {
               </button>
             </div>
 
-            
-
             <div className="flex items-center gap-6">
-              
               <div
                 className="hidden lg:flex lg:flex-col relative"
                 ref={workingTimeRef}
@@ -376,7 +369,6 @@ export function Header() {
                 </p>
               </div>
 
-              
               <div className="hidden lg:flex flex-col text-xs font-fira-sans whitespace-nowrap">
                 <p className="text-gray-500">
                   {t("forRegions", "Для регионов:")}{" "}
@@ -402,7 +394,6 @@ export function Header() {
         </div>
       </div>
 
-      
       <section
         className="lg:py-2.5 py-3 relative z-30 bg-white"
         ref={menuContainerRef}
@@ -449,10 +440,8 @@ export function Header() {
                 </NavLink>
               )}
 
-              
               <nav className="hidden lg:block">
                 <ul className="flex items-center gap-4 xl:gap-7 font-fira-sans text-sm font-medium text-gray-800">
-                  
                   <li>
                     <button
                       type="button"
@@ -612,13 +601,11 @@ export function Header() {
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              
               <LanguageSwitcher />
             </div>
           </div>
         </div>
 
-        
         <AnimatePresence>
           {isMegaMenuOpen && (
             <MegaMenuDropdown
@@ -632,7 +619,6 @@ export function Header() {
         </AnimatePresence>
       </section>
 
-      
       <SearchBox
         mode="mobile"
         isOpen={isMobileSearchOpen}

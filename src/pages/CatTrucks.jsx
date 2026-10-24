@@ -1,0 +1,495 @@
+import { motion } from "framer-motion";
+import { Grid2x2, List, Search } from "lucide-react";
+import { AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import CategoryArticle from "../components/CategoryArticle";
+import Slider from "../components/Slider";
+import { TruckCard } from "../components/TruckCard";
+import { useCart } from "../context/CartContext";
+import { useLanguage } from "../context/LanguageContext";
+import { categories, products } from "../data/data";
+import { container } from "../utils/animation";
+import { matchesBrand } from "../utils/filterUtils";
+import { translateTitle } from "../utils/productTranslation";
+
+export function CatTrucks() {
+  const { t, lang } = useLanguage();
+  const { category } = useParams();
+  const { addToCart, isInCart, toggleFavorite, isInFavorites } = useCart();
+  const [shtor, setShtore] = useState(false);
+  const [viewMode, setViewMode] = useState(() => {
+    return localStorage.getItem("shtornyeViewMode") || "grid";
+  });
+  const [isLocalLoading, setIsLocalLoading] = useState(false);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [brandSearch, setBrandSearch] = useState("");
+
+  const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
+
+  const currentCategory = categories.find
+
+  const filteredProducts = products.filter((product) =>
+    matchesBrand(product, selectedBrands),
+  );
+
+  const visibleBrands = brands.filter((brand) =>
+    brand.toLowerCase().includes(brandSearch.toLowerCase()),
+  );
+
+  const handleViewChange = (mode) => {
+    if (mode === viewMode) return;
+    setIsLocalLoading(true);
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      setViewMode(mode);
+      localStorage.setItem("shtornyeViewMode", mode);
+      setIsLocalLoading(false);
+    }, 600);
+  };
+
+  console.log(category);
+  
+
+  return (
+    <>
+      <div className="bg-[#F8F8F8] min-h-screen pb-20">
+        <div className="container py-6">
+          <ul className="flex items-center gap-2 mb-6 flex-wrap">
+            <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
+              <NavLink to="/">{t("home", "Главная")}</NavLink>
+            </li>
+            <li className="text-gray-400 text-sm">/</li>
+            <li className="font-fira-sans text-gray-400 text-sm hover:text-black cursor-pointer">
+              <NavLink to="/catalog">{t("catalog", "Каталог")}</NavLink>
+            </li>
+            <li className="text-gray-400 text-sm">/</li>
+            <li className="font-fira-sans text-gray-400 text-sm">
+              {t("cat_shtornye", "Шторные автомобили")}
+            </li>
+          </ul>
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div className="flex items-baseline gap-4">
+              <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
+                {t("cat_shtornye", "Шторные автомобили")} GG
+              </h1>
+              <p className="font-fira-sans text-gray-400 text-sm">
+                {filteredProducts.length} {t("productsWord", "товаров")}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 relative">
+                <span className="font-fira-sans text-gray-400 text-sm">
+                  {t("sortBy", "Сортировка:")}
+                </span>
+                <div className="relative z-50">
+                  <button
+                    className="cursor-pointer font-fira-sans text-sm font-medium flex items-center gap-1 transition-colors"
+                    onClick={() => setShtore(!shtor)}
+                  >
+                    {t("sortBrand", "По бренду")}
+                  </button>
+                  <ul
+                    className={
+                      "absolute bg-white transition-all mt-4 -left-23 duration-300 ease-in overflow-y-hidden shadow-lg z-50 " +
+                      (shtor ? "h-50" : "h-0")
+                    }
+                  >
+                    <li className="border-t border-x border-b rounded-t-sm border-[#a2a2a2] w-60 bg-white">
+                      <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                        {t("sortPopular", "По популярности")}
+                      </p>
+                    </li>
+                    <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                      <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                        {t("sortNewest", "Сначала новые")}
+                      </p>
+                    </li>
+                    <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                      <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                        {t("sortInStock", "В наличии")}
+                      </p>
+                    </li>
+                    <li className="border-b border-x border-[#a2a2a2] w-60 bg-white">
+                      <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                        {t("sortPriceAsc", "По возрастанию цены")}
+                      </p>
+                    </li>
+                    <li className="border-b border-x rounded-b-sm border-[#a2a2a2] w-60 bg-white">
+                      <p className="font-fira-sans text-sm px-5 py-2.5 hover:bg-gray-50 cursor-pointer">
+                        {t("sortBrand", "По бренду")}
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleViewChange("list")}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "list"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
+                  }`}
+                >
+                  <List className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => handleViewChange("grid")}
+                  className={`p-2 transition-colors rounded-sm cursor-pointer ${
+                    viewMode === "grid"
+                      ? "bg-[#FEC80B] text-black shadow-sm"
+                      : "text-gray-400 hover:text-black"
+                  }`}
+                >
+                  <Grid2x2 className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+            <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-6 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+              <div>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">
+                  {t("brand", "Марка")}
+                </h3>
+                <div className="relative mb-4">
+                  <input
+                    type="text"
+                    value={brandSearch}
+                    onChange={(e) => setBrandSearch(e.target.value)}
+                    placeholder={t("search", "Найти")}
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 pr-10 text-sm outline-none focus:border-[#FEC80B]"
+                  />
+                  <Search className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2" />
+                </div>
+                <div className="flex flex-col gap-3 max-h-64 overflow-y-auto pr-1">
+                  {visibleBrands.length > 0 ? (
+                    visibleBrands.map((brand, idx) => {
+                      const isChecked = selectedBrands.includes(brand);
+                      return (
+                        <label
+                          key={idx}
+                          className="flex items-center gap-3 cursor-pointer group select-none"
+                        >
+                          <div
+                            className={`relative flex items-center justify-center w-5 h-5 border rounded-sm transition-colors shrink-0 ${
+                              isChecked
+                                ? "bg-[#FEC80B] border-[#FEC80B]"
+                                : "border-gray-300 group-hover:border-[#FEC80B]"
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={isChecked}
+                              onChange={() => handleToggleBrand(brand)}
+                              className="absolute opacity-0 w-full h-full cursor-pointer z-10"
+                            />
+                            {isChecked && (
+                              <svg
+                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                              >
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            )}
+                          </div>
+                          <span
+                            className={`font-fira-sans text-sm transition-colors ${
+                              isChecked
+                                ? "text-black font-semibold"
+                                : "text-gray-700"
+                            }`}
+                          >
+                            {brand}
+                          </span>
+                        </label>
+                      );
+                    })
+                  ) : (
+                    <p className="text-xs text-gray-400 py-1 font-fira-sans">
+                      {t("brandNotFound", "Бренд не найден")}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("product-grid-view");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
+                >
+                  {t("showProducts", "Показать товары")} (
+                  {filteredProducts.length})
+                </button>
+                {selectedBrands.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleResetFilters}
+                    className="w-full py-1 text-gray-500 hover:text-black transition-colors font-fira-sans text-xs underline cursor-pointer text-center"
+                  >
+                    {t("resetFilters", "Сбросить фильтры")}
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div
+              id="product-grid-view"
+              className="flex-1 relative min-h-125 w-full"
+            >
+              <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
+
+              {!isLocalLoading &&
+                (filteredProducts.length === 0 ? (
+                  <div className="py-16 text-center bg-white rounded-lg p-8 shadow-sm">
+                    <p className="font-fira-sans text-lg font-medium text-gray-700 mb-2">
+                      {t("noProductsFound", "Товары не найдены")}
+                    </p>
+                    <p className="font-fira-sans text-sm text-gray-500 mb-4">
+                      {t(
+                        "tryChangingFilters",
+                        "Попробуйте изменить параметры фильтрации",
+                      )}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleResetFilters}
+                      className="bg-[#FEC80B] hover:bg-yellow-500 font-fira-sans text-sm font-medium px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
+                    >
+                      {t("resetFilters", "Сбросить фильтры")}
+                    </button>
+                  </div>
+                ) : (
+                  <motion.div
+                    key={viewMode}
+                    variants={container}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    className={
+                      viewMode === "grid"
+                        ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+                        : "flex flex-col gap-5"
+                    }
+                  >
+                    {filteredProducts.map((product) => {
+                      const localizedTitle = translateTitle(
+                        product.title,
+                        lang,
+                      );
+                      return (
+                        <TruckCard key={product.id} truck={product} />
+                        // <motion.div
+                        //   variants={fadeUp}
+                        //   key={product.id}
+                        //   className={
+                        //     viewMode === "grid"
+                        //       ? "bg-white"
+                        //       : "bg-white group flex flex-col md:flex-row"
+                        //   }
+                        // >
+                        //   <NavLink
+                        //     to={`/catalog/shtornye-avtomobili/${product.slug}`}
+                        //     className={
+                        //       viewMode === "grid"
+                        //         ? "relative bg-gray-200 aspect-4/3 w-full flex items-center justify-center overflow-hidden shrink-0"
+                        //         : "relative bg-gray-200 w-full md:w-[320px] flex items-center justify-center overflow-hidden shrink-0"
+                        //     }
+                        //   >
+                        //     <img
+                        //       src={product.img}
+                        //       alt={localizedTitle}
+                        //       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        //     />
+                        //     <button
+                        //       type="button"
+                        //       className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
+                        //         isInFavorites(product)
+                        //           ? "text-red-500"
+                        //           : "text-gray-500 hover:text-red-500"
+                        //       }`}
+                        //       onClick={(e) => {
+                        //         e.preventDefault();
+                        //         e.stopPropagation();
+                        //         toggleFavorite(product);
+                        //       }}
+                        //       title={
+                        //         isInFavorites(product)
+                        //           ? t(
+                        //               "removeFromFavorites",
+                        //               "Удалить из избранного",
+                        //             )
+                        //           : t("addToFavorites", "В избранное")
+                        //       }
+                        //     >
+                        //       <Heart
+                        //         className={`w-6 h-6 transition-transform active:scale-125 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`}
+                        //       />
+                        //     </button>
+                        //   </NavLink>
+
+                        //   <div
+                        //     className={
+                        //       viewMode === "grid"
+                        //         ? "p-3 flex flex-col flex-1"
+                        //         : "p-3 flex flex-col md:flex-row flex-1 justify-between gap-6"
+                        //     }
+                        //   >
+                        //     <div
+                        //       className={
+                        //         viewMode === "list"
+                        //           ? "flex-1 flex flex-col max-w-111"
+                        //           : "flex-1 flex flex-col"
+                        //       }
+                        //     >
+                        //       <NavLink
+                        //         to={`/catalog/shtornye-avtomobili/${product.slug}`}
+                        //       >
+                        //         <h3
+                        //           className={`font-fira-sans text-base sm:text-lg leading-tight hover:text-[#FEC80B] transition-colors font-medium ${viewMode === "list" ? "mb-6" : "mb-3 flex-1 line-clamp-2"}`}
+                        //         >
+                        //           {localizedTitle}
+                        //         </h3>
+                        //       </NavLink>
+
+                        //       {product.specs && (
+                        //         <ul className="space-y-1 mb-4 text-xs text-gray-600">
+                        //           {product.specs.map((s, idx) => (
+                        //             <li
+                        //               key={idx}
+                        //               className="flex justify-between border-b border-gray-100 py-0.5"
+                        //             >
+                        //               <span className="text-gray-400">
+                        //                 {translateSpecLabel(s.label, lang)}:
+                        //               </span>
+                        //               <span className="font-medium text-gray-700">
+                        //                 {translateSpecValue(s.value, lang)}
+                        //               </span>
+                        //             </li>
+                        //           ))}
+                        //         </ul>
+                        //       )}
+                        //     </div>
+
+                        //     <div
+                        //       className={
+                        //         viewMode === "grid"
+                        //           ? "mt-auto"
+                        //           : "flex flex-col items-end justify-between shrink-0"
+                        //       }
+                        //     >
+                        //       <p
+                        //         className={`font-fira-sans font-bold text-lg sm:text-xl text-black ${viewMode === "grid" ? "mb-4" : "mb-4"}`}
+                        //       >
+                        //         {translatePrice(product.price, lang)}
+                        //       </p>
+
+                        //       <div
+                        //         className={
+                        //           viewMode === "grid"
+                        //             ? "flex items-center justify-between gap-2"
+                        //             : "flex flex-col items-end gap-4 w-full"
+                        //         }
+                        //       >
+                        //         <NavLink
+                        //           to={`/catalog/shtornye-avtomobili/${product.slug}`}
+                        //           className={`bg-[#FEC80B] hover:bg-yellow-500 transition duration-300 cursor-pointer font-fira-sans text-xs font-medium py-2.5 px-6 rounded-sm ${viewMode === "list" ? "w-full text-center" : ""}`}
+                        //         >
+                        //           {t("learnMore", "Подробнее")}
+                        //         </NavLink>
+
+                        //         <div
+                        //           className={`flex items-center text-gray-500 ${viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"}`}
+                        //         >
+                        //           <div className="flex items-center gap-3">
+                        //             <button
+                        //               type="button"
+                        //               onClick={() => addToCart(product)}
+                        //               className={`transition-colors cursor-pointer ${
+                        //                 isInCart(product)
+                        //                   ? "text-green-600 font-bold"
+                        //                   : "hover:text-black"
+                        //               }`}
+                        //               title={
+                        //                 isInCart(product)
+                        //                   ? t("inCart", "В корзине")
+                        //                   : t("addToCart", "Добавить в корзину")
+                        //               }
+                        //             >
+                        //               <ShoppingCart
+                        //                 className={`w-5 h-5 ${isInCart(product) ? "text-green-600" : ""}`}
+                        //               />
+                        //             </button>
+                        //             <button
+                        //               type="button"
+                        //               onClick={() => toggleFavorite(product)}
+                        //               className={`transition-colors cursor-pointer ${
+                        //                 isInFavorites(product)
+                        //                   ? "text-red-500"
+                        //                   : "hover:text-black"
+                        //               }`}
+                        //               title={
+                        //                 isInFavorites(product)
+                        //                   ? t(
+                        //                       "removeFromFavorites",
+                        //                       "Удалить из избранного",
+                        //                     )
+                        //                   : t("addToFavorites", "В избранное")
+                        //               }
+                        //             >
+                        //               <Heart
+                        //                 className={`w-5 h-5 ${isInFavorites(product) ? "fill-red-500 text-red-500" : ""}`}
+                        //               />
+                        //             </button>
+                        //           </div>
+                        //           <button
+                        //             type="button"
+                        //             onClick={() => {
+                        //               const el =
+                        //                 document.getElementById(
+                        //                   "feedback-section",
+                        //                 );
+                        //               if (el)
+                        //                 el.scrollIntoView({
+                        //                   behavior: "smooth",
+                        //                 });
+                        //             }}
+                        //             className={`flex items-center gap-1.5 transition-colors cursor-pointer ${viewMode === "list" ? "ml-auto" : ""}`}
+                        //           >
+                        //             <p className="text-[10px] font-fira-sans text-gray-400 hover:text-black transition-colors">
+                        //               {t("getKp", "Получить КП")}
+                        //             </p>
+                        //           </button>
+                        //         </div>
+                        //       </div>
+                        //     </div>
+                        //   </div>
+                        // </motion.div>
+                      );
+                    })}
+                  </motion.div>
+                ))}
+
+              {/* Multilingual SEO Description Article */}
+              {viewMode === "grid" && <CategoryArticle category="shtornye" />}
+            </div>
+          </div>
+
+          {/* Similar products carousel with language support */}
+          {viewMode === "grid" && <Slider />}
+        </div>
+      </div>
+    </>
+  );
+}

@@ -8,11 +8,11 @@ import {
   ShoppingCart,
   Download,
 } from "lucide-react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
+
+
 import Slider from "../components/Slider";
 import { useState } from "react";
 import { Loader } from "../components/Loader";
@@ -86,13 +86,15 @@ const Gidropod = () => {
 
   const handleToggleBrand = (brand) => {
     setSelectedBrands((prev) =>
-      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand],
     );
   };
 
   const handleToggleFormula = (formula) => {
     setSelectedFormulas((prev) =>
-      prev.includes(formula) ? prev.filter((f) => f !== formula) : [...prev, formula]
+      prev.includes(formula)
+        ? prev.filter((f) => f !== formula)
+        : [...prev, formula],
     );
   };
 
@@ -103,7 +105,7 @@ const Gidropod = () => {
   };
 
   const visibleBrands = brands.filter((b) =>
-    b.toLowerCase().includes(brandSearch.trim().toLowerCase())
+    b.toLowerCase().includes(brandSearch.trim().toLowerCase()),
   );
 
   const filteredProducts = dummyProducts.filter((product) => {
@@ -125,7 +127,7 @@ const Gidropod = () => {
 
   return (
     <>
-      <Header />
+      
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
         <div className="container py-6">
           <ul className="flex items-center gap-2 mb-6 flex-wrap">
@@ -227,7 +229,9 @@ const Gidropod = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start mb-30">
             <div className="w-full lg:w-70 bg-white p-6 shadow-sm flex flex-col gap-8 shrink-0 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
               <div>
-                <h3 className="font-fira-sans font-bold text-lg mb-4">{t("brand", "Марка")}</h3>
+                <h3 className="font-fira-sans font-bold text-lg mb-4">
+                  {t("brand", "Марка")}
+                </h3>
                 <div className="relative mb-4">
                   <input
                     type="text"
@@ -240,7 +244,9 @@ const Gidropod = () => {
                 </div>
                 <div className="flex flex-col gap-3">
                   {visibleBrands.length === 0 ? (
-                    <p className="text-xs text-gray-400 py-2">{t("brandNotFound", "Марки не найдены")}</p>
+                    <p className="text-xs text-gray-400 py-2">
+                      {t("brandNotFound", "Марки не найдены")}
+                    </p>
                   ) : (
                     visibleBrands.map((brand, idx) => {
                       const isChecked = selectedBrands.includes(brand);
@@ -275,7 +281,9 @@ const Gidropod = () => {
                           </div>
                           <span
                             className={`font-fira-sans text-sm transition-colors ${
-                              isChecked ? "text-black font-semibold" : "text-gray-700"
+                              isChecked
+                                ? "text-black font-semibold"
+                                : "text-gray-700"
                             }`}
                           >
                             {brand}
@@ -325,7 +333,9 @@ const Gidropod = () => {
                         </div>
                         <span
                           className={`font-fira-sans text-sm transition-colors ${
-                            isChecked ? "text-black font-semibold" : "text-gray-700"
+                            isChecked
+                              ? "text-black font-semibold"
+                              : "text-gray-700"
                           }`}
                         >
                           {formula}
@@ -345,7 +355,8 @@ const Gidropod = () => {
                   }}
                   className="w-full py-3 bg-[#FEC80B] hover:bg-yellow-500 transition-colors rounded-sm font-fira-sans font-medium text-sm cursor-pointer"
                 >
-                  {t("showProducts", "Показать товары")} ({filteredProducts.length})
+                  {t("showProducts", "Показать товары")} (
+                  {filteredProducts.length})
                 </button>
                 {(selectedBrands.length > 0 || selectedFormulas.length > 0) && (
                   <button
@@ -358,7 +369,10 @@ const Gidropod = () => {
               </div>
             </div>
 
-            <div id="product-grid-view" className="flex-1 relative min-h-125 w-full flex flex-col gap-10">
+            <div
+              id="product-grid-view"
+              className="flex-1 relative min-h-125 w-full flex flex-col gap-10"
+            >
               <AnimatePresence>{isLocalLoading && <Loader />}</AnimatePresence>
 
               {!isLocalLoading && (
@@ -380,7 +394,10 @@ const Gidropod = () => {
                         {t("noProductsFound", "Товары не найдены")}
                       </p>
                       <p className="font-fira-sans text-sm text-gray-500 mb-6">
-                        {t("tryChangingFilters", "Попробуйте изменить параметры фильтрации")}
+                        {t(
+                          "tryChangingFilters",
+                          "Попробуйте изменить параметры фильтрации",
+                        )}
                       </p>
                       <button
                         onClick={handleResetFilters}
@@ -391,7 +408,10 @@ const Gidropod = () => {
                     </div>
                   ) : (
                     filteredProducts.map((product) => {
-                      const localizedTitle = translateTitle(product.title, lang);
+                      const localizedTitle = translateTitle(
+                        product.title,
+                        lang,
+                      );
                       return (
                         <motion.div
                           variants={fadeUp}
@@ -427,7 +447,9 @@ const Gidropod = () => {
                             <button
                               type="button"
                               className={`absolute top-4 right-4 transition-colors z-10 cursor-pointer ${
-                                isInFavorites(product) ? "text-red-500" : "text-gray-500 hover:text-red-500"
+                                isInFavorites(product)
+                                  ? "text-red-500"
+                                  : "text-gray-500 hover:text-red-500"
                               }`}
                               onClick={(e) => {
                                 e.preventDefault();
@@ -436,13 +458,18 @@ const Gidropod = () => {
                               }}
                               title={
                                 isInFavorites(product)
-                                  ? t("removeFromFavorites", "Удалить из избранного")
+                                  ? t(
+                                      "removeFromFavorites",
+                                      "Удалить из избранного",
+                                    )
                                   : t("addToFavorites", "В избранное")
                               }
                             >
                               <Heart
                                 className={`w-6 h-6 transition-transform active:scale-125 ${
-                                  isInFavorites(product) ? "fill-red-500 text-red-500" : ""
+                                  isInFavorites(product)
+                                    ? "fill-red-500 text-red-500"
+                                    : ""
                                 }`}
                               />
                             </button>
@@ -465,7 +492,9 @@ const Gidropod = () => {
                               <NavLink to={`/catalog/gidropod/${product.slug}`}>
                                 <h3
                                   className={`font-fira-sans text-base sm:text-lg hover:text-[#FEC80B] transition-colors font-medium ${
-                                    viewMode === "list" ? "mb-6 text-lg" : "mb-4 flex-1 line-clamp-2"
+                                    viewMode === "list"
+                                      ? "mb-6 text-lg"
+                                      : "mb-4 flex-1 line-clamp-2"
                                   }`}
                                 >
                                   {localizedTitle}
@@ -524,7 +553,9 @@ const Gidropod = () => {
 
                                 <div
                                   className={`flex items-center text-gray-500 ${
-                                    viewMode === "grid" ? "gap-3" : "gap-4 w-full justify-between"
+                                    viewMode === "grid"
+                                      ? "gap-3"
+                                      : "gap-4 w-full justify-between"
                                   }`}
                                 >
                                   <div className="flex items-center gap-3">
@@ -532,7 +563,9 @@ const Gidropod = () => {
                                       type="button"
                                       onClick={() => addToCart(product)}
                                       className={`transition-colors cursor-pointer ${
-                                        isInCart(product) ? "text-green-600 font-bold" : "hover:text-black"
+                                        isInCart(product)
+                                          ? "text-green-600 font-bold"
+                                          : "hover:text-black"
                                       }`}
                                       title={
                                         isInCart(product)
@@ -542,7 +575,9 @@ const Gidropod = () => {
                                     >
                                       <ShoppingCart
                                         className={`w-5 h-5 ${
-                                          isInCart(product) ? "text-green-600" : ""
+                                          isInCart(product)
+                                            ? "text-green-600"
+                                            : ""
                                         }`}
                                       />
                                     </button>
@@ -550,17 +585,24 @@ const Gidropod = () => {
                                       type="button"
                                       onClick={() => toggleFavorite(product)}
                                       className={`transition-colors cursor-pointer ${
-                                        isInFavorites(product) ? "text-red-500" : "hover:text-black"
+                                        isInFavorites(product)
+                                          ? "text-red-500"
+                                          : "hover:text-black"
                                       }`}
                                       title={
                                         isInFavorites(product)
-                                          ? t("removeFromFavorites", "Удалить из избранного")
+                                          ? t(
+                                              "removeFromFavorites",
+                                              "Удалить из избранного",
+                                            )
                                           : t("addToFavorites", "В избранное")
                                       }
                                     >
                                       <Heart
                                         className={`w-6 h-6 transition-transform active:scale-125 ${
-                                          isInFavorites(product) ? "fill-red-500 text-red-500" : ""
+                                          isInFavorites(product)
+                                            ? "fill-red-500 text-red-500"
+                                            : ""
                                         }`}
                                       />
                                     </button>
@@ -568,14 +610,22 @@ const Gidropod = () => {
                                   <button
                                     type="button"
                                     onClick={() => {
-                                      const el = document.getElementById("feedback-section");
-                                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                                      const el =
+                                        document.getElementById(
+                                          "feedback-section",
+                                        );
+                                      if (el)
+                                        el.scrollIntoView({
+                                          behavior: "smooth",
+                                        });
                                     }}
                                     className={`flex items-center gap-1.5 hover:text-black transition-colors cursor-pointer group/kp ${
                                       viewMode === "list" ? "ml-auto" : ""
                                     }`}
                                   >
-                                    <p className="text-[9px] font-fira-sans">{t("getKp", "Получить КП")}</p>
+                                    <p className="text-[9px] font-fira-sans">
+                                      {t("getKp", "Получить КП")}
+                                    </p>
                                     <Download className="w-3 h-3" />
                                   </button>
                                 </div>

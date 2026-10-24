@@ -1,24 +1,29 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
 import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 
 const Remont = () => {
   const { t } = useLanguage();
   return (
     <div>
       <>
-        <Header />
+        
 
         <div className="remont">
-          <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+          <motion.div
+            className="container"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={fadeUp}
+          >
             <ul className="flex items-center gap-2 ">
               <li className="font-fira-sans text-gray-500 text-sm">
                 <a href="/">{t("home", "Главная")}</a>
@@ -190,7 +195,9 @@ const Remont = () => {
               </div>
 
               <div className="mt-5">
-                <h2 className="text-xl font-bold font-fira-sans">Качественный сервис для полуприцепов</h2>
+                <h2 className="text-xl font-bold font-fira-sans">
+                  Качественный сервис для полуприцепов
+                </h2>
                 <p className="font-fira-sans text-lg mt-3 mb-10">
                   Ремонт шторных полуприцепов помогает продлить срок службы
                   техники и сохранить её функциональность. Обратитесь к нашей
@@ -205,11 +212,8 @@ const Remont = () => {
                 </p>
               </div>
             </div>
-
-            
           </motion.div>
-          <Feedback/>
-          <Footer/>
+          
         </div>
       </>
     </div>

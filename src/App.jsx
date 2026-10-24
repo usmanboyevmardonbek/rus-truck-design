@@ -1,56 +1,25 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Loader } from "./components/Loader";
-import { Home } from "./pages/Home";
-import About from "./pages/About";
-import Service from "./pages/Service";
-import Remont from "./pages/Remont";
-import News from "./pages/News";
-import Contact from "./pages/Contact";
-import Vacancies from "./pages/Vacancies";
-import Partners from "./pages/Partners";
-import Production from "./pages/Production";
-import Leasing from "./pages/Leasing";
-import Photogallery from "./pages/Photogallery";
-import Promo from "./pages/Promo";
-import Review from "./pages/Review";
-import Suppliers from "./pages/Suppliers";
-import Catalog from "./pages/Catalog";
-import Shtornye from "./pages/Shtornye";
-import Krany from "./pages/Krany";
-import Zapravka from "./pages/Zapravka";
-import Gidropod from "./pages/Gidropod";
-import Sisterna from "./pages/Sisterna";
-import Evakuator from "./pages/Evakuator";
-import Bortov from "./pages/Bortov";
-import Autofurgony from "./pages/Autofurgony";
-import Konteyner from "./pages/Konteyner";
-import Pogruzki from "./pages/Pogruzki";
-import Samosvaly from "./pages/Samosvaly";
-import Dopog from "./pages/Dopog";
-import Cert from "./pages/Cert";
-import Video from "./pages/Video";
-import Copy from "./pages/Copy";
-import Detail from "./pages/Detail";
-import Cart from "./pages/Cart";
-import Favorites from "./pages/Favorites";
 import { CartProvider } from "./context/CartContext";
-
-
+import { Home } from "./pages/Home";
+import { CatTrucks } from "./pages/CatTrucks";
+import { Layout } from "./layout/Layout";
+import Catalog from "./pages/Catalog";
 
 const pageTransition = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" },
   },
-  exit: { 
-    opacity: 0, 
+  exit: {
+    opacity: 0,
     y: -20,
-    transition: { duration: 0.4, ease: "easeIn" }
-  }
+    transition: { duration: 0.4, ease: "easeIn" },
+  },
 };
 
 const PageWrapper = ({ children }) => {
@@ -75,7 +44,7 @@ function App() {
     setIsLoading(true);
     // Scroll to top on route change before new page renders
     window.scrollTo(0, 0);
-    
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500); // Loader 1.5 soniya aylanadi
@@ -89,55 +58,182 @@ function App() {
           <Loader key="global-loader" />
         ) : (
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageWrapper><Home/></PageWrapper>}/>
-            <Route path="/about" element={<PageWrapper><About/></PageWrapper>}/>
-            <Route path="/vacancies" element={<PageWrapper><Vacancies/></PageWrapper>}/>
-            <Route path="/partners" element={<PageWrapper><Partners/></PageWrapper>}/>
-            <Route path="/service" element={<PageWrapper><Service/></PageWrapper>}/>
-            <Route path="/remont" element={<PageWrapper><Remont/></PageWrapper>}/>
-            <Route path="/news" element={<PageWrapper><News/></PageWrapper>}/>
-            <Route path="/contact" element={<PageWrapper><Contact/></PageWrapper>}/>
-            <Route path="/production" element={<PageWrapper><Production/></PageWrapper>}/>
-            <Route path="/leasing" element={<PageWrapper><Leasing/></PageWrapper>}/>
-            <Route path="/photogallery" element={<PageWrapper><Photogallery/></PageWrapper>}/>
-            <Route path="/promo" element={<PageWrapper><Promo/></PageWrapper>}/>
-            <Route path="/review" element={<PageWrapper><Review/></PageWrapper>}/>
-            <Route path="/suppliers" element={<PageWrapper><Suppliers/></PageWrapper>}/>
-            <Route path="/catalog" element={<PageWrapper><Catalog/></PageWrapper>}/>
-            <Route path="/catalog/shtornye-avtomobili" element={<PageWrapper><Shtornye/></PageWrapper>}/>
-            <Route path="/catalog/shtornye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/krany-manipulator" element={<PageWrapper><Krany/></PageWrapper>}/>
-            <Route path="/catalog/krany-manipulator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/zapravka" element={<PageWrapper><Zapravka/></PageWrapper>}/>
-            <Route path="/catalog/zapravka/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/gidropod" element={<PageWrapper><Gidropod/></PageWrapper>}/>
-            <Route path="/catalog/gidropod/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/sisterna" element={<PageWrapper><Sisterna/></PageWrapper>}/>
-            <Route path="/catalog/sisterna/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/evakuator" element={<PageWrapper><Evakuator/></PageWrapper>}/>
-            <Route path="/catalog/evakuator/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/bortovye-avtomobili" element={<PageWrapper><Bortov/></PageWrapper>}/>
-            <Route path="/catalog/bortovye-avtomobili/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/avtofurgony" element={<PageWrapper><Autofurgony/></PageWrapper>}/>
-            <Route path="/catalog/avtofurgony/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/konteynerovozy" element={<PageWrapper><Konteyner/></PageWrapper>}/>
-            <Route path="/catalog/konteynerovozy/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/kryukovye-pogruzchiki" element={<PageWrapper><Pogruzki/></PageWrapper>}/>
-            <Route path="/catalog/kryukovye-pogruzchiki/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/samosvaly" element={<PageWrapper><Samosvaly/></PageWrapper>}/>
-            <Route path="/catalog/samosvaly/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/catalog/avtomobili-dopog" element={<PageWrapper><Dopog/></PageWrapper>}/>
-            <Route path="/catalog/avtomobili-dopog/:slug" element={<PageWrapper><Detail/></PageWrapper>}/>
-            <Route path="/cert" element={<PageWrapper><Cert/></PageWrapper>}/>
-            <Route path="/video" element={<PageWrapper><Video/></PageWrapper>}/>
-            <Route path="/copy" element={<PageWrapper><Copy/></PageWrapper>}/>
-            <Route path="/cart" element={<PageWrapper><Cart/></PageWrapper>}/>
-            <Route path="/favorites" element={<PageWrapper><Favorites/></PageWrapper>}/>
+            <Route
+              path="/"
+              element={
+                <PageWrapper>
+                  <Layout />
+                </PageWrapper>
+              }
+            >
+              <Route index element={<Home />} />
+              <Route
+                path="/catalog/:category"
+                element={
+                  <PageWrapper>
+                    <CatTrucks />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/catalog"
+                element={
+                  <PageWrapper>
+                    <Catalog />
+                  </PageWrapper>
+                }
+              />
+              {/* <Route
+                path="/about"
+                element={
+                  <PageWrapper>
+                    <About />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/vacancies"
+                element={
+                  <PageWrapper>
+                    <Vacancies />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/partners"
+                element={
+                  <PageWrapper>
+                    <Partners />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/service"
+                element={
+                  <PageWrapper>
+                    <Service />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/remont"
+                element={
+                  <PageWrapper>
+                    <Remont />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/news"
+                element={
+                  <PageWrapper>
+                    <News />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <PageWrapper>
+                    <Contact />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/production"
+                element={
+                  <PageWrapper>
+                    <Production />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/leasing"
+                element={
+                  <PageWrapper>
+                    <Leasing />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/photogallery"
+                element={
+                  <PageWrapper>
+                    <Photogallery />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/promo"
+                element={
+                  <PageWrapper>
+                    <Promo />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/review"
+                element={
+                  <PageWrapper>
+                    <Review />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/suppliers"
+                element={
+                  <PageWrapper>
+                    <Suppliers />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/cert"
+                element={
+                  <PageWrapper>
+                    <Cert />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/video"
+                element={
+                  <PageWrapper>
+                    <Video />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/copy"
+                element={
+                  <PageWrapper>
+                    <Copy />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <PageWrapper>
+                    <Cart />
+                  </PageWrapper>
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <PageWrapper>
+                    <Favorites />
+                  </PageWrapper>
+                }
+              />
+              */}
+            </Route>
           </Routes>
         )}
       </AnimatePresence>
     </CartProvider>
-  )
+  );
 }
 
-export default App
+export default App;

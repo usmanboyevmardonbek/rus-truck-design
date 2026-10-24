@@ -1,19 +1,24 @@
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import React from "react";
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 
 const Service = () => {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
+      
 
       <div className="garantiy">
-        <motion.div className="container" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeUp}>
+        <motion.div
+          className="container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+        >
           <ul className="flex items-center gap-2 ">
             <li className="font-fira-sans text-gray-500 text-sm">
               <a href="/">{t("home", "Главная")}</a>
@@ -23,7 +28,9 @@ const Service = () => {
             </li>
 
             <li className="font-fira-sans text-gray-500 text-sm">
-              <a href="/service">{t("serviceAndWarranty", "Сервис и гарантии")}</a>
+              <a href="/service">
+                {t("serviceAndWarranty", "Сервис и гарантии")}
+              </a>
             </li>
           </ul>
 
@@ -94,11 +101,8 @@ const Service = () => {
               (доб 610) или по электронной почте: kb1@rtrf.ru
             </p>
           </div>
-          
         </motion.div>
-        <Feedback/>
-
-        <Footer/>
+        
       </div>
     </>
   );

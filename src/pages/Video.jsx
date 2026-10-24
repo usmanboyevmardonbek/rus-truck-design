@@ -1,7 +1,6 @@
-import { Header } from "../components/Header";
+
 import { useLanguage } from "../context/LanguageContext";
-import Feedback from "../components/Feedback";
-import Footer from "../components/footer";
+
 import { motion } from "motion/react";
 import { fadeUp } from "../utils/animation";
 import { videoData } from "./objects";
@@ -11,7 +10,7 @@ const Video = () => {
   const { t } = useLanguage();
   return (
     <>
-      <Header />
+      
 
       <div>
         <motion.div
@@ -36,14 +35,19 @@ const Video = () => {
 
           <div className="flex justify-between mt-5">
             <h1 className="lg:text-3xl font-fira-sans font-medium text-2xl">
-              {t("videoTitle", "Видеогалерея производителя автоспецтехники РусТрак")}
+              {t(
+                "videoTitle",
+                "Видеогалерея производителя автоспецтехники РусТрак",
+              )}
             </h1>
 
             <a
               href="/photogallery/"
               className="border-2 border-[#fec80b] rounded-sm lg:inline-block px-5 py-2 hover:bg-[#ffd43a] transition duration-300 ease-in hidden"
             >
-              <p className="font-fira-sans text-lg">{t("watchPhoto", "Смотреть фото")}</p>
+              <p className="font-fira-sans text-lg">
+                {t("watchPhoto", "Смотреть фото")}
+              </p>
             </a>
           </div>
 
@@ -63,15 +67,14 @@ const Video = () => {
                 ></iframe>
 
                 <p className="font-fira-sans text-lg font-medium mt-5">
-                    {videos.videoTitle}
+                  {videos.videoTitle}
                 </p>
               </div>
             ))}
           </div>
         </motion.div>
       </div>
-      <Feedback/>
-      <Footer/>
+     
     </>
   );
 };

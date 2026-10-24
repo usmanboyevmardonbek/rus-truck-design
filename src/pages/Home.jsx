@@ -12,7 +12,7 @@ import {
   MoveRight,
   ShoppingCart,
 } from "lucide-react";
-import { Header } from "../components/Header";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { catData } from "./objects";
 import { recomendData } from "./objects";
@@ -23,8 +23,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Navigation, Pagination } from "swiper/modules";
-import Footer from "../components/footer";
-import Feedback from "../components/Feedback";
+
 import ArcNavigation from "../components/ArcNavigation";
 import { useLanguage } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
@@ -40,10 +39,15 @@ export function Home() {
     {
       image: "/banner-1.jpg",
       titleKey: "hero_slide1_title",
-      titleDefault: "АТЗ Рустрак включены в реестр российской промышленной продукции",
+      titleDefault:
+        "АТЗ Рустрак включены в реестр российской промышленной продукции",
       descKey: "hero_slide1_subtitle",
       descDefault: "Теперь доступны для приобретения по 44 ФЗ",
-      btn1: { type: "call", textKey: "orderCall", textDefault: "Заказать звонок" },
+      btn1: {
+        type: "call",
+        textKey: "orderCall",
+        textDefault: "Заказать звонок",
+      },
     },
     {
       image: "/banner-2.jpg",
@@ -51,42 +55,82 @@ export function Home() {
       titleDefault: "В наличии шторные фургоны КАМАЗ 4308",
       descKey: "hero_slide2_subtitle",
       descDefault: "Размеры надстройки 6200х2550х2850 мм.\nЦена 5 500 000 руб.",
-      btn1: { type: "call", textKey: "orderCall", textDefault: "Заказать звонок" },
+      btn1: {
+        type: "call",
+        textKey: "orderCall",
+        textDefault: "Заказать звонок",
+      },
     },
     {
       image: "/banner-3.webp",
       titleKey: "hero_slide3_title",
       titleDefault: "Бортовые платформы со шторным механизмом",
       descKey: "hero_slide3_subtitle",
-      descDefault: "Производство и поставка коммерческого транспорта, бортовых платформ, в том числе со сдвижными шторами, сдвижной крышей.",
-      btn1: { type: "link", href: "/catalog/shtornye-avtomobili", textKey: "learnMore", textDefault: "Подробнее" },
+      descDefault:
+        "Производство и поставка коммерческого транспорта, бортовых платформ, в том числе со сдвижными шторами, сдвижной крышей.",
+      btn1: {
+        type: "link",
+        href: "/catalog/shtornye-avtomobili",
+        textKey: "learnMore",
+        textDefault: "Подробнее",
+      },
     },
     {
       image: "/banner-4.jpg",
       titleKey: "hero_slide4_title",
       titleDefault: "ООО «РусТрак»",
       descKey: "hero_slide4_subtitle",
-      descDefault: "Производство и поставка специализированной техники и спецтранспорта",
-      btn1: { type: "link", href: "/catalog", textKey: "catalog", textDefault: "Каталог" },
-      btn2: { type: "call", textKey: "orderCall", textDefault: "Заказать звонок" },
+      descDefault:
+        "Производство и поставка специализированной техники и спецтранспорта",
+      btn1: {
+        type: "link",
+        href: "/catalog",
+        textKey: "catalog",
+        textDefault: "Каталог",
+      },
+      btn2: {
+        type: "call",
+        textKey: "orderCall",
+        textDefault: "Заказать звонок",
+      },
     },
     {
       image: "/banner-5.jpg",
       titleKey: "hero_slide5_title",
       titleDefault: "Краны манипуляторы на базе MCV/HCV грузовиков",
       descKey: "hero_slide5_subtitle",
-      descDefault: "Производство автомобилей с крано-манипуляторными установками. Использование противосдвиговых пластин, установка блока распределителя управления задними опорами, открытый профиль HOSSEN, монтажные плиты в основании КМУ, окрас платформы в цвет крана.",
-      btn1: { type: "link", href: "/catalog/krany-manipulator", textKey: "learnMore", textDefault: "Подробнее" },
-      btn2: { type: "call", textKey: "orderCall", textDefault: "Заказать звонок" },
+      descDefault:
+        "Производство автомобилей с крано-манипуляторными установками. Использование противосдвиговых пластин, установка блока распределителя управления задними опорами, открытый профиль HOSSEN, монтажные плиты в основании КМУ, окрас платформы в цвет крана.",
+      btn1: {
+        type: "link",
+        href: "/catalog/krany-manipulator",
+        textKey: "learnMore",
+        textDefault: "Подробнее",
+      },
+      btn2: {
+        type: "call",
+        textKey: "orderCall",
+        textDefault: "Заказать звонок",
+      },
     },
     {
       image: "/banner-6.jpg",
       titleKey: "hero_slide6_title",
       titleDefault: "Автотопливозаправщики на базе MCV/HCV грузовиков",
       descKey: "hero_slide6_subtitle",
-      descDefault: "Производство и поставка автотопливозаправщиков объёмом 8 и 6 м.куб. Алюминиевые коммуникации, композитные напорно-всасывающие рукава, производительный узел выдачи топлива.",
-      btn1: { type: "link", href: "/catalog/zapravka", textKey: "learnMore", textDefault: "Подробнее" },
-      btn2: { type: "call", textKey: "orderCall", textDefault: "Заказать звонок" },
+      descDefault:
+        "Производство и поставка автотопливозаправщиков объёмом 8 и 6 м.куб. Алюминиевые коммуникации, композитные напорно-всасывающие рукава, производительный узел выдачи топлива.",
+      btn1: {
+        type: "link",
+        href: "/catalog/zapravka",
+        textKey: "learnMore",
+        textDefault: "Подробнее",
+      },
+      btn2: {
+        type: "call",
+        textKey: "orderCall",
+        textDefault: "Заказать звонок",
+      },
     },
   ];
 
@@ -105,12 +149,14 @@ export function Home() {
     12: "cat_bortovye",
   };
   const getCatTitle = (cat) => {
-    return catKeyMap[cat.id] ? t(catKeyMap[cat.id], cat.catTitle) : cat.catTitle;
+    return catKeyMap[cat.id]
+      ? t(catKeyMap[cat.id], cat.catTitle)
+      : cat.catTitle;
   };
 
   return (
     <>
-      <Header />
+     
       <section className="lg:pt-2 pt-4">
         <div className="container">
           <div className="z-10 relative">
@@ -185,7 +231,7 @@ export function Home() {
             </h2>
             <div className="flex items-center gap-2">
               <button className="category-swiper-button-prev md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer>">
-                <ChevronLeft/>
+                <ChevronLeft />
               </button>
               <button className="category-swiper-button-next md:block hidden border p-1 rounded-xs hover:bg-[#FEC80B] transition duration-300 cursor-pointer>">
                 <ChevronRight />
@@ -222,7 +268,10 @@ export function Home() {
             {catData.map((cats) => (
               <SwiperSlide key={cats.id}>
                 <div className="mt-10 border border-[#EBEBEB] rounded-sm w-full h-70 pb-6 hover:shadow-[0_0_18px_#FEC80B] transition duration-300 bg-white flex flex-col justify-between">
-                  <a href={cats.catLink} className="flex flex-col h-full justify-between">
+                  <a
+                    href={cats.catLink}
+                    className="flex flex-col h-full justify-between"
+                  >
                     <div className="px-4 py-3">
                       <p className="font-fira-sans font-medium text-base md:text-lg text-gray-900 truncate">
                         {getCatTitle(cats)}
@@ -255,15 +304,24 @@ export function Home() {
               </h2>
 
               <p className="mb-10 font-fira-sans font-normal text-lg sm:text-base">
-                {t("home_about_p1", "Наша компания занимает лидирующие позиции на рынке спецтехники: каждый день мы вносим свой вклад в развитие отечественного автопрома и укрепление российской экономики.")}
+                {t(
+                  "home_about_p1",
+                  "Наша компания занимает лидирующие позиции на рынке спецтехники: каждый день мы вносим свой вклад в развитие отечественного автопрома и укрепление российской экономики.",
+                )}
               </p>
 
               <p className="font-fira-sans font-normal text-lg sm:text-base">
-                {t("home_about_p2", "«РусТрак» является ведущим производителем коммерческого транспорта и специализированной техники. Наша работа признана и высоко оценена крупнейшими отечественными корпорациями.")}
+                {t(
+                  "home_about_p2",
+                  "«РусТрак» является ведущим производителем коммерческого транспорта и специализированной техники. Наша работа признана и высоко оценена крупнейшими отечественными корпорациями.",
+                )}
               </p>
 
               <div className="border-2 border-[#fec80b] mt-8 py-2 px-4 max-w-50 flex justify-center rounded-xl bg-yellow-300 hover:bg-[#ffd43a] transition duration-300">
-                <a href="/about" className="font-fira-sans text-black font-medium text-base cursor-pointer transition duration-300 flex gap-2 items-center">
+                <a
+                  href="/about"
+                  className="font-fira-sans text-black font-medium text-base cursor-pointer transition duration-300 flex gap-2 items-center"
+                >
                   {t("learnMore", "Подробнее")}
                   <span>
                     <ArrowRight size={18} />
@@ -284,7 +342,9 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 md:gap-1">
             <div className="pt-20">
               <p className="font-fira-sans font-medium text-8xl">17</p>
-              <p className="font-fira-sans font-medium text-3xl">{t("home_stats_years", "лет")}</p>
+              <p className="font-fira-sans font-medium text-3xl">
+                {t("home_stats_years", "лет")}
+              </p>
               <p className="font-normal text-lg font-fira-sans pt-7 md:text-base">
                 За 17 лет деятельности ООО
                 <br />
@@ -295,7 +355,9 @@ export function Home() {
 
             <div className="pt-20">
               <p className="font-fira-sans font-medium text-8xl">85</p>
-              <p className="font-fira-sans font-medium text-3xl">{t("home_stats_subjects", "субъектов")}</p>
+              <p className="font-fira-sans font-medium text-3xl">
+                {t("home_stats_subjects", "субъектов")}
+              </p>
               <p className="font-normal text-lg font-fira-sans pt-7">
                 Мы обеспечили 85 субъектов РФ <br /> надёжной техникой
                 коммерческого и <br /> специализированного <br /> предназначения
@@ -304,7 +366,9 @@ export function Home() {
 
             <div className="pt-20">
               <p className="font-fira-sans font-medium text-8xl">11</p>
-              <p className="font-fira-sans font-medium text-3xl">{t("home_stats_concerns", "концернов")}</p>
+              <p className="font-fira-sans font-medium text-3xl">
+                {t("home_stats_concerns", "концернов")}
+              </p>
               <p className="font-normal text-lg font-fira-sans pt-7">
                 ООО «РусТрак» дорожит доверием <br /> автопрома, которое
                 подтверждено <br /> полномочиями от 11 <br /> автопроизводителей
@@ -380,9 +444,20 @@ export function Home() {
                             ? "bg-red-50 text-red-500"
                             : "bg-white/80 hover:bg-white text-gray-700 hover:text-red-500"
                         }`}
-                        title={isInFavorites(recomendProduct) ? t("removeFromFavorites", "Удалить из избранного") : t("addToFavorites", "В избранное")}
+                        title={
+                          isInFavorites(recomendProduct)
+                            ? t("removeFromFavorites", "Удалить из избранного")
+                            : t("addToFavorites", "В избранное")
+                        }
                       >
-                        <Heart size={18} className={isInFavorites(recomendProduct) ? "fill-red-500 text-red-500" : ""} />
+                        <Heart
+                          size={18}
+                          className={
+                            isInFavorites(recomendProduct)
+                              ? "fill-red-500 text-red-500"
+                              : ""
+                          }
+                        />
                       </button>
                     </div>
 
@@ -414,7 +489,11 @@ export function Home() {
                           ? "bg-[#FEC80B] text-black border-[#FEC80B]"
                           : "border-gray-300 text-gray-600 hover:border-[#FEC80B] hover:text-black"
                       }`}
-                      title={isInCart(recomendProduct) ? t("inCart", "В корзине") : t("addToCart", "Добавить в корзину")}
+                      title={
+                        isInCart(recomendProduct)
+                          ? t("inCart", "В корзине")
+                          : t("addToCart", "Добавить в корзину")
+                      }
                     >
                       <ShoppingCart size={18} />
                     </button>
@@ -498,7 +577,10 @@ export function Home() {
                     {novostItem.novostDesc}
                   </h5>
 
-                  <a href="/news" className="flex items-center gap-2 mt-2 text-gray-600 hover:text-black transition">
+                  <a
+                    href="/news"
+                    className="flex items-center gap-2 mt-2 text-gray-600 hover:text-black transition"
+                  >
                     <span className="text-[#A1A1A1] font-fira-sans font-normal text-sm">
                       {t("learnMore", "Подробнее")}
                     </span>
@@ -511,8 +593,7 @@ export function Home() {
         </div>
       </section>
 
-      <Feedback />
-      <Footer />
+      
       <PhoneModal
         isOpen={isPhoneModalOpen}
         onClose={() => setIsPhoneModalOpen(false)}
