@@ -12,6 +12,7 @@ import { categories, products } from "../data/data";
 import { container } from "../utils/animation";
 import { matchesBrand } from "../utils/filterUtils";
 import { translateTitle } from "../utils/productTranslation";
+import { Loader } from "../components/Loader";
 
 export function CatTrucks() {
   const { t, lang } = useLanguage();
@@ -48,9 +49,6 @@ export function CatTrucks() {
     }, 600);
   };
 
-  console.log(category);
-  
-
   return (
     <>
       <div className="bg-[#F8F8F8] min-h-screen pb-20">
@@ -72,7 +70,7 @@ export function CatTrucks() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                {t("cat_shtornye", "Шторные автомобили")} GG
+                {t("cat_shtornye", "Шторные автомобили")}
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
                 {filteredProducts.length} {t("productsWord", "товаров")}
@@ -289,7 +287,7 @@ export function CatTrucks() {
                         lang,
                       );
                       return (
-                        <TruckCard key={product.id} truck={product} />
+                        <TruckCard key={product.id} truck={product} viewMode={viewMode} />
                         // <motion.div
                         //   variants={fadeUp}
                         //   key={product.id}

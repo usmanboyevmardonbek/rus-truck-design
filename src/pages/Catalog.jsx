@@ -51,7 +51,7 @@ const Catalog = () => {
                         {catalog.title?.[lang]}
                       </p>
                       <p className="font-fira-sans text-[#A1A1A1] font-normal text-base">
-                        {"countDesc"}
+                        {formatCount(1, lang)}
                       </p>
                     </div>
                     <img

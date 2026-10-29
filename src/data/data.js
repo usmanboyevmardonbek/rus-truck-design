@@ -30,11 +30,17 @@ export const products = [
     slug: "shtornyy-gruzovik-maz-438121",
     title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
     img: "/gruz-1.jpg",
-    specs: [
+    specs: [  
       { label: "Марка", value: "МАЗ" },
       { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
       { label: "Грузоподъемность, кг", value: "4300" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 2,
@@ -47,6 +53,12 @@ export const products = [
       { label: "Габариты ТС", value: "6500 x 2200 x 2400 мм" },
       { label: "Грузоподъемность, кг", value: "6800" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 3,
@@ -59,6 +71,12 @@ export const products = [
       { label: "Габариты ТС", value: "6000 x 2100 x 2300 мм" },
       { label: "Грузоподъемность, кг", value: "5500" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 4,
@@ -71,6 +89,12 @@ export const products = [
       { label: "Габариты ТС", value: "7200 x 2400 x 2500 мм" },
       { label: "Грузоподъемность, кг", value: "10500" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 5,
@@ -83,6 +107,12 @@ export const products = [
       { label: "Габариты ТС", value: "4800 x 1900 x 2000 мм" },
       { label: "Грузоподъемность, кг", value: "3200" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 6,
@@ -95,6 +125,12 @@ export const products = [
       { label: "Габариты ТС", value: "8100 x 2500 x 2600 мм" },
       { label: "Грузоподъемность, кг", value: "14000" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 7,
@@ -110,6 +146,12 @@ export const products = [
       { label: "Колесная формула", value: "4x2" },
       { label: "Длина платформы", value: "4800 мм" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
   {
     id: 8,
@@ -125,5 +167,11 @@ export const products = [
       { label: "Колесная формула", value: "4x2" },
       { label: "Длина платформы", value: "4800 мм" },
     ],
+    price: 657000,
+    suffix: {
+      uz: "rub",
+      en: "RUR",
+      ru: "руб",
+    }
   },
 ];
