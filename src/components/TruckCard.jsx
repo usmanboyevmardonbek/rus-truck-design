@@ -24,27 +24,29 @@ export function TruckCard({ truck, viewMode }) {
             >
               {truck?.title}
             </Link>
-            <ul className="w-full">
-              {truck?.specs?.map((spec, i) => {
-                return (
-                  <li key={i} className="flex items-end gap-1">
-                    <p>{spec?.label}</p>
-                    <span className="flex-1 border-b border-dashed border-[#a2a2a2]"></span>
-                    <p>{spec?.value}</p>
-                  </li>
-                );
-              })}
-            </ul>
+            {viewMode !== "grid" && (
+              <ul className="w-full">
+                {truck?.specs?.map((spec, i) => {
+                  return (
+                    <li key={i} className="flex items-end gap-1">
+                      <p>{spec?.label}</p>
+                      <span className="flex-1 border-b border-dashed border-[#a2a2a2]"></span>
+                      <p>{spec?.value}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         </div>
         <div>
           <h3 className="font-medium font-fira-sans text-center mb-3">
             {`${truck?.price?.toLocaleString().replaceAll(",", " ")} ${truck?.suffix?.[lang] || ""}`}
           </h3>
-          <div className="flex flex-col">
+          <div className={`flex flex-col ${viewMode === "grid" ? "flex-row gap-3" : "flex-col"}`}>
             <a
               href="#"
-              className="inline-block bg-[#fec80b] px-11 py-3 rounded-sm hover:bg-[#ffd43a] transition duration-300"
+              className={`inline-block bg-[#fec80b] px-11 py-3 rounded-sm hover:bg-[#ffd43a] transition duration-300`}
             >
               <p className="font-fira-sans text-base text-center">Подробнее</p>
             </a>

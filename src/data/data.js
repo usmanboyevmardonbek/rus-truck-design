@@ -1,23 +1,123 @@
 export const categories = [
   {
     id: 1,
-    slug: "shtornie-gruzoviki",
+    slug: "shtornye-avtomobili",
     title: {
       uz: "Tentli yuk mashinalar",
       ru: "Шторные автомобили",
-      en: "Шторные автомобили",
+      en: "Curtainsider trucks",
     },
     img: "/categories/cat-1.webp",
   },
   {
     id: 2,
-    slug: "avtoevakuatory",
+    slug: "krany-manipulyatory",
     title: {
-      uz: "Avto evakuatori",
-      ru: "Автоэвакуаторы",
-      en: "Автоэвакуаторы",
+      uz: "Kran-manipulyatorlar",
+      ru: "Краны-манипуляторы",
+      en: "Crane manipulators",
     },
     img: "/categories/cat-2.webp",
+  },
+  {
+    id: 3,
+    slug: "avtotoplivozapravshchiki",
+    title: {
+      uz: "Avtoyoqilg‘i quyish mashinalari",
+      ru: "Автотопливозаправщики",
+      en: "Fuel tankers",
+    },
+    img: "/categories/cat-3.webp",
+  },
+  {
+    id: 4,
+    slug: "avtogidropodyomniki",
+    title: {
+      uz: "Avtogidropodyomniklar",
+      ru: "Автогидроподъёмники",
+      en: "Aerial work platforms",
+    },
+    img: "/categories/cat-4.webp",
+  },
+  {
+    id: 5,
+    slug: "avtotsisterny",
+    title: {
+      uz: "Avtotsisternalar",
+      ru: "Автоцистерны",
+      en: "Tank trucks",
+    },
+    img: "/categories/cat-5.webp",
+  },
+  {
+    id: 6,
+    slug: "avtoevakuatory",
+    title: {
+      uz: "Avtoevakuatorlar",
+      ru: "Автоэвакуаторы",
+      en: "Tow trucks",
+    },
+    img: "/categories/cat-6.webp",
+  },
+  {
+    id: 7,
+    slug: "bortovye-avtomobili",
+    title: {
+      uz: "Bortli yuk mashinalar",
+      ru: "Бортовые автомобили",
+      en: "Flatbed trucks",
+    },
+    img: "/categories/cat-7.webp",
+  },
+  {
+    id: 8,
+    slug: "izotermicheskie-furgony",
+    title: {
+      uz: "Izotermik furgonlar",
+      ru: "Изотермические фургоны",
+      en: "Isothermal vans",
+    },
+    img: "/categories/cat-8.webp",
+  },
+  {
+    id: 9,
+    slug: "konteynerovozy",
+    title: {
+      uz: "Konteyner tashuvchilar",
+      ru: "Контейнеровозы",
+      en: "Container trucks",
+    },
+    img: "/categories/cat-9.webp",
+  },
+  {
+    id: 10,
+    slug: "kryukovye-pogruzchiki",
+    title: {
+      uz: "Ilmoqli yuklagichlar",
+      ru: "Крюковые погрузчики",
+      en: "Hook loaders",
+    },
+    img: "/categories/cat-10.webp",
+  },
+  {
+    id: 11,
+    slug: "samosvaly",
+    title: {
+      uz: "Samosvallar",
+      ru: "Самосвалы",
+      en: "Dump trucks",
+    },
+    img: "/categories/cat-11.webp",
+  },
+  {
+    id: 12,
+    slug: "avtomobili-dopog-exii",
+    title: {
+      uz: "DOPOG EXII toifadagi avtomobillar",
+      ru: "Автомобили ДОПОГ категория EXII",
+      en: "ADR EXII category vehicles",
+    },
+    img: "/categories/cat-12.webp",
   },
 ];
 
@@ -30,7 +130,7 @@ export const products = [
     slug: "shtornyy-gruzovik-maz-438121",
     title: "Шторный грузовик МАЗ 438121 (модель 5389D5)",
     img: "/gruz-1.jpg",
-    specs: [  
+    specs: [
       { label: "Марка", value: "МАЗ" },
       { label: "Габариты ТС", value: "5300 x 2000 x 2000 мм" },
       { label: "Грузоподъемность, кг", value: "4300" },
@@ -40,7 +140,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 2,
@@ -58,7 +158,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 3,
@@ -76,7 +176,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 4,
@@ -94,7 +194,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 5,
@@ -112,7 +212,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 6,
@@ -130,7 +230,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 7,
@@ -151,7 +251,7 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
   {
     id: 8,
@@ -172,6 +272,6 @@ export const products = [
       uz: "rub",
       en: "RUR",
       ru: "руб",
-    }
+    },
   },
 ];
