@@ -28,11 +28,13 @@ export function CatTrucks() {
 
   const brands = ["ГАЗ", "КАМАЗ", "JAC", "DAEWOO", "FOTON", "DONG FENG", "МАЗ"];
 
-  const currentCategory = categories.find
+  const currentCategory = categories.find((cat) => cat.slug === category);
 
-  const filteredProducts = products.filter((product) =>
-    matchesBrand(product, selectedBrands),
+  const filteredProducts = products.filter(
+    (product) => product.categoryId === currentCategory.id,
   );
+
+  
 
   const visibleBrands = brands.filter((brand) =>
     brand.toLowerCase().includes(brandSearch.toLowerCase()),
@@ -70,7 +72,7 @@ export function CatTrucks() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="flex items-baseline gap-4">
               <h1 className="font-fira-sans font-bold text-3xl md:text-4xl text-black">
-                {t("cat_shtornye", "Шторные автомобили")}
+                {currentCategory?.title?.[lang]}
               </h1>
               <p className="font-fira-sans text-gray-400 text-sm">
                 {filteredProducts.length} {t("productsWord", "товаров")}
@@ -189,7 +191,7 @@ export function CatTrucks() {
                             />
                             {isChecked && (
                               <svg
-                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-[3]"
+                                className="w-3.5 h-3.5 text-black pointer-events-none stroke-3"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -262,7 +264,7 @@ export function CatTrucks() {
                     </p>
                     <button
                       type="button"
-                      onClick={handleResetFilters}
+                      // onClick={handleResetFilters}
                       className="bg-[#FEC80B] hover:bg-yellow-500 font-fira-sans text-sm font-medium px-5 py-2.5 rounded-sm transition-colors cursor-pointer"
                     >
                       {t("resetFilters", "Сбросить фильтры")}
@@ -275,11 +277,12 @@ export function CatTrucks() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    className={
+                    className={`${
                       viewMode === "grid"
                         ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
                         : "flex flex-col gap-5"
                     }
+                    `}
                   >
                     {filteredProducts.map((product) => {
                       const localizedTitle = translateTitle(
@@ -287,7 +290,11 @@ export function CatTrucks() {
                         lang,
                       );
                       return (
-                        <TruckCard key={product.id} truck={product} viewMode={viewMode} />
+                        <TruckCard
+                          key={product.id}
+                          truck={product}
+                          viewMode={viewMode}
+                        />
                         // <motion.div
                         //   variants={fadeUp}
                         //   key={product.id}

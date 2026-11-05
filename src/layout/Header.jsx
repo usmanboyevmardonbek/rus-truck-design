@@ -15,51 +15,52 @@ import { useCart } from "../context/CartContext";
 import { SearchBox } from "../components/SearchBox";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { PhoneModal } from "../components/PhoneModal";
+import { categories } from "../data/data";
 
 function MegaMenuDropdown({ activeTrigger, onClose }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
-  const categories = [
-    {
-      to: "/catalog/shtornye-avtomobili",
-      label: t("cat_shtornye", "Шторные автомобили"),
-    },
-    {
-      to: "/catalog/krany-manipulator",
-      label: t("cat_krany", "Краны-манипуляторы"),
-    },
-    {
-      to: "/catalog/zapravka",
-      label: t("cat_zapravka", "Автотопливозаправщики"),
-    },
-    { to: "/catalog/sisterna", label: t("cat_sisterna", "Автоцистерны") },
-    { to: "/catalog/evakuator", label: t("cat_evakuator", "Автоэвакуаторы") },
-    {
-      to: "/catalog/bortovye-avtomobili",
-      label: t("cat_bortovye", "Бортовые автомобили"),
-    },
-    {
-      to: "/catalog/avtofurgony",
-      label: t("cat_avtofurgony", "Изотермические фургоны"),
-    },
-    {
-      to: "/catalog/konteynerovozy",
-      label: t("cat_konteynerovozy", "Контейнеровозы"),
-    },
-    {
-      to: "/catalog/kryukovye-pogruzchiki",
-      label: t("cat_kryukovye", "Крюковые погрузчики"),
-    },
-    { to: "/catalog/samosvaly", label: t("cat_samosvaly", "Самосвалы") },
-    {
-      to: "/catalog/avtomobili-dopog",
-      label: t("cat_dopog", "Автомобили ДОПОГ категория EXII"),
-    },
-    {
-      to: "/catalog/gidropod",
-      label: t("cat_gidropod", "Автогидроподъёмники"),
-    },
-  ];
+  // const categories = [
+  //   {
+  //     to: "/catalog/shtornye-avtomobili",
+  //     label: t("cat_shtornye", "Шторные автомобили"),
+  //   },
+  //   {
+  //     to: "/catalog/krany-manipulator",
+  //     label: t("cat_krany", "Краны-манипуляторы"),
+  //   },
+  //   {
+  //     to: "/catalog/zapravka",
+  //     label: t("cat_zapravka", "Автотопливозаправщики"),
+  //   },
+  //   { to: "/catalog/sisterna", label: t("cat_sisterna", "Автоцистерны") },
+  //   { to: "/catalog/evakuator", label: t("cat_evakuator", "Автоэвакуаторы") },
+  //   {
+  //     to: "/catalog/bortovye-avtomobili",
+  //     label: t("cat_bortovye", "Бортовые автомобили"),
+  //   },
+  //   {
+  //     to: "/catalog/avtofurgony",
+  //     label: t("cat_avtofurgony", "Изотермические фургоны"),
+  //   },
+  //   {
+  //     to: "/catalog/konteynerovozy",
+  //     label: t("cat_konteynerovozy", "Контейнеровозы"),
+  //   },
+  //   {
+  //     to: "/catalog/kryukovye-pogruzchiki",
+  //     label: t("cat_kryukovye", "Крюковые погрузчики"),
+  //   },
+  //   { to: "/catalog/samosvaly", label: t("cat_samosvaly", "Самосвалы") },
+  //   {
+  //     to: "/catalog/avtomobili-dopog",
+  //     label: t("cat_dopog", "Автомобили ДОПОГ категория EXII"),
+  //   },
+  //   {
+  //     to: "/catalog/gidropod",
+  //     label: t("cat_gidropod", "Автогидроподъёмники"),
+  //   },
+  // ];
 
   const aboutLinks = [
     { to: "/about", label: t("about_company", "О компании ООО «Рустрак»") },
@@ -118,17 +119,21 @@ function MegaMenuDropdown({ activeTrigger, onClose }) {
               {t("categories", "Категории")}
             </h3>
             <ul className="space-y-2.5">
-              {categories.map((c, i) => (
-                <li key={i}>
-                  <NavLink
-                    to={c.to}
-                    onClick={onClose}
-                    className="font-fira-sans text-sm sm:text-base text-gray-800 hover:text-[#FEC80B] transition-colors block py-0.5"
-                  >
-                    {c.label}
-                  </NavLink>
-                </li>
-              ))}
+              {categories.map((c, i) => {
+                console.log(c);
+                
+                return (
+                  <li key={i}>
+                    <NavLink
+                      to={`/catalog/${c?.slug}`}
+                      onClick={onClose}
+                      className="font-fira-sans text-sm sm:text-base text-gray-800 hover:text-[#FEC80B] transition-colors block py-0.5"
+                    >
+                      {c?.title?.[lang]}
+                    </NavLink>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
